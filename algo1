@@ -1,0 +1,67 @@
+import math
+
+
+# naive algorithm
+def naive(a, b):
+    x = a;
+    y = b;
+    z = 0;
+    while (x > 0):
+        z = z + y
+        x = x - 1
+    if(x == 63 and y==12):
+        print(z)
+    return z
+
+
+# russian algorithm
+def russian(a, b):
+    x = a;
+    y = b
+    z = 0
+    while x > 0:
+        if x % 2 == 1: z = z + y
+        y = y << 1
+        x = x >> 1
+        return z
+
+
+# measuring time as a function of an input
+def countdown(x):
+    y = 0
+    while x > 0:
+        x = x - 5
+        y = y + 1
+    return y
+
+
+def time(n):
+    return 3 + 2 * math.ceil(n / 5)
+
+
+# counting steps in naive as a function of a
+def naive1(a, b):
+    x = a;
+    y = b;
+    while (x > 0):
+        z = z + y
+        x = x - 1
+    return z
+
+
+# def timeNaive(a):
+
+
+# The number of steps it takes to execute naive(a,b)
+#   as a function b
+#
+# def bit_shift(a, b):
+#     return (a >> 1)
+
+def clique(n):
+    print("in a clique ...")
+    for j in range(n):
+        for i in range(j):
+            print (i, "is friends with", j)
+
+print(clique(4))
