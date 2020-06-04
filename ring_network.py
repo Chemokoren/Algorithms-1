@@ -17,9 +17,9 @@ for i in range(n):
     make_link(a_ring, i, (i + 1) % n)
 
 # How many nodes?
-print len(a_ring)
+print(len(a_ring))
 
 # How many edges?
-print sum([len(a_ring[node]) for node in a_ring.keys()]) / 2
+print(sum([len(a_ring[node]) for node in a_ring.keys()]) / 2)
 
-print a_ring
+print(a_ring)

@@ -26,40 +26,44 @@ N is an integer within the range [0..400,000];
 each element of array A is an integer within the range [0..200,000].
 """
 
-A =[23171, 21011, 21123, 21366, 21013, 21367]
-#Detected time complexity: O(N)
+A = [23171, 21011, 21123, 21366, 21013, 21367]
+
+
+# Detected time complexity: O(N)
 def solution(A):
     # write your code in Python 3.6
     if len(A) == 0:
         return 0
 
     start = 0
-    end = len(A)-1
+    end = len(A) - 1
     min_val = A[start]
     max_val = A[end]
     while start <= end:
         min_val = min(min_val, A[start])
         max_val = max(max_val, A[end])
 
-        gap_l = min_val - A[start+1]
-        gap_r = A[end-1] - max_val
+        gap_l = min_val - A[start + 1]
+        gap_r = A[end - 1] - max_val
 
         if gap_l > gap_r:
             start += 1
         else:
             end -= 1
-    return max_val-min_val
+    return max_val - min_val
+
 
 def solution1(A):
     # write your code in Python 3.6
 
-    for i in range(len(A)-1):
-        if i==0:
-            max_profit =0
-        if (A[i+1] - A[i]) > max_profit:
-            max_profit =A[i+1]-A[i]
+    for i in range(len(A) - 1):
+        if i == 0:
+            max_profit = 0
+        if (A[i + 1] - A[i]) > max_profit:
+            max_profit = A[i + 1] - A[i]
 
     return max_profit
+
 
 def solution2(A):
     min = A[0]
@@ -80,26 +84,21 @@ def solution2(A):
         i += 1
     return max_profit
 
-// import java.math.*;
-class Solution {
-    public int solution(int[] A) {
-        // write your code in Java SE 7
-
-      if(A.length == 1 || A.length == 0){
+#solution 3
+def solution3(A):
+    if len(A) == 1 or len(A) == 0:
         return 0;
-    }
 
-    int maxSoFar = 0;
-    int maxEndingHere = 0;
-    int minPrice = A[0];
+    maxSoFar = 0;
+    maxEndingHere = 0;
+    minPrice = A[0];
 
-    for(int i = 1; i < A.length; i++){
-        maxEndingHere = Math.max(0, A[i] - minPrice);
-        minPrice = Math.min(minPrice, A[i]);
-        maxSoFar = Math.max(maxEndingHere, maxSoFar);
-    }
+    for i in range(len(A)):
+        maxEndingHere = max(0, A[i] - minPrice)
+        minPrice = min(minPrice, A[i])
+        maxSoFar = max(maxEndingHere, maxSoFar)
 
     return maxSoFar;
-    }
-}
-print(solution2(A))
+
+
+print(solution(A))
