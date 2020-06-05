@@ -68,4 +68,19 @@ def solution3(N):
             result += 2
     return result
 
-print(solution(240000000000000))
+def solution4(N):
+    candidate = 1
+    result = 0
+    while candidate * candidate < N:
+        # N has two factors: candidate and N // candidate
+        if N % candidate == 0:
+          result += 2
+
+        candidate += 1
+
+    # If N is square of some value.
+    if candidate * candidate == N:  result += 1
+
+    return result
+
+print(solution4(240000000000000))
