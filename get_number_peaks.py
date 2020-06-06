@@ -71,5 +71,68 @@ def solution(A):
             number_picks = number_picks + 1
     return number_picks - 1
 
+#solution 2
 
-print(solution(A))
+import math
+def solution1(A):
+ N=len(A)
+#Trivial cases
+ if N<3:
+    return 0
+ Flags_Idx=[]
+
+ for p in range(1,N-1):
+     if A[p-1]<A[p] and A[p]>A[p+1] :
+         Flags_Idx.append(p)
+
+ if len(Flags_Idx)==0:
+    return 0
+ if len(Flags_Idx)<=2:
+     return len(Flags_Idx)
+ Start_End_Flags=Flags_Idx[len(Flags_Idx)-1]-Flags_Idx[0]
+#Maximum number of flags N is such that Start_End_Flags/(N-1)>=N
+#After solving a second degree equation we obtain the maximal value of N
+ num_max_flags=math.floor(1.0+math.sqrt(4*Start_End_Flags+1.0))/2.0
+
+#Set the current number of flags to its total number
+ len_flags=len(Flags_Idx)
+ min_peaks=len(Flags_Idx)
+ p=0
+
+#Compute the minimal number of flags by checking each indexes
+#and comparing to the maximal theorique value num_max_flags
+ while p<len_flags-1:
+    add = 1
+#Move to the next flag until the condition Flags_Idx[p+add]-Flags_Idx[p]>=min(num_max_flags,num_flags)
+    while Flags_Idx[p+add]-Flags_Idx[p]<min(num_max_flags,min_peaks):
+         min_peaks-=1
+         if p+add<len_flags-1:
+          add+=1
+         else:
+             p=len_flags
+             break
+    p+=add
+
+ if num_max_flags==min_peaks:
+  return min_peaks
+#Bisect the remaining flags : check the condition
+#for flags in [min_peaks,num_max_flags]
+ num_peaks=min_peaks
+ for nf in range (min_peaks,int(num_max_flags)+1):
+  cnt=1
+  p=0
+  while p<len_flags-1:
+    add = 1
+    while Flags_Idx[p+add]-Flags_Idx[p]<nf:
+         if p+add<len_flags-1:
+          add+=1
+         else:
+             cnt-=1
+             p=len_flags
+             break
+    p+=add
+    cnt+=1
+  num_peaks=max(min(cnt,nf),num_peaks)
+ return num_peaks
+
+print(solution1(A))
