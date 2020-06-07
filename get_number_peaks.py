@@ -64,6 +64,7 @@ each element of array A is an integer within the range [0..1,000,000,000].
 A = [1, 5, 3, 4, 3, 4, 1, 2, 3, 4, 6, 2]
 
 
+#Detected time complexity: O(N)
 def solution(A):
     number_picks = 0
     for i in range(1, len(A) - 1):
