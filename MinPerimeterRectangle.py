@@ -48,4 +48,18 @@ def solution(N):
 
     return minimal_perimeter
 
-print(solution(1000000000))
+#solution 1 Detected time complexity: O(sqrt(N))
+import math
+def solution1(N):
+    n = math.sqrt(N)
+    min = math.inf
+    p =None
+    for i in range(1, int(n)):
+        if N%i==0:
+            p = 2*(i+N/i)
+            if p<min:
+                min = p
+
+    return min
+
+print(solution1(1000000000))
