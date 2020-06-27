@@ -63,6 +63,8 @@ def solution(A):
     return my_list
 
 
+#solution 1
+# O(N * log(N))
 def solution1(A):
  N=len(A)
  num_non_divisors=[0]*N
