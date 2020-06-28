@@ -65,4 +65,20 @@ def solution2(N,M):
 
     return count
 
+def solution(N, M):
+    # write your code in Python 3.6
+    number_times=0
+    x =0
+    for i in range(0,N,((x+M))%N):
+        if i==0 or i==N-1:
+            number_times =number_times+1
+        if i%M ==0:
+            number_times =number_times+1
+        x =x+i
+
+    return number_times
+
+
+
+
 print(solution3(10,4))
