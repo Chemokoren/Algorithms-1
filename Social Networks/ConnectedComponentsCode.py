@@ -28,6 +28,14 @@ def list_component_sizes(G):
     marked = {}
     for node in G.keys():
         if node not in marked:
-            print "Component containing", node, ": ", mark_component(G, node, marked)
+            print ("Component containing", node, ": ", mark_component(G, node, marked))
 
 list_component_sizes(G)
+
+#check pairwise connectivity
+def check_connection(G, v1, v2):
+    marked = {}
+    mark_component(G,v1,marked)
+    return v2 in marked
+
+print(check_connection(G,'a','g'))

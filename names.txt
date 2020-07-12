@@ -1,0 +1,7 @@
+name,sex,count
+kijana,M,5
+mambo,M,10
+Joy,F,2
+Winny,F,10
+Esther,F,7
+Grace,F,11
