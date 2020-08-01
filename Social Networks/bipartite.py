@@ -11,9 +11,30 @@
 #
 
 def bipartite(G):
-    # your code here
-    # return a set
-    pass
+    checked = {}
+
+    def _iter_check(node, side):
+        if node in checked:
+            return
+        checked[node] = side
+        for neighbor in G[node]:
+            _iter_check(neighbor, not side)
+
+    for node in G:
+        _iter_check(node, True)
+
+    def _valid(subset):
+        for node in subset:
+            for neighbor in G[node]:
+                if neighbor in subset:
+                    return False
+        return True
+
+    left_set = set(filter(lambda x: checked[x], checked))
+    right_set = set(G.keys()) - left_set
+
+    if _valid(left_set) and _valid(right_set):
+        return left_set
 
 
 ########

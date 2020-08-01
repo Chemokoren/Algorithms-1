@@ -30,10 +30,108 @@
 For this problem, flight time is defined as the time between departure of the first flight and arrival of the last flight.
  You might also call this 'total travel time.'
 """
+from collections import defaultdict
+import itertools
+from datetime import datetime
+import operator
 def find_best_flights(flights, origin, destination):
-    best_flights = []
-    # your code here
-    return best_flights
+	air_graph = build_air_graph(all_flights)
+
+	possible_path = []
+
+	for citys in get_possible_path(air_graph, origin, destination):
+		possible_path += [city_to_path(air_graph, citys)]
+
+	feasible = []
+	for item in possible_path:
+		feasible += filter(lambda x: valid_line(flights, x), item)
+
+	if not feasible:
+		return None
+
+	cheap_flights = cost_efficiency(flights, feasible)
+
+	return list(time_efficiency(flights, cheap_flights))
+
+def cost_efficiency(flights, path_list):
+	min_cost = min(map(lambda x: get_path_cost(flights, x), path_list))
+
+	return filter(lambda x: get_path_cost(flights, x) == min_cost, path_list)
+
+def time_efficiency(flights, path_list):
+	return min(path_list, key=lambda x: get_path_duration(flights, x))
+
+def get_path_duration(flights, path):
+	time_durations = map(lambda x: get_airline_duration(flights, x), path)
+
+	return reduce(operator.add, time_durations)
+
+def get_airline_duration(flights, airline):
+	duration = get_air_time(flights, airline)
+
+	return duration[1] - duration[0]
+
+def get_path_cost(flights, path):
+	airline_cost = lambda x: id_to_airline(flights, x)[5]
+
+	return sum(map(airline_cost, path))
+
+def build_air_graph(flights):
+	G = defaultdict(lambda : defaultdict(list))
+
+	for airline in flights:
+		origin = airline[1]
+		dest   = airline[2]
+		G[origin][dest] += [airline[0]]
+
+	return G
+
+def get_possible_path(air_graph, origin, destination):
+	accessible = []
+	frontier  = [[origin]]
+	while frontier:
+		current_path = frontier.pop()
+		last_stop = current_path[-1]
+
+		if last_stop == destination:
+			accessible += [current_path]
+
+		for next_stop in air_graph[last_stop]:
+			if next_stop not in current_path:
+				frontier += [current_path+[next_stop]]
+
+	return accessible
+
+def city_to_path(air_graph, city_path):
+	airline_list = []
+	for i in range(len(city_path)-1):
+		origin      = city_path[i]
+		destination = city_path[i+1]
+		airline_list += [air_graph[origin][destination]]
+
+	return list(itertools.product(*airline_list))
+
+def id_to_airline(flights, ID):
+	return filter(lambda x: x[0] == ID, flights)[0]
+
+def get_air_time(flights, ID):
+	departure, arrival = id_to_airline(flights, ID)[3:5]
+	transfer = lambda x: datetime.strptime(x, '%H:%M')
+
+	return map(transfer, (departure, arrival))
+
+def valid_line(flights, airline_path):
+	last_arrival = datetime.strptime('00:00', '%H:%M')
+
+	for airlineID in airline_path:
+		departure, arrival = get_air_time(flights, airlineID)
+
+		if departure < last_arrival:
+			return False
+
+		last_arrival = arrival
+
+	return True
 
 #
 # Here is a fictious flight schedule that is roughly based on routes

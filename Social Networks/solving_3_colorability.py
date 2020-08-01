@@ -7,7 +7,8 @@
 # if cert a k-coloring of G?
 #   colors in {0, ..., k-1}
 """
-should have checked to make sure that the nodes that are in use in the certificate, are the same as the nodes that are in use in the graph
+should have checked to make sure that the nodes that are in use in the certificate,
+are the same as the nodes that are in use in the graph
 Or if it has nodes that aren't in the graph then this will crash
 
 The essence is running through all the edges in the graph and making sure that the colors do not match
