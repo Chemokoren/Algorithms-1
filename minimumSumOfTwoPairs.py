@@ -81,7 +81,25 @@ def solution4(A):
 
     return sum
 
+"""
+Detected time complexity:
+O(N * N)
+"""
+def solution5(A):
+    len_a=len(A)
+    min=0
+    for i in range(0,len_a):
+        for j in range(i,len_a):
+            sum=abs(A[i]+A[j])
+            if(i==0 and j==0):
+                min=sum
+            else:
+                if(min>sum):
+                 min=sum
+
+    return min
+
 # A =[1, 4, -3]
 A = [-8, 4, 5, -10, 3]
 
-print(solution4(A))
+print(solution5(A))
