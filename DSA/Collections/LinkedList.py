@@ -1,5 +1,5 @@
-"""The LinkedList code from before is provided below.
-Add three functions to the LinkedList.
+"""The LinkedListDS code from before is provided below.
+Add three functions to the LinkedListDS.
 "get_position" returns the element at a certain position.
 The "insert" function will add an element to a particular
 spot in the list.
@@ -83,7 +83,7 @@ e2 = Element(2)
 e3 = Element(3)
 e4 = Element(4)
 
-# Start setting up a LinkedList
+# Start setting up a LinkedListDS
 ll = LinkedList(e1)
 ll.append(e2)
 ll.append(e3)

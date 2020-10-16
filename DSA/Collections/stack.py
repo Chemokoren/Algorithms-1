@@ -1,4 +1,4 @@
-"""Add a couple methods to our LinkedList class,
+"""Add a couple methods to our LinkedListDS class,
 and use that to implement a Stack.
 You have 4 functions below to fill in:
 insert_first, delete_first, push, and pop.
@@ -27,12 +27,12 @@ class LinkedList(object):
             self.head = new_element
 
     def insert_first(self, new_element):
-        "Insert new element as the head of the LinkedList"
+        "Insert new element as the head of the LinkedListDS"
         new_element.next = self.head
         self.head = new_element
 
     def delete_first(self):
-        "Delete the first (head) element in the LinkedList as return it"
+        "Delete the first (head) element in the LinkedListDS as return it"
         if self.head:
             deleted_element = self.head
             temp = deleted_element.next

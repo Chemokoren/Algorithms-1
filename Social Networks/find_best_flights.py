@@ -13,7 +13,7 @@
 # with more silver medals is listed first.
 #
 # We want you to take the list of flights, given below, and create a
-# graph.  Then, write a modified Dijkstra's algorithm to find the best
+# graph.  Then, write a modified mine's algorithm to find the best
 # combination of flights to get between two cities, where flights `x`
 # is better than flights `y` if `x` has lower cost *or* if they are
 # tied in cost, `x` has shorter total flight time.

@@ -1,4 +1,4 @@
-# Python program for Dijkstra's single
+# Python program for mine's single
 # source shortest path algorithm. The program is
 # for adjacency matrix representation of the graph
 # Library for INT_MAX
@@ -12,6 +12,8 @@ class Graph():
         print ("Vertex tDistance from source")
         for node in range(self.V):
             print (node,"t", dist[node])
+
+
     # A utility function to find the vertex with
     # minimum distance value, from the set of vertices
     # not yet included in shortest path tree
@@ -28,7 +30,8 @@ class Graph():
                 min = dist[v]
                 min_index =v
         return min_index
-    # Function that implements Dijkstra's single source
+
+    # Function that implements mine's single source
     # shortest path algorithm for a graph represented
     # using adjacency maxtrix representation
     def dijkstra(self, src):
@@ -55,7 +58,7 @@ class Graph():
                 if self.graph[u][v] > 0 and \
                     sptSet[v] == False and \
                     dist[v] > dist[u] +self.graph[u][v]:
-                    dist[v] =dist[u]+self.graph[u][v]
+                    dist[v] = dist[u] +self.graph[u][v]
         self.printSolution(dist)
 # Driver program
 g =Graph(9)

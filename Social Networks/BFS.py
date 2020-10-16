@@ -48,8 +48,7 @@ def path(G, v1, v2):
             #if neighbor not in distance_from_start:
             if neighbor not in path_from_start: # modification
                 #distance_from_start[neighbor] = distance_from_start[current] + 1
-                path_from_start[neighbor] = path_from_start[current]
-                                              + [neighbor] # modification
+                path_from_start[neighbor] = path_from_start[current] + [neighbor] # modification
                 #if neighbor == v2: return distance_from_start[v2]
                 if neighbor == v2: return path_from_start[v2] # modification
                 open_list.append(neighbor)
@@ -58,5 +57,5 @@ def path(G, v1, v2):
 from_node = "A"
 to_node = "ZZZAX"
 
-print distance(marvelG, from_node, to_node)
-print path(marvelG, from_node, to_node)
+print(distance(marvelG, from_node, to_node))
+print(path(marvelG, from_node, to_node))
