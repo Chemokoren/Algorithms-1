@@ -1,5 +1,6 @@
-# x =[i**2 for i in range(1000000000000)]
-#
+x =[i**2 for i in range(1000000000000)]
+
+print(x)    
 # for el in x:
 #     print(el)
 
@@ -28,28 +29,29 @@
 #     except StopIteration:
 #         break
 
-def gen(n):
-    for i in range(n):
-        yield i**2
-
-g =gen(100)
+# print("############################################")
+# def gen(n):
+#     for i in range(n):
+#         yield i**2
+#
+# g =gen(10)
 # for i in g:
 #     print(i)
 
-print(next(g))
-print(next(g))
-print(next(g))
-print(next(g))
-print(next(g))
+# print(next(g))
+# print(next(g))
+# print(next(g))
+# print(next(g))
+# print(next(g))
 
 
-print("############################################")
-import sys
-def gen(n):
-    for i in range(n):
-        yield i**2
-
-x =[i ** 2 for i in range(10000)]
-g =gen(10000)
-print(sys.getsizeof(x))
-print(sys.getsizeof(g))
+# print("############################################")
+# import sys
+# def gen(n):
+#     for i in range(n):
+#         yield i**2
+#
+# x =[i ** 2 for i in range(10000)]
+# g =gen(10000)
+# print(sys.getsizeof(x))
+# print(sys.getsizeof(g))
