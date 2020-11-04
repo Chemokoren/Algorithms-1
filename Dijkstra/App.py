@@ -18,4 +18,4 @@ vertexList = {node1, node2, node3}
 
 algorithm =Algorithm()
 algorithm.calculateShortestPath(vertexList, node1)
-algorithm.getShortestPathTo(node3)
+algorithm.getShortestPathTo(node2)

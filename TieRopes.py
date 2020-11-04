@@ -47,6 +47,9 @@
 # each element of array A is an integer within the range [1..1,000,000,000].
 
 
+# 1. TieRopes
+# Tie adjacent ropes to achieve the maximum number of ropes of length >= K.
+# Detected time complexity: O(N)
 def solution(K, A):
     count = 0
     sum = 0
@@ -69,4 +72,21 @@ def solution1(K, A):
 
     return count
 
-print(solution1(4, [1, 2, 3, 4, 1, 1, 3]))
+
+# solution 2
+# notice that only "adjacent ropes" can be tied
+# so, the problem is simple; we can use "greedy" method
+def solution2(K, A):
+    total =0
+    currentLength=0
+
+    for i in range(len(A)):
+        currentLength = currentLength + A[i];
+        if (currentLength >= K):
+            total =total+1;
+            currentLength=0; # update
+
+    return total;
+
+
+print(solution2(4, [1, 2, 3, 4, 1, 1, 3]))

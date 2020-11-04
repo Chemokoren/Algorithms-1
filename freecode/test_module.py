@@ -1,68 +1,50 @@
 import unittest
-from time_calculator import add_time
+from freecode import arithmentic_arranger_final
 
 
+# the test case
 class UnitTests(unittest.TestCase):
+    def test_arrangement(self):
+        actual = arithmentic_arranger_final(["3 + 855", "3801 - 2", "45 + 43", "123 + 49"])
+        expected = "    3      3801      45      123\n+ 855    -    2    + 43    +  49\n-----    ------    ----    -----"
+        self.assertEqual(actual, expected,
+                         'Expected different output when calling "arithmetic_arranger()" with ["3 + 855", "3801 - 2", "45 + 43", "123 + 49"]')
 
-    def test_same_period(self):
-        actual = add_time("3:30 PM", "2:12")
-        expected = "5:42 PM"
-        self.assertEqual(actual, expected, 'Expected calling "add_time()" with "3:30 PM", "2:12" to return "5:42 PM"')
+        actual = arithmentic_arranger_final(["11 + 4", "3801 - 2999", "1 + 2", "123 + 49", "1 - 9380"])
+        expected = "  11      3801      1      123         1\n+  4    - 2999    + 2    +  49    - 9380\n----    ------    ---    -----    ------"
+        self.assertEqual(actual, expected,
+                         'Expected different output when calling "arithmetic_arranger()" with ["11 + 4", "3801 - 2999", "1 + 2", "123 + 49", "1 - 9380"]')
 
-    def test_different_period(self):
-        actual = add_time("11:55 AM", "3:12")
-        expected = "3:07 PM"
-        self.assertEqual(actual, expected, 'Expected calling "add_time()" with "11:55 AM", "3:12" to return "3:07 PM"')
+    def test_too_many_problems(self):
+        actual = arithmentic_arranger_final(["44 + 815", "909 - 2", "45 + 43", "123 + 49", "888 + 40", "653 + 87"])
+        expected = "Error: Too many problems."
+        self.assertEqual(actual, expected,
+                         'Expected calling "arithmetic_arranger()" with more than five problems to return "Error: Too many problems."')
 
-    def test_next_day(self):
-        actual = add_time("9:15 PM", "5:30")
-        expected = "2:45 AM (next day)"
-        self.assertEqual(actual, expected, 'Expected time to end with "(next day)" when it is the next day.')
+    def test_incorrect_operator(self):
+        actual = arithmentic_arranger_final(["3 / 855", "3801 - 2", "45 + 43", "123 + 49"])
+        expected = "Error: Operator must be '+' or '-'."
+        self.assertEqual(actual, expected,
+                         '''Expected calling "arithmetic_arranger()" with a problem that uses the "/" operator to return "Error: Operator must be '+' or '-'."''')
 
-    def test_period_change_at_twelve(self):
-        actual = add_time("11:40 AM", "0:25")
-        expected = "12:05 PM"
-        self.assertEqual(actual, expected, 'Expected period to change from AM to PM at 12:00')
+    def test_too_many_digits(self):
+        actual = arithmentic_arranger_final(["24 + 85215", "3801 - 2", "45 + 43", "123 + 49"])
+        expected = "Error: Numbers cannot be more than four digits."
+        self.assertEqual(actual, expected,
+                         'Expected calling "arithmetic_arranger()" with a problem that has a number over 4 digits long to return "Error: Numbers cannot be more than four digits."')
 
-    def test_twenty_four(self):
-        actual = add_time("2:59 AM", "24:00")
-        expected = "2:59 AM (next day)"
-        self.assertEqual(actual, expected, 'Expected calling "add_time()" with "2:59 AM", "24:00" to return "2:59 AM"')
+    def test_only_digits(self):
+        actual = arithmentic_arranger_final(["98 + 3g5", "3801 - 2", "45 + 43", "123 + 49"])
+        expected = "Error: Numbers must only contain digits."
+        self.assertEqual(actual, expected,
+                         'Expected calling "arithmetic_arranger()" with a problem that contains a letter character in the number to return "Error: Numbers must only contain digits."')
 
-    def test_two_days_later(self):
-        actual = add_time("11:59 PM", "24:05")
-        expected = "12:04 AM (2 days later)"
-        self.assertEqual(actual, expected, 'Expected calling "add_time()" with "11:59 PM", "24:05" to return "12:04 AM (2 days later)"')
+    def test_solutions(self):
+        actual = arithmentic_arranger_final(["32 - 698", "1 - 3801", "45 + 43", "123 + 49"], True)
+        expected = "   32         1      45      123\n- 698    - 3801    + 43    +  49\n-----    ------    ----    -----\n -666     -3800      88      172"
+        self.assertEqual(actual, expected,
+                         'Expected solutions to be correctly displayed in output when calling "arithmetic_arranger()" with arithemetic problems and a second argument of `True`.')
 
-    def test_high_duration(self):
-        actual = add_time("8:16 PM", "466:02")
-        expected = "6:18 AM (20 days later)"
-        self.assertEqual(actual, expected, 'Expected calling "add_time()" with "8:16 PM", "466:02" to return "6:18 AM (20 days later)"')
-
-    def test_no_change(self):
-        actual = add_time("5:01 AM", "0:00")
-        expected = "5:01 AM"
-        self.assertEqual(actual, expected, 'Expected adding 0:00 to return initial time.')
-
-    def test_same_period_with_day(self):
-        actual = add_time("3:30 PM", "2:12", "Monday")
-        expected = "5:42 PM, Monday"
-        self.assertEqual(actual, expected, 'Expected calling "add_time()" with "3:30 PM", "2:12", "Monday" to return "5:42 PM, Monday"')
-
-    def test_twenty_four_with_day(self):
-        actual = add_time("2:59 AM", "24:00", "saturDay")
-        expected = "2:59 AM, Sunday (next day)"
-        self.assertEqual(actual, expected, 'Expected calling "add_time()" with "2:59 AM", "24:00", "saturDay" to return "2:59 AM, Sunday (next day)"')
-
-    def test_two_days_later_with_day(self):
-        actual = add_time("11:59 PM", "24:05", "Wednesday")
-        expected = "12:04 AM, Friday (2 days later)"
-        self.assertEqual(actual, expected, 'Expected calling "add_time()" with "2:59 AM", "24:00", "Friday" to return "12:04 AM, Friday (2 days later)"')
-
-    def test_high_duration_with_day(self):
-        actual = add_time("8:16 PM", "466:02", "tuesday")
-        expected = "6:18 AM, Monday (20 days later)"
-        self.assertEqual(actual, expected, 'Expected calling "add_time()" with "8:16 PM", "466:02", "tuesday" to return "6:18 AM, Monday (20 days later)"')
 
 if __name__ == "__main__":
     unittest.main()
