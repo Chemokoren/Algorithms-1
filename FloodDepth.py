@@ -117,7 +117,6 @@ def solution1(A):  # O(n) time/space complexity
 
     max_left_heights = A[:]
     max_right_heights = A[:]
-
     for i in range(1, n):
         max_left_heights[i] = max(A[i], max_left_heights[i - 1])
 
@@ -127,8 +126,10 @@ def solution1(A):  # O(n) time/space complexity
     depth = 0
     for i in range(n):
         depth = max(depth, min(max_right_heights[i], max_left_heights[i]) - A[i])
+        print("################################")
+        print(depth,min(max_right_heights[i],max_left_heights[i]) - A[i])
 
     return depth
 
-print(solution([5, 8]))
-print(solution([1, 3, 2, 1, 2, 1, 5, 3, 3, 4, 2]))
+# print(solution1([5, 8]))
+print(solution1([1, 3, 2, 1, 2, 1, 5, 3, 3, 4, 2]))
