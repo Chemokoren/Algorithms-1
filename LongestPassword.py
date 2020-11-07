@@ -63,6 +63,12 @@ def solution(S):
             longest = num_of_letters + num_of_digits
     return longest
 
+# Task Score
+# 100%
+# Correctness
+# 100%
+# Performance
+# Not assessed
 
 def solution1(S):
     return max([len(str) for str in S.split() if len(str) & 1 and str.isalnum() and sum(c.isdigit() for c in str) & 1] + [-1])
