@@ -69,4 +69,40 @@ class Category:
         output = title + items + "Total: " + str(total)
         return output
 
+    def create_spend_chart(categories):
+        res = "Percentage spent by category\n"
+        i = 100
+        totals = getTotals(categories)
+        while i >= 0:
+            cat_spaces = " "
+            for total in totals:
+                if total * 100 >= i:
+                    cat_spaces += "o  "
+                    # print(categories[totals.index(total)].name)
+                else:
+                    cat_spaces += "   "
+            res += str(i).rjust(3) + "|" + cat_spaces + ("\n")
+            i -= 10
+
+        dashes = "-" + "---" * len(categories)
+        names = []
+        x_axis = ""
+        for category in categories:
+            names.append(category.name)
+
+        maxi = max(names, key=len)
+
+        for x in range(len(maxi)):
+            nameStr = '     '
+            for name in names:
+                if x >= len(name):
+                    nameStr += "   "
+                else:
+                    nameStr += name[x] + "  "
+            nameStr += '\n'
+            x_axis += nameStr
+
+        res += dashes.rjust(len(dashes) + 4) + "\n" + x_axis
+        return res
+
 
