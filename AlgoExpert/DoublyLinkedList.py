@@ -6,7 +6,7 @@ class DoublyLinkedList:
     # O(1) time | O(1) space
     def setHead(self,node):
         if self.head is None:
-            self.tail =node
+            self.head =node
             self.tail =node
             return
         self.insertBefore(self.head,node)
@@ -23,8 +23,8 @@ class DoublyLinkedList:
         if nodeToInsert ==self.head and nodeToInsert == self.tail:
             return
         self.remove(nodeToInsert)
-        nodeToInsert.prev =node.prev
-        nodeToInsert.next =node
+        nodeToInsert.prev = node.prev
+        nodeToInsert.next = node
         if node.prev is None:
             self.head = nodeToInsert
         else:
