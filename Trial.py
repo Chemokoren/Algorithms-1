@@ -6,27 +6,27 @@
 # print(inf_string("coming", "I am coming home"))
 
 
-def inf_string(a, b):
-    # return 1 if the string a can be found in b.
-    if a in b:
-        return 1
-    else:
-        return 0
-
-
-print(inf_string("Iam", "I am coming home"))
-
-if __name__ == '__main__':
-    t = int(input())
-    while t > 0:
-        string_first, string_second = input().split()
-        ans = inf_string(string_first, string_second)
-        if ans == 1:
-            print("YES")
-        else:
-            print("NO")
-        t -= 1
-        
+# def inf_string(a, b):
+#     # return 1 if the string a can be found in b.
+#     if a in b:
+#         return 1
+#     else:
+#         return 0
+#
+#
+# print(inf_string("Iam", "I am coming home"))
+#
+# if __name__ == '__main__':
+#     t = int(input())
+#     while t > 0:
+#         string_first, string_second = input().split()
+#         ans = inf_string(string_first, string_second)
+#         if ans == 1:
+#             print("YES")
+#         else:
+#             print("NO")
+#         t -= 1
+#
 
 
 # Quiz
@@ -60,3 +60,19 @@ if __name__ == '__main__':
 #
 # Execution time limit
 # Default.
+
+
+def who_do_you_know():
+    people = input("Enter the names of people you know, seperated by commas:")
+    # people_list = people.split(",")
+
+    # people_without_spaces = []
+    # for person in people_list:
+    #     people_without_spaces.append(person.strip())
+
+
+    # return [ person.strip() for person in people_list]
+    people_without_spaces =[person.strip() for person in people.split(",")]
+    return people_without_spaces
+
+print(who_do_you_know())
