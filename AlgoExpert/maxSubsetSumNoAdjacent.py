@@ -1,5 +1,5 @@
-# Max Subset Sum No Adjacent
-
+# Max Subset Sum No Adjacent- maximum of two numbers in an array without adding two numbers that
+# are close (adjacent) to each other
 
 # O(n) time | O(n) space
 def maxSubsetSumNoAdjacent(array):
@@ -22,9 +22,9 @@ def maxSubsetSumNoAdjacent1(array):
     second =array[0]
     first =max(array[0],array[1])
     for i in range(2,len(array)):
-        current =max(first, second +array[i])
+        current =max(first, second + array[i])
         second =first
-        first =current
+        first = current
     return first
 
 my_array =[7,10,12,7,9,14]
