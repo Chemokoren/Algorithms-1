@@ -4,8 +4,8 @@ class MinHeap:
 
     # O(n) time | O(1) space
     def buildHeap(self,array):
-        firstParentIx = (len(array) -2) // 2
-        for currentIdx in reversed(range(firstParentIx)):
+        firstParentIdx = (len(array) -2) // 2
+        for currentIdx in reversed(range(firstParentIdx)):
             self.siftDown(currentIdx, len(array) -1, array)
         return array
 
@@ -31,7 +31,7 @@ class MinHeap:
         while currentIdx > 0 and heap[currentIdx] < heap[parentIdx]:
             self.swap(currentIdx, parentIdx, heap)
             currentIdx =parentIdx
-            parentIdx (currentIdx -1 ) // 2
+            parentIdx =(currentIdx -1 ) // 2
 
     # O(1)
     def peek(self):
