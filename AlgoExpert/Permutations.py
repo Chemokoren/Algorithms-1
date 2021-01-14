@@ -18,7 +18,7 @@ def permutationsHelper(array, currentPermutation, permutations):
 # O(n * n!) time | O(n*n!) space
 def getPermutations2(array):
     permutations =[]
-    permutationsHelper(0,array, permutations)
+    permutationsHelper2(0,array, permutations)
     return permutations
 
 def permutationsHelper2(i, array, permutations):
@@ -27,7 +27,7 @@ def permutationsHelper2(i, array, permutations):
     else:
         for j in range(i, len(array)):
             swap(array, i, j)
-            permutationsHelper(i+1, array, permutations)
+            permutationsHelper2(i+1, array, permutations)
             swap(array, i, j)
 def swap(array, i, j):
     array[i],array[j] = array[j], array[i]
