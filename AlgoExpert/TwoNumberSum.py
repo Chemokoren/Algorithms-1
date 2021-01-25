@@ -1,5 +1,5 @@
 # o(n^2) time | o(1) space
-my_list =[3, 5, -4, 8, 11, 1, -1, 6]
+my_list =[3, 5, -4, 8, 11, 1, -1, 6, 4]
 sum =10
 def sumTwoNumbers(array, targetSum):
 
@@ -13,7 +13,7 @@ def sumTwoNumbers(array, targetSum):
 def sumTwoNumbers1(array, targetSum):
     nums ={}
     for num in array:
-        potentialMatch =targetSum -num
+        potentialMatch =targetSum - num
         if potentialMatch in nums:
             return [potentialMatch, num]
         else:
