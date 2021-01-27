@@ -36,8 +36,8 @@ def fourNumberSum1(array,targetSum):
             left +=1
             left1 +=1
         if currentSum > targetSum:
-            right +=1
-            right1 +=1
+            right -=1
+            right1 -=1
     return []
 
 # O(n ^ 2 ) time | O(n ^ 2) space
@@ -52,7 +52,7 @@ def fourNumberSum2(array, targetSum):
                 for pair in allPairSums[difference]:
                     quadruplets.append(pair + [array[i], array[j]])
         for k in range(0,i):
-            currentSum =array[i] +array[k]
+            currentSum =array[i] + array[k]
             if currentSum not in allPairSums:
                 allPairSums[currentSum] =[[array[k], array[i]]]
             else:
