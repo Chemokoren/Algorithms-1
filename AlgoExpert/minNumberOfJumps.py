@@ -24,3 +24,18 @@ def minNumberOfJumps(array):
             jumps += 1
             steps =maxReach -i
     return jumps + 1
+
+
+# Returns the number of arrangements to
+# form 'n'
+def solve(n):
+    if n < 1:
+        return 0
+    if n == 1:
+        return 1
+    return (solve(n - 1) +
+		solve(n - 3) +
+		solve(n - 5))
+
+my_array =[1,3,5]
+print(solve(3))
