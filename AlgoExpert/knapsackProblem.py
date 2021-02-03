@@ -22,7 +22,7 @@ def getKnapSackItems(knapsackValues, items):
             sequence.append(i-1)
             c -= items[i -1][1]
             i -=1
-        if c ==0:
+        if c == 0:
             break
     return list(reversed(sequence))
 

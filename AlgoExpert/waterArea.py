@@ -11,7 +11,7 @@ def waterArea(heights):
         height =heights[i]
         minHeight =min(rightMax,maxes[i])
         if height < minHeight:
-            maxes[i] =minHeight - height
+            maxes[i] = minHeight - height
         else:
             maxes[i] =0
         rightMax =max(rightMax, height)
