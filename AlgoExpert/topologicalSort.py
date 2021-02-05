@@ -68,7 +68,7 @@
 # Solution 2
 
 # O(j + d) time | O(j + d) space
-def topogologicalSort(jobs, deps):
+def topogologicalSort1(jobs, deps):
     jobGraph =createJobGraph(jobs, deps)
     return getOrderedJobs(jobGraph)
 

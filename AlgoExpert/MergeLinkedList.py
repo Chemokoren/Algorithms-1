@@ -12,7 +12,7 @@ class LinkedList:
         while p1 is not None and p2 is not None:
             if p1.value < p2.value:
                 p1Prev =p1
-                p = p1.next
+                p1 = p1.next
             else:
                 if p1Prev is not None:
                     p1Prev.next = p2
@@ -43,3 +43,8 @@ class LinkedList:
             newP2 =p2.next
             p2.next =p1
             self.recursiveMerge(p1,newP2,p2)
+
+    #first_linked_list = 2->6->7->8
+    # second_linked_list = 1->3->4->5->9->10
+    # final_linked_list = 1->2->3->4->5->6->7->8->9->10
+    

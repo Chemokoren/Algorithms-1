@@ -55,6 +55,6 @@ class Trie:
         for letter in word:
             if letter not in current:
                 current[letter] ={}
-            current =current[letter]
+            current = current[letter]
         current[self.endSymbol] =word
 

@@ -7,3 +7,6 @@ def reverseLinkedList(head):
         p1 = p2
         p2 = p3
     return p1
+# build a linked list for demo
+# original linked list: 0->1->2->3->4->5
+# reversed linked list: 5->4->3->2->1->0
