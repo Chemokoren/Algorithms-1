@@ -5,9 +5,9 @@ class LinkedList:
 
     # O(n + m) time | O(1) space
     def mergeLinkedLists(self, headOne, headTwo):
-        p1 =headOne
-        p1Prev =None
-        p2 =headTwo
+        p1 = headOne
+        p1Prev = None
+        p2 = headTwo
 
         while p1 is not None and p2 is not None:
             if p1.value < p2.value:
@@ -31,7 +31,7 @@ class LinkedList:
 
     def recursiveMerge(self,p1, p2, p1Prev):
         if p1 is None:
-            p1Prev.next =p2
+            p1Prev.next = p2
             return
         if p2 is None:
             return
