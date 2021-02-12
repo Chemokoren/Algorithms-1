@@ -9,6 +9,7 @@ def buildMaxHeap(array):
     firstParentIdx =(len(array) -1) // 2
     for currentIdx in reversed(range(firstParentIdx +1)):
         siftDown(currentIdx, len(array) -1, array)
+
 def siftDown(currentidx, endIdx, heap):
     childOneIdx = currentidx * 2 +1
     while childOneIdx <=endIdx:

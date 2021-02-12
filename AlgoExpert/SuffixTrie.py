@@ -7,7 +7,7 @@ class SuffixTrie:
     # O(n ^ 2) time | O(n ^ 2) space
     def populateSuffixTrieFrom(self,string):
         for i in range(len(string)):
-            self.insertSubstringStartingAt(i,string)
+            self.insertSubStringStartingAt(i,string)
 
     def insertSubStringStartingAt(self, i, string):
         node =self.root
