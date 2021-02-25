@@ -2,6 +2,7 @@ from Trees.TernarySearchTree.Node import Node
 class TST(object):
     def __init__(self):
         self.rootNode =None
+
     def put(self, key, value):
         self.rootNode =self.putItem(self.rootNode, key, value, 0)
 
@@ -11,7 +12,7 @@ class TST(object):
             node =Node(c)
 
         if c < node.character:
-            node.leftNode =self.putItem(node.leftChild,key, value, index)
+            node.leftNode =self.putItem(node.leftNode,key, value, index)
         elif c >node.character:
             node.rightNode =self.putItem(node.rightNode, key, value, index)
         elif index < len(key) -1:
