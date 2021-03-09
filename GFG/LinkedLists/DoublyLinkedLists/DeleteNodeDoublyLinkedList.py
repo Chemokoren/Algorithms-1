@@ -41,6 +41,44 @@ class DoublyLinkedList:
 
         gc.collect()
 
+
+    def newDeleteNode(self, head_ref,del_):
+        # base case
+        if (head_ref ==None or del_ ==None):
+            return
+        # if node to be deleted is head node
+        if(head_ref ==del_):
+            head_ref =del_.next
+
+        # change next only if node to be deleted is NOT the last node
+        if (del_.next !=None ):
+            del_.next.prev =del_.prev
+
+        # change prev only if node to be deleted is NOT the first node
+        if(del_.prev !=None):
+            del_.prev.next =del_.next
+
+        return head_ref
+
+
+    # Function to delete the node at the given position
+    # in the doubly linked list
+    def deleteNodeAtGivenPos(self, head_ref, n):
+        # if list is None or invalid position is given
+        if(head_ref ==None or n <= 0):
+            return
+        current =head_ref
+        i = 1
+
+        # if 'n' is greater than the number of nodes
+        # in the doubly linked list
+        if(current ==None):
+            return
+        # delete the node pointed to by 'current'
+        self.newDeleteNode(head_ref, current)
+
+        return head_ref
+
         # code to insert a new node in front of the list given an integer and a reference to the head of a list
     def push(self, new_data):
         # allocate a node and put data in the node
@@ -79,8 +117,10 @@ print("original Doubly Linked List: \n")
 deleteLL.printList(deleteLL.head)
 
 # delete nodes from doubly linked list
-deleteLL.deleteNode(deleteLL.head)
-deleteLL.deleteNode(deleteLL.head.next)
+# deleteLL.deleteNode(deleteLL.head)
+# deleteLL.deleteNode(deleteLL.head.next)
+
+deleteLL.newDeleteNode(deleteLL.head, 8)
 
 print("print modified Doubly-Linked List: \n")
 deleteLL.printList(deleteLL.head)

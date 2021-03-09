@@ -32,7 +32,7 @@ class QuickSort_Using_Doubly_LinkedList:
         # similar to "for (int j =l; j<= h-1; j++)"
         # for(Node j=l; j!=h; j=j.next):
         for j in range(l,h):
-            if(j.data <=x):
+            if(j.data <= x):
                 # similar to i++ for array
                 i = l if(i==None) else i.next
                 temp = i.data
@@ -81,7 +81,6 @@ class QuickSort_Using_Doubly_LinkedList:
         if(self.head ==None):
             self.head =new_Node
             return
-
 
          # link the old list off the new node
         new_Node.next =self.head
