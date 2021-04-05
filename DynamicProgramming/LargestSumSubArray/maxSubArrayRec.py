@@ -36,6 +36,11 @@ def maxSubArraySum1(a, size):
 
     return max_so_far
 
+"""
+Time Complexity: O(n)
+
+Auxiliary Space: O(1)
+"""
 def maxSubArraySum2(a, size):
     max_so_far = -maxsize - 1
     max_ending_here = 0
@@ -67,4 +72,4 @@ def maxSubArraySum2(a, size):
 # a = [1,2,3,4,-5,6]
 # a = [-2, -3, 4, -1, -2, 1, 5, -3]
 a =[-2,1,-3,4,-1,2,1,-5,4]
-print("Maximum contiguous sum is", maxSubArraySum1(a, len(a)))
+print("Maximum contiguous sum is", maxSubArraySum2(a, len(a)))

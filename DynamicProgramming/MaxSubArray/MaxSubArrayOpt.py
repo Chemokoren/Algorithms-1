@@ -12,9 +12,9 @@ class MaxSubArrayOpt:
     def max_sub_array(self):
         return self.global_max
 
-# msa = MaxSubArrayOpt([5, -4, 8, -10, -2, 4, -3, 2, 7, -8, 3, -5, 3])
-# print(msa.max_sub_array())
-input = [1] * 900
-for i in range(10000):
-    msa =MaxSubArrayOpt(input)
-    print(msa.max_sub_array())
+msa = MaxSubArrayOpt([5, -4, 8, -10, -2, 4, -3, 2, 7, -8, 3, -5, 3])
+print(msa.max_sub_array())
+# input = [1] * 900
+# for i in range(10000):
+#     msa =MaxSubArrayOpt(input)
+#     print(msa.max_sub_array())

@@ -3,6 +3,7 @@ class StringDistanceTopDown:
         self.str_A = str_A
         self.str_B = str_B
         self.dist = [[]] * (len(str_A) + 1)
+
         for i in range(len(str_A) + 1):
             self.dist[i] = [-1] * (len(str_B) + 1)
 

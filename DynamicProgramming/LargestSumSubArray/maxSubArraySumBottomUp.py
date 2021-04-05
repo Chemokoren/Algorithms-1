@@ -6,6 +6,7 @@ def maxSubArraySumBottomUp(a, size):
     for i in range(1, size):
         curr_max = max(a[i], curr_max + a[i])
         max_so_far = max(max_so_far, curr_max)
+        print("Sublist found", (curr_max, i))
 
     return max_so_far
 
