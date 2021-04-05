@@ -3,9 +3,9 @@ def iterativeInOrderTraversal(tree, callback):
     previousNode =None
     currentNode =tree
     while currentNode is not None:
-        if previousNode is None or previousNode == currentNode.parent:
+        if previousNode is None or previousNode == currentNode.parent: # we must be coming from the top
             if currentNode.left is not None:
-                nextNode =currentNode.left
+                nextNode = currentNode.left
             else:
                 callback(currentNode)
                 nextNode =currentNode.right if currentNode.right is not None else currentNode.parent
