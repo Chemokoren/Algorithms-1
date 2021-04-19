@@ -13,7 +13,7 @@ def push(head_ref, data):
     # create a new node and make head as next of it
     ptr1 =Node()
     ptr1.data = data
-    ptr1.next =head_ref
+    ptr1.next = head_ref
 
     # if linked list is not None then set the next of last node
     if(head_ref !=None):
@@ -40,43 +40,41 @@ def printList(head):
 
     print()
 
-    # function to delete a given node from the lsit
-    def deleteNode(head, key):
-        # if linked list is empty
-        if (head == None):
-            return
+# function to delete a given node from the list
+def deleteNode(head, key):
+    # if linked list is empty
+    if (head == None):
+        return
 
-        # if the list contains only a single node
-        if(head.data ==key and head.next ==head):
-            head =None
+    # if the list contains only a single node
+    if(head.data ==key and head.next == head):
+        head =None
 
-        last =head =None
-        d =None
-        # if head is to be deleted
-        if(head.data == key):
+    last =head =None
+    d =None
+    # if head is to be deleted
+    if(head.data == key):
 
-            # FInd the last node of the list
+        # FInd the last node of the list
 
-            while(last.next !=head):
-                last =last.next
-            # point last node to the next of head i.e
-            # the second node of the list
-            last.next =head.next
-            head =last.next
+        while(last.next !=head):
+            last =last.next
+        # point last node to the next of head i.e the second node of the list
+        last.next =head.next
+        head =last.next
 
-            # Either the node to be deleted is not found
-            # or the end of list is not reached
-            while(last.next != head and last.next.data != key):
-                last =last.next
+        # Either the node to be deleted is not found or the end of list is not reached
+        while(last.next != head and last.next.data != key):
+            last =last.next
 
-            # if node to be deleted was found
-            if (node.next.data == key):
-                d = last.next
-                last.next = d.next
-        else:
-            print*("no such keyb")
+        # if node to be deleted was found
+        if (node.next.data == key):
+            d = last.next
+            last.next = d.next
+    else:
+        print("no such keyb")
 
-        return head
+    return head
 
     # Driver code
 
