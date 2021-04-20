@@ -8,7 +8,7 @@ class Node:
         self.next =None
 
 '''
-Functon to find the only person left after one in every m-th node is killed in a circle of n nodes
+Function to find the only person left after one in every m-th node is killed in a circle of n nodes
 '''
 def getJosephusPosition(m,n):
     # create a circular LLC of size N
