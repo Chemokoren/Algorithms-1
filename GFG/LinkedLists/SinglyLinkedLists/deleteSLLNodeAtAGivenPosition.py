@@ -48,7 +48,7 @@ class LinkedList:
 		if temp.next is None:
 			return
 
-		# Node temp.next is the nde to be deleted
+		# Node temp.next is the node to be deleted
 		# store pointer to the next of node to be deleted
 		next = temp.next.next
 

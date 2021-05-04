@@ -36,7 +36,7 @@ class LinkedList:
 		# prev node since we need to change 'prev.next'
 
 		while(temp is not None):
-			if temp.data ==key:
+			if temp.data == key:
 				break
 			prev =temp
 			temp = temp.next
