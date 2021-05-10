@@ -235,7 +235,6 @@ def detectLoop4(head):
 		# store the pointer to the next node in order to get to it in the next step
 		nex = head.next
 
-		# Mae next photo temp
 		head.next =temp
 
 		return False
