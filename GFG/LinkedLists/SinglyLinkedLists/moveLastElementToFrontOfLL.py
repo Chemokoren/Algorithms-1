@@ -17,7 +17,7 @@ class LinkedList:
     # loop through ll to get the last val
     def findLastVal(self):
         temp=self.head
-        while(temp is not None) :
+        while(temp is not None):
             temp=temp.next
         last_val =temp
         print(" the val: ",temp)
