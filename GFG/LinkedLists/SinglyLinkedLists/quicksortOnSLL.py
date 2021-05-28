@@ -90,6 +90,7 @@ if __name__ == "__main__":
     ll.addNode(20)
     ll.addNode(5)
 
+    # n is the value of the pivot, which is the last value
     n = ll.head
     while (n.next != None):
         n = n.next
