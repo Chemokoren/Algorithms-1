@@ -82,6 +82,7 @@ element increases or decreases by 1.
 So in this way, the sum of next rotation can be calculated from the sum of present rotation.
 
 Algorithm: 
+
 The idea is to compute the value of a rotation using values of previous rotation.
 When an array is rotated by one, following changes happen in sum of i*arr[i]. 
 Multiplier of arr[i-1] changes from 0 to n-1, i.e., arr[i-1] * (n-1) is added to current value.
@@ -100,7 +101,7 @@ will be 8 - (6 - 1) + 1*2 = 5 which is same as 2*0 + 3*1 + 1*2
 Time Complexity: O(n). 
 Since one loop is needed from 0 to n to check all rotations and the sum of the present rotation is calculated from the previous rotations in O(1) time).
 Auxiliary Space: O(1). 
-As no extra space is required to so the space complexity will be O(1)
+As no extra space is required so the space complexity will be O(1)
 
 """
 
@@ -167,7 +168,6 @@ As only one loop was needed to traverse from 0 to n to find the pivot.
 To find the sum another loop was needed, so the complexity remains O(n).
 Auxiliary Space : O(1). 
 We do not require extra space to so the Auxiliary space is O(1)
-
 
 """
     
