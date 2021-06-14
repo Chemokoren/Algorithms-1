@@ -24,6 +24,9 @@ the original array towards the right.
 2) Start traversing the sorted array starting from(n-floor(n/2)+1)th position towards right
 and keep filling the original array starting from 2nd position.
 
+Time Complexity: O( n logn ) 
+Auxiliary Space: O(n)
+
 """
 
 # code to rearrange the array as per the given condition
