@@ -11,6 +11,7 @@ Apply the partition process of quicksort
 
 Time complexity: O(N) 
 Auxiliary Space: O(1)
+
 """
 
 def rearrange(arr, n):
@@ -71,7 +72,7 @@ def shiftall(arr,left, right):
             right -=1
         
         # condition to check if the left pointer is positive and right pointer as well
-        elif arr[left] > 0 and arr[right] >0:
+        elif arr[left] > 0 and arr[right] > 0:
             right -=1
         else:
             left +=1
@@ -177,11 +178,6 @@ to solve this problem.
 
 """
 
-def printArray(A, size):
-    for i in range(size):
-        print(A[i], end=" ")
-    print()
-
 # Function to pran array
 def printArray(A, size):
  
@@ -189,9 +185,7 @@ def printArray(A, size):
         print(A[i], end = " ")
     print()
  
-# Merges two subarrays of arr[].
-# First subarray is arr[l..m]
-# Second subarray is arr[m + 1..r]
+# Merges two subarrays of arr[], First subarray is arr[l..m], Second subarray is arr[m + 1..r]
 def merge(arr, l, m, r):
     i, j, k = 0, 0, 0
     n1 = m - l + 1
@@ -206,10 +200,8 @@ def merge(arr, l, m, r):
     j = 0 # Initial index of second subarray
     k = l # Initial index of merged subarray
  
-    # Note the order of appearance of elements
-    # should be maintained - we copy elements
-    # of left subarray first followed by that
-    # of right subarray
+    # Note the order of appearance of elements should be maintained - we copy elements
+    # of left subarray first followed by that of right subarray
  
     # copy negative elements of left subarray
     while (i < n1 and L[i] < 0):
@@ -294,7 +286,7 @@ def reverse(arr, l, r):
 def merge(arr, l, m, r):
  
     i = l # Initial index of 1st subarray
-    j = m + 1 # Initial index of IInd
+    j = m + 1 # Initial index of 2nd subarray
  
     while i <= m and arr[i] < 0:
         i += 1
@@ -306,12 +298,10 @@ def merge(arr, l, m, r):
  
     # arr[j..r] is positive
  
-    # reverse positive part of left
-    # sub-array (arr[i..m])
+    # reverse positive part of left sub-array (arr[i..m])
     reverse(arr, i, m)
  
-    # reverse negative part of right
-    # sub-array (arr[m + 1..j-1])
+    # reverse negative part of right sub-array (arr[m + 1..j-1])
     reverse(arr, m + 1, j - 1)
  
     # reverse arr[i..j-1]
@@ -323,8 +313,7 @@ def RearrangePosNeg(arr, l, r):
  
     if l < r:
      
-        # Same as (l + r)/2, but avoids
-        # overflow for large l and h
+        # Same as (l + r)/2, but avoids overflow for large l and h
         m = l + (r - l) // 2
  
         # Sort first and second halves
