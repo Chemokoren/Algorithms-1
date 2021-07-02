@@ -132,7 +132,7 @@ def rearrange(a, size):
     negative = 1
 
     while(True):
-        # Move forward the positive pointer till negative nimber not encountered
+        # Move forward the positive pointer till negative number not encountered
         while( positive < size and a[positive] >= 0):
             positive = positive + 2
 
@@ -184,7 +184,6 @@ for i in range(n):
         # out of order positive element
         for j in range(i+1, n):
             if(arr[j] < 0 and j % 2==0):
-
                 # find out of order negative element in remaining array
                 arr[i], arr[j] = arr[j], arr[i]
                 break
