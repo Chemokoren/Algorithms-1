@@ -32,6 +32,9 @@ is greater than the Kth element it is inserted to the min heap with popping out 
 top element in the min-heap, else not inserted. In the end, the top element in the min-heap
 will be your answer.
 
+Time complexity: O(n^2 log (k)) 
+Auxiliary Space : O(k) for min-heap and we can store the sum array in the array itself as it is of no use.
+
 """
 
 import heapq
