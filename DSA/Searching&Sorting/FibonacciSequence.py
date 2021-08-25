@@ -10,7 +10,7 @@ def getFib(position):
         first = second
         second = next
         next = first + second
-    return next;
+    return next
 
 """Implement a function recursively to get the desired
 Fibonacci sequence value.
@@ -22,12 +22,38 @@ def get_fib(position):
         return position
     return get_fib(position - 1) +get_fib(position - 2)
         # return output
-
+n = 4
+if n <= 0:
+    print("enter correct value")
+else:
+    for i in range(n):
+        print(get_fib(i))
 
 # Test cases
-print (get_fib(4))
+# print (getFib(4))
 # print (get_fib(11))
 # print (get_fib(0))
 
 
 # print(getFib(4))
+print("ddddddddddddddddddddddddddddd")
+def fib(n):
+    a = 0
+    b = 1
+    if n == 0:
+        print(a)
+    elif n == 1:
+        print(b)
+    else:
+        print(a)
+        print(b)
+        for i in range(2,n):
+            c = a+ b
+            a = b
+            b = c
+            print(c)
+
+
+fib(4)
+
+

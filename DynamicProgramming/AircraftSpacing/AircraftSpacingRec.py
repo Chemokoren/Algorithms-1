@@ -14,4 +14,5 @@ class AircraftSpacingRec:
 #                                    14,7,49,38,27,641,61,58,14,57,71,11,82,178,93,191,4])
 
 spacing =AircraftSpacingRec([155,55,2,96,67,203,3])
+print(spacing,"\n")
 print(spacing.max_passengers(0))
