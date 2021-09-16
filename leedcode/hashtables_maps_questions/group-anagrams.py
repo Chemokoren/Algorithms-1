@@ -30,7 +30,7 @@ class Solution:
     def findHash(self, s):
         return ''.join(sorted(s))
 
-    def groupAnagrams(self, strs: List[str])->List[List[str]]:
+    def groupAnagrams(self, strs: str)->str:
         answers =[]
         m = {}
 
@@ -39,8 +39,13 @@ class Solution:
             if(hashed not in m):
                 m[hashed] = []
             m[hashed].append(s)
-
+        print("master piece", m)
         for p in m.values():
+            print("my p", p)
             answers.append(p)
 
         return answers
+
+strs = ["eat","tea","tan","ate","nat","bat"]
+sol = Solution()
+print(sol.groupAnagrams(strs))

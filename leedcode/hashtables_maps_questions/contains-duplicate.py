@@ -25,3 +25,20 @@ Constraints:
 
 """
 
+from typing import DefaultDict
+
+
+class Solution:
+    def containsDuplicate(self, nums: int)->bool:
+        m = DefaultDict(int)
+        print("initial map", m[0])
+
+        for num in nums:
+            if m[num]:
+                return True
+            m[num] +=1
+        return False
+
+nums = [1,2,3,1]
+sol = Solution()
+print(sol.containsDuplicate(nums))

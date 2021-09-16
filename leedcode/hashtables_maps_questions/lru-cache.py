@@ -1,5 +1,11 @@
 """
 Design a data structure that follows the constraints of a Least Recenly used (LRU) cache.
+It should support the get and put operations.
+
+get(key): get the value(will always be positive) of the key if the key exists in the cache 
+otherwise return -1
+put(key, value): set or insert hte value if the ikey is not already present. If it is we will
+update the key with our new value.
 
 Implement the LRUCache class:
 - LRUCache(int capacity) initialize the LRU cache with positive size capacity
@@ -7,6 +13,28 @@ Implement the LRUCache class:
 - void put(int key, int value) Update the value of the key if the key exists. Otherwise, 
 add the key-value pair to the cache. If the number of keys exceeds the capacity from this
 operation, evict the least recently used key.
+
+when the cache reached its capacity, put(key, value) should invalidate the least
+recently used item before inserting a new item.
+
+The cache is initialized with a positive capacity.
+
+Cache -is a memory that stores data for it to be served faster in the future. It's purpose 
+is to speed up data requests
+
+LRU = Least recently used is a  policy that is used to remove items from the cache.
+Stacks follow the LIFO policy, queues follow the FIFO policy, a cache can follow the LRU policy.
+
+Example:
+cache: [2,3,4,5]
+What this means is that 2 was accessed the most recently, followed by 3, followed by 4 and
+then 5.
+Sy we want to add a new item 1, where would we add it?
+
+Using the LRU principle, we should remove the least recently used item, aka, the 5
+We would add it right at the front of the cache because that means that 1 was the most recently 
+used item.
+[1,2,3,4]
 
 The functions get and put must each run in O(1) average time complexity.
 
@@ -69,3 +97,19 @@ class LRUCache:
         self.m[key] =value
         self.deq.append(key)
         
+
+first =  [1, 10]
+second = [2, 11]
+third = [3, 15]
+fourth =[4, 16]
+
+sol =LRUCache(4)
+sol.put(1,10)
+sol.put(2,11)
+sol.put(3,15)
+sol.put(4,16)
+print("dictionary before : ",sol.deq)
+print(sol.get(4))
+print("dictionary after : ",sol.deq)
+sol.put(5,20)
+print("dictionary XXXXX : ",sol.deq)

@@ -109,7 +109,7 @@ rotate(arr[], d, n)
   reverse(arr[], d + 1, n);
   reverse(arr[], 1, n);
 
-Let AB are the two parts of the input array where A = arr[0..d-1] and B = arr[d..n-1]. The idea of the algorithm is : 
+Let AB be the two parts of the input array where A = arr[0..d-1] and B = arr[d..n-1]. The idea of the algorithm is : 
  
 
 Reverse A to get ArB, where Ar is reverse of A.
@@ -118,7 +118,7 @@ Reverse all to get (ArBr) r = BA.
 Example : 
 Let the array be arr[] = [1, 2, 3, 4, 5, 6, 7], d =2 and n = 7 
 A = [1, 2] and B = [3, 4, 5, 6, 7] 
- 
+
 
 Reverse A, we get ArB = [2, 1, 3, 4, 5, 6, 7]
 Reverse B, we get ArBr = [2, 1, 7, 6, 5, 4, 3]

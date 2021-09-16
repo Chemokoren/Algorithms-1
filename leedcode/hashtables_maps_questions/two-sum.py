@@ -33,7 +33,7 @@ Follow-up: Can you come up with an algorithm that is less than O(n2) time comple
 """
 
 class Solution:
-    def twoSum(self, nums:List[int], target:int) ->List[int]:
+    def twoSum(self, nums, target:int):
         m ={} # create an empty dictionary
         n =len(nums)
 
@@ -42,3 +42,8 @@ class Solution:
             if(goal in m): # check if goal is in the dictionary
                 return [m[goal], i]
             m[nums[i]] = i
+
+nums =[2,7,11,15]
+target =9
+sol =Solution()
+print(sol.twoSum(nums,target))

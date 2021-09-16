@@ -35,3 +35,33 @@ Follow up: Could you find an algorithm that runs in O(m + n) time?
 
 """
 
+class Solution:
+
+    def minWindow(self, s:str, t:str)->str:
+        len1 = len(s)
+        len2 = len(t)
+
+        if(len1 <len2):
+            return ""
+
+        hashPat ={}
+        hashStr ={}
+
+        for i in range(0, len2):
+            if(hashPat.get(t[i] is None)):
+                hashPat[t[i]] =0
+            hashPat[t[i]] += 1
+
+        count = 0
+        left = 0
+        startIndex = -1
+        minLen = float("inf")
+
+        for right in range(0, len1):
+            if(hashStr.get(s[right]) is None):
+                hashStr[s[right]] =0
+            hashStr[s[right]] +=1
+
+            if(hashPat.get(s[right]) is None):
+                hashPat[s[right]] = 0
+                
