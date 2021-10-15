@@ -10,3 +10,5 @@
 9.42_2_subarray_sort
 10.41_1_four_number_sum
 11. 40_26_suffic_trie_construction
+12. 47_7_max_path_sum
+13. 48_8_max_sum_increasing_subsequence

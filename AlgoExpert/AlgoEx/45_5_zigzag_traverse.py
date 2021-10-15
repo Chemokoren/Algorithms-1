@@ -42,7 +42,6 @@ def zigzagTraverse(array):
 def isOutOfBounds(row, col, height, width):
     return row < 0 or row > height or col < 0 or col > width
 
-#my_array=[[1,3,4,10],[2,5,9,11],[6,8,12,15],[7,13,14,16]]
-my_array=[1,3,4,10,2,5,9,11,6,8,12,15,7,13,14,16]
+my_array=[[1,3,4,10],[2,5,9,11],[6,8,12,15],[7,13,14,16]]
 
 print(zigzagTraverse(my_array))
