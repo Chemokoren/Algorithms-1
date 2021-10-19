@@ -12,3 +12,8 @@
 11. 40_26_suffic_trie_construction
 12. 47_7_max_path_sum
 13. 48_8_max_sum_increasing_subsequence
+14. 55_15_topological_sort
+15. 54_14_numbers_in_pi
+16. 53_13_disk_stacking
+17. 52_12_knapsack_problem
+18. 57_17_continuous_median
