@@ -21,5 +21,7 @@
 20. 60_20_merge_linked_lists
 21. 56_16_boggle_board
 22. 69_29_underscorify_substring
+23. 70_30_pattern_matcher
+24. 71_31_multi_string_search
 
 
