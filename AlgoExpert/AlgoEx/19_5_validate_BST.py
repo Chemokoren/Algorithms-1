@@ -7,3 +7,5 @@ def validateBSTHelper(tree,minValue, maxValue):
         return True
     if tree.value < minValue or tree.value >=maxValue:
         return False
+    leftIsValid = validateBSTHelper(tree.left, minValue, tree.value)
+    return leftIsValid and validateBSTHelper(tree.right, tree.value, maxValue)

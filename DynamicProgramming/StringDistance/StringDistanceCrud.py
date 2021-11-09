@@ -18,7 +18,9 @@ class StringDistance:
     def distance(self):
         return self.distance_r(len(self.str_A), len(self.str_B))
 
-
-dist =StringDistance("TodayIsSaturday", "TomorrowIsSunday")
+str1 ="abc"
+str2 ="yabd"
+# dist =StringDistance("TodayIsSaturday", "TomorrowIsSunday")
 # dist = StringDistance("Saturday", "Sundays")
+dist = StringDistance("abc", "yabd")
 print(dist.distance())

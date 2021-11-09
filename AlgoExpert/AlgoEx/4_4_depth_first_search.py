@@ -12,8 +12,8 @@ Expected output: [ABEFIJCDGKH]
                       B  C  D
                     /  \   /  \
                     E   F G   H
-                        /\
-                       I  J   
+                        /\ \
+                       I  J k   
 
 '''
 # create a tree
@@ -25,7 +25,7 @@ class Tree:
 
     def insertNode(self,data):
         if self.value:
-            if data <self.value:
+            if data < self.value:
                 if self.left is None:
                     self.left =Tree(data)
                 else:
@@ -76,6 +76,5 @@ tree.insertNode("J")
 # tree.printTree()
 
 my_array = ['A','B','C','D','E','F','G','H','I','J']
-# my_array = []
 sol = Node("A")
-print(sol.depthFirstSearch(my_array))
+print(sol.depthFirstSearch(tree))

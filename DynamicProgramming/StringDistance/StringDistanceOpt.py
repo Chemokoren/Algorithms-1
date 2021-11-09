@@ -2,6 +2,7 @@ class StringDistanceOpt:
     def __init__(self, str_A, str_B):
         self.str_A =str_A
         self.str_B = str_B
+
         self.dist_read =[-1] * (len(str_B) + 1)
         self.dist_write =[-1] * (len(str_B) + 1)
 
@@ -24,6 +25,6 @@ class StringDistanceOpt:
         return self.dist_read[len(self.str_B)]
 
 # dist =StringDistanceBottomUp("TodayIsSaturday", "TomorrowIsSunday")
-dist = StringDistanceBottomUp("Saturday", "Sundays")
+dist = StringDistanceOpt("Saturday", "Sundays")
 print(dist.distance())
 

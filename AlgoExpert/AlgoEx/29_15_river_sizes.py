@@ -20,7 +20,7 @@ adjacent next to each other horizontally or vertically.
 You have to write a function/algorithm that returns an array of all the sizes of the rivers
 contained in the matrix.
 """
-# O(wh) time | O(wh) space
+# O(wh)or (n) time | O(wh) space where n is the total number of items in the matrix
 def riverSizes(matrix):
     sizes =[]
     visited =[[False for value in row] for row in matrix]
@@ -34,7 +34,7 @@ def riverSizes(matrix):
 
 def traverseNode(i, j, matrix, visited, sizes):
     currentRiverSize = 0
-    nodesToExplore =[[i, j]]
+    nodesToExplore =[[i, j]] # stack
     while len(nodesToExplore):
         currentNode = nodesToExplore.pop()
         i = currentNode[0]
@@ -43,11 +43,11 @@ def traverseNode(i, j, matrix, visited, sizes):
             continue
         visited[i][j] = True
 
-        if matrix[i][j]==0:
+        if matrix[i][j]== 0:
             continue
         currentRiverSize += 1
-        univisitedNeighbors = getUnvisitedNeighbors(i, j, matrix, visited)
-        for neighbor in univisitedNeighbors:
+        unvisitedNeighbors = getUnvisitedNeighbors(i, j, matrix, visited)
+        for neighbor in unvisitedNeighbors:
             nodesToExplore.append(neighbor)
     if currentRiverSize > 0:
         sizes.append(currentRiverSize)

@@ -3,7 +3,7 @@ Branch Sums
 
 write a function that takes in the root node of a binary tree and return
 a list of all the branch sums in this binary tree.
-[15,16,18,10,11]
+expected output= [15,16,18,10,11]
 
 Branch sum - sum of all the values in a particular branch in the binary tree
 Branch - is a path in a binary tree  that starts at the root node and ends in one of the leaf
@@ -69,7 +69,7 @@ tree.insert(7)
 tree.insert(8)
 tree.insert(9)
 tree.insert(10)
-tree.printTree()
+# tree.printTree()
 
 my_tree =tree
 print("branch sums is: ", branchSums(tree))

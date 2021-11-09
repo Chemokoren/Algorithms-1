@@ -9,9 +9,8 @@ def longestSubstringWithoutDuplication(string):
             startIdx = max(startIdx, lastSeen[char]+1)
         if longest[1] -longest[0] < i+1 -startIdx:
             longest=[startIdx, i + 1]
-        lastSeen[char] =i
+        lastSeen[char] = i
     return string[longest[0]:longest[1]]
-
 
 my_string = "clementisacap"
 print(longestSubstringWithoutDuplication(my_string))
