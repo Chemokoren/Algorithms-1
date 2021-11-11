@@ -34,7 +34,7 @@ input_string="abaxyzzyxf"
 
 
 # O(n^2) time | O(1) space
-def longestPalindromicSubstring(string):
+def longestPalindromicSubstringOpt(string):
     currentLongest =[0,1]
     for i in range(1, len(string)):
         odd = getLongestPalindromeFrom(string, i-1,i+1)
@@ -51,4 +51,4 @@ def getLongestPalindromeFrom(string, leftIdx, rightIdx):
         rightIdx +=1
     return [leftIdx + 1, rightIdx]
 
-print(longestPalindromicSubstring(input_string))
+print(longestPalindromicSubstringOpt(input_string))

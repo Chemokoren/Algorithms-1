@@ -1,4 +1,15 @@
-# O(w*n*log(n) + n * w * log(w)) time | O(wn) space
+"""
+group anagrams
+
+- the question gives you a list of words, or arbitrary strings and wants you to write
+a function that returns a list of other lists where  each of these other lists  are 
+groups of anagrams.
+
+anagrams -words formed by the same letters but might just be arranged differently
+
+"""
+
+# O(w * n * log(n) + n * w * log(w)) time | O(wn) space where w is the no. of words and n is the longest word
 def groupAnagrams(words):
     if len(words) == 0:
         return []
@@ -40,4 +51,4 @@ def groupAnagramsTwo(words):
 
 my_list =["yo", "act", "flop", "tac", "cat", "oy", "olfp"]
 
-print(groupAnagrams(my_list))
+print(groupAnagramsTwo(my_list))

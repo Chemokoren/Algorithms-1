@@ -1,3 +1,11 @@
+"""
+four number sum
+worst case (time) :O(n^3) for the case where: -4,-3,-2,-1,0,1,2,3,4
+
+assignment: three number sum
+
+"""
+
 # O(n^2)  time | O(n^2) space
 def fourNumberSum(array, targetSum):
     allPairSums ={}

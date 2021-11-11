@@ -7,7 +7,8 @@ Max Path Sum
          / \ / \
         4  5 6  7
 
-Expected: 18  
+Expected: 18
+
 """
 
 # O(n) time | O(log(n)) space
@@ -25,7 +26,7 @@ def findMaxSum(tree):
 
     value = tree.value
     maxSumAsBranch = max(maxChildSumAsBranch +value, value)
-    maxSumAsRootNode = max(leftMaxSumAsBranch +value+rightMaxSumAsBranch,maxSumAsBranch)
-    maxPathSum = max(leftMaxPathSum, rightMaxPathSum,maxSumAsRootNode)
+    maxSumAsRootNode = max(leftMaxSumAsBranch + value + rightMaxSumAsBranch,maxSumAsBranch)
+    maxPathSum = max(leftMaxPathSum, rightMaxPathSum, maxSumAsRootNode)
 
     return (maxSumAsBranch, maxPathSum)

@@ -1,5 +1,19 @@
 """
 Suffix Trie Construction
+
+- create babc
+
+            o
+          / | \
+         b  a  c
+        / \  \  \
+       *   a  b  *
+           |  |
+           b  c
+           |  | 
+           c  * 
+           |
+           *
 """
 
 class SuffixTrie:
@@ -9,7 +23,7 @@ class SuffixTrie:
         self.endSymbol ="*"
         self.populateSuffixTrieFrom(string)
 
-    # O(n^2) time | O(n^2) space
+    # O(n^2) time | O(n^2) space except where a single character is repeated giving O(n) space
     def  populateSuffixTrieFrom(self, string):
         for i in range(len(string)):
             self.insertSubstringStartingAt(i, string)
@@ -23,7 +37,7 @@ class SuffixTrie:
             node =node[letter]
         node[self.endSymbol] =True
 
-    # O(m) time | O(1) space
+    # O(m) time | O(1) space where m is the length of the input string
     def contains(self, string):
         node = self.root
         for letter in string:
@@ -36,4 +50,6 @@ my_string ="babc"
 
 sol= SuffixTrie(my_string)
 
-# print(sol.contains(my_string))
+find_string ="abd"
+
+print(sol.contains(find_string))
