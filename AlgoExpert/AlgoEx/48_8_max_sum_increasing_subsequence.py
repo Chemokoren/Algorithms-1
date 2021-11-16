@@ -5,7 +5,7 @@ Max Sum Increasing Subsequence.
 # O(n^2) time | O(n) space
 def maxSumIncreasingSubsequence(array):
     sequences = [None for x in array]
-    sums =array[:]
+    sums =array[:] # at every index, the potential best sum we can generate is the number stored at that index
     maxSumIdx = 0
     for i in range(len(array)):
         currentNum = array[i]
@@ -18,7 +18,7 @@ def maxSumIncreasingSubsequence(array):
             maxSumIdx = i
     return [sums[maxSumIdx], buildSequence(array, sequences,maxSumIdx)]
 
-def buildSequence(array, sequences, currentIdx):
+def buildSequence(array, sequences, currentIdx): 
     sequence =[]
     while currentIdx is not None:
         sequence.append(array[currentIdx])
