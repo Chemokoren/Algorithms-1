@@ -8,7 +8,7 @@ rotation of the above array by 2 will make
 
 Algorithm:
 Initialize A = arr[0..d-1] and B = arr[d..n-1]
-1) Do following until size of A is equal to size of B
+1) Do the following until size of A is equal to size of B
 
   a)  If A is shorter, divide B into Bl and Br such that Br is of same 
        length as A. Swap A and Br to change ABlBr into BrBlA. Now A
@@ -20,11 +20,28 @@ Initialize A = arr[0..d-1] and B = arr[d..n-1]
 
 2)  Finally when A and B are of equal size, block swap them.
 """
+'''
+utility functions -printArray & swap
+'''
+def printArray(arr, size):
+    for i in range(size):
+        print(arr[i], end = " ")
+    print()
+ 
+'''
+ * This function swaps d elements starting at
+ * index fi with d elements starting at index si
+ '''
+def swap(arr, fi, si, d):
+    for i in range(d):
+        temp = arr[fi + i]
+        arr[fi + i] = arr[si + i]
+        arr[si + i] = temp
 
 # wrapper over the recursive function leftRotateRec()
 # it left rotates arr by d
 def leftRotate(arr, d, n):
-    leftRotateRec(arr,0, d,n)
+    leftRotateRec(arr, 0, d,n)
 
 def leftRotateRec(arr,i,d,n):
     '''
@@ -48,14 +65,13 @@ def leftRotateRec(arr,i,d,n):
         leftRotateRec(arr, i, d, n-d)
         '''If B is shorter'''
     else:
-        swap(arr, i,d, n-d)
+        swap(arr, i, d, n-d)
 
         '''This is tricky'''
         leftRotateRec(arr,n-d+i, 2*d-n,d)
 
 """
-Iterative Implementation: 
-Here is iterative implementation of the same algorithm. 
+Iterative Implementation of the same algorithm. 
 """
 def leftRotate1(arr, d, n):
     if(d == 0 or d == n):
@@ -71,24 +87,9 @@ def leftRotate1(arr, d, n):
             i -= j
     swap(arr,d - i, d, i)
 
-
-def printArray(arr, size):
-    for i in range(size):
-        print(arr[i], end = " ")
-    print()
- 
-'''
- * This function swaps d elements starting at
- * index fi with d elements starting at index si
- '''
-def swap(arr, fi, si, d):
-    for i in range(d):
-        temp = arr[fi + i]
-        arr[fi + i] = arr[si + i]
-        arr[si + i] = temp
  
 # Driver Code
 if __name__ == '__main__':
     arr = [1, 2, 3, 4, 5, 6, 7]
-    leftRotate(arr, 2, 7)
+    leftRotate1(arr, 2, 7)
     printArray(arr, 7)

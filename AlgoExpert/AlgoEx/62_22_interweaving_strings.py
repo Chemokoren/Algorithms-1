@@ -20,7 +20,7 @@ def areInterwoven(one, two, three, i, j):
         if areInterwoven(one, two, three, i + 1, j):
             return True
 
-    if j < len(two) and two[j] ==three[k]:
+    if j < len(two) and two[j] == three[k]:
         return areInterwoven(one, two, three, i, j + 1)
 
     return False
@@ -45,7 +45,7 @@ def areInterwoven(one, two, three, i, j, cache):
         if cache[i][j]:
             return True
     if j < len(two) and two[j] == three[k]:
-        cache[i][j] = areInterwoven(one, two, three, i, j +1, cache)
+        cache[i][j] = areInterwoven(one, two, three, i, j + 1, cache)
         return cache[i][j]
 
     cache[i][j] = False

@@ -6,9 +6,10 @@ graph - linear ordering of the vertices of the graph so long as for every direct
 from two vertices(x --> y), so long as x comes before y in the final ordering.
 
 practical application of topological sort:
- given a list of jobs as [1,2,3,4]. And you can think of these jobs as tasks -things 
+
+Given a list of jobs as [1,2,3,4]. And you can think of these jobs as tasks -things 
  that need to be done. You are also given dependencies([[1,2],[1,3],[3,2],[4,2],[4,3]]),
-  where are pairs of jobs where some jobs are prerequisites to other jobs. 
+  which are pairs of jobs where some jobs are prerequisites to other jobs. 
   The task is to find the order in which we can complete these jobs that would respect the
   dependencies we are given.
 
@@ -22,7 +23,7 @@ Space Complexity: O(j + d )
 """
 # O(j + d) time | O(j + d) space  - depth first search
 def topologicalSort(jobs, deps):
-    jobGraph =createJobGraph(jobs,deps)
+    jobGraph = createJobGraph(jobs,deps)
     return getOrderedJobs(jobGraph)
 
 def createJobGraph(jobs, deps):

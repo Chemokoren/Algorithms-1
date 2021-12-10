@@ -16,7 +16,7 @@ def diskStacking(disks):
             if areValidDimensions(otherDisk,currentDisk):
                 if heights[i] <= currentDisk[2] + heights[j]:
                     heights[i] = currentDisk[2] + heights[j]
-                    sequences[i] =j
+                    sequences[i] = j
         if heights[i] >= heights[maxHeightIdx]:
             maxHeightIdx = i
 

@@ -23,14 +23,11 @@ class ContinuousMedianHandler:
 
     def updateMedian(self):
         if self.lowers.length == self.greaters.length:
-            self.median = (self.lowers.peek() +self.greaters.peek()) / 2
+            self.median = (self.lowers.peek() + self.greaters.peek()) / 2
         elif self.lowers.length > self.greaters.length:
             self.median = self.lowers.peek()
         else:
             self.median = self.greaters.peek()
-
-    def getMedian(self):
-        return self.median
 
     def getMedian(self):
         return self.median
