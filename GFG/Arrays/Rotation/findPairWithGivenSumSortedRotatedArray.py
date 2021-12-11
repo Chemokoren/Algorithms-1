@@ -137,7 +137,13 @@ def pairsInSortedRotated(arr, n, x):
 arr = [11, 15, 6, 7, 9, 10]
 s = 16
  
-print(pairsInSortedRotated(arr, 6, s))
+# print(pairsInSortedRotated(arr, 6, s))
+
+
+print("########################################### test  ################################################## \n\n\n")
+
+
+
 
 
 
