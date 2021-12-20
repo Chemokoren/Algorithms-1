@@ -5,10 +5,9 @@ Given a string s, find the length of the longest substring without repeating cha
 
 Example 1:
 
-Example 1:
-
 Input: s = "abcabcbb"
 Output: 3
+
 Explanation: The answer is "abc", with the length of 3.
 Example 2:
 
@@ -49,4 +48,11 @@ class Solution:
             m[el] = right
             ans = max(ans, right - left + 1)
             right += 1
+        print("dict:", m)
         return ans
+
+sol = Solution()
+# s = "abcabcbb"
+# s = "bbbbb"
+s = "pwwkew"
+print(sol.lengthOfLongestSubstring(s))
