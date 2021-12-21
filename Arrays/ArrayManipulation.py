@@ -48,7 +48,7 @@ constraints
 - 0<=k<=10^9
 
 Sample Input
-5   3
+5   3           # length of array is 5 with 3 queries
 1   2   100
 2   5   100
 3   4   100
@@ -71,16 +71,13 @@ def Array_Manipulation(n, t):
 
     # allocate the memory to the array dynamically as n can be of order 10^7 and use 
     # long s values after summing may exceed range of int
+    arr =[0] *(n+2)
     
-    
-    # initial value of elements of array is 0 by default.
-    while(t>0):
-        # input indices and value to be added
-        a = input()
-        b = input()
-        k = input()
+    # # initial value of elements of array is 0 by default.
+    for a,b,k in t:
         arr[a] += k # Add the value to the left index
         arr[b + 1] -= k # subtract the value from the element at b+1 index
+            
 
     # res will store the answer to the problem, i.e. maximum value present in
     # the array after all the manipulations
@@ -95,9 +92,35 @@ def Array_Manipulation(n, t):
 
 # keep the size n+2 as we'll be using 1-indexed array and we're also accessing
 # (b+1)th element
-arr =[]
-n =len(arr)
-arr = len(arr) + 2
-t =3
+n =5
+no_manipulations = [[1, 2, 100],[2,5,100],[3,  4,100]]
 
-print(Array_Manipulation(n,t))
+print("aaaa:",Array_Manipulation(n,no_manipulations))
+
+""" approach 2 """
+# time complexity( O(m+n) ) - number of query operations & we are iterating the entire array
+def ArrayManipulation(n, no_manipulations):
+    # initialize array with zeros
+    arr = [0] * (n+2)
+
+    # perform query operations
+    for a,b,k in no_manipulations:
+        arr[a] +=k
+        arr[b+1] -=k
+
+    # find max value from the array
+    maxno=temp=0
+    for val in arr:
+        temp +=val
+        maxno=max(maxno, temp)
+    return maxno
+
+
+
+
+n = 5
+no_manipulations = [[1, 2, 100],[2,5,100],[3,  4,100]]
+
+print(ArrayManipulation(n,no_manipulations))
+
+
