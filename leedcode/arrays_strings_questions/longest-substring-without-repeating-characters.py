@@ -48,7 +48,6 @@ class Solution:
             m[el] = right
             ans = max(ans, right - left + 1)
             right += 1
-        print("dict:", m)
         return ans
 
 sol = Solution()
