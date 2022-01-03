@@ -7,7 +7,7 @@ Above is a histogram where width of each bar is 1 given height =[2,1,5,6,2,3]
 The largest rectangle rectangle has an area of 10 units.
 
 Example:
-Input: [2,5,6,2,3]
+Input: [2,1,5,6,2,3]
 Output: 10
 
 """
@@ -29,6 +29,6 @@ class Solution:
             maxArea =max(maxArea,h *(len(heights) - i))
         return maxArea
 
-nums =[2,5,6,2,3]
+nums =[2,1,5,6,2,3]
 sol = Solution()
 print(sol.largestRectangleArea(nums))
