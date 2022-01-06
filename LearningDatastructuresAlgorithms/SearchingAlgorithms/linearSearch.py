@@ -15,4 +15,4 @@ def linearSearch(A, key):
 
 A =[84, 21, 47, 96, 15]
 val =97
-print(linearSearch(A,val))
+print(linearSearch(A,val))  
