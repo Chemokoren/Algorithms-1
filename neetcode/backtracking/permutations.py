@@ -37,8 +37,6 @@ class Solution:
         for i in range(len(nums)):
             n = nums.pop(0)
             perms =self.permute(nums)
-            print("aaa:",perms)
-
             for perm in perms:
                 perm.append(n)
 
