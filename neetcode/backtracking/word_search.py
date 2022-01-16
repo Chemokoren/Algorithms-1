@@ -21,7 +21,10 @@ Input: board =[["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]]
 word = "ABCCED"
 Output: true
 Use recursive backtracking (DFS)
-time complexity is O(n*m*dfs)
+
+Timing for running through the entire board is O(n*m)
+time complexity is O(n*m*dfs) because we are calling the dfs function every single time for every 
+position in the board
 time complexity of dfs' callstack is len(word)
 because we are calling dfs 4 times
 O(n*m*dfs) 4^len(word) is equivalent to O(n*m*4^n)
@@ -34,8 +37,8 @@ class Solution:
         ROWS, COLS = len(board), len(board[0])
         path = set()
 
-        def dfs(r, c, i):
-            if i == len(word):
+        def dfs(r, c, i): # i is the current character within our target word
+            if i == len(word):# if we ever find the word, return true
                 return True
             if(r< 0 or c < 0 or r >= ROWS or c >= COLS or word[i] != board[r][c] or (r, c) in path):
                 return False
@@ -45,7 +48,7 @@ class Solution:
                   dfs(r - 1, c, i + 1) or
                   dfs(r, c + 1, i + 1) or
                   dfs(r, c -1, i + 1))
-            path.remove((r, c))
+            path.remove((r, c)) # backtrack
             return res
         
         for r in range(ROWS):
