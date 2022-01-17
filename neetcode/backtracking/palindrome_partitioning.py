@@ -12,6 +12,15 @@ Output: [["a","a","b"],["aa","b"]]
 Example 2:
 Input s ="a"
 Output: [["a"]]
+
+
+                            [a,a,b]
+                            /  |    \
+                        [a]   [a,a]  [a,a,b]X
+                       / \      |
+                    [a]  [a,b]X [b]
+                   /
+                 [b]    
 """
 class Solution:
 

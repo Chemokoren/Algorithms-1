@@ -11,13 +11,22 @@ Output: [[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3]]
 
 2^n = num of subsets where n is the length of the array nums
 
+                                    [1, 2, 3]
+                                    /         \
+                                [1]             []
+                               /  \           /     \
+                            [1,2]  [1]       [2]      []
+                           /   \    /  \     /   \     /  \
+                    [1,2,3] [1,2] [1,3] [1] [2,3] [2] [3] []
+
 """
 
 class Solution:
-    # O(n.2^n) time complexity
+    # O(n.2^n) time complexity where n is the size of the input
     def subsets(self, nums: List[int]) -> List[List[int]]:
         res = []
         subset = []
+        
         def dfs(i):
             if i >= len(nums):
                 print(subset.copy())

@@ -12,18 +12,28 @@ Note that 1 does not map to any letters
 4[g,h,i]    5[j,k,l]        6[m,n,o]
 
 7[p,q,r,s]  8[t,u,v]        9[w,x,y,z]
+
 *[+]        0[ ]            🔝[#]
+
 Example 1:
 Input: digits ="23"
 Output: ["ad","ae", "af", "bd","be","bf","cd", "ce","cf"]
+
+in 23, 2: abc, 3:def
+                                    /    |    \
+                                   a     b     c
+                                  /|\   /|\   /|\
+                                 d e f d e f d e f 
+
 """
 from typing import List
 class Solution:
 
+    # O(n*4^n) -worst case time complexity where n is length of input string
     def letterCombinations(self, digits: str)->List[str]:
 
         res =[]
-        digitToChar ={
+        digitToChar = {
             "2": "abc",
             "3": "def",
             "4": "ghi",
@@ -34,14 +44,14 @@ class Solution:
             "9": "wxyz"
         }
 
-        def backtrack(i, curStr):
+        def dfs(i, curStr): # curStr that we are building
             if(len(curStr) == len(digits)):
                 res.append(curStr)
                 return
             for c in digitToChar[digits[i]]:
-                backtrack(i + 1, curStr + c)
+                dfs(i + 1, curStr + c)
         if digits:
-            backtrack(0, "")
+            dfs(0, "")
         return res
 
 digits ="23"
