@@ -20,11 +20,17 @@ Output:
 
 ]
 
-k *n ^ k
+                        [1,2,3,4]
+                     /   /  \    \
+                  1      2   3    4
+                / | \   / \  |    
+               2  3  4  3 4  4
+
+k *n ^ k (upperbound) where k is the height of the tree, multiplied by k because of the combinations
 
 but, the possible combinations are:
 
-k * (n!) / (n-k)! * k!
+k * ((n!) / ((n-k)! * k!)) (tight bound)
 
 """
 class Solution:
@@ -33,15 +39,17 @@ class Solution:
         res =[]
 
         def backtrack(start, comb):
+
             if len(comb) == k:
                 res.append(comb.copy())
                 return 
 
+            # decision tree layer
             for i in range(start, n + 1):
                 comb.append(i)
                 backtrack(i +1, comb)
                 comb.pop()
-        backtrack(1,[])
+        backtrack(1,[]) # start at 1 because you can choose values between 1 through n
         return res
 
 n, k =4, 2

@@ -21,7 +21,16 @@ Output:
     [2,6]
 ]
 
-Time complexity 2^n
+                            /    \
+                           1      0
+                         / \     / \                       
+                        1   0   2   0
+                     /  \  / \ / \  / \
+                    2   0 7  0 6 0  6  0
+                 / \   /\
+                6  0  6  0
+
+Time complexity 2^n where n is the size of the input candidates
 """
 class Solution:
 
@@ -30,7 +39,7 @@ class Solution:
 
         res =[]
 
-        def backtrack(cur, pos, target):
+        def backtrack(cur, pos, target):# cur is the current combination, pos is the index in the array, each time we add a candidate we decrease the target
             if target == 0:
                 res.append(cur.copy())
             if target <= 0:

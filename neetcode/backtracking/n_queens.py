@@ -31,13 +31,13 @@ class Solution:
         res =[]
         board =[["."] * n for i in range(n)]
 
-        def backtrack(r):
+        def backtrack(r):# r = row
             if r == n:
-                copy =["".join(row) for row in board]
+                copy =["".join(row) for row in board] # convert row items into a string
                 res.append(copy)
                 return
 
-            for c in range(n):
+            for c in range(n):# c = columns, so you check through every column
                 if c in col or (r + c) in posDiag or (r - c) in negDiag:
                     continue
 

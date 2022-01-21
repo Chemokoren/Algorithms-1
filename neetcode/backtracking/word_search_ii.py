@@ -18,6 +18,11 @@ i       f       l       v
 Input: board =[["o","a","a","n"],["e","t","a","e"],["i","h","k","r"],["i","f","l","v"]],
 words =["oath","eat","rain"]
 Output: ["eat","oath"]
+
+1dfs =4^mn (where mn are the dimensions of the board)
+total time complexity wmn*4^mn (mn*4^mn because we will be doing dfs at each position) 
+                                where w is every single word
+We can omit w by using Trie(prefix tree)
 """
 
 class TrieNode:
@@ -60,7 +65,7 @@ class Solution:
 
         for r in range(ROWS):
             for c in range(COLS):
-                dfs(r,c, root, "")
+                dfs(r, c, root, "")
         return list(res)
 
 board =[["o","a","a","n"],["e","t","a","e"],["i","h","k","r"],["i","f","l","v"]]

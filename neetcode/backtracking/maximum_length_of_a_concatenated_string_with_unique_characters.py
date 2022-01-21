@@ -14,9 +14,31 @@ Explanation: All possible concatenations are "", "un", "iq","ue", "uniq" and "iq
 Maximum length is 4.
 
 Example 2:
+
 Input: arr =["cha","r","act","ers"]
 Output: 6
+
 Explanation: Possible solutions are "chaers" and "acters"
+
+Time complexity: m* 2^n where m is the average length of each string
+
+Alternative solution: using bitmask
+
+X, Y, Z
+0  0  0
+0  0  1
+0  1  0
+- - - -
+1  1  1
+
+To get all the subsequences, you will have to go through all the integers
+and get the bit from it. If the bit is zero you don't concatenate that portion of
+the string. However, if it is 1, you do concatenate.
+
+                        /   \
+                      un      _
+                     / \      / \
+                uniq     un   iq _
 
 """
 
@@ -25,7 +47,7 @@ class Solution:
     def maxLength(self, arr: List[str])->int:
         charSet =set()
 
-        def overlap(charSet, s):
+        def overlap(charSet, s): # overlap means there exists duplicate characters
             c = Counter(charSet) + Counter(s)
             return max(c.values()) > 1
 

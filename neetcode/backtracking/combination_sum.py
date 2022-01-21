@@ -13,14 +13,24 @@ It is guaranteed that the number of unique combinations that sum up to target is
 
 Example 1:
 
-Input: candidates =[2,3,6,7], target =7
+Input: candidates =[2,3,6,7], target = 7
 Output: [[2,2,3],[7]]
 Explanation:
 2 and 3 are candidates, and 2 + 2 + 3 = 7. Note that 2 can be used multiple times.
 7 is a candidate, and 7 = 7.
 These are the only two combinations.
 
+                                            /        \
+                                        [2]           []
+                                       /  \            /  \
+                                    [2,2]  [2]       [3]  []
+                                    / \                    / \
+                            [2,2,2]    [2,2]             [6]  []
+                                       /  \                    /\ 
+                                [2,2,3]     [2,3]            [7] []
 
+
+time complexity 2^t where t is the target value
 """
 from typing import List
 class Solution:
@@ -34,7 +44,7 @@ class Solution:
                 res.append(cur.copy())
                 return
 
-            if i>=len(candidates) or total > target:
+            if i >= len(candidates) or total > target:
                 return
             cur.append(candidates[i])
             dfs(i, cur, total +candidates[i])

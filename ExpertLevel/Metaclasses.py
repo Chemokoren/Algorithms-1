@@ -3,14 +3,13 @@ def hello():
         pass
 
     return Hi
-
 class Test:
     pass
 
 print(Test)
 print(Test())
 
-print("################## different implementations of a class ######################")
+print("\n################## different implementations of a class ###################### \n")
 
 class Testi:
     pass
@@ -54,7 +53,7 @@ class Meta(type):
                 a[name] = val
             else:
                 a[name.upper()] =val
-        print(a)
+        print("aaa:",a)
         return type(class_name, bases, a)
 
 class Dog(metaclass=Meta):

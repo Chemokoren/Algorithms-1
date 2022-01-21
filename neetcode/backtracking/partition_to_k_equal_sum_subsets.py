@@ -18,8 +18,8 @@ Input: nums,k =[1,2,3,4],3
 Output: false
 
 sols
-1) O(k^n) time complexity
-2) O(k*2^n) time complexity - solution below
+1) O(k^n) time complexity where n is the size of the nums array
+2) O(k*2^n) time complexity (one of the trees is 2^n and we have to do that for k number of trees) - solution below
 """
 
 class Solution:
@@ -31,11 +31,11 @@ class Solution:
         target = sum(nums) / k
         used =[False] * len(nums)
 
-        def backtrack(i, k, subsetSum):
+        def backtrack(i, k, subsetSum): # i -index we are in nums, k - how many k partitions are left that we need to build
             if k == 0:
                 return True
             if subsetSum == target:
-                return backtrack(0, k-1, 0)
+                return backtrack(0, k-1, 0) # k-1 additional subsets
             
             for j in range(i, len(nums)):
                 if used[j] or subsetSum + nums[j] > target:
@@ -48,6 +48,6 @@ class Solution:
         return backtrack(0, k, 0)
 
 nums, k =[4,3,2,3,5,2,1], 4
-nums, k =[1,2,3,4],3
+# nums, k =[1,2,3,4],3
 sol = Solution()
 print(sol.canPartitionKSubsets(nums, k))

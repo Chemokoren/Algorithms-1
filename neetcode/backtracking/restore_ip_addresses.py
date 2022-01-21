@@ -20,6 +20,13 @@ Example 2:
 Input: s ="0000"
 Output: ["0.0.0.0"]
 
+Time complexity
+
+4^n where n is the length of the string and maxHeight =5 because we return if we have
+more than 4 integers
+
+so 4^12 because tha maximum length of the string can be at most 12
+
 """
 class Solution:
 
@@ -32,16 +39,16 @@ class Solution:
         if len(s) > 12:
             return res
 
-        def backtrack(i, dots, curIP):
+        def backtrack(i, dots, curIP): # i is the index we are at in the string,  a max of 4 dots
             if dots == 4 and i == len(s):
-                res.append(curIP[:-1])
+                res.append(curIP[:-1]) # -1 to remove the last dot
                 return
             if dots > 4:
                 return
             
-            for j in range(i, min(i+3, len(s))):
-                if int(s[i:j+1]) < 256 and (i == j or s[i] != "0"):
-                    backtrack(j+1, dots +1, curIP + s[i:j+1]+".")
+            for j in range(i, min(i+3, len(s))): # take the smallest of either the 3 digits or the len of s because it might be less than 3
+                if int(s[i:j+1]) < 256 and (i == j or s[i] != "0"): # second part checks for leading 0's 
+                    backtrack(j+1, dots + 1, curIP + s[i:j+1]+".")
 
         backtrack(0, 0, "")
         return res

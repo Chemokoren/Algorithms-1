@@ -30,7 +30,7 @@ class Solution:
                 return True
             for j in range(index, len(s)):
                 val =int(s[index:j+1])
-                if val + 1 == prev and dfs(j + 1, val):
+                if val + 1 == prev and dfs(j + 1, val): #  if part 1 of and is true then execute the second part
                     return True
             return False
 
@@ -40,6 +40,6 @@ class Solution:
         return False
 
 s = "0090089"
-s = "001"
+# s = "001"
 sol = Solution()
 print(sol.splitString(s))

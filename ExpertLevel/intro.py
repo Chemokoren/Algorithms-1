@@ -13,7 +13,7 @@ def make_class(x):
 cls = make_class(10)
 d =cls("kibz")
 print(d.name)
-print(d.print_value())
+d.print_value()
 print(cls)
 
 for i in range(10):
@@ -31,7 +31,7 @@ def func(x):
             print("X is not 1")
     return rv
 
-new_func =func(1)
+new_func =func(2)
 new_func()
 print(inspect.getmembers(new_func))
 print(inspect.getsource(new_func))

@@ -21,9 +21,9 @@ Input: nums =["111", "011", "001"]
 Output: "101"
 Explanation: "101" does not appear in nums. "000", "010", and "110" would also be correct.
 
-*** there are 2^n possibilities
+*** there are 2^n possibilities but,
 Time complexity is n^2 because as soon as we get an answer, we return instead of trying all
-possibilities.
+possibilities. where n is the length of any particular string
 """
 
 class Solution:
@@ -32,7 +32,7 @@ class Solution:
 
         strSet = {s for s in nums}
 
-        def backtrack(i, cur):
+        def backtrack(i, cur):# i - position we are at in the string we are generating, cur- whatever the current string happens to be so far
             if i == len(nums):
                 res ="".join(cur)
                 return None if res in strSet else res
@@ -44,7 +44,7 @@ class Solution:
             res = backtrack(i + 1, cur)
             if res: return res
 
-        return backtrack(0,["0" for s in nums])
+        return backtrack(0,["0" for s in nums]) # 0 -starting index
 
 nums =["111", "011", "001"]
 nums =["00","01"]
