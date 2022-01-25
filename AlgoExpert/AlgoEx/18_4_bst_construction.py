@@ -1,7 +1,7 @@
 class BST:
     def __init__(self,value):
-        self.value =value
-        self.left = None
+        self.value = value
+        self.left  = None
         self.right = None
 
     # Average: O(Log(n)) time | O(1) space
@@ -77,7 +77,7 @@ def remove(self, value, parentNode=None):
                     currentNode.value = currentNode.right.value
                     currentNode.left = currentNode.right.left
                     currentNode.right = currentNode.right.right
-            elif parentNode.left = currentNode:
+            elif parentNode.left == currentNode:
                 parentNode.left = currentNode.left if currentNode.left is not None else currentNode.right
             elif parentNode.right == currentNode:
                 parentNode.right =currentNode.left if currentNode.left is not None else currentNode.right
@@ -89,3 +89,6 @@ def remove(self, value, parentNode=None):
         while currentNode.left is not None:
             currentNode =currentNode.left
         return currentNode.value
+
+# Driver class
+

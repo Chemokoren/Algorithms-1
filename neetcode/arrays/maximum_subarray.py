@@ -12,6 +12,10 @@ Explanation: [4,-1,2,1] has the largest sum =6 .
 
 """
 
+'''
+that, given an array A consisting of N integers, returns the biggest value X, which occurs in
+ A exactly X times. If there is no such value, the function should return 0
+'''
 class Solution:
 
     def maxSubArray(self, nums: List[int])->int:
@@ -28,3 +32,12 @@ class Solution:
 nums = [-2,1,-3,4,-1,2,1,-5,4]
 sol = Solution()
 print(sol.maxSubArray(nums))
+
+
+"""
+you are given a String S containing lowercase English letters. Your task is to calculate the
+minimum number of letters that need to be removed in order to make it possible to build 
+a palindrome from the remaining letters. When building the palindrome, you can rearrange 
+the remaining letters in any way
+
+"""

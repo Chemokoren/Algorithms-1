@@ -54,7 +54,9 @@ class Node:
     def addChild(self, name):
         self.children.append(Node(name))
 
-    # O(v + e) time | O(v) space
+    # O(v + e) time 
+    # O(v) space because of the v frames in the callstack in case of a tree with a long
+    # gigantic branch. Also because of the array returned.
     def depthFirstSearch(self, array):
         array.append(self.name)
         for child in self.children:
@@ -63,18 +65,28 @@ class Node:
 
 
 # build tree
-tree = Tree("A")
-tree.insertNode("B")
-tree.insertNode("C")
-tree.insertNode("D")
-tree.insertNode("E")
-tree.insertNode("F")
-tree.insertNode("G")
-tree.insertNode("H")
-tree.insertNode("I")
-tree.insertNode("J")
+# tree = Tree("A")
+# tree.insertNode("B")
+# tree.insertNode("C")
+# tree.insertNode("D")
+# tree.insertNode("E")
+# tree.insertNode("F")
+# tree.insertNode("G")
+# tree.insertNode("H")
+# tree.insertNode("I")
+# tree.insertNode("J")
 # tree.printTree()
 
-my_array = ['A','B','C','D','E','F','G','H','I','J']
+
+my_array=[]
 sol = Node("A")
-print(sol.depthFirstSearch(tree))
+sol.addChild("B")
+sol.addChild("C")
+sol.addChild("D")
+sol.addChild("E")
+sol.addChild("F")
+sol.addChild("G")
+sol.addChild("H")
+sol.addChild("I")
+sol.addChild("J")
+print(sol.depthFirstSearch(my_array))

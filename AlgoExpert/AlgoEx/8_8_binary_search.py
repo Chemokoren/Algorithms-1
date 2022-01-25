@@ -25,7 +25,7 @@ def binarySearchHelperIterative(array, target, left, right):
         potentialMatch =array[middle]
 
         if potentialMatch == target:
-            return middle
+            return [array[middle], True]
         elif  target < potentialMatch:
             right = middle -1
         elif target > potentialMatch:
@@ -35,6 +35,7 @@ def binarySearchHelperIterative(array, target, left, right):
 
 
 my_array =[0,1,21,33,45,45,61,71,72,73]
-my_target =74
+my_target =61
 
-print(binarySearchIterative(my_array,my_target))
+print(" recursive: ",binarySearchRecursive(my_array,my_target))
+print(" iterative: ",binarySearchIterative(my_array,my_target))

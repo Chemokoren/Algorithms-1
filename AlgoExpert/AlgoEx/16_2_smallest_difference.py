@@ -1,5 +1,8 @@
-# O(log(n)+ mlog(m))  time | O(1) space
+"""
 
+"""
+
+# O(log(n)+ mlog(m))  time | O(1) space
 def smallestDifference(arrayOne, arrayTwo):
     arrayOne.sort()
     arrayTwo.sort()
@@ -33,5 +36,5 @@ def smallestDifference(arrayOne, arrayTwo):
 first_arr =[-1,5,10,20,28,3]
 second_arr =[26,134,135,15,17]
 
-print(smallestDifference(first_arr,second_arr))
+print("Smallest difference: ", smallestDifference(first_arr,second_arr))
 

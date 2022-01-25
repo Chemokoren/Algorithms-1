@@ -35,6 +35,13 @@ def shiftAndUpdate(array,num,idx):
     ouput:
         update the index with the largest value
     """
+    # [0, 1, 2]
+    # [x, y, z]
+    # for i in range(idx + 1):
+    #   if i == 2:
+    #       z =num # new vals [x, y, num]
+    # else:
+    #   [y, z, num]
     for i in range(idx+1):
         if i == idx:
             array[i] = num

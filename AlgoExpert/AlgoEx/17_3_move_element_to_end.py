@@ -1,10 +1,14 @@
+"""
+
+"""
 def moveElmentToEnd(array, target):
     startIdx = 0
     lastIdx = len(array) -1
 
     while startIdx <= lastIdx:
         if array[startIdx] == target and array[lastIdx] !=target:
-            swap(startIdx,lastIdx, array)
+            array[startIdx], array[lastIdx] = array[lastIdx], array[startIdx]
+            # swap(startIdx,lastIdx, array)
             startIdx +=1
             lastIdx -=1
         elif array[startIdx] != target:
@@ -21,4 +25,4 @@ def swap(i, j, array):
 my_array =[2,1,2,2,2,3,4,2]
 target= 2
 
-print(moveElmentToEnd(my_array,target))
+print("move target element to the end", moveElmentToEnd(my_array,target))

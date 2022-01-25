@@ -31,5 +31,5 @@ def swap(i, j, array):
 
 my_array =[8,5,2,9,5,6,3]
 
-print(selectionSort(my_array))
+print("selection sort:", selectionSort(my_array))
 

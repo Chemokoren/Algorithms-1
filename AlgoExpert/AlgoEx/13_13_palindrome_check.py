@@ -40,4 +40,7 @@ def isPalindromeTailRecursion(string, i =0):
         return False
     return isPalindromeTailRecursion(string, i+1)
 
-print(isPalindromeTailRecursion("abcdcba", 0))
+my_string ="abcdcba"
+print("isPalindrome: ",isPalindrome(my_string))
+print("isPalindromeArray: ", isPalindromeArray(my_string))
+print("isPalindromeTailRecursion: ", isPalindromeTailRecursion(my_string, 0))

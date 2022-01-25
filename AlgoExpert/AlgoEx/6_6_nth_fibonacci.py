@@ -8,7 +8,6 @@ def getNthFibRecur(n):
         return 0
     elif n == 2:
         return 1
-
     else:
         return getNthFibRecur(n-1) + getNthFibRecur(n-2)
 
@@ -39,19 +38,20 @@ print("Fibonacci using Bottom up :", getNthFibBottomUp(300))
 
 # using modified memoization
 def getNthFibMemo(n):
-	memo ={}
-	if n in memo:
-		return memo[n]
-	if n == 1:
-		return 0
-	if n == 2:
-		return 1
-	if n >2:
-		result= getNthFibMemo(n-1) +getNthFibMemo(n-2)
-		memo[n] = result
-		return result
+    memo ={}
+    
+    if n in memo:
+        return memo[n]
+    if n == 1:
+        return 0
+    if n == 2:
+        return 1
+    else:
+        result= getNthFibMemo(n-1) +getNthFibMemo(n-2)
+        memo[n] = result
+    return result
 		
-print("using modified memoization:", getNthFibMemo(8))
+print("using modified memoization:", getNthFibMemo(30))
 	
 # using modified Bottom-up approach
 def getNthFibBottomUp(n):

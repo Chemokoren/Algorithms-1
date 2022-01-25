@@ -23,4 +23,4 @@ def swap(i, j, array):
 
 my_array =[8,5,2,9,5,6,3]
 
-print(bubbleSort(my_array))
+print("bubble sort: ", bubbleSort(my_array))

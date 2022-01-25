@@ -13,7 +13,7 @@ def hasSingleCycle(array):
 def getNextIdx(currentIdx, array):
     jump = array[currentIdx]
     nextIdx = (currentIdx + jump) % len(array)
-    return nextIdx if nextIdx >= 0 else nextIdx + len(array)
+    return nextIdx if nextIdx >= 0 else nextIdx + len(array) # the else part caters for negatives
 
 
 my_array =[2, 3, 1, -4, -4, 2]

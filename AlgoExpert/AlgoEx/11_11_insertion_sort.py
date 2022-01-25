@@ -1,7 +1,6 @@
 # O(n^2) | O(1) time
 def insertionSort(array):
     for i in range(1, len(array)):
-        print(i)
         while i>0 and array[i] < array[i-1]:
             swap(i,i-1,array)
             i -=1
@@ -15,4 +14,4 @@ def swap(i, j, array):
 my_array =[8,5,2,9,5,6]
 
 # print(insertionSort(my_array))
-insertionSort(my_array)
+print(" insertion sort: ", insertionSort(my_array))

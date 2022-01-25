@@ -13,7 +13,8 @@ depth 3 = [-13,8]
 """
 
 
-# O(n) time | O(d) space
+# O(n) time - is the list of all elements in the array, including those in the subarrays
+#  O(d) space where d is the depth of the subarrays
 def productSum(array, multiplier=1):
     sum = 0
     for element in array:

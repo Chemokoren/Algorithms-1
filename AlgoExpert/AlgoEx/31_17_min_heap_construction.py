@@ -1,3 +1,10 @@
+"""
+currentNode = i
+childOne = 2i +1
+childTwo = 2i +2
+parentNode =(i-1)//2
+"""
+
 class MinHeap:
     def __init__(self,array) -> None:
         self.heap = self.buildHeap(array)
@@ -11,7 +18,7 @@ class MinHeap:
 
     # O(log(n)) time | O(1) space
     def siftDown(self, currentIdx, endIdx, heap):
-        childOneIdx = currentIdx * 2 +1
+        childOneIdx = currentIdx * 2 + 1
         while childOneIdx <= endIdx:
             childTwoIdx = currentIdx * 2 + 2 if currentIdx * 2 + 2 <= endIdx else -1
             if childTwoIdx != -1 and heap[childTwoIdx] < heap[childOneIdx]:
@@ -41,9 +48,17 @@ class MinHeap:
         return valueToRemove
 
     def insert(self, value):
-        self.headp.append(value)
+        self.heap.append(value)
         self.siftUp(len(self.heap)-1, self.heap)
 
 
     def swap(self, i, j, heap):
         heap[i], heap[j] = heap[j],heap[i]
+
+my_array =[8,12,23,17,31,30,44,102,18]
+
+hp = MinHeap(my_array)
+print(hp.heap)
+hp.insert(9)
+print("peek:", hp.peek())
+print(hp.heap)

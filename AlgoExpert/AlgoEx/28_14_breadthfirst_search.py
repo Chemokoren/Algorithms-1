@@ -74,7 +74,7 @@ def bfs(visited, graph, node):
                 queue.append(neighbour)
     return visited
 
-print(bfs(visited,graph,'A'))
+print(" BFS using adjacency List: ",bfs(visited,graph,'A'))
 
 
 # implementation 3
@@ -136,4 +136,4 @@ g.addEdge(2,0)
 g.addEdge(2,3)
 g.addEdge(3,3)
 
-g.BFS(2)
+print(" Third approach: ",g.BFS(2))

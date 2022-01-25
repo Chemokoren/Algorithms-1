@@ -40,4 +40,5 @@ my_array = [7,10,12,7,9,14,16,17, 19, 20, 23, 25, 28, 29, 33, 37, 39, 40, 41, 43
   145,348, 449,251,553,654,257,163,264,567,369,673,279,180,482,683,385,288,489,691,793,395,
   897,310]
 # my_array = [7,10,12,7,9,14]
-print(maxSubsetSumNoAdjacentDP(my_array))
+print(" bottom up 1:", maxSubsetSumNoAdjacent(my_array))
+print(" bottom up 2", maxSubsetSumNoAdjacentDP(my_array))

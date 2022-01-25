@@ -13,7 +13,6 @@ def twoNumberSum(array, targetSum):
 
 # approach 2
 #O(n) time | O(n) space
-
 def twoNumberSumTwo(array, targetSum):
     nums ={}
     for num in array:
@@ -47,4 +46,6 @@ def twoNumberSumThree(array, targetSum):
 my_array =[3, 5, -4, 8, 11, 1, -1, 6]
 my_target = 10
 
-print(twoNumberSumThree(my_array, my_target))
+print("twoNumberSum: ",twoNumberSum(my_array, my_target))
+print("twoNumberSumTwo: approach2 ", twoNumberSumTwo(my_array, my_target))
+print("twoNumberSumThree: approach3 ", twoNumberSumThree(my_array, my_target))

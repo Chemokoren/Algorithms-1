@@ -8,7 +8,7 @@ if denom <= amount:
 
 """
 
-# O(nd) time | O(n) space
+# O(nd) time where n is the target amount and d the number of denominations | O(n) space
 def numberOfWaysToMakeChange(n, denoms):
     ways =[0 for amount in range(n+1)]
     ways[0] = 1
@@ -20,10 +20,9 @@ def numberOfWaysToMakeChange(n, denoms):
 
     return ways[n]
 
-# target =10
-# denominations =[1,5,10,25]
+target =10
+denominations =[1,5,10,25]
 
-target =9
-denominations =[5]
-
+# target =9
+# denominations =[5]
 print(numberOfWaysToMakeChange(target, denominations))

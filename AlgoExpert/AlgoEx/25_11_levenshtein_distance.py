@@ -6,7 +6,7 @@ to turn it into another string.
 - the edit operations are:
     - insertion
     - deletion
-    - substitution
+    - substitution (replacement)
 
 Expected output: 2 minimum operations to turn abc to yabd by:
 - inserting y at the beginning (yabc)

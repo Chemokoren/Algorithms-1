@@ -56,3 +56,4 @@ n, k =4, 2
 
 sol =Solution()
 print(sol.combine(n, k))
+

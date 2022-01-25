@@ -18,4 +18,4 @@ def balancedBrackets(string):
     return len(stack) == 0
 
 my_string ="(([]()()){})"
-print(balancedBrackets(my_string))
+print("balanced brackets", balancedBrackets(my_string))

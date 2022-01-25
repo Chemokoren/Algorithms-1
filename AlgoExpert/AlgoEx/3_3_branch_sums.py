@@ -39,7 +39,10 @@ class Node:
             self.right.printTree()
 
 
-# O(n) time | O(n) space
+
+# O(n) time where n is the number of nodes in the binary tree
+# O(n) space coz it is affected by list of branch sums that we have to return and the recursive nature 
+# of our solution - we will have multiple recursive function calls on the callstack at once
 def branchSums(root):
     sums =[]
     recursiveBranchSums(root,0, sums)
@@ -57,6 +60,7 @@ def recursiveBranchSums(node, runningSum, sums):
 
     recursiveBranchSums(node.left, newRunningSum, sums)
     recursiveBranchSums(node.right, newRunningSum, sums)
+    
 
 
 tree = Node(1)
@@ -71,7 +75,7 @@ tree.insert(9)
 tree.insert(10)
 # tree.printTree()
 
-my_tree =tree
+# print(tree.value)
 print("branch sums is: ", branchSums(tree))
     
     
