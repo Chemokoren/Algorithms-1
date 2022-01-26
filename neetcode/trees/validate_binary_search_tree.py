@@ -31,7 +31,7 @@ class Solution:
 
         def valid(node, left, right):
             if not node:
-                return True
+                return True # an empty node is a BST
             if not (node.val < right and node.val > left):
                 return False
             return (valid(node.left, left, node.val) and 

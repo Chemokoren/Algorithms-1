@@ -9,7 +9,7 @@ which the depth of the two subtrees of every node never differ by more than 1.
 
 Example:
 
-Given the sorted array: [-10, -3, 0, 5, 9]
+Given the sorted array: 
 One possible answer is: [0, -3, 9, -10, null, 5], which represents the following
 height balanced BST:
 
@@ -26,7 +26,7 @@ class TreeNode:
         self.right = right
 
 # O(n) time complexity | O(log(n)) memory because log(n) is going to be the
-# height our tree and it is balanced
+# height of our tree and it is balanced
 class Solution:
     def sortedArrayToBST(self, nums: List[int]) ->TreeNode:
 
@@ -39,3 +39,8 @@ class Solution:
             root.right = helper(m + 1, r)
             return root
         return helper(0, len(nums)-1)
+
+my_array =[-10, -3, 0, 5, 9]
+sol =Solution()
+print(sol.sortedArrayToBST(my_array))
+

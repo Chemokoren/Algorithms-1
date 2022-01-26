@@ -39,6 +39,7 @@ class Solution:
 
         v1 = t1.val if t1 else 0
         v2 = t2.val if t2 else 0
+        
         root = TreeNode(v1 + v2)
 
         root.left =self.mergeTrees(t1.left if t1 else None, t2.left if t2 else None)
