@@ -18,7 +18,7 @@ Input: root =[1,2,3]
 Output: 6
 Explanation: The optimal path is 2->1->3 with a path sum of 2+1+3 = 6
 
-DFS -> O(n) time | O(h) space ->O(log(n))
+DFS -> O(n) time | O(h) space ->O(log(n)) if it is a balanced binary tree
 
 """
 # Definition for a binary tree node.
@@ -32,5 +32,22 @@ class TreeNode:
 class Solution:
 
     def maxPathSum(self, root: TreeNode)->int:
-        res =[root]
+        res =[root.val]
+
+        # return max path sum without split
+        def dfs(root):
+            if not root:
+                return 0
+            leftMax  = dfs(root.left)
+            rightMax = dfs(root.right)
+            leftMax  = max(leftMax, 0)
+            rightMax = max(rightMax, 0)
+
+            # compute max path sum WITH split
+            res[0] =max(res[0], root.val+leftMax+rightMax)
+
+            return root.val+max(leftMax, rightMax)
+
+        dfs(root)
+        return res[0]
     
