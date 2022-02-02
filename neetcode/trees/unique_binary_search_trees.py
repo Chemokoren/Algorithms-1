@@ -17,6 +17,7 @@ Given n = 3, there are a total of 5 uniue BST's:
   3       2       1           1   3           2  
  /       /         \                            \
 2       1           2                            3
+
 """
 
 class Solution:
@@ -31,6 +32,7 @@ class Solution:
 
         # 0 nodes = 1 tree
         # 1 nodes = 1 tree
+        
         for nodes in range(2, n + 1):
             total = 0
             for root in range(1, nodes + 1):

@@ -44,7 +44,7 @@ class Solution:
             rightMax = max(rightMax, 0)
 
             # compute max path sum WITH split
-            res[0] =max(res[0], root.val+leftMax+rightMax)
+            res[0] =max(res[0],root.val+leftMax+rightMax)
 
             return root.val+max(leftMax, rightMax)
 

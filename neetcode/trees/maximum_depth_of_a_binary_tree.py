@@ -18,7 +18,9 @@ Input: root =[3,9,20,null,null,15,7]
 Output: 3
 
 """
-# Recursive DFS O(n) time | O(n) space in the worst case if its not a balanced binary tree
+# Recursive DFS O(n) time | O(n) space in the worst case if its not a balanced binary 
+# tree
+
 # Definition for a binary tree node .
 class TreeNode:
 
