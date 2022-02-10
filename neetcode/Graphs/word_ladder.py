@@ -63,3 +63,10 @@ class Solution:
                             q.append(neiWord)
             res += 1
         return 0
+
+beginWord = "hit"
+endWord ="cog"
+wordList =["hot", "dot", "dog", "lot","log","cog"]
+
+sol = Solution()
+print(sol.ladderLength(beginWord, endWord, wordList))
