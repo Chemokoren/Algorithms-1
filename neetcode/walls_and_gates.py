@@ -58,3 +58,12 @@ class Solution:
                 addRoom(r, c - 1)
 
             dist += 1
+
+
+        print(rooms)
+
+rooms = [[2147483647, -1, 0,2147483647],[2147483647,2147483647,2147483647,-1],
+[2147483647,-1,2147483647,-1],[0,-1,2147483647,2147483647]]
+
+sol = Solution()
+sol.wallsAndGates(rooms)

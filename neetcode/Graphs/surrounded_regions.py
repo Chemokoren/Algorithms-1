@@ -63,3 +63,11 @@ class Solution:
             for c in range(COLS):
                 if board[r][c] == "T":
                     board[r][c] = "o"
+
+        print(board)
+
+
+board =[["x","x","x","x"],["x","o","o","x"],["x","x","o","x"],["x","o","x","x"]]
+
+sol = Solution()
+print(sol.solve(board))
