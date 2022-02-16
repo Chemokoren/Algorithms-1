@@ -37,8 +37,14 @@ OUtput: ["JFK","ATL","JFK","SFO","ATL","SFO"]
 Explanation: Another possible reconstruction is
 ["JFK","SFO","ATL","JFK","ATL","SFO"] but it is larger in lexical order.
 
+Time complexity is O(V+E) but since we are backtracking potentially for every single edge in the
+graph, the overall time complexity is going to be O(V+E)^2. But since we know that the number of
+edges is approximately equal to or greater than the number of vertices, we can think of this as 
+E^2
+
 Time complexity : O(E + V)^2 == E^2 if V== E
-Space Complexity: O(E)
+Space Complexity: O(E) because we will be storing it in an adjacency list & when done recursively
+this could be the size of the callstack.
 
 """
 from typing import List
