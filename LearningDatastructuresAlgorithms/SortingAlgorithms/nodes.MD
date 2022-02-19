@@ -1,0 +1,1 @@
+https://www.topcoder.com/thrive/articles/Introduction%20to%20String%20Searching%20Algorithms

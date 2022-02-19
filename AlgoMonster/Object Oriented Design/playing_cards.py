@@ -1,3 +1,4 @@
+from typing import List
 """
 Playing Cards
 
@@ -5,7 +6,7 @@ We ask you to design a card game using the traditional 52-card deck. We divide t
 in to three parts, so you can complete them in order.
 
 Part One
-
+--------
 For this first part, you must design a Game class representing the game, and these following 
 functions associated with the class.
 
@@ -59,6 +60,66 @@ we can easily add other types of cards if we want.
 
 """
 
+from enum import Enum, auto
+
+class Card:
+    @property
+    def card_value(self)->int:
+        raise NotImplementedError()
+
+    def __lt__(self,other):
+        return self.card_value < other.card_value
+
+class Suit(Enum):
+    CLUBS = auto()
+    DIAMONDS =auto()
+    HEARTS = auto()
+    SPADES = auto()
+
+class PlayingCard(Card):
+    SUITS ={
+        "Clubs": Suit.CLUBS,
+        "Diamonds": Suit.DIAMONDS,
+        "Hearts": Suit.HEARTS,
+        "Spades": Suit.SPADES,
+    }
+
+    SUIT_NAMES ={e: n for n, e in SUITS.items()}
+    VALUES ={
+        "A":1,
+        ** {str(i): i for i in range(2,11)},
+        "J":11,
+        "Q":12,
+        "K":13,
+    }
+
+    VALUE_NAMES ={e: n for n, e in VALUES.items()}
+
+    def __init__(self,suit: str, value:str):
+        super().__init__()
+        self.__suit = self.SUITS[suit]
+        self._value =self.VALUES[value]
+
+    @property
+    def card_value(self)->int:
+        return self._value
+
+    def __str__(self)->str:
+        value = self.VALUE_NAMES[self._value]
+        suit = self.SUIT_NAMES[self.__suit]
+        return f"{value} of {suit}"
+
+# if __name__=='__main__':
+#     game =Game()
+#     suit, value = input().split()
+#     game.add_card(suit, value)
+#     print(game.card_string(0))
+#     suit, value = input().split()
+#     game.add_card(suit, value)
+#     print(game.card_string(1))
+#     print("true" if game.card_beats(0,1) else "false")
+
+
 
 """
 Part Two
@@ -82,6 +143,85 @@ Jokers with other cards, since that logic is already under Card.
 Below is the updated implementation.
 """
 
+from enum import Enum, auto
+
+class Card:
+    @property
+    def card_value(self)->int:
+        raise NotImplementedError()
+
+    def __lt__(self,other):
+        return self.card_value < other.card_value
+
+class Suit(Enum):
+    CLUBS = auto()
+    DIAMONDS =auto()
+    HEARTS = auto()
+    SPADES = auto()
+
+class PlayingCard(Card):
+    SUITS ={
+        "Clubs": Suit.CLUBS,
+        "Diamonds": Suit.DIAMONDS,
+        "Hearts": Suit.HEARTS,
+        "Spades": Suit.SPADES,
+    }
+
+    SUIT_NAMES ={e: n for n, e in SUITS.items()}
+    VALUES ={
+        "A":1,
+        ** {str(i): i for i in range(2,11)},
+        "J":11,
+        "Q":12,
+        "K":13,
+    }
+
+    VALUE_NAMES ={e: n for n, e in VALUES.items()}
+
+    def __init__(self,suit: str, value:str):
+        super().__init__()
+        self.__suit = self.SUITS[suit]
+        self._value =self.VALUES[value]
+
+    @property
+    def card_value(self)->int:
+        return self._value
+
+    def __str__(self)->str:
+        value = self.VALUE_NAMES[self._value]
+        suit = self.SUIT_NAMES[self.__suit]
+        return f"{value} of {suit}"
+
+class JokerColor(Enum):
+    RED =auto()
+    BLACK =auto()
+
+class Joker(Card):
+    COLORS ={
+        "Red": JokerColor.RED,
+        "Black": JokerColor.BLACK,
+    }
+    COLOR_NAMES ={e: n for n, e in COLORS.items()}
+
+    def __init__(self, color:str):
+        super().__init__()
+        self.__color = self.COLORS[color]
+
+    @property
+    def card_value(self) -> int:
+        return 14
+    def __str__(self) -> str:
+        return f"{self.COLOR_NAMES[self.__color]} Joker"
+
+# if __name__=='__main__':
+#     game =Game()
+#     suit, value = input().split()
+#     game.add_joker(value) if suit == "Joker" else game.add_card(suit, value)
+#     print(game.card_string(0))
+#     suit, value = input().split()
+#     game.add_joker(value) if suit == "Joker" else game.add_card(suit, value)
+#     print(game.card_string(1))
+#     print("true" if game.card_beats(0,1) else "false")
 
 
 
@@ -113,3 +253,136 @@ default sorting algorithm
 
 Below is the implementation
 """
+
+from enum import Enum, auto
+
+class Card:
+    @property
+    def card_value(self)->int:
+        raise NotImplementedError()
+
+    def __lt__(self,other):
+        return self.card_value < other.card_value
+
+class Suit(Enum):
+    CLUBS = auto()
+    DIAMONDS =auto()
+    HEARTS = auto()
+    SPADES = auto()
+
+class PlayingCard(Card):
+    SUITS ={
+        "Clubs": Suit.CLUBS,
+        "Diamonds": Suit.DIAMONDS,
+        "Hearts": Suit.HEARTS,
+        "Spades": Suit.SPADES,
+    }
+
+    SUIT_NAMES ={e: n for n, e in SUITS.items()}
+    VALUES ={
+        "A":1,
+        ** {str(i): i for i in range(2,11)},
+        "J":11,
+        "Q":12,
+        "K":13,
+    }
+
+    VALUE_NAMES ={e: n for n, e in VALUES.items()}
+
+    def __init__(self,suit: str, value:str):
+        super().__init__()
+        self.__suit = self.SUITS[suit]
+        self._value =self.VALUES[value]
+
+    @property
+    def card_value(self)->int:
+        return self._value
+
+    def __str__(self)->str:
+        value = self.VALUE_NAMES[self._value]
+        suit = self.SUIT_NAMES[self.__suit]
+        return f"{value} of {suit}"
+
+class JokerColor(Enum):
+    RED =auto()
+    BLACK =auto()
+
+class Joker(Card):
+    COLORS ={
+        "Red": JokerColor.RED,
+        "Black": JokerColor.BLACK,
+    }
+    COLOR_NAMES ={e: n for n, e in COLORS.items()}
+
+    def __init__(self, color:str):
+        super().__init__()
+        self.__color = self.COLORS[color]
+
+    @property
+    def card_value(self) -> int:
+        return 14
+    def __str__(self) -> str:
+        return f"{self.COLOR_NAMES[self.__color]} Joker"
+
+class Hand:
+    def __init__(self, cards):
+        super().__init__()
+        self.cards =[*cards]
+
+    def __str__(self)->str:
+        return ", ".join(str(card) for card in self.cards)
+
+    def __lt__(self, other):
+        for card_a, card_b in zip(reversed(sorted(self.cards)), reversed(sorted(other.cards))):
+            if card_a < card_b:
+                return True
+            elif card_b < card_a:
+                return False
+        return False
+class Game:
+
+    def __init__(self):
+        self.__cards: list[Card] =[]
+        self.__hands: list[Hand] =[]
+
+    def add_card(self, suit: str, value: str)->None:
+        self.__cards.append(PlayingCard(suit, value))
+
+    def card_string(self, card:int)->str:
+        return str(self.__cards[card])
+
+    def card_beats(self, card_a: int, card_b: int)->bool:
+        return self.__cards[card_a] > self.__cards[card_b]
+
+    def add_joker(self, color:str)->None:
+        self.__cards.append(Joker(color))
+
+    def add_hand(self, card_indices: List[int])->None:
+        self.__hands.append(Hand([self.__cards[i] for i in card_indices]))
+
+    def hand_string(self, hand: int)->str:
+        return str(self.__hands[hand])
+
+    def hand_beats(self, hand_a: int, hand_b:int)->bool:
+        return self.__hands[hand_a] > self.__hands[hand_b]
+
+
+if __name__=='__main__':
+    game =Game()
+    hand_a_list =[]
+    n_1 = int(input())
+    for i in range(n_1):
+        suit, value = input().split()
+        game.add_joker(value) if suit =="Joker" else game.add_card(suit, value)
+        hand_a_list.append(i)
+    game.add_hand(hand_a_list)
+    print(game.card_string(0))
+    hand_b_list =[]
+    n_2 = int(input())
+    for i in range(n_1, n_1 + n_2):
+        suit, value = input().split()
+        game.add_joker(value) if suit == "Joker" else game.add_card(suit, value)
+        hand_b_list.append(i)
+    game.add_hand(hand_b_list)
+    print(game.card_string(1))
+    print("true" if game.card_beats(0,1) else "false")
