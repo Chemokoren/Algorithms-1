@@ -24,4 +24,19 @@ An undirected graph is connected if every vertex is joined by a path to another 
 Otherwise, it's disconnected.
 A graph is most commonly stored as a map of adjacecy lists: for each vertex, store a list of its
 neighbors.
+
+                1
+               / \
+              2 _ 3
+             /         
+            4 
+
+     {
+             1:[2,3],
+             2:[1,3,4],
+             3:[1,2],
+             4:[2]
+     }
+Note that even though a graph is represented as an adjacency list, we don't actually have to
+create it upfront. What we really need is a function to get a vertex's neighbors.       
 """

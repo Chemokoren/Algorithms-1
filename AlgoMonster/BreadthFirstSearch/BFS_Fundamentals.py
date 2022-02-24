@@ -21,5 +21,21 @@ BFS is better for:
 
 Template
 We can implement BFS using a queue. Important things to remember:
+- We need at least one element to kick start the process
+- Right after we dequeue an element, we'd want to enqueue its children if there is any
+
 
 """
+
+from collections import deque
+from http.client import NOT_FOUND
+def bfs_by_queue(root):
+    queue =deque([root]) # at least one element in the queue to kick start bfs
+    while len(queue)>0: # as long as there is element in the queue
+        node = queue.popleft() # dequeue
+        for child in node.children: # enqueue children
+            if OK(child): # early return if problem condition met
+                return FOUND(child)
+            queue.append(child)
+    return NOT_FOUND
+

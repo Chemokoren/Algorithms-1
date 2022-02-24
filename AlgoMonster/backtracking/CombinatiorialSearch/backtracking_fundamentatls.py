@@ -88,5 +88,9 @@ function dfs(node, state):
             dfs(child, state)
 
             state.remove(child) # backtrack
-
+Notice how very similar this is to the Ternary Tree Path code we've seen in DFS with states 
+Module. That problem has an explicit tree. For combinatorial search problems, we have to find
+our own tree.
+This all may sound very abstract at the moment. It will be super clear once we apply the system 
+to a couple of real problems. 
 """
