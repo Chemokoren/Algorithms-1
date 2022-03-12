@@ -51,6 +51,7 @@ def min_swaps(s: str) ->int:
     for i, chr in enumerate(s):
         if chr =="R":
             reds.append(i)
+            
         n = len(reds)
         if n == 0:
             return 0

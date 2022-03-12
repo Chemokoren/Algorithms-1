@@ -29,4 +29,6 @@ Subarray    Min Weight
 1,3,2       1
 1,3,2       2
 1,3,2       1
+
+The sum of subarray minimums is 1+3+2+1+2+1=10.
 """
