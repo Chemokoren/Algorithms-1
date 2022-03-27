@@ -27,7 +27,6 @@ class Graph:
             self.adjacency_list[vertex2].remove(vertex1)
 
     def removeVertex(self, vertex):
-
         while len(self.adjacency_list[vertex]):
             for i in self.adjacency_list[vertex]:
                 self.removeEdge(vertex,i)

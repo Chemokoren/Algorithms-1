@@ -50,7 +50,7 @@ while S is not empty
     vertex = S.pop()
     if vertex is not labeled as discovered:
         visit vertex (add to result list)
-        lavel vertex as discored
+        label vertex as discovered
         for each of vertex's neighbors, N do
             S.push(N)
 
@@ -95,14 +95,11 @@ class Graph():
             self.adjacency_list[vertex2].remove(vertex1)
 
     def removeVertex(self, vertex):
-        # if vertex1 in self.adjacency_list: 
         while len(self.adjacency_list[vertex]):
-            item =self.adjacency_list[vertex].pop()
-            self.removeEdge(vertex,item)
-                # 
-            # self.adjacency_list.pop(vertex1)
-    
-    # def __init__(self, start_node) -> None:
+            for i in self.adjacency_list[vertex]:
+                self.removeEdge(vertex,i)
+
+        self.adjacency_list.pop(vertex)
     
 
     def __str__(self) -> str:
@@ -124,7 +121,90 @@ class Graph():
             return result
         return dfs(vertex)
 
-    
+    '''
+    - The function should accept a starting node
+    - Create a stack to help us keep track of vertices(use a list/array)
+    - Create a list to store the end result, to be returned at the very end
+    - Create an object to store visited vertices
+    - Add the starting vertex to the stack, and mark it visited
+    - While the stack has something in it:
+        -pop the next vertex from the stack
+        - if that vertex hasn't been visited yet:
+            - mark it as visited
+            - add it to the result list
+            - push all of its neighbors into the stack
+    - return the result array
+    '''
+    def IterativeDFS(self, vertex):
+        s =[]
+        result =[]
+        visited ={}
+
+        s.append(vertex)
+
+        while s:
+            print(s)
+            item =s.pop()
+            if item not in visited:
+                visited[item]=True
+                result.append(item)
+                for i in self.adjacency_list[item]:
+                    s.append(i)
+        return result
+
+    def IterativeDFSMain(self, vertex):
+        s =[]
+        result =[]
+        visited ={}
+
+        s.append(vertex)
+        visited[vertex]=True
+
+
+        while s:
+            print(s)
+            item =s.pop()
+            result.append(item)
+            
+            for i in self.adjacency_list[item]:
+                if i not in visited:
+                    visited[i]=True
+                    s.append(i)
+        return result
+
+
+    '''
+    BFS
+    - This function should accept a starting vertex
+    - Create a queue(you can use an array) and place the starting vertex in it
+    - create an array to store the nodes visited
+    - Create an object to store nodes visited
+    - Mark the starting vertex as visited
+    - Loop as long as there is anything in the queue
+    - Remove the first vertex from the queue and push it into the array that stores nodes visited
+    - Loop over each vertex in the adjacency list for the vertex you are visiting
+    - If it is not inside the object that stores nodes visited, mark it as visited and 
+    enque that vertex
+    - Once you have finished looping, return the array of visited nodes
+
+    '''
+    def BFS(self, vertex):
+        queue =[vertex]
+        result =[]
+        visited={}
+
+        visited[vertex]=True
+
+        while queue:
+            item = queue.pop(0)
+            result.append(item)
+
+            for i in (self.adjacency_list[item])[::-1]:
+                if i not in visited:
+                    visited[i]=True
+                    queue.append(i)
+        return result
+
 
 
 #                   A
@@ -150,4 +230,10 @@ g.addEdge("D", "E")
 g.addEdge("D", "F")
 g.addEdge("E", "F")
 g.__str__()
-print("result: ",g.RecursiveDFS("A"))
+print("DFS Recursive result: ",g.RecursiveDFS("A"))
+print("DFS iterative result: ",g.IterativeDFS("A"))
+
+print("BFS result: ",g.BFS("A"))
+
+# BFS result:  ['A', 'B', 'C', 'D', 'E', 'F']
+# BFS result:  ['A', 'C', 'B', 'E', 'D', 'F']
