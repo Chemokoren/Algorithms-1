@@ -28,52 +28,54 @@ class BinaryHeap:
             idx = parentIdx
 
     def extractMax(self):
-        # idx = len(self.values)-1
-        # # swap max and last element
-        # self.values[0], self.values[idx] =self.values[idx], self.values[0]
-        # max_value = self.values.pop()
-        # self.trickleDown()
-        # return max_value
-
-        max = self.values[0]
-        end = self.values.pop()
         if len(self.values) > 0:
-            self.values[0] =end
-            self.trickleDown()
-        else:
-            print("Done")
-            
-        
-        return max
+            max = self.values[0]
+            end = self.values.pop()
+
+            if len(self.values)> 0:
+                self.values[0] = end
+                self.trickleDown()
+                # self.sinkDown()
+            else:
+                print("Done")
+            return max
+        print("Max operation not possible on an empty array")
 
 
-    def extractMax1(self):
-        idx = len(self.values)-1
-        # last_element =self.values[idx]
-
-        # swap max and last element
-        self.values[0], self.values[idx] =self.values[idx], self.values[0]
-        max_value = self.values.pop()
+    # work in progress
+    def sinkDown(self):
 
         # start sink-down process
         parentIdx = 0
-        while(parentIdx <= len(self.values)-2):
-        
-            leftChildIdx =(parentIdx * 2)+1
-            rightChildIdx =(parentIdx * 2)+2
+
+        leftChildIdx  = (parentIdx * 2) + 1
+        rightChildIdx = (parentIdx * 2) + 2
+        length = len(self.values)
+
+        while rightChildIdx < length: 
+
             if(self.values[parentIdx] > self.values[leftChildIdx] and self.values[parentIdx] > self.values[rightChildIdx]):
                 break
-            greatest_child = max(self.values[leftChildIdx], self.values[rightChildIdx])
-            childIdx =self.values.index(greatest_child)
-            self.values[parentIdx], self.values[childIdx] =self.values[childIdx],self.values[parentIdx]
-            parentIdx =childIdx
+            parent =self.values[parentIdx]
+            leftChild =self.values[leftChildIdx]
+            rightChild =self.values[rightChildIdx]
 
-        return max_value
+            greatest_child = max(leftChild, rightChild)
+
+            childIdx = self.values.index(greatest_child)
+            newChild = self.values[childIdx]
+        
+
+            if greatest_child > parent:
+                parent, newChild = newChild,parent
+                parentIdx = childIdx
+
+ 
 
     def trickleDown(self):
         idx = 0
         length = len(self.values)
-        parent =self.values[0]
+        parent = self.values[0]
 
         while(True):
             leftChildIdx = 2 * idx + 1
@@ -134,8 +136,8 @@ sol.extractMax()
 print("values: ",sol.__str__())
 sol.extractMax()
 print("values: ",sol.__str__())
-# sol.extractMax()
-# print("values: ",sol.__str__())
+sol.extractMax()
+print("values: ",sol.__str__())
 
 sol.insertHeap(10)
 print("values: ",sol.__str__())
