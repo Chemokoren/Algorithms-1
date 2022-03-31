@@ -28,7 +28,6 @@ class MinHeapBinary:
 
     def enqueue(self, val, priority):
         new_node =Node(val, priority)
-        # put it in the right spot based on priority
         self.values.append(new_node)
         self.bubbleUP()
     
@@ -41,7 +40,7 @@ class MinHeapBinary:
         index = len(self.values)-1
         parentIndex  = (index-1) // 2
 
-        while self.values[parentIndex].priority < self.values[index].priority:
+        while self.values[parentIndex].priority > self.values[index].priority:
             self.values[parentIndex],self.values[index] =self.values[index],self.values[parentIndex]
             index =parentIndex
 
@@ -51,10 +50,11 @@ class MinHeapBinary:
             end = self.values.pop()
             self.values[0] = end
             self.bubbleDown()
-            return parent
+            return parent.val
         return self.values.pop()
 
     def bubbleDown(self):
+        print("sifiki apa")
         parentIdx = 0
         leftChildIdx = (parentIdx * 2) + 1
         rightChildIdx = (parentIdx * 2) + 2
@@ -67,11 +67,23 @@ class MinHeapBinary:
             rightChild = self.values[rightChildIdx]
             element =self.values[parentIdx]
 
-            greaterChild =max(leftChild.priority, rightChild.priority)
-            greaterChildIdx =self.values.index(greaterChild)
+            
+            greaterChild=None
+            greaterChildPriority =min(leftChild.priority, rightChild.priority)
+            if greaterChildPriority==leftChild.priority:
+                greaterChild =leftChild
+            else:
+                greaterChild = rightChild
+            
 
-            if greaterChild.priority > element.priority:
+            
+            greaterChildIdx =self.values.index(greaterChild)
+            print("compare:", greaterChild.val, self.values[greaterChildIdx].val)
+            
+
+            if greaterChildPriority < element.priority:
                 self.values[greaterChildIdx],element= element,self.values[greaterChildIdx]
+                # greaterChild,element= element,greaterChild
                 parentIdx = greaterChildIdx
 
 class Node():
@@ -88,4 +100,4 @@ sol.enqueue("drunk",4)
 sol.enqueue("accident",3)
 sol.__str__()
 print("done: ",sol.dequeue())
-sol.__str__()
+# sol.__str__()
