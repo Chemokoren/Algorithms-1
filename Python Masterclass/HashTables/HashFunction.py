@@ -1,8 +1,59 @@
 """
+Objectives
+- Explain what a hash table is
+- Define what a hashing algorithm 
+- Discuss what makes a good hashing algorithm
+- Understand how collisions occur in a hash table
+- Handle collissions using seperate chaining or linear probing
+
+What is a hash table?
+- Hash tables are used to store  key-value pairs
+- They are like arrays, but the keys are not ordered.
+- Unlike arrays, hash tables are fast for all of the following operations: finding values,
+adding new values, and removing values!
+
+Why shoud I care?
+
+-Nearly every programming language has some sort of hash table data structure
+- Because of their speed, hash tables are very commonly used!
+
+Hash tables in the wild
+-Python has Dictionaries
+-JS has Objects and Maps*
+-Java, Go, & Scala have Maps
+-Ruby has ... Hashes
+
+* Objects have some restrictions, but are basically hash tables
+
+How would we implement our own version???
+
+THE HASH PART
+- To implement a hash table we'll be using an array.
+- In order to look up values by key, we need a way to convert keys into valid array
+indices
+- A function that performs this task is called a hash function
+
+What Makes a Good Hash? (not a cryptographically secure one)
+- Fast(i.e. constant time)
+- Doesn't cluster outputs at specific indices, but distributes uniformly e.g. not 
+everything can be hashed to a zero
+- Deterministic (same input yields same output)
+
+Prime numbers?
+- The prime number in the hash is helpful in spreading out the keys more uniformly.
+
+- It's also helpful if the array that you're putting values into has a prime length.
+
+links if you're curious:
+ why do hash functions use prime numbers?
+ Does making array size a prime number help in hash table implementation?
+
 problems with this hash
 - only hashes strings (we won't worry about this)
 - Not constant time - linear in key length
 - could be alittle more random
+
+
 
 Seperate chaining
 -With seperate chaining, at each index in our array we store values using a
@@ -13,7 +64,7 @@ This allows us to store multiple key-value pairs at the same index.
 Linear Probing
 -with linear probing, when we find a collision, we search through the array
 to find the next empty slot.
--Unlike with seperate chaining, this allows us to store a single key-value
+-Unlike seperate chaining, this allows us to store a single key-value
 at each index.
 
 Recap
@@ -53,11 +104,11 @@ def hashUpdated(key, arrayLen):
         val = ord(char) -96
         total =(total *WEIRD_PRIME + val) % arrayLen
     return total
-print("updated: ", hashUpdated("hello", 13))
-print("updated: ", hashUpdated("hi", 13))
-print("updated: ", hashUpdated("goodbye", 13))
-print("updated: ", hashUpdated("cyan", 13))
-print("updated: ", hashUpdated("pink", 13))
+print("hello: ", hashUpdated("hello", 13))
+print("hi: ", hashUpdated("hi", 13))
+print("goodbye: ", hashUpdated("goodbye", 13))
+print("cyan: ", hashUpdated("cyan", 13))
+print("pink: ", hashUpdated("pink", 13))
 
 class HashTable:
 
