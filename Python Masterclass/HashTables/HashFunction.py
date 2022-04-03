@@ -67,6 +67,14 @@ to find the next empty slot.
 -Unlike seperate chaining, this allows us to store a single key-value
 at each index.
 
+Big O of Hash tables
+Time Complexity
+(average case)
+
+-insert: O(1)
+-Deletion: O(1)
+-Access: O(1)
+
 Recap
 - Hash tables are collections of key-value pairs
 - Hash tables can find values quickly given a key
@@ -125,7 +133,7 @@ class HashTable:
         return total
 
     '''
-    set 
+    set method
     - Accepts a key and a value
     - Hashes the key
     - Stores the key-value pair in the hash table array via seperate chaining
@@ -137,7 +145,7 @@ class HashTable:
         self.keyMap[index].append([key, value])
 
     '''
-    get
+    get method
     - accepts a  key
     - hashes the key
     - retrieves the key-value pair in the hash table
@@ -152,9 +160,8 @@ class HashTable:
                 return i[1]
 
     '''
-    keys 
-    - loops through the hash table array and returns an array of keys in 
-    the table
+    keys method
+    - loops through the hash table array and returns an array of keys in the table
     '''
     def keys(self):
         keys_arr =[]
