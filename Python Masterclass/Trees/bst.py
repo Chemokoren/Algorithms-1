@@ -32,6 +32,14 @@ If we found it, we're done!
     -check to see if there is a node to the left
         - if there is, move to that node and repeat these steps
         - If there is not, we're done searching!
+Big O of BST
+
+Insertion - O(log(n))
+Searching - O(log(n))
+
+if you Double the number of nodes ...
+
+You only increase the number of steps to inser/find by 1
 
 """
 
@@ -88,8 +96,8 @@ class BinarySearchTree:
                 current.left=n
 
     def search_iterative(self, val):
-        n = Node(val)
         if self.root == None:
+            print("root has no value")
             return Undefined
         if self.root == val:
             return True
@@ -106,6 +114,36 @@ class BinarySearchTree:
                         return True
                     current = current.left
 
+    def search(self, val):
+        if self.root ==None:
+            return False
+        current = self.root
+        found = False
+
+        while(current and not found):
+            if val < current.value:
+                current = current.left
+            elif val > current.value:
+                current = current.right
+            else:
+                found = True
+        if(not found): return False
+        return current
+    
+    def contains(self, val):
+        if self.root == None:
+            return False
+        current = self.root
+        found = False
+        while(current and not found):
+            if val < current.value:
+                current = current.left
+            elif val > current.value:
+                current = current.right
+            else:
+                return True
+        return False
+
 #       10
 #   5       13
 # 2   7  11    16
@@ -118,18 +156,15 @@ tree.insert_node_iterative(2)
 tree.insert_node_iterative(7)
 tree.insert_node_iterative(11)
 tree.insert_node_iterative(16)
-tree.insert_node_iterative(10)
-# tree.root =Node(10)
-# tree.root.right =Node(15)
-# tree.root.left =Node(7)
-# tree.root.left.right=Node(9)
 
-print("10 root: ",tree.root.value)
-print("5 left:",tree.root.left.value)
-print("2 left left:",tree.root.left.right.value)
-print("7 left right:",tree.root.left.right.value)
-print("13 right:",tree.root.right.value)
-print("11 right left:",tree.root.right.left.value)
-print("16 right right",tree.root.right.right.value)
 
-print(" search for 5", tree.search_iterative(5))
+
+# print("10 root: ",tree.root.value)
+# print("5 left:",tree.root.left.value)
+# print("2 left left:",tree.root.left.right.value)
+# print("7 left right:",tree.root.left.right.value)
+# print("13 right:",tree.root.right.value)
+# print("11 right left:",tree.root.right.left.value)
+# print("16 right right",tree.root.right.right.value)
+search_val =17
+print(" search for "+str(search_val),"=", tree.contains(search_val))
