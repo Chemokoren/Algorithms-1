@@ -147,6 +147,17 @@ class BinarySearchTree:
 
         return visited
 
+    def DFSPreOrder(self):
+        visited =[]
+        
+        def helper(node):
+            visited.append(node.value)
+            if node.left:
+                helper(node.left)
+            if node.right:
+                helper(node.right)
+        helper(self.root)
+        return visited
   
     def DFSInOrderUpdated(self):
         visited =[]
@@ -157,6 +168,18 @@ class BinarySearchTree:
             visited.append(node.value)
             if node.right:
                 helper(node.right)
+        helper(self.root)
+        return visited
+    
+    def DFSPostOrder(self):
+        visited =[]
+        
+        def helper(node):
+            if node.left:
+                helper(node.left)
+            if node.right:
+                helper(node.right)
+            visited.append(node.value)
         helper(self.root)
         return visited
 
