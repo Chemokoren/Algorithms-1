@@ -10,15 +10,18 @@ What is a stack?
 The last element added to the stack will be the first element removed from the stack
 
 How is it used?
+
 - Think about a stack of plates, or a stack of markers, or a stack of ... anything
 - As you pile it up, the last thing(or the topmost thing) is what gets removed first.
 
 WHERE STACKS ARE USED
+
 -Managing function invocations
 -Undo/Redo
 -Routing(the history object) is treated like a stack - in your browser
 
 PUSH Pseudocode
+
 - The function should accept a value
 - Create a new node with that value
 - If there are no nodes in the stack, set the first and last property to be the newly
