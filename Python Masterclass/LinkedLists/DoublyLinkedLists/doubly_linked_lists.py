@@ -82,6 +82,27 @@ Get Pseudocode
     - Loop through the list starting from the tail and loop towards the middle
     - Return the node once it is found
 
+SET
+
+- Replacing the value of a node in a Doubly Linked List
+
+Set Pseudocode
+- Create a variable which is the result of the get method at the index passed to the function
+    - If the get method returns a valid node, set the value of that node to be the value passed to the function
+    - Return True
+- Otherwise return False
+
+INSERT
+- Adding a node in a Doubly Linked List by a certain position
+
+Insert Pseudocode
+- if the index is less than zero or greater than or equal to the length return false
+- If the index is 0, unshift
+- if the index is the same as the length, push
+- use the get method to access the index -1
+- Set the next and prev properties on the correct nodes to link everything together
+- increment the length
+- return true
 """
 
 
@@ -181,9 +202,8 @@ class DoublyLinkedList:
         return self.print()
 
     def get(self, idx):
-        result = -1
+        result = None
         if idx < 0 or idx > self.size:
-            print("None")
             return None
         else:
             # count_idx = 0
@@ -194,25 +214,51 @@ class DoublyLinkedList:
             #     start = start.next
             #     count_idx +=1
 
-            end_idx = (self.size/2)
+            end_idx = (self.size//2)
             if idx < end_idx:
                 count_idx = 0
                 start = self.head
                 while count_idx < end_idx:
-                    if count_idx ==idx:
-                        result= start.val
+                    if count_idx == idx:
+                        result= start
                     start = start.next
                     count_idx +=1
             
             if idx >= end_idx:
-                count_idx = self.size 
+                count_idx = self.size-1
                 start = self.tail
-                while count_idx < end_idx:
+                while count_idx >= end_idx:
                     if count_idx ==idx:
-                        result= start.val
+                        result= start
                     start = start.prev
                     count_idx -=1
         return result
+
+    def set(self,idx,val):
+        #check if node is valid
+        new_node=self.get(idx)
+        if(new_node != None):
+            print("valid node")
+            new_node.val =val
+        else:
+            print("invalid node")
+        self.print()
+
+    def insert(self, idx, val):
+        
+        # - if the index is less than zero or greater than or equal to the length return false
+        if idx < 0 or idx >self.size:
+            return False
+         # - If the index is 0, unshift
+        if idx ==0:
+            self.unshift(val)
+
+   
+    # - if the index is the same as the length, push
+    # - use the get method to access the index -1
+    # - Set the next and prev properties on the correct nodes to link everything together
+    # - increment the length
+        return True
             
             
 
@@ -241,6 +287,8 @@ print("size: ", dl.size)
 print("push: ", dl.push(10))
 print("push: ", dl.push(20))
 print("push: ", dl.push(30))
+print("push: ", dl.push(40))
+# print("push: ", dl.push(50))
 dl.print()
 # dl.print_backwards()
 # dl.pop()
@@ -266,4 +314,12 @@ dl.print()
 
 # test get
 
-print("get:", dl.get(2))
+# print("get:", dl.get(-1))
+
+# test set
+# dl.set(10,100)
+
+# test insert
+
+dl.insert(11, 100)
+# dl.print()
