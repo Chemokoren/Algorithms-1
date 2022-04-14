@@ -103,6 +103,19 @@ Insert Pseudocode
 - Set the next and prev properties on the correct nodes to link everything together
 - increment the length
 - return true
+
+REMOVE
+- Removing a node in a Doubly Linked List by a certain position
+
+Remove Pseudocode
+- If the index is less than zero or greater than or equal to the length return undefined
+- If the index is 0, shift
+- If the index is the same as the length-1, pop
+- Use the get method to retrieve the item to be removed
+- Update the next and prev properties to remove the found node from the list
+- Set next and prev to null on the found node
+- Decrement the length
+- Return the removed node
 """
 
 
@@ -250,15 +263,45 @@ class DoublyLinkedList:
         if idx < 0 or idx >self.size:
             return False
          # - If the index is 0, unshift
-        if idx ==0:
+        elif idx ==0:
             self.unshift(val)
+        
+        # - if the index is the same as the length, push
+        elif(idx ==self.size):
+            self.push(val)
+        else:
+            # - use the get method to access the index -1
+            new_node =Node(val)
 
-   
-    # - if the index is the same as the length, push
-    # - use the get method to access the index -1
-    # - Set the next and prev properties on the correct nodes to link everything together
-    # - increment the length
+            # - Set the next and prev properties on the correct nodes to link everything together
+
+            node_idx =self.get(idx-1)
+            temp = node_idx.next
+            node_idx.next =new_node
+            new_node.prev =node_idx
+            new_node.next=temp
+            temp.prev =new_node
+
+             # - increment the length
+            self.size +=1
         return True
+
+    def remove(self, idx):
+        # - If the index is less than zero or greater than or equal to the length return undefined
+        if idx < 0 or idx > self.size:
+            return Undefined
+        # - If the index is 0, shift
+        if idx == 0:
+            self.shift()
+        # - If the index is the same as the length-1, pop
+        if(idx == self.size-1):
+            self.pop()
+        # - Use the get method to retrieve the item to be removed
+        remove_node = self.get(idx)
+        # - Update the next and prev properties to remove the found node from the list
+        # - Set next and prev to null on the found node
+        # - Decrement the length
+        # - Return the removed node
             
             
 
@@ -321,5 +364,5 @@ dl.print()
 
 # test insert
 
-dl.insert(11, 100)
-# dl.print()
+print(dl.insert(3, 100))
+dl.print()
