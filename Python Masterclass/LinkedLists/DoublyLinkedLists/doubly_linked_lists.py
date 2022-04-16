@@ -116,6 +116,22 @@ Remove Pseudocode
 - Set next and prev to null on the found node
 - Decrement the length
 - Return the removed node
+
+Big O of Doubly Linked Lists
+
+insertion - O(1)
+Removal -O(1)
+Searching - O(N)
+Access - O(N)
+
+Technically searching is O(N/2) but that's still O(N)
+
+RECAP!
+- Doubly Linked Lists are almost identical to Singly Linked Lists except there is an additional pointer to 
+previous nodes
+- Better than Singly Linked Lists for finding nodes and can be done in half the time
+- However, they do take up more memory considering the extra pointer
+
 """
 
 
@@ -287,21 +303,41 @@ class DoublyLinkedList:
         return True
 
     def remove(self, idx):
+        print("aaa:", idx, self.size)
         # - If the index is less than zero or greater than or equal to the length return undefined
-        if idx < 0 or idx > self.size:
+        if idx < 0 or idx >= self.size:
             return Undefined
         # - If the index is 0, shift
-        if idx == 0:
+        elif idx == 0:
             self.shift()
         # - If the index is the same as the length-1, pop
-        if(idx == self.size-1):
+        elif(idx == self.size-1):
             self.pop()
         # - Use the get method to retrieve the item to be removed
-        remove_node = self.get(idx)
-        # - Update the next and prev properties to remove the found node from the list
-        # - Set next and prev to null on the found node
-        # - Decrement the length
-        # - Return the removed node
+
+        else:
+            remove_node = self.get(idx)
+
+            # - Update the next and prev properties to remove the found node from the list
+            prev_node = remove_node.prev
+            next_node =remove_node.next
+            prev_node.next=next_node
+            next_node.prev=prev_node
+
+            # - Set next and prev to null on the found node
+
+            remove_node.next=None
+            remove_node.prev=None
+
+            # - Decrement the length
+            self.size -=1
+
+            # - Return the removed node
+            return remove_node.val
+
+        
+        
+       
             
             
 
@@ -363,6 +399,8 @@ dl.print()
 # dl.set(10,100)
 
 # test insert
+# print(dl.insert(3, 100))
 
-print(dl.insert(3, 100))
+#test remove
+print(dl.remove(3))
 dl.print()
