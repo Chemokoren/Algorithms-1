@@ -1,7 +1,7 @@
 """
 What do they do?
 
-Data structures are collections of values, the relationship among them, and the functions or operations that 
+- Data structures are collections of values, the relationship among them, and the functions or operations that 
 can be applied to the data
 -Each data structure excells in a different situtation
 

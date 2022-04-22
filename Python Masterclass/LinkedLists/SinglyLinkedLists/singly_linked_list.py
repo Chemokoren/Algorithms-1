@@ -132,6 +132,20 @@ Reverse pseudocode
 -Set prev to be the value of the node variable
 -Set the node variable to be the value of the next variable
 
+Big O of Singly Linked Lists
+
+- Insertion O(1)
+- Removal -- it depends: O(1) or O(N)
+- Searching O(N)
+- Access O(N)
+
+RECAP
+
+-Singly Linked Lists are an excellent alternative to arrays when insertion and deletion at the beginning are
+frequently required
+- Arrays contain a built in index whereas Linked Lists do not
+- The idea of a list data structure that consists of nodes is the foundation for other data structures like 
+Stacks and Queues
 
 """
 from jinja2 import Undefined
@@ -270,11 +284,38 @@ class SinglyLinkedList:
             before_node.next =before_node.next.next
             self.size -=1
             return removed_node.val
-        
+    '''
+    -swap the head and tail
+    -Create a variable called next
+    -Create avariable called prev
+    -Create a variable called node and initialize to the head property
+    -Loop through the list
+    -Set the next to be the next property on whatever node is
+    -Set the next property on the node to be whatever prev is
+    -Set prev to be the value of the node variable
+    -Set the node variable to be the value of the next variable
+
+    '''
     def reverse(self):
         #13 -->27-->32-->71
         #13<--27<--32<--71
-        self.tail, self.head =self.head, self.tail
+        
+        node = self.head
+        self.head = self.tail
+        self.tail = node
+
+        next = None
+        prev = None
+
+        
+        for i in range(0, self.size):
+            next =node.next
+            node.next =prev
+            prev = node
+            node =next
+            
+        
+        
         return self.traverse
 
     def print(self):
