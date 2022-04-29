@@ -166,6 +166,38 @@ def double(arr):
     return newArr # n numbers
 
 O(n) space
+
+
+Logarithm
+
+log(8) =3           --------> 2^3 =8
+
+log(value)=exponent --------------> 2^exponent = value
+
+we'll omit the 2.
+
+log === log(base)2
+
+The logarithm of a number roughly measures the number of times you can divide that number by 2
+before you get a value that's less than or equal to one.
+
+Who Cares?
+
+-Certain searching algorithms have logarithmic time complexity.
+-Efficient sorting algorithms involve logarithms.
+-Recursion sometimes involves logarithmic space complexity.
+
+
+Recap
+- To analyze the performance of an algorithm, we use Big O Notation
+- Big O Notation can give us a high level understanding of the time or space complexity of an
+algorithm
+- Big O Notation doesn't care about precision, only about general trends(linear?quadratic?constant?)
+- The time or space complexity(as measured by Big O) depends only on the algorithm, not the
+hardware used to run the algorithm
+-Big O Notation is everywhere, so get lots of practice!
+
+
 """
 
 def addUp(n):
