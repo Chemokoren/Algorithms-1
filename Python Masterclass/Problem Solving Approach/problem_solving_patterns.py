@@ -24,6 +24,7 @@ same([1,2,1], [4,4,1]) //false (must be same frequency)
 O(n^2) time complexity
 """
 
+from cmath import inf
 from jinja2 import Undefined
 
 
@@ -275,3 +276,153 @@ maxSubarraySum([4,2,1,6],1) //6
 maxSubarraySum([4,2,1,6,2], 4) //13
 maxSubarraySum([], 4) //null
 """
+
+def maxSubarraySum(arr,num):
+    if(num > len(arr)):
+        return None
+    max_val =0
+    start =0
+    end =0
+    while end <=len(arr):
+        end = start + num
+        new_sum =sum(arr[start:end])
+        if new_sum > max_val:
+            max_val=new_sum
+        start +=1
+    return max_val
+         
+
+print("############### maxSubarraySum ###############")
+
+print("expected: 10 ~ actutal:",maxSubarraySum([1,2,5,2,8,1,5],2)) # 10
+print("expected: 17 ~ actutal:",maxSubarraySum([1,2,5,2,8,1,5],4)) # 17
+print("expected: 6 ~ actutal:", maxSubarraySum([4,2,1,6],1)) #6
+print("expected: 13 ~ actutal:", maxSubarraySum([4,2,1,6,2], 4)) #13
+print("expected: None ~ actutal:",maxSubarraySum([], 4)) #null
+
+def maxSubarraySumNaive(arr,num):
+    if(num > len(arr)):
+        return None
+
+    max_val =0
+
+    for i in range(len(arr)):
+        sum_vals =sum(arr[i:i+num])
+        if sum_vals > max_val:
+            max_val =sum_vals
+            
+    return max_val
+
+print("############### maxSubarraySum -for loop ###############")
+
+print("expected: 10 ~ actutal:",maxSubarraySumNaive([1,2,5,2,8,1,5],2)) # 10
+print("expected: 17 ~ actutal:",maxSubarraySumNaive([1,2,5,2,8,1,5],4)) # 17
+print("expected: 6 ~ actutal:", maxSubarraySumNaive([4,2,1,6],1)) #6
+print("expected: 13 ~ actutal:", maxSubarraySumNaive([4,2,1,6,2], 4)) #13
+print("expected: None ~ actutal:",maxSubarraySumNaive([], 4)) #null
+
+def maxSubArraySum(arr, num):
+    if num > len(arr):
+        return None
+    max =-float('inf')
+    for i in range(len(arr)-num +1):
+        temp =0
+        for j in range(0,num):
+            temp += arr[i + j]
+        if temp > max:
+            max = temp
+    return max
+
+
+print("############### maxSubarraySum Naive solution ###############")
+
+print("expected: 10 ~ actutal:",maxSubArraySum([1,2,5,2,8,1,5],2)) # 10
+print("expected: 17 ~ actutal:",maxSubArraySum([1,2,5,2,8,1,5],4)) # 17
+print("expected: 6 ~ actutal:", maxSubArraySum([4,2,1,6],1)) #6
+print("expected: 13 ~ actutal:", maxSubArraySum([4,2,1,6,2], 4)) #13
+print("expected: None ~ actutal:",maxSubArraySum([], 4)) #null
+
+'''
+sliding window
+
+O(N) time complexity
+
+'''
+def maxSubarraySumF(arr,num):
+
+    if(len(arr) < num): return None
+    maxSum =sum(arr[0:num])
+
+    tempSum = maxSum
+    for i in range(num,len(arr)):
+        tempSum = tempSum -arr[i-num] +arr[i]
+        maxSum =max(maxSum,tempSum)
+    return maxSum
+
+print("############### Sliding Window solution ###############")
+
+print("expected: 10 ~ actutal:",maxSubarraySumF([1,2,5,2,8,1,5],2)) # 10
+print("expected: 17 ~ actutal:",maxSubarraySumF([1,2,5,2,8,1,5],4)) # 17
+print("expected: 6 ~ actutal:", maxSubarraySumF([4,2,1,6],1)) #6
+print("expected: 13 ~ actutal:", maxSubarraySumF([4,2,1,6,2], 4)) #13
+print("expected: None ~ actutal:",maxSubarraySumF([], 4)) #null
+
+
+"""
+Divide and Conquer
+
+This pattern involves dividing a data set into smaller chunks and then repeating a process with a subset of
+data.
+This pattern can tremendously decrease time complexity
+
+Example:
+
+Given a sorted array of integers, write a function called search, that accepts a value and returns the index
+where the value passed to the function is located. If the value is not found, return -1
+
+search([1,2,3,4,5,6], 4) //3
+search([1,2,3,4,5,6], 6) //5
+search([1,2,3,4,5,6], 11) //-1
+
+"""
+
+# Linear search
+
+def search(arr, num):
+    for i in range(len(arr)):
+        if arr[i] ==num:
+            return i
+    return -1
+
+
+print("expected value is 3:  actual value is",search([1,2,3,4,5,6], 4))
+print("expected value is 5:  actual value is",search([1,2,3,4,5,6], 6))
+print("expected value is -1:  actual value is",search([1,2,3,4,5,6], 11))
+
+
+'''
+Binary Search
+
+Log(N) time complexity
+'''
+
+def binarySearch(arr, num):
+    start = 0
+    end = len(arr)-1
+
+    while start <= end:
+        mid = (start + end) // 2
+
+        if num < arr[mid]:
+            end = mid-1
+        elif num > arr[mid]:
+            start =mid +1
+        else:
+            return mid
+    return -1
+    
+print("############## binary search ##############")
+
+print("expected value is 3:  actual value is",binarySearch([1,2,3,4,5,6], 4))
+print("expected value is 5:  actual value is",binarySearch([1,2,3,4,5,6], 6))
+print("expected value is -1:  actual value is",binarySearch([1,2,3,4,5,6], 11))
