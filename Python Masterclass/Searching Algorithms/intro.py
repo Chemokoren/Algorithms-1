@@ -32,4 +32,36 @@ Binary Search Pseudocode
     - If the value is too small, move the left pointer up
     - If the value is too large, move the right pointer down
 - If you never find the value, return -1
+
+Big O of Binary Search
+- Worst and Average Case - O(log n) 
+- Best Case O(1)
+
+
+Naive String Search
+-Suppose you want to cont the number of times a smaller string appears in a longer string
+- A straightforward approach involves checking pairs of characters individually.
+
+Pseudocode
+- Loop over the longer string
+- Loop over the shorter string
+- If the characters don't match break out of the inner loop
+- If the characters do match, keep going
+- If you complete the inner loop and find a match, increment the count of matches
+- Return the count
 """
+
+def naiveSearch(long_str, search_val):
+    match_count =0
+    for i in range(len(long_str)):
+        for j in range(len(search_val)):
+            print(long_str[i+j],search_val[j])
+            if long_str[i+j]!=search_val[j]:
+                print("BREAK")
+                break
+            if j ==len(search_val)-1:
+                match_count +=1
+    return match_count
+
+print("expected is 2: actual is", naiveSearch("harold said haha in hamburg", "r"))
+
