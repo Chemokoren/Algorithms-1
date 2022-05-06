@@ -4,7 +4,9 @@ search an element in a sorted and rotated array
 An element in a sorted array can be found in O(log n) time
 via binary search. But suppose we rotate an ascending order 
 sorted array at some pivot unknown to you beforehand. 
+
 For instance, 1 2 3 4 5 might become 3 4 5 1 2. 
+
 Devise a way to find an element in the rotated array 
 in O(log n) time.
 
@@ -20,19 +22,19 @@ Input : arr[] = {30, 40, 50, 10, 20}
         key = 10   
 Output : Found at index 3
 
-All solutions provided here assume that all elements
-in the array are distinct.
+All solutions provided here assume that all elements in the array are distinct.
 
 Approach: 
  
 The idea is to find the pivot point, divide the array in two sub-arrays
 and perform binary search.
-The main idea for finding pivot is – for a sorted (in increasing order)
+The main idea for finding pivot is for a sorted (in increasing order)
 and pivoted array, pivot element is the only element for which next 
 element to it is smaller than it.
+
 Using the above statement and binary search pivot can be found.
 After the pivot is found out divide the array in two sub-arrays.
-Now the individual sub – arrays are sorted so the element can be
+Now the individual sub arrays are sorted so the element can be
 searched using Binary Search.
 
 Implementation:
@@ -129,11 +131,10 @@ takes l and r as range in input and the key.
 4) Else (arr[mid+1..h] must be sorted)
     a) If key to be searched lies in range from arr[mid+1]
        to arr[h], recur for arr[mid+1..h].
-    b) Else recur for arr[l..mid] 
+    b) Else recur for arr[l..mid]
 
 """
-# search an element in sorted and rotated array using single pass of 
-# binary search
+# search an element in sorted and rotated array using single pass of binary search
 # returns index of key in arr[l..h] if key is present, otherwise returns -l
 
 def search(arr, l, h, key):
@@ -160,7 +161,7 @@ def search(arr, l, h, key):
 # Driver program
 # arr = [4, 5, 6, 7, 8, 9, 1, 2, 3]
 arr = [5, 6, 7, 8, 9, 10, 1, 2, 3]
-key = 3
+key = 7
 # key = 6
 i = search(arr, 0, len(arr)-1, key)
 if i != -1:

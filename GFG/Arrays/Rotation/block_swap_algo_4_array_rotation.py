@@ -1,8 +1,9 @@
 """
 block swap algorithm for array rotation
-- write a function rotate(ar[], d,n) that rotates arr[]
- of size n by d elements
-consider arryay [1,2,3,4,5,6,7]
+- write a function rotate(ar[], d,n) that rotates arr[]  of size n by d elements
+
+consider arryay [1,2,3,4,5,6,7]:
+
 rotation of the above array by 2 will make
 [3,4,5,6,7,1,2]
 
@@ -20,6 +21,8 @@ Initialize A = arr[0..d-1] and B = arr[d..n-1]
 
 2)  Finally when A and B are of equal size, block swap them.
 """
+
+
 '''
 utility functions -printArray & swap
 '''
@@ -51,23 +54,21 @@ def leftRotateRec(arr,i,d,n):
     if(d == 0 or d == n):
         return
     
-    '''
-    * If number of elements to be rotated is exactly half
-    of the array size
-    '''
+    # If number of elements to be rotated is exactly half of the array size
     if (n-d == d):
         swap(arr,i, n-d+i,d)
         return
 
-    '''If A is shorter '''
+    # '''If A is shorter '''
     if(d < n-d):
-        swap(arr, i,n-d+i,d)
+        swap(arr, i, n-d+i, d)
         leftRotateRec(arr, i, d, n-d)
-        '''If B is shorter'''
+        
+     # '''If B is shorter'''
     else:
         swap(arr, i, d, n-d)
 
-        '''This is tricky'''
+        # '''This is tricky'''
         leftRotateRec(arr,n-d+i, 2*d-n,d)
 
 """
@@ -93,3 +94,5 @@ if __name__ == '__main__':
     arr = [1, 2, 3, 4, 5, 6, 7]
     leftRotate1(arr, 2, 7)
     printArray(arr, 7)
+
+    

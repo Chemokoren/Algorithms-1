@@ -1,5 +1,6 @@
 """
-program to rotate an array by d elements
+Write a function rotate(arr[], d, n) that rotates arr[] of size n by d elements
+- program to rotate an array by d elements
 
 
 Time complexity : O(n * d) 
@@ -23,15 +24,68 @@ def printArray(arr, size):
  
   
 # Driver program to test above functions */
+print("approach 1")
 arr = [1, 2, 3, 4, 5, 6, 7]
 leftRotate(arr, 2, 7)
 printArray(arr, 7)
 print("")
 
+'''
+Method 1 (using temp array)
+
+Input arr[] =[1,2,3,4,5,6,7], d=2, n=7
+1) Store the first d elements in a temp array
+temp[] =[1,2]
+2) Shift rest of the arr[]
+arr[] =[3,4,5,6,7,6,7]
+3) Store back the d elements
+arr[] =[3,4,5,6,7,1,2]
+
+Time complexity : O(n) 
+Auxiliary Space : O(n)
+
+'''
+def rotate(array,d):
+    k =array.index(d)
+    new_list=[]
+    new_list=array[k+1:]+array[0:k+1]
+    return new_list
+d =2
+print("Method 1 (using temp array)")
+arr=[1,2,3,4,5,6,7]
+print(rotate(arr,d))
+
+'''
+Method 2 (Rotate one by one)
+
+leftRotate(arr[], d, n)
+start
+for i =0 to i < d
+    left rotate all elements of arr[] by one 
+end
+
+To rotate by one, store arr[0] in a temporary variable temp, move arr[1] to arr[0], arr[2] to arr[1] 
+... and finally temp to arr[n-1]
+Let us take the same example arr[] =[1,2,3,4,5,6,7], d=2
+Rotate arr[] by one 2 times
+We get [2,3,4,5,6,7,1] after first rotation and [3,4,5,6,7,1,2] after second rotation
+'''
+
+def leftRotate(arr, d):
+    for i in range(d):
+        temp = arr[0]
+        arr.pop(0)
+        arr.append(temp)
+    return arr
+
+print("Method 2 (Rotate one by one)")
+print(leftRotate([1,2,3,4,5,6,7], 2))
+
 
 print("######################### Method 3 ######################### ")
 """
-METHOD 3 (A Juggling Algorithm) 
+METHOD 3 (A Juggling Algorithm)
+
 This is an extension of method 2. Instead of moving one by one, divide the array in 
 different sets.
 where number of sets is equal to GCD of n and d and move the elements within sets. 
@@ -60,6 +114,7 @@ Auxiliary Space : O(1)
 
 # program to rotate an array by d elements
 # Function to left rotate arr[] of size n by d
+
 def leftRotate(arr, d, n):
     d = d % n
     g_c_d = gcd(d,n)
@@ -90,6 +145,7 @@ def gcd(a,b):
     else:
         return gcd(b, a%b)
 
+print("METHOD 3 (A Juggling Algorithm)")
 
 arr = [1, 2, 3, 4, 5, 6, 7]
 n = len(arr)
@@ -147,6 +203,7 @@ def leftRotate(arr, d):
     if d == 0:
         return
     n = len(arr)
+
     # in case the rotating factor is greater than array length
     d = d % n
     reverseArray(arr, 0, d-1)
@@ -163,5 +220,8 @@ arr =[1,2,3,4,5,6,7]
 n = len(arr)
 d = 2
 
+print("Method 4 (The Reversal Algorithm)\n")
 leftRotate(arr,d) # Rotate array by 2
 printArray4(arr)
+
+
