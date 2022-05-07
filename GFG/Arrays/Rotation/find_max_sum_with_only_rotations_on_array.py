@@ -20,7 +20,7 @@ We can get 330 by rotating array 9 times.
 
 
 A Simple Solution is to find all rotations one by one, check sum of every rotation 
-and return the maximum sum. Time complexity of this solution is O(n2). 
+and return the maximum sum. Time complexity of this solution is O(n^2). 
 
 We can solve this problem in O(n) time using an Efficient Solution. 
 Let Rj be value of i*arr[i] with j rotations. The idea is to calculate next 
@@ -29,10 +29,12 @@ We can calculate initial value of result as R0, then keep calculating next
 rotation values. 
 
 How to efficiently calculate Rj from Rj-1? 
+
 This can be done in O(1) time. Below are details.
 
 
 Let us calculate initial value of i*arr[i] with no rotation
+
 R0 = 0*arr[0] + 1*arr[1] +...+ (n-1)*arr[n-1]
 
 After 1 rotation arr[n-1], becomes first element of array, 
@@ -73,9 +75,8 @@ arrSum = ∑ arr[i]
             maxVal = currVal   
 
 5) Return maxVal
-"""
 
-# program to find maximum value of Sum(i*arr[i])
+"""
 
 # returns max possible value of Sum(i*arr[i])
 def maxSum(arr):
@@ -86,6 +87,7 @@ def maxSum(arr):
     currVal =0
 
     n = len(arr)
+
     for i in range(0, n):
         arrSum =arrSum+arr[i]
         currVal =currVal + (i*arr[i])
@@ -95,7 +97,7 @@ def maxSum(arr):
 
     # try all rotations one by one and find the maximum rotation sum
     for j in range(1,n):
-        currVal =currVal +arrSum-n*arr[n-j]
+        currVal =currVal + arrSum-n*arr[n-j]
         if currVal > maxVal:
             maxVal=currVal
 

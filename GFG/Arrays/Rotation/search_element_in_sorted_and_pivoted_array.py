@@ -62,13 +62,12 @@ Space Complexity:O(1), No extra space is required.
 def pivotedBinarySearch(arr, n, key):
     pivot =findPivot(arr, 0, n-1)
 
-    # if we didn't find a pivot,
-    # then arry is not rotated at all
+    # if we didn't find a pivot then arry is not rotated at all
     if pivot == -1:
+        
         return binarySearch(arr,0,n-1,key)
 
-    # If we found a pivot, then first compare with pivot & then
-    # search in two subarrays around pivot
+    # If we found a pivot, then first compare with pivot & then search in two subarrays around pivot
     if(arr[pivot] == key):
         return pivot
     if(arr[0] <= key):
@@ -110,11 +109,13 @@ def binarySearch(arr, low, high, key):
 
 arr1 = [5, 6, 7, 8, 9, 10, 1, 2, 3]
 n = len(arr1)
-key = 3
+key = 6
 print("Index of the element is : ", pivotedBinarySearch(arr1, n, key))
 
 
 print("Improved Solution: ")
+
+
 """
 
 Approach: Instead of two or more pass of binary search the result can be 
@@ -137,31 +138,30 @@ takes l and r as range in input and the key.
 # search an element in sorted and rotated array using single pass of binary search
 # returns index of key in arr[l..h] if key is present, otherwise returns -l
 
-def search(arr, l, h, key):
-    if l > h:
+def search(arr, start, end, key):
+    if start > end:
         return -1
 
-    mid =(l+h) //2
+    mid =(start+end) //2
     if arr[mid] == key:
         return mid
 
     # if arr[l...mid] is sorted
-    if arr[l] <= arr[mid]:
-        # as this subarray is sorted, we can quickly
-        # check if key lies in half or other half
-        if key >= arr[l] and key <= arr[mid]:
-            return search(arr, l, mid-1, key)
-        return search(arr, mid+1, h, key)
+    if arr[start] <= arr[mid]:
+        # as this subarray is sorted, we can quickly check if key lies in half or other half
+        if key >= arr[start] and key <= arr[mid]:
+            return search(arr, start, mid-1, key)
+        return search(arr, mid+1, end, key)
 
     # If arr[l..mid] is not sorted, then arr[mid ... r] must be sorted
-    if key >=arr[mid] and key <= arr[h]:
-        return search(arr, mid +1, h, key)
-    return search(arr, l, mid-1, key)
+    if key >=arr[mid] and key <= arr[end]:
+        return search(arr, mid +1, end, key)
+    return search(arr, start, mid-1, key)
 
 # Driver program
 # arr = [4, 5, 6, 7, 8, 9, 1, 2, 3]
 arr = [5, 6, 7, 8, 9, 10, 1, 2, 3]
-key = 7
+key = 3
 # key = 6
 i = search(arr, 0, len(arr)-1, key)
 if i != -1:

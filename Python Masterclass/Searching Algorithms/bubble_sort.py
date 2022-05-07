@@ -17,9 +17,49 @@ BubbleSort
 -A sorting algorithm where the largest values bubble up to the top!
 
 BubbleSort Pseudocode
-- Start looping with a variable called i the end of the array towards the beginning
+- Start looping the end of the array towards the beginning
 - Start an inner loop with a variable called j from the beginning until i -1
 - If arr[j] is greater than arr[j+1], swap those two values!
 - Return the sorted array
 
+Time complexity of Bubble sort is O(N^2)
+
 """
+
+def bubbleSort(arr):
+    for i in range(len(arr), 0,-1):
+        # for j in range(i-1):
+        for j in range(len(arr)-1):
+            print("1:",arr)
+            if(arr[j] > arr[j+1]):
+                arr[j], arr[j+1] =arr[j+1], arr[j]
+    return arr
+
+# arr =[4,6,9,1,3,8,2]
+arr =[8,1,2,3,4,5,6,7]
+print(bubbleSort(arr))
+
+
+'''
+optimized bubblesort without swaps
+
+'''
+
+def bubbleSortOptimized(arr):
+
+    no_swaps = None
+
+    for i in range(len(arr), 0, -1):
+        no_swaps = True
+        print(arr)
+
+        for j in range(i-1):
+            if(arr[j] > arr[j+1]):
+                arr[j], arr[j+1] = arr[j+1], arr[j]
+                no_swaps = False
+        if(no_swaps):
+            break
+    return arr
+
+print(" optimized bubblesort ")
+print(bubbleSortOptimized([8,1,2,3,4,5,6,7]))
