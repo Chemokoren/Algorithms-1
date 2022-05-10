@@ -5,11 +5,23 @@ Reversal Algorithm Right Rotation Array
 
 Consider an arry, right rotate it by k elements
 
+k=3
+
 1,2,3,4,5,6,7,8,9,10
 8,9,10,1,2,3,4,5,6,7
 
+# 10,1,2,3,4,5,6,7,8,9
+# 9,10,1,2,3,4,5,6,7,8
+# 8, 9,10,1,2,3,4,5,6,7
+
 Input: arr[] = {121, 232, 33, 43 ,5}
            k = 2
+# 5,121, 232,33,43
+
+# 43, 5, 121, 232, 33
+
+
+
 Output: 43 5 121 232 33
 
 Note : In the solution above, k is assumed to be smaller than or equal to n.
@@ -21,6 +33,11 @@ rotate(arr[], d, n)
   reverseArray(arr[], 0, n-1) ;
   reverse(arr[], 0, d-1);
   reverse(arr[], d, n-1);
+
+Time Complexity: O(n)
+
+Space Complexity: O(1)
+
 """
 
 # program for right rotation of an array (Reversal algorithm)
@@ -38,8 +55,8 @@ def rightRotate(arr, d, n):
     reverseArray(arr,0, d-1)
     reverseArray(arr,d, n-1)
 
-# function to pr an array
-def prArray(arr, size):
+# function to print an array
+def printArray(arr, size):
     for i in range(0, size):
         print(arr[i], end =' ')
 
@@ -48,8 +65,6 @@ arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 n = len(arr)
 k = 3
      
-# Function call
+# # Function call
 rightRotate(arr, k, n)
-prArray(arr, n)
-
-
+printArray(arr, n)

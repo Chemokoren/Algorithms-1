@@ -97,6 +97,8 @@ print("The minimum element is " + str(findMin(arr9, 0, n9-1)))
 
 """
 Approach 2: handle duplicates in O(log n) time
+
+
 """
 
 # program to find minimum element in a sorted and rotated array containing 
@@ -163,5 +165,20 @@ if __name__ == '__main__':
     print("The minimum element is ",
           findMin(arr9, 0, n9 - 1));
  
+
+
+
+
+def test(arr):
+    small = arr[0]
+    for i in range(len(arr)):
+        if arr[i] < small:
+            small =arr[i]
+    return small
+        
+print("test")
+arr = [5, 6, 1, 2, 3, 4]
+print(test(arr))
+
 
 

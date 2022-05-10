@@ -65,3 +65,21 @@ def naiveSearch(long_str, search_val):
 
 print("expected is 2: actual is", naiveSearch("harold said haha in hamburg", "r"))
 
+
+
+'''
+Algorithm       Time Complexity(Best)       Time Complexity(Average)    Time complexity(Worst)  Space Complexity
+Bubble Sort     O(n)                        O(n^2)                          O(n^2)              O(1)
+Insertion sort  O(n)                        O(n^2)                          O(n^2)              O(1)
+Selection Sort  O(n^2)                      O(n^2)                          O(n^2)              O(1)
+
+
+Insertion sort works very well when you need your data to be continuously sorted
+e.g data coming in and you need to re~sort data now and again.
+
+Recap
+- Sorting is fundamental
+- Bubble sort, selection sort, and insertion sort are all roughly equivalent
+- All have average time complexities that are quadratic
+- We can do better ... but we need more complex algorithms!
+'''
