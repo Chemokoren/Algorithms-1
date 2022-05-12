@@ -7,10 +7,10 @@ Given an array A of N integers. There are three types of commands:
         then after one right circular shift the array will vecome a[n-1], a[0], a[1],...,a[n-2]
 
 2: y - Left Circular Shift the array y times. If an array is a[0], a[1], ..., a[n-1], then after
-        one right circular shift they array will become a[1], ..., a[n-2], a[n-1],a[0]
+        one left circular shift the array will become a[1], ..., a[n-2], a[n-1],a[0]
 3: lr -print the sum of all integers in the subarray a[l ... r] l and r are inclusive
 
-Given Q queries, the task is execute each query.
+Given Q queries, the task is to execute each query.
 
 Examples:
 
@@ -22,8 +22,8 @@ Input : n = 5, arr[] = { 1, 2, 3, 4, 5 }
 Output : 12
          11
 
-Initial array arr[] = { 1, 2, 3, 4, 5 }
-After query 1, arr[] = { 3, 4, 5, 1, 2 }.
+Initial array arr[]     = { 1, 2, 3, 4, 5 }
+After query 1, arr[]    = { 3, 4, 5, 1, 2 }.
 After query 2, sum from index 0 to index 
                2 is 12, so output 12.
 After query 3, arr[] = { 4, 5, 1, 2, 3 }.
@@ -31,6 +31,7 @@ After query 4, sum from index 1 to index
                4 is 11, so output 11.
 
 Method 1: (Brute Force)
+
 implement three function rotateR(arr, k) which will right rotate array arr by k times,
 rotateL(arr, k) which will rotate array arr by k times, sum(arr,l,r) which will output
 sum of array arr from index l to index r. On the input of value 1,2,3 call the appropriate
@@ -60,7 +61,6 @@ Every command can be executed in O(1) time.
 
 
 # Program to solve queries on Left and Right Circular shift on array
-
 
 # Function to solve query of type 1 x.
 def querytype1(toRotate, times, n):
@@ -106,7 +106,8 @@ def wrapper(a, n,preSum):
 
 # Driver Program
 if __name__=='__main__':
-	a = { 1, 2, 3, 4, 5 }
-	n = len(a) / list(a)[0]
-	wrapper(a, n,0)
+    print("This is the real deal")
+    a = { 1, 2, 3, 4, 5 }
+    n = len(a) / list(a)[0]
+    wrapper(a, n,0)
     # return 0

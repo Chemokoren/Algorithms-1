@@ -1,6 +1,9 @@
 """
-Given an array of n elements, create a new array which is a rotation of given array and hamming distance between both the arrays is maximum. 
-Hamming distance between two arrays or strings of equal length is the number of positions at which the corresponding character(elements) are different.
+Given an array of n elements, create a new array which is a rotation of given array and hamming distance
+between both the arrays is maximum. 
+Hamming distance between two arrays or strings of equal length is the number of positions at which the 
+corresponding character(elements) are different.
+
 Note: There can be more than one output for the given input. 
 Examples: 
 
@@ -14,11 +17,20 @@ or 1 1 4
 Input :  N = 4
          2 4 8 0
 Output :  4
+
 Explanation: 
+
+2 4 8 0
+4 8 0 2
+
 Maximum hamming distance = 4
 We get this hamming distance with 4 8 0 2.
+
 All the places can be occupied by another digit.
 Other possible solutions are 8 0 2 4 and 0 2 4 8.  
+
+8 0 2 4 
+0 2 4 8
 
 Method #1: 
 
@@ -30,7 +42,9 @@ Now, iterate through the copy array and find hamming distance with every shift
 (or rotation). So we check 4 1 1, 1 1 4, 1 4 1, choose the output for which 
 the hamming distance is maximum. 
 
-Time Complexity : O(n*n)
+Time Complexity : O(n^2)
+Auxiliary Space: O(n)
+
 
 """
 # code to find another array such that the hamming distance from the original array is max
@@ -44,7 +58,7 @@ def maxHamming(arr, n):
     for i in range(n):
         brr[n+1] = arr[i]
     # we know hamming distance with 0 rotation would be 0
-    maxHam =0
+    maxHam = 0
 
     # we try other rotations one by one and compute Hamming distance of every rotation
     for i in range(1,n):
@@ -61,13 +75,59 @@ def maxHamming(arr, n):
         maxHam =max(maxHam,currHam)
     return maxHam
 
-arr = [2, 4, 6, 8]
+print("method 1")
+# arr = [2, 4, 6, 8]
+# arr =[4 ,8 ,0 ,2]
+arr = [3, 0, 6, 4, 3]
 n = len(arr)
 print(maxHamming(arr, n))
 
 
 """
-Method #2: 
+Method #2: Constant Space
+
+We will compare elements of the original array sequence with its rotated versions.
+The rotated versions of the array are achieved using shifted index method where you compare elements at the
+original index with elements on the shifted index, without requiring any extra space.
+
+Below is the implementation of the above approach:
+
+Time Complexity : O(n2), Where n is the size of given array
+Auxiliary Space: O(1) 
+
+"""
+# program to find another array such that the hamming distance from the origiinal array is maximum
+# requires O(n^2) time and O(1) extra space
+
+# return the maximum hamming distance of a rotation
+def maxHammingConstantSpace(arr, n):
+
+    # outer loop for how much rotation
+    for j in range(1,n):
+        hmmd =0
+
+        # outer loop to compare elements with elements on shifted index
+        for i in range(n):
+            if(arr[i] != arr[(i+j) % n]):
+                hmmd +=1
+        # max possible hamming distance is n, no need to check  further
+        if(hmmd == n):
+            return n
+
+if __name__=='__main__':
+    print(":::::::::::::::::: example 2 ::::::::::::::::::")
+    # arr =[2,4,6,8]
+    arr = [3, 0, 6, 4, 3]
+    n =len(arr)
+    print("sssssssssssss", type(n))
+    print("apo:",maxHammingConstantSpace(arr, n))
+    
+
+
+
+
+"""
+Method #3: 
 
 
 
@@ -77,45 +137,52 @@ of list-comprehension in python. In this method, we divide the job in 3 separate
 hamming_distance(x : list, y : list): This method returns the hamming distance for two
 list passed as parameters. The idea is to count the positions at which elements are different
 at the same index in two lists x and y where x is the original array taken in input and y 
-is one of it rotations. Initialize a variable count from 0. Run loop from starting index 0 
+is one of it's rotations. Initialize a variable count from 0. Run loop from starting index 0 
 to last index (n-1) where n is the length of the list. For each iteration check if element 
 of x and element at index i (0<=i<=n-1) is same or not. If they are same, increment the counter.
 After loop is completed, return the count(by definition this is the hamming distance for given 
 arrays or strings)
+
 rotate_by_one(arr : list): This method rotates the array (passed in argument ) in anti-clockwise
-direction by 1 position. For e.g. if array [1,1,4,4] is passed, this method returns
-[1,4,4,5,1]. The idea is to copy the 1st element of the array and save it in a variable (say x).
-Then iterate the array from 0 to n-2 and copy every i+1 th value at ith position. 
+direction by 1 position. For e.g. if array [1,1,4,4,5] is passed, this method returns
+[1,4,4,5,1]. 
+
+The idea is to copy the 1st element of the array and save it in a variable (say x). Then iterate 
+the array from 0 to n-2 and copy every i+1 th value at ith position. 
+
 Now assign x to last index.
+
 max_hamming_distance(arr : list): This method finds the maximum hamming distance for a given 
 array and it’s rotations. Follow below steps in this method. We copy this array in a new array
 (say a) and initialize a variable max. Now, after every n rotations we get the original array.
+
 So we need to find hamming distance for original array with it’s n-1 rotations and store 
 the current maximum in a variable(say max). Run loop for n-1 iterations. For each iteration, 
 we follow below steps:
-Get the next rotation of arr by calling method ‘rotate_by_one’.
-Call method hamming distance() and pass original array (a) and current rotation of a (arr) and 
+
+- Get the next rotation of arr by calling method ‘rotate_by_one’.
+- Call method hamming_distance() and pass original array (a) and current rotation of a (arr) and 
 store the current hamming distance returned in a variable (say curr_h_dist).
-Check if value of curr_h_dist is greater than value of max. If yes, assign value of 
+- Check if value of curr_h_dist is greater than value of max. If yes, assign value of 
 curr_h_dist to max_h.
-Repeat steps 1-3 till loop terminates.
-Return maximum hamming distance (max_h)
+- Repeat steps 1-3 till loop terminates.
+- Return maximum hamming distance (max_h)
 
 """
 
 # code to find maximum of an array with it's rotations
 import time
 
-# Function hamming distance to find the hamming distance for two lists/strings
+# Function to find the hamming distance for two lists/strings
 def hamming_distance(x: list, y: list):
     # initialize count
     count =0
 
-    # Run loop for size of x (or y) as both as same length
+    # Run loop for size of x (or y) as both have same length
     for i in range(len(x)):
         # check if corresponding elements at same index are not equal
         if(x[i] != y[i]):
-            # Incre,ent the count every time above condition satisfies
+            # Increment the count every time the above condition is satisfied
             count +=1
 
     # return the hamming distance for given pair of lists or strings
@@ -126,14 +193,14 @@ def rotate_by_one(arr: list):
     # store 1st element in a variable
     x =arr[0]
 
-    # update each ith elment (0<=i<n-2) with it's next value
+    # update each ith element (0<=i<n-2) with it's next value
     for i in range(0,len(arr)-1):
         arr[i] =arr[i+1]
 
     # assign 1st element to the last index
     arr[len(arr)-1] = x
 
-# Function max_hamming distance to find the maximum hamming distance for given array
+# Function max_hamming distance to find the maximum hamming distance for the given array
 def max_hamming_distance(arr: list):
     # Initialize a variable to store maximum hamming distance
     max_h =-1000000000
@@ -143,13 +210,12 @@ def max_hamming_distance(arr: list):
 
     # Initialize a new array
     a =[]
-    
-    # Initialize a new array
-    a =[]
 
     # Copy the original array in new array
     for i in range(n):
         a.append(arr[i])
+
+
 
     # Run loop for i=0 to i=n-1 for n-1 rotations
     for i in range(1,n):
@@ -157,7 +223,7 @@ def max_hamming_distance(arr: list):
         rotate_by_one(arr)
         print("Array after %d rotation : " % (i), arr)
 
-        # store hamming distance of cirrent rotation with original array
+        # store hamming distance of current rotation with original array
         curr_h_dist = hamming_distance(a, arr)
         print("Hamming Distance with %d rotations: %d" %(i, curr_h_dist))
 
