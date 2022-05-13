@@ -32,4 +32,54 @@ and the array length minus 1, respectively)
     current element with the element at the pivot index
 - Swap the starting element(i.e. the pivot ) with the pivot index
 - Return the pivot index
+
+Big O of Quicksort
+
+Time complexity
+Best: O(n log(n))
+Average: O(n log(n))
+Worst: O(n^2) When all elements are sorted, there is no element less than the pivot -(n decompositions)
+O(n) comparisons per decomposition
+
+Space complexity: O(log n)
 """
+
+# pivot
+def pivot(arr):
+    start = 0
+    end =len(arr)+1
+
+    pivot = arr[start]
+    swapIdx = start
+
+    for i in range(start+1, len(arr)):
+        if pivot > arr[i]:
+            swapIdx +=1
+            arr[swapIdx], arr[i] = arr[i], arr[swapIdx]
+
+    arr[start], arr[swapIdx] = arr[swapIdx], arr[start]
+
+    return swapIdx
+
+# print(pivot([4,8,2,1,5,7,6,3]))
+
+def quickSort(arr):
+    left = 0
+    right = len(arr)-1
+
+    if left < right:
+        pivotIndex = pivot(arr)
+        print("aaa:", pivotIndex)
+
+        # left
+        quickSort(arr[left:pivotIndex-1])
+
+        # right
+        quickSort(arr[pivotIndex+1:right])
+
+    return arr
+
+print("################## Quick Sort ##################")
+print(quickSort([100,-3,2,4,6,9,1,2,5,3,23]))
+
+
