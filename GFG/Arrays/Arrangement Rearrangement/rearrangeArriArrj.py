@@ -70,9 +70,43 @@ def rearrangeArr(arr,n):
     for i in range(0, n):
         print(arr[i], end=' ')
 
+print("::::::::: results :::::::::")
 arr = a.array('i', [ 1, 2, 3, 4, 5, 6, 7 ])
 rearrangeArr(arr, 7)
 
+
+"""
+We can traverse the array by defining two variables p and q and assign values from last
+
+if even index is there then we will give it max value otherwise min value.
+p =0 and q =end;
+p will go ahead and q will decrease.
+"""
+
+print("\nalternative\n")
+
+if __name__=='__main__':
+    # a =[1,2,1,4,5,6,8,8]
+    a =[ 1, 2, 3, 4, 5, 6, 7 ]
+    n = len(a)
+    b = [0]*n
+    for i in range(n):
+        b[i] = a[i]
+
+    b.sort()
+
+    p = 0
+    q = n-1
+    for i in range(n-1, -1, -1):
+        if(i % 2 != 0):
+            a[i] = b[q]
+            q -=1
+        else:
+            a[i] = b[p]
+            p += 1
+    
+    for i in range(n):
+        print(a[i], end =" ")
 
 
 

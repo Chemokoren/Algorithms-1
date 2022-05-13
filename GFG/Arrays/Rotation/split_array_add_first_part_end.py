@@ -42,7 +42,7 @@ splitArr(arr, n, position)
 for i in range(0, n):
     print(arr[i], end = ' ')
 
-print("approach 2 :\n")
+print(" \napproach 2 :\n")
 """
 A different approach is to make a temporary array with double the size and copy 
 our array element into a new array twice. and then copy the element from the new array
@@ -64,9 +64,51 @@ def SplitAndAdd(A, length, rotation):
         A[i - rotation] =tmp[i]
 
 arr = [12, 10, 5, 6, 52, 36]
+# arr = [3, 1, 2], postion =1
 n = len(arr)
 position = 2
-SplitAndAdd(arr, n, position);
+SplitAndAdd(arr, n, position)
 for i in range(n):
     print(arr[i], end = " ")
 print()
+
+print("approach 3")
+"""
+O(n) time solution
+
+- Use reversal algorithm
+
+Reverse array from 0 to n-1 (where n is size of the array)
+Reverse array from 0 to n-k-1
+Reverse array from n-k to n-1
+
+"""
+
+# split the array and add the first part to the end
+# Function to reverse arr[] from index start to end 
+def reverseArray(arr, start, end):
+
+    while start < end:
+        temp = arr[start]
+        arr[start] =arr[end]
+        arr[end] = temp
+        start += 1
+        end -= 1
+
+# Function to print an array
+def printArray(arr,n):
+    for i in range(n):
+        print(arr[i], end ="")
+
+# Function to left rotate arr[] of size n by k
+def splitArr(arr, k, n):
+    reverseArray(arr, 0, n-1)
+    reverseArray(arr, 0, n-k-1)
+    reverseArray(arr, n-k, n-1)
+
+
+arr = [12, 10, 5, 6, 52, 36]
+n = len(arr)
+k = 2
+splitArr(arr, k, n)
+printArray(arr, n)

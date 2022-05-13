@@ -1,9 +1,9 @@
 """
 Rearrange an array such that arr[i] =i
 
-# Given an array of elements of length N, 
-# ranging from 0 to N-1. All elements may not be present in the array. 
-# If the element is not present then there will be -1
+Given an array of elements of length N, 
+ranging from 0 to N-1. All elements may not be present in the array. 
+If the element is not present then there will be -1
 present in the array. Rearrange the array such that A[i] =i and if i is not present, 
 display -1 at that place
 
@@ -20,8 +20,8 @@ Approach: Naive
 2. Now navigate through the array.
 3. if (i == a[j]), then replace the element at i position with a[j] position
 4. If there is any element in which -1 is used instead of the number then 
-it will be replace automatically
-5. Now, iterate through the array and check if(a[i]!=i), if its true then replace
+it will be replaced automatically
+5. Now, iterate through the array and check if(a[i]!= i), if its true then replace
 a[i] with -1
 
 Time Complexity: O(n^2)
@@ -37,6 +37,7 @@ def fixArray(ar, n):
             if (ar[j] == i):
                 ar[j],ar[i] =ar[i], ar[j]
 
+    print("aa:", ar)
     # Iterate over array
     for i in range(n):
         
@@ -62,14 +63,16 @@ print("Approach 2:\n")
 Approach 2:
 
 1. Navigate through the array.
-2. check if a[i] =-1, if yes then ignore it.
-3. if a[i]!=-1, check if element a[i] is at its correct position(i=A[i]). 
+2. check if a[i] == -1, if yes then ignore it.
+3. if a[i] != -1, check if element a[i] is at its correct position(i=A[i]). 
 If yes then ignore it.
-4. if a[i]!=-1 and element a[i] is not at its correct position (i != A[i]) 
+4. if a[i] != -1 and element a[i] is not at its correct position (i != A[i]) 
 then place it to its correct position, but there are two conditions:
+
 1) Either A[i] is vacate, means A[i] =-1, then just put A[i]=i
-2) OR A[i] is not vacate, means A[i] =x, then int y=x put A[i]=i. Now, we need to place y
-to its correct place, so repeat from step 3
+2) OR A[i] is not vacate, means A[i] =x, then int y=x put A[i]=i.
+
+Now, we need to place y to its correct place, so repeat from step 3
 """
 
 # program for rearrange an array such that arr[i] =i
@@ -105,7 +108,8 @@ fix(A, len(A))
 for i in range(0, len(A)):
     print(A[i], end=' ')
 
-print("Approach 3: HashSet")
+print("\nApproach 3: HashSet")
+
 """
 Approach 3: Using HashSet
 1) Store all the numbers present in the array into a HashSet 
@@ -120,7 +124,7 @@ def fixHash(A):
     # storing all the values in the Set
     for i in range(len(A)):
         s.add(A[i])
-
+    print("aaa:",s)
     for i in range(len(A)):
         # check for item if present in set
         if i in s:
