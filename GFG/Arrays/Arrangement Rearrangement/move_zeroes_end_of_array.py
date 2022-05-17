@@ -4,7 +4,7 @@ Example:
  
 
 Input :  arr[] = {1, 2, 0, 4, 3, 0, 5, 0};
-Output : arr[] = {1, 2, 4, 3, 5, 0, 0};
+Output : arr[] = {1, 2, 4, 3, 5, 0, 0, 0};
 
 Input : arr[]  = {1, 2, 0, 0, 0, 3, 6};
 Output : arr[] = {1, 2, 3, 6, 0, 0, 0};
@@ -112,6 +112,48 @@ def tryPush(arr):
 print("\ntriallllllllllllll")
 print(tryPush(arr))
 
+def test(arr):
+    i =0 
+    j =len(arr)-1
+    
+    while i < len(arr) and j >=0 and i < j:
+        if (arr[i] == 0):
+            if(arr[j] != 0):
+                arr[i], arr[j] = arr[j], arr[i]
+                i = i+1
+                j = j-1
+            else:
+                j =j -1
+        else:
+            i = i+1
+    return arr
+            
+
+print("test")
+
+print("expected: [1, 2, 3, 6, 0, 0, 0], actual:", test([1, 2, 0, 0, 0, 3, 6]))
+print("expected: [1, 2, 4, 3, 5, 0, 0, 0], actual:", test([1, 2, 0, 4, 3, 0, 5, 0]))
 
 
+'''
 
+'''
+def moveZerosToEndUpdated(arr):
+    n = len(arr)
+    count = 0 # 
+
+    # traverse the array. If arr[i] is non-zero, then
+    # update the value of arr at index count to arr[i]
+    for i in range(0,n):
+        if(arr[i] != 0):
+            arr[count] =arr[i]
+            count +=1
+
+    # update all elements at index >= count with value 0
+    for i in range(count,n):
+        arr[i] =0
+    return arr
+
+print("##################### def moveZerosToEndUpdated #####################")
+print("expected: [1, 2, 3, 6, 0, 0, 0], actual:", moveZerosToEndUpdated([1, 2, 0, 0, 0, 3, 6]))
+print("expected: [1, 2, 4, 3, 5, 0, 0, 0], actual:", moveZerosToEndUpdated([1, 2, 0, 4, 3, 0, 5, 0]))

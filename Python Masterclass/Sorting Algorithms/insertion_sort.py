@@ -9,6 +9,7 @@ Insertion Sort
 [1,3,4,5,2]
 [1,2,3,4,5]
 
+### we are taking an element and inserting it in the correct spot
 Insertion Sort Pseudocode
 - Start by picking the second element in the array
 - Now compare the second element with the one before it and swap if necessary.
