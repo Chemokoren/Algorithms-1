@@ -16,6 +16,12 @@ Insertion Sort Pseudocode
 - Continue to the next element and if it is in the incorrect order, iterate through the sorted portion(i.e.
 the left side) to place the element in the correct place.
 - Repeat until the array is sorted.
+
+does when in scenarios where we have streams of data coming in and we have to place them in the correct spot
+of our sorted array.(online algorithm -works as data comes in since it does not need to have the entire array
+at once)
+
+Time complexity: O(N^2) e.g insertionSort([4,3,2,1])
 """
 
 def insertionSort(arr):

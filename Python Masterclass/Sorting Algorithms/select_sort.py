@@ -20,7 +20,7 @@ def selection_sort(arr):
         for j in range(i+1,len(arr)):
             if(arr[j] < arr[smallest]):
                     smallest =j
-        if(i != smallest):
+        if(i != smallest): # prevents unnecessary swaps if the elements are already sorted e.g 0,2 
             arr[smallest], arr[i] =arr[i], arr[smallest]
     return arr
             
