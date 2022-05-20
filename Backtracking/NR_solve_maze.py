@@ -135,17 +135,21 @@ Example:
 ]
 
 ->[(0,0), (1,0), (1,1),(2,1), (3,1),(3,2),(3,3)]
+
 """
 
 def solve_maze(maze):
     return solve_maze_helper(maze,[(0,0)])
 
 def solve_maze_helper(maze, path):
+
     # current position == last element in path
     x,y =path[len(path)-1]
+
     # return path if it is the destination
     if(x== len(maze)-1 and y == len(maze[0])-1):
         return path
+        
     # check if indices we are within bounds else return empty list(failure)
     if(x >= len(maze) or y >= len(maze[0])):
         return []
