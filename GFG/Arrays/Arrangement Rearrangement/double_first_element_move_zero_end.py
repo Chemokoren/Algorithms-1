@@ -126,11 +126,11 @@ def shiftAllZeroToLeft(arr, n):
 
             # next element will be last seen non-zero
             lastSeenNonZero +=1
+    return arr
 
 
 arr = [ 0, 2, 2, 2, 0, 6, 6, 0, 0, 8 ]
-print(arr)
-shiftAllZeroToLeft(arr,len(arr))
-
-print(arr)
+print("expected: [4 2 12 8 0 0 0 0 0 0]")
+print(shiftAllZeroToLeft(arr,len(arr)))
+print("actual:",arr)
 

@@ -11,10 +11,11 @@ Output :arr[] = {1, 4, 2, 3}
 
 A simple solution is to first find the smallest element, swap it with first element.
 Then find largest element, swap it with second element and so on.
-Time complexity of this solution is O(n2).
+Time complexity of this solution is O(n^2).
 
 
-An efficient solution is to use sorting. 
+An efficient solution is to use sorting
+
 1. Sort the elements of array. 
 2. Take two variables say i and j and point them to the first and last index of
 the array respectively. 
@@ -33,9 +34,8 @@ Auxiliary Space : O(n)
 
 """
 
-# program to print the array in given order
-# Function which arrange the array
 def rearrangeArray(arr, n):
+
     # sorting the array elements
     arr.sort()
 
@@ -67,3 +67,24 @@ rearrangeArray(arr, n)
  
 for i in range(0, n) :
     print( arr[i], end = " ")
+
+
+'''
+test
+'''
+def swapElements(arr):
+	arr.sort()
+	i = 0
+	j =len(arr)
+	# while i < j:
+	while(i <=n // 2 or j > n // 2):
+		temp =arr.pop()
+		arr.insert(i+1,temp)
+		i =i + 2
+		j =j - 1
+	return arr
+
+arr=[5, 8, 1, 4, 2, 9, 3, 7, 6]
+# arr=[1, 2, 3, 4]
+
+print("aaa:", swapElements(arr))
