@@ -157,5 +157,92 @@ Backtracking follows the below mentioned approach:
     It checks whether the given node is a valid solution or not.
     Discard several inavlid solutions with one iteration.
     Enumerate all subtree of the node to find the valid solution.
+
+Algorithms that use backtracking
+
+Some algorithms that use backtracking include:
+
+    N-queens problem
+    Graph coloring
+    Crosswords
+    Rat in the maze
+
+Recursion vs. backtracking
+--------------------------
+
+Recursion involves a function calling itself until it reaches the base case.
+
+Backtracking uses recursion to discover all of the possibilities until we get the best end result for the 
+problem.
+
+##### Backtracking is an approach to solving constraint-satisfaction problems without trying all possibilities.
+
+These problems are interesting because there are so many candidate solutions, the vast majority of which do not
+satisfy the given constraints. Can’t we just try them all, one-by-one, until one does? Not really, because:
+
+In the N-Queens Problem, there are (n^2n) ways to place n queens on an n×n board. For an 8×8
+board there are 4,426,165,368 possible arrangements.
+
+For Sudoku, there are 9^n ways to fill the n blank squares. Suppose we were given 20 cells filled in. 
+There are 16,​173,​092,​699,​229,​880,​893,​718,​618,​465,​586,​445,​357,​583,​280,​647,​840,​659,​957,​609 possible ways to fill
+ in the remaining 61 cells.
+
+For the No Equal Adjacent Substrings Problem, there are nk possible strings. That’s a huge number. For a
+100-character long string of trinary digits, we have
+ 515,​377,​520,​732,​011,​331,​036,​461,​129,​765,​621,​272,​702,​107,​522,​001 possibilities.
+
+When k-coloring maps of n regions, there are kn possible colorings. For example, there are 
+1,​267,​650,​600,​228,​229,​401,​496,​703,​205,​376 ways to color a 50-region map with 4 colors.
+
+There are (15!)7 ways to arrange the walkers in a 7-day Kirkman Schoolgirls Problem. That is an 85-digit
+number.
+
+In the Traveling Salesperson Problem, there are n! possible paths. 200! is a 375-digit number.
+500! has 1,135 digits. 
+
+A brute-force algorithm tries all possibilities. Not going to happen.
+
+Smart Approach
+--------------
+
+Think about how you would solve the no-equal-adjacent-substring problem.
+
+Would you try to build up a solution, digit-by-digit? Click the STEP button to take a step at a time and 
+see if it matches your intuition:
+
+Visualize the problem as “filling in slots.” For each slot, try each value in turn. When a value doesn’t work
+in a slot, you’ve effectively eliminated zillions of candidates. When nothing works in a slot, you have to 
+backtrack.
+
+Let’s see more examples. For each example,
+
+    Notice the formulation of the problem into slots and values.
+    Watch carefully for the occurences of backtracking. 
+
+Eight-Queens
+
+For each column (1..8), try to place a queen in each row (1..8) in turn, so that no two queens attack
+each other.
+
+Map Coloring
+
+For each country, try the colors red, green, orange, yellow in turn, so that no two adjacent countries have 
+the same color.
+
+No Equal Adjacent Substrings
+
+For each slot 1..50, try the digits 0, 1, and 2 in order, such that no two adjacent substrings are equal.
+answ: 01020120210120102012021020102101201020120210120102
+
+Sudoku
+
+For each non-fixed square, try each of the values 1..9 in turn. 
+
+Maze Solving
+
+At each square, try going up, then left, then right, then down. Whenever the new square has not been visited, 
+move there. When you have to backtrack, mark the square as fully explored.
+
+
     
 """
