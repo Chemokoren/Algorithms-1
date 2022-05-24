@@ -183,3 +183,96 @@ print("Modified Index array is: ")
 print(*index, sep = ' ')
 
 
+
+'''
+Time Complexity: O(nlogn)
+ 
+
+Another method to solve the problem is with space Complexity of O(1) is :-
+
+Swap the elements present in the arr until the index_arr[i] is not equal to the i.
+
+Let’s dry run the below code for the given input :- 
+
+1st iteration :- (i=0)
+
+arr = [ 50, 40, 70, 60, 90 ]
+
+index_arr = [3, 0, 4, 1, 2 ]
+
+since the index_arr[i] is not equal to i
+
+swap the content present in the arr[i] with arr[index[i] and similarly swap for the index_arr also. 
+After swapping we will have the following arr and index_arr values:- 
+
+arr = [ 60, 40, 70, 50, 90 ]
+
+index_arr = [1, 0, 4, 3, 2 ]
+
+Since index_arr[0] is not equal to i.
+
+we again swap the content present at i with index_arr[i] for both the arrays (arr , index_arr).
+
+arr = [ 40, 60, 70, 50, 90 ]
+
+index_arr = [0, 1, 4, 3, 2 ]
+
+2nd Iteration:- (i=1)
+
+Since the value of index_arr[i] == i ; condition under the while loop does not get executed as the condition 
+under the braces get false and hence move to the next iteration:- 
+
+3rd Iteration :- (i=2)
+
+Since the value of index_arr[i] is not equal to i. Swap the content.
+
+After Swapping we will get:- 
+
+arr = [ 40, 60, 90, 50, 70 ]
+
+index_arr = [0, 1, 2, 3, 4].
+
+Now for the next iteration (4th and 5th iteration) since the Value of index_arr[i] is equal to i .
+we just skip that loop ( because the condition under the while loop gets false and hence the while loop does
+not get executed.) and move to the next iteration.
+
+'''
+
+def test_two(arr, index_arr):
+	n = len(arr)
+	
+	for i in range(n):
+		while(index_arr[i] != i):
+			arr[i], arr[index_arr[i]] =arr[index_arr[i]], arr[i]
+			index_arr[i],index_arr[index_arr[i]] =index_arr[index_arr[i]],index_arr[i]
+	print(arr)
+	
+arr   = [10, 11, 12]
+index = [1, 0, 2]
+
+# print("expected:[11, 10, 12], actual:",test_two(arr, index))
+# print("expected:[40, 60, 90, 50, 70], actual:",test_two([50, 40, 70, 60, 90], [3,  0,  4,  1,  2]))
+
+
+'''
+my test
+time: O(n)
+space=O(n)
+'''
+def test(arr, index):
+	
+	temp =[0]*len(arr)
+	count =0
+	for i in index:
+		temp[i] =arr[count]
+		count +=1
+		
+	return temp
+
+arr   = [10, 11, 12];
+index = [1, 0, 2];
+
+print("expected:[11, 10, 12], actual:",test(arr, index))
+print("expected:[40, 60, 90, 50, 70], actual:",test([50, 40, 70, 60, 90], [3,  0,  4,  1,  2]))
+	
+

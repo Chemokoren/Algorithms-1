@@ -76,6 +76,8 @@ Another approach:(using itertools)
 
 Using the inbuilt library of the Python, itertools library can be used to perform this task.
 
+Time Complexity:  O(n!)
+Auxiliary Space: O(1).
 
 """
 
@@ -89,3 +91,60 @@ def largest(l):
     return max(lst)
 
 print(largest([54, 546, 548, 60])) #Output 6054854654
+
+
+'''
+In the first case, we allowed strings input but in case strings are restricted then also we can solve 
+the problem using long long int to find biggest arrangement. The only limitation is that we cannot store
+numbers greater than 10^18. In case it exceeds that, this solution won't work.
+'''
+
+# given an array of numbers, program to arrange the numbers to form the largest number
+# A comparison function which is used by sort in printLargest()
+
+from functools import cmp_to_key
+
+def myCompare(X, Y):
+    # assign X to XY since XY starts with X first
+    # assign Y to YX since YX starts with Y first
+    XY, YX, revX, revY = X,Y,0,0
+
+    # reverse X and assign to revX
+    while(X):
+        revX = revX * 10 + X % 10
+        X = (X//10)
+
+    # reverse Y and assign to revY
+    while(Y):
+        revY = revY *10 + Y % 10
+        Y =(Y//10)
+
+    # first append Y at the end of X
+    while(revY):
+        XY = XY *10 + revY % 10
+        revY =(revY // 10)
+    # then append X at the end of Y
+    while(revX):
+        YX = YX * 10 + revX%10
+        revX =(revX // 10)
+
+    # Now see which of the two formed numbers is greater
+    return YX - XY
+
+# The main function that prints the arrangement with the largest value. The function accepts a vector
+# of strings
+def printLargest(arr):
+    # sort the numbers using library sort function. The function uses our comparison function
+    # myCompare() to compare two strings
+    arr.sort(key=cmp_to_key(myCompare))
+    for i in range(len(arr)):
+        print(arr[i], end="")
+
+    
+arr =[]
+arr.append(54)
+arr.append(546)
+arr.append(548)
+arr.append(60)
+print("expected:6054854654, \nactual:")
+printLargest(arr)
