@@ -79,3 +79,83 @@ print(''.join(str(v) for v in backtracker.solve(range(3), no_adjacencies,50)))
 '''
 the 8-Queens Problem:
 '''
+import backtracker
+
+def no_conflicts(board, up_to_column):
+    # see if any queens in columns to the left of up_to_column intefere with the queen in up_to_column.
+    # Return False as soon as you find one that does.
+    for col in range(up_to_column):
+        if(board[col] == board[up_to_column]                            # same row
+            or board[col] == board[up_to_column] + up_to_column - col   # diagonal
+            or board[col] == board[up_to_column] + col - up_to_column): # diagonal
+            return False
+
+    return True
+
+print(backtracker.solve(range(8), no_conflicts, 8))
+
+
+'''
+Iterative Implementations
+
+The solutions above used recursion to implement backtracking. This is great because if we ever have to
+backtrack, we return right in the middle of a for-loop so we know the next value to try.
+This is actually awesome.
+
+Can we do things iteratively?
+
+Well, yeah, but we have to some incrementing an decrementing manually, and some ugly loop controlling.
+
+iterative engine in Python
+'''
+
+def solve(highest_value, safe_up_to, num_slots):
+    """ Finds a solution to a backtracking problem
+
+    highest_value -- the largest value to try. Values for the slots will be in the range 
+    0..highest_value, inclusive.
+
+    safe_up_to -- a function with two arguments, solution and position, that returns whether the values
+    assigned to slots 0..position in the solution list, satisfy the problem constraints.
+
+    num_slots --the total number of "slots" you are trying to fill
+
+    Return the solution as a list of values.
+    """
+    solution = [None] * num_slots
+
+    def solve_from(position):
+        while True:
+            if safe_up_to(solution, position):
+                if position >= num_slots-1:
+                    # we filled the last slot and everything is okay
+                    return solution
+                position += 1
+                solution[position] =0
+            else:
+                # Backtrack. Weight have to undo several slots, so ...
+                while(solution[position] == highest_value-1):
+                    solution[position] =None
+                    position -= 1
+                if position < 0:
+                    break
+        # We backtracked beyond the starting point, meaning we could not find 
+        # a valid value for the first slot, so no solution
+        return None
+
+    # With the iterative solution, I think you have to begin by priming the solution list with the first
+    # value in the first slot
+    solution[0] =0
+    return solve_from(0)
+
+
+'''
+Brute-force search and backtracking (perhaps with branch and bound) are generally where we start learning
+about search. But the fun stuff is yet to come. You’ll learn about heuristics, randomization, and performing
+parallel searches with multiple agents. There is hill climbing and simulated annealing. And some of these 
+problems can be solved with dynamic programming. There are entire programming languages built around
+constraint solving. And there are tons of subfields of mathematical optimization.
+
+This stuff is huge in artificial intelligence and machine learning.
+
+'''

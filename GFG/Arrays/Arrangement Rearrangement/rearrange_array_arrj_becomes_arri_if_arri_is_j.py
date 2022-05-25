@@ -66,26 +66,30 @@ printArray(arr, n)
 """
 
 Can we solve this in O(n) time and O(1) auxiliary space? 
-The idea is based on the fact that the modified array is basically a permutation of the input array. We can find the target permutation by storing the next item before updating it. 
-Let us consider array ‘{1, 3, 0, 2}’ for example. We start with i = 0, arr[i] is 1. So we go to arr[1] and change it to 0 (because i is 0). Before we make the change, we store the old value of arr[1] as the old value is going to be our new index i. In the next iteration, we have i = 3, arr[3] is 2, so we change arr[2] to 3. Before making the change we store next i as old value of arr[2]. 
+
+The idea is based on the fact that the modified array is basically a permutation of the input array. 
+We can find the target permutation by storing the next item before updating it.
+
+Let us consider array ‘{1, 3, 0, 2}’ for example. We start with i = 0, arr[i] is 1. So we go to arr[1] and 
+change it to 0 (because i is 0). Before we make the change, we store the old value of arr[1] as the old value 
+is going to be our new index i. In the next iteration, we have i = 3, arr[3] is 2, so we change arr[2] to 3.
+Before making the change we store next i as old value of arr[2]. 
+
 The below code gives idea about this approach. 
- 
 
+// This function works only when output is a permutation with one cycle.
 
+def rearrangeUtil(arr, n):
 
-// This function works only when output is a permutation
-// with one cycle.
-void rearrangeUtil(int arr[], int n)
-{
     // 'val' is the value to be stored at 'arr[i]'
-    int val = 0;   // The next value is determined using current index
-    int i = arr[0];  // The next index is determined using current value
+    val = 0;   // The next value is determined using current index
+    i = arr[0];  // The next index is determined using current value
 
     // While all elements in cycle are not processed
-    while (i != 0)
-    {
+    while (i != 0):
+
         // Store value at index as it is going to be used as next index
-        int new_i = arr[i];
+        new_i = arr[i];
 
         // Update arr[]
         arr[i] = val;
@@ -93,10 +97,10 @@ void rearrangeUtil(int arr[], int n)
         // Update value and index for next iteration
         val = i;
         i = new_i;
-    }
 
     arr[0] = val;  // Update the value at arr[0]
-}
+
+
 The above function doesn’t work for inputs like {2, 0, 1, 4, 5, 3}; as there are two cycles. 
 One cycle is (2, 0, 1) and other cycle is (4, 5, 3). 
 How to handle multiple cycles with the O(1) space constraint? 
