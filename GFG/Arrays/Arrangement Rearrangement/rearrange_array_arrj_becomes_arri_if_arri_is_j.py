@@ -34,32 +34,20 @@ The time complexity is O(n) and auxiliary space needed is O(n).
 # program to rearrange contents of arr[] such that arr[j] becomes j if arr[i] is j
 # A simple method to rearrange 'arr[0..n-1]' so that 'arr[j]' becomes 'i' if 'arr[i]' is 'j'
 
-def rearrangeNaive(arr, n):
-
-    # create an auxiliary array of same size
-    temp =[0] * n
-
-    # store result in temp[]
-    for i in range(0, n):
-        temp[arr[i]] =i
-
-    # copy temp back to arr[]
-    for i in range(0, n):
-        arr[i] =temp[i]
-
-# utility function to print contents of arr[0 .. n-1]
-def printArray(arr, n):
-    for i in range(0, n):
-        print(arr[i], end=" ")
-
-arr = [1,3,0,2]
-n =len(arr)
-print("Given array is", end=" ")
-printArray(arr, n)
-
-rearrangeNaive(arr, n)
-print("\nModified array is", end = " ")
-printArray(arr, n)
+def rearrangeNaive(arr):
+	new_arr=[0] * len(arr)
+	for i in range(len(arr)):
+		val = arr[i]
+		new_arr[val] =i
+	for i in range(len(new_arr)):
+		arr[i] =new_arr[i]
+	return arr
+	
+print("\n########################## rearrangeNaive ##########################\n")
+print("expected:,actual:[3,2,1,0]",rearrangeNaive([3,2,1,0]))
+print("expected:,actual:[0,1,2,3]",rearrangeNaive([0,1,2,3]))
+print("expected:,actual:[2,0,3,1]",rearrangeNaive([1,3,0,2]))
+print("expected:,actual:[1,2,0,5,3,4]",rearrangeNaive([2,0,1,4,5,3])) 
 
 
 

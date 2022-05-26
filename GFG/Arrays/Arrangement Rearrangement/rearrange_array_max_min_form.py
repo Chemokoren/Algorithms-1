@@ -61,6 +61,28 @@ print(arr)
 print("Modified Array")
 print(rearrange(arr, n))
 
+def max_min(arr):
+	
+	i = 0
+	j =len(arr)
+	new_arr=[]
+	status = True
+	while i < j:
+		current_arr =arr[i:j]
+		if status:
+			new_arr.append(current_arr[-1])
+			status = False
+			j = j-1
+		else:
+			new_arr.append(current_arr[0])
+			status = True
+			i = i+1
+	return new_arr
+
+print("\n########################## max_min ##########################\n")
+print("expected:,actual:[7, 1, 6, 2, 5, 3, 4]",max_min([1, 2, 3, 4, 5, 6, 7]))
+print("expected:,actual:[6, 1, 5, 2, 4, 3]",max_min([1, 2, 3, 4, 5, 6]))
+
 print("\n Rearrange an array in maximum minimum form | Set 2 (O(1) extra space)\n ")
 """
 Rearrange an array in maximum minimum form | Set 2 (O(1) extra space)
@@ -138,6 +160,8 @@ rearrange(arr, n)
 print ("\nModified Array")
 for i in range(0, n):
     print (int(arr[i]), end = " ")
+
+
 
 
 print("\n A simpler approach \n")
