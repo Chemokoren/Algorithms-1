@@ -14,20 +14,20 @@ Auxiliary Space: O(1)
 
 """
 
-def rearrange(arr, n):
-    
-    j =0
-    for i in range(0, n):
-        if(arr[i] < 0):
+def rearrange(arr):
+    n = len(arr)
+    j = 0
+    for i in range(n):
+    	if(arr[i] < 0):
             temp =arr[i]
             arr[i] =arr[j]
             arr[j] =temp
-            j =j+1
-    print(arr)
+            j = j+1
+    return arr
 
 arr = [-1, 2, -3, 4, 5, 6, -7, 8, 9]
 n = len(arr)
-rearrange(arr, n)
+rearrange(arr)
 
 """
 Two Pointer Approach:
@@ -89,6 +89,35 @@ if __name__ == "__main__":
   n=len(arr)
   shiftall(arr,0,n-1)
   display(arr)
+
+'''
+Two pointer approach 2
+'''
+def move_negatives(arr):
+	i =0
+	j = len(arr)-1
+	
+	while i < j:
+		if arr[i] <0 and arr[j]>0:
+			i =i +1
+			j =j -1
+		elif arr[i] < 0 and arr[j] <0:
+			i =i +1
+		elif arr[i] > 0 and arr[j] > 0:
+			j = j-1
+		elif arr[i] > 0 and arr[j] < 0:
+			arr[i],arr[j] =arr[j], arr[i]
+			i +=1
+			j =j-1
+	return arr
+
+	
+
+    		
+	
+print("\n########################## move_negatives ##########################\n")
+print("expected:,actual:[-12 -13 -5 -7 -3 -6 11 6 5]",move_negatives([-12, 11, -13, -5, 6, -7, 5, -3, -6]))
+			
 
 print("\n Approach 1: Modified Insertion Sort \n")
 
@@ -364,3 +393,60 @@ n = len(arr)
 RearrangePosNeg(arr, n)
 print(*arr)
  
+
+# O(n) time complexity & O(1) space complexity
+def move_negatives1(arr):
+	i =0
+	j =0
+	k =len(arr)-1
+	while j<len(arr)-1:
+		if(arr[j] < 0):
+			arr[i] =arr[j]
+			i +=1
+		else:
+			if(arr[k] < 0):
+				arr[k],arr[j] =arr[j],arr[k]
+				k =k-1
+				j =j+1
+		j =j+1
+	
+	return arr
+	
+'''
+sorting the elements
+'''
+# O(n*log(n)) time complexity & O(1) space complexity
+def move_negatives2(arr):
+	arr.sort(reverse=False)
+	return arr
+
+'''
+Here we will use the famous Ductch National FlagAlgorithm for two "colors". The first color will be for all
+negative integers and the second color will be for all positive integers. We will divide the array into 
+three partitions with the help of two pointers, low and high.
+
+1. ar[1...low-1] negative integers
+2. ar[low...high] unknown
+3. ar[high+1...N] positive integers
+
+Now, we explore the array with the help of low pointer, shrinking the unknown partition, and moving
+elements to their correct partition in the process. We do this until we have explored all the elements,
+and size of the unknown partition shrinks to zero.
+
+'''
+def reArrangeDutch(arr):
+    n = len(arr)
+    low, high = 0, n-1
+    while(low < high):
+        if(arr[low] < 0):
+            low +=1
+        elif(arr[high]>0):
+            high -=1
+        else:
+            arr[low],arr[high]=arr[high],arr[low]
+    return arr
+
+arr = [1, 2,  -4, -5, 2, -7, 3, 2, -6, -8, -9, 3, 2,  1]
+
+print("##################################### Dutch National FlagAlgorithm #####################################")
+print(reArrangeDutch(arr))

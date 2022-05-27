@@ -38,37 +38,19 @@ Auxiliary Space: O(1)
 
 """
 
-def rearrange(arr, n):
-    for i in range(n-1):
-        if (i % 2 == 0 and arr[i] > arr[i+1]):
-            temp = arr[i]
-            arr[i] = arr[i + 1]
-            arr[i+1] = temp
+def rearrangeVal(arr):
+	n =len(arr)
+	for i in range(n-1):
+		if( i % 2 == 0 and arr[i] > arr[i+1]):
+			arr[i], arr[i+1] =arr[i+1], arr[i]
+			
+		if( i % 2 !=0 and arr[i] < arr[i+1]):
+			arr[i],arr[i+1] =arr[i+1], arr[i]
+	return arr
+	
+print("expected:[2, 4, 3, 5], actual:", rearrangeVal([2, 3, 4, 5]))
+print("expected:[4, 6, 1, 8, 2, 3], actual:", rearrangeVal([6, 4, 2, 1, 8, 3]))
 
-        if (i % 2 != 0 and arr[i] < arr[i + 1]):
-            temp = arr[i]
-            arr[i] = arr[i + 1]
-            arr[i + 1] = temp
-
-def printArray(arr, size):
- 
-    for i in range(size):
-        print(arr[i], " ", end ="")
-  
-    print()
- 
-# Driver code
- 
-arr = [ 6, 4, 2, 1, 8, 3 ]
-n = len(arr)
-  
-print("Before rearranging: ")
-printArray(arr, n)
-  
-rearrange(arr, n)
-  
-print("After rearranging:")
-printArray(arr, n)
 
 print("\n positive elements at even and negative at odd positions: \n")
 """
