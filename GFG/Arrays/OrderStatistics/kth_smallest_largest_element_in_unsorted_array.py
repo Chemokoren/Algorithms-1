@@ -576,3 +576,23 @@ if __name__ == '__main__':
 
 
     
+"""
+Approach 8: 
+-----------
+
+We can find the kth smallest element in time complexity better than O(N log N)
+We are using the set because it is mentioned in the question that all the elements in an array are 
+distinct.
+
+"""
+print("#################### return_kth_element #################### ")
+def return_kth_element(arr,k):
+	set_i = set((arr))
+	myit = iter(set_i )
+	for i in range(k):
+		val = myit.__next__()
+	return val
+
+print("expected:7, actual:", return_kth_element([7, 10, 4, 3, 20, 15],3))
+print("expected:10, actual:", return_kth_element([7, 10, 4, 3, 20, 15],4))
+print("expected:12, actual:", return_kth_element([12, 3, 5, 7, 19],4))

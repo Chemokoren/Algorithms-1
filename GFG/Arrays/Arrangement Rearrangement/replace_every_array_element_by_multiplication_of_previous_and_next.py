@@ -1,7 +1,9 @@
 """
 replace every array element by multiplication of previous and next
 
-Given an array of integers, update every element with multiplication of previous and next elements with following exceptions. 
+Given an array of integers, update every element with multiplication of previous and next elements with 
+following exceptions. 
+
 a) First element is replaced by multiplication of first and second. 
 b) Last element is replaced by multiplication of last and second last.
 Example: 
@@ -53,3 +55,52 @@ n = len(arr)
 modify(arr, n)
 for i in range (0, n):
     print(arr[i],end=" ")
+
+
+print("#################### replace_current #################### ")
+# Time complexity: O(n) | Space complexity : O(n)
+def replace_current(arr):
+	n =len(arr)
+	new_arr =[0] *n
+	
+	for i in range(n):
+		if i==0:
+			new_val =arr[i] *arr[i+1]
+		elif i ==n-1:
+			new_val=arr[-1] * arr[-2]
+		else:
+			new_val =arr[i-1] *arr[i+1]
+		new_arr[i] =new_val
+	arr=new_arr[::]
+	return arr
+
+
+	
+
+print("expected:[6, 8, 15, 24, 30], actual:", replace_current([2, 3, 4, 5, 6]))
+
+print("#################### modify #################### ")
+
+def replace_current(arr):
+	n =len(arr)
+	
+	if n <=1:
+		return
+	prev =None
+	for i in range(n):
+		if i ==0:
+			new_val =arr[i] *arr[i+1]
+		elif i == n-1:
+			new_val =prev *arr[-1]
+		else:
+			new_val = prev * arr[i+1]
+		prev =arr[i]
+		arr[i] =new_val
+		
+			
+	return arr
+
+
+	
+
+print("expected:[6, 8, 15, 24, 30], actual:", replace_current([2, 3, 4, 5, 6]))

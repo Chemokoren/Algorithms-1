@@ -70,6 +70,7 @@ Auxiliary Space : O(1)
 
 """
 
+print("ddddddddddddddddddddddddd")
 def arrayEvenAndOdd(arr,n):
     i = -1
     j= 0
@@ -91,3 +92,29 @@ if __name__=='__main__':
     n = len(arr)
     arrayEvenAndOdd(arr,n)
 
+
+# time complexity: O(n)
+# space complexity: O(1)
+def segregate_even_odd_updated(arr):
+	i =0
+	j =len(arr)-1
+	
+	while i<j:
+		if arr[i] %2 ==0 and arr[j] % 2 !=0:
+			i = i+1
+			j = j-1
+		elif (arr[i] % 2==0 and arr[j] %  2 ==0):
+			i = i +1
+		elif (arr[i] % 2 !=0 and arr[j] %  2 !=0):
+			j = j - 1
+			
+		elif (arr[i] % 2 !=0 and arr[j] %  2 ==0):
+			arr[i],arr[j] =arr[j],arr[i]
+			i = i+1
+			j = j-1
+	return arr
+			
+print("attttttttttttttt")	 
+print("expected:[2, 6, 5, 3, 1, 9, 7, 11], actual:", segregate_even_odd_updated([1, 9, 5, 3, 2, 6, 7, 11]))
+print("expected:[2, 4 ,6 ,10, 7, 1, 9, 3], actual:", segregate_even_odd_updated([1, 3, 2, 4, 7, 6, 9, 10]))
+	
