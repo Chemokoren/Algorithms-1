@@ -1,5 +1,6 @@
 """
 Rerrange array such that arr[i] >=arr[j] if i is even and arr[i]<=arr[j]
+
 if i is odd and j<i
 
 Given an array of n elements - write a program to rearrange the array such that the elements at
@@ -15,6 +16,7 @@ Output : 4 5 2 6 1 8 1 8
 The idea to solve this problem is to first create an auxiliary copy of the original array
 and sort the copied array. Now total number of even position in array with n elements 
 will be floor(n/2) and remaining number is the number of odd positions.
+
 Now fill the odd and even positions in the original array using the sorted array as below:
 
 1) Total odd positions will be n-floor(n/2). Start from(n-floor(n/2))th position in 

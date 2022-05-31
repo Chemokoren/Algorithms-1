@@ -677,6 +677,168 @@ main(grid)
 for row in grid:
     print(*row)
 
+
+
+
+'''
+-Backtracking is a general algorithm for finding all(or some )solutions to some computational problems, that
+incrementally builds candidates to the solutions.
+-As soon as it determines that a candidate cannot possibly lead to a valid complete solution, it abandons 
+this partial candidate and "backtracks" (return to the upper level) and reset to the upper level's state so
+that the search process can continue to explore the next branch.
+- Backtracking is all about choices and consequences, making the most suitable algorithm for solving 
+constraint satisfaction problem(CSP).
+-CSPs are mathematical questions defined as a set of objects whose state must satisfy a number of constraints
+or limitations e.g.
+        - Eight Queens puzzle
+        - Map coloring problem
+        - Sudoku
+        - Crosswords
+        - Many other logic puzzles
+Properties and Applications
+- No Repetition and Completion: It is a systematic generating method that avoids repetitions and missing any 
+possible right solution. This property makes it ideal for solving combinatorial problems such as combination
+and permutation which requires us to enumerate all possible solutions.
+- Search Pruning: Because the final solution is built incrementally, in the process of working with partial
+solutions, we can evaluate the partial solution and prune branches that would never lead to the acceptable
+complete solution: either it is invalid configuration or it is worse thn known possible complete solution.
+
+Scope
+1. Show property 1: How backtrack construct the complete solution incrementally and how it backtrack to its 
+previous state.
+2. implicit graph: Enumerating all the paths between the source and the target vertex in a graph drawing
+3. Show property 2: Demonstrate the application of search pruning in backtracking through CSP problems 
+like sudoku
+
+Permutation
+-----------
+Given a set of integers {1,2,3}, enumerate all the possible permutations using all the items from the set
+without repetition. A permutation describes an arrangement or ordering of items. It is trivial to figure
+out that we can have the following six permutations: [1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], and [3, 2, 1].
+
+                            []
+                
+                [1]         [2]             [3]
+
+        [1,2]   [1,3]   [2,1]   [2,3]   [3,1]   [3,2]
+
+        [1,2,3] [1,3,2] [2,1,3] [2,3,1] [3,1,2] [3,2,1]
+
+This is a combinatorial problem.
+
+To construct the final solution, we can start from an empty ordering shown at the first level, [ ]. 
+Then we try to add one item where we have three choices :1, 2, and 3. We get three partial 
+solutions [1], [2], [3] at the second level. 
+Next, for each of these partial solutions, we have two choices, for [1], we can either put 2 or 3 first. 
+Similarly, for [2], we can do either 1 and 3, and so on. 
+Given n distinct items, the number of possible permutations are n*(n-1)*…*1 = n!.
+
+Implicit Graph
+-Each node is either a partial or final solution in the graph
+-Examining it as a tree reveals the internal node as a partial solution and all leaves are final solutions.
+-One edge represents generating the next solution based on the current solution.
+-The vertices and edges are not given by an explicitly defined graph or trees, the vertices are generated 
+on the fly and the edges are implicit relation between these nodes.
+
+Backtracking and DFS
+--------------------
+- The implementation of the state transfer we can use either BFS or DFS on the implicit vertices
+- DFS is preferred because theoretically it takes O(log n!) space used by stack while BFS uses n! because
+of the number of vertices saved in the queue.
+
+With recursive DFS, we can start from node [], and traverse to [1,2], then [1,2,3]. Then we backtrack to 
+[1,2], backtrack to [1], and go to [1, 3], to [1, 3, 2]. To clear the relation between backtracking and DFS,
+we can say backtracking is a complete search technique and DFS is an ideal way to implement it.
+
+We can generalize Permutation, Permutations refer to the permutation of n things taken kat a time without
+repetition, the math formula is A_{n}^{k} = n *(n-1)*(n-2)*…*k. In Fig above, we can see from each level kshows
+all the solution of A_{n}^{k}. The generation of A_{n}^{k} is shown in the following Python Code:
+
+'''
+    
+def a_n_k(a, n, k, depth, used, curr, ans):
+  '''
+  Implement permutation of k items out  of n items
+  depth: start from 0, and represent the depth of the search
+  used: track what items are  in the partial solution from the set of n
+  curr: the current partial solution
+  ans: collect all the valide solutions
+  '''
+  if depth == k: #end condition
+    ans.append(curr[::]) # use deepcopy because curr is tracking all partial solution, it eventually become []
+    return
+  
+  for i in range(n):
+    if not used[i]:
+      # generate the next solution from curr
+      curr.append(a[i])
+      used[i] = True
+      print(curr)
+      # move to the next solution
+      a_n_k(a, n, k, depth+1, used, curr, ans)
+      
+      #backtrack to previous partial state
+      curr.pop()
+      print('backtrack: ', curr)
+      used[i] = False
+  return
+
+
+print("################################# permutations #################################\n")
+a = [1, 2, 3]
+n = len(a)
+ans = [[None]]
+used = [False] * len(a)
+ans = []
+a_n_k(a, n, n, 0, used, [], ans)
+print(ans)
+
+
+'''
+Two Passes
+
+Therefore, we can say backtrack visit these implicit vertices in two passes: First forward pass to build the 
+solution incrementally, second backward pass to backtrack to previous state. We can see within these two 
+passes, the curr list is used as all vertices, and it start with [] and end with []. This is the character of 
+backtracking.
+
+Time Complexity of Permutation
+
+In the example of permutation, we can see that backtracking only visit each state once. The complexity of this
+is similar to the graph traversal of O(|V|+|E|), where |V| = \sum_{i=0}^{n}{A_{n}^{k}}, because it is a tree 
+structure, |E| = |v|-1. This actually makes the permutation problem NP-hard.
+
+'''
+
+def c_n_k(a,n,k,start, depth, curr, ans):
+    '''
+    Implement combination of k items out of n items
+    start: the start of candinate
+    depth: start from 0, and represent the depth of the search
+    curr: the current partial solution
+    ans: collect all the valid solutions
+    '''
+    if depth ==k: # end condition
+        ans.append(curr[::])
+        return
+    for i in range(start, n):
+        # generate the next solution from curr
+        curr.append(a[i])
+        # move to the next solution
+        c_n_k(a,n, k,i+1,depth+1,curr, ans)
+
+        #backtrack to previous partial state
+        curr.pop()
+    return
+
+print("################################# combination #################################\n")
+a = [1, 2, 3]
+n = len(a)
+ans = [[None]]
+ans = []
+c_n_k(a, n, 2, 0, 0, [], ans)
+print(ans)
+
 """
 References:
 

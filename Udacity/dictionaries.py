@@ -14,8 +14,6 @@ locations['North America']['USA'].append("Atlanta")
 locations['Africa']={'Egypt':['Cairo']}
 locations['Asia']['China']=["Shanghai"]
 
-for countries, cities in locations['North America'].items():
-    print("mine:", countries, cities)
 
 print(1)
 usa_sorted = sorted(locations['North America']['USA'])
