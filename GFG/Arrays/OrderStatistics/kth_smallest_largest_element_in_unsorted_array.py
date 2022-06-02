@@ -767,4 +767,17 @@ if __name__ == '__main__':
     k = 3
     print("K'th smallest element is",kth_smallest_set_3(arr, 0, n - 1, k))
 
+'''
+Time complexity of the solution below is O(n Log n). Note that set in STL uses a self-balancing BST
+internally and therefore time complexity of search and insert operations is O(log n).
+'''
+print("Using an Iterator - STL")
+def kth_smallest(arr,k):
+	n = len(arr)
+	set_arr =set((arr))
+	my_iter =iter(set_arr)
+	for i in range(k):
+		val = my_iter.__next__()
+	return val
 
+print("expected is 5, actual:", kth_smallest([12, 3, 5, 7, 3, 19],2))

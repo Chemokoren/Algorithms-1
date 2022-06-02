@@ -90,10 +90,11 @@ def find3largest(arr, n):
 
         else:
             break
-
+print("before:::")
 arr = [12, 45, 1, -1, 45, 54, 23, 5, 0, -10]
 n = len(arr)
 find3largest(arr, n)
+print("after:::")
 
 
 print("\n my exploration: \n")

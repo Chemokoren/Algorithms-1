@@ -50,6 +50,9 @@ O(R), where R is the length of a row, as the Min-Heap stores one row at a time.
 This code can be optimized to build a heap of size k when k is smaller than n. 
 In that case, the kth smallest element must be in first k rows and k columns. 
 
+This code can be optimized to build a heap of size k when k is smaller than n. In that case,
+the kth smallest element must be in first k rows and k columns.
+
 """
 
 # program fro kth largest element in a 2d array sorted row-wise and column-wise
@@ -129,3 +132,57 @@ if __name__=="__main__":
 # expected output: 7th smallest element is 30
 
 
+"""
+Binary Search over the Range:
+
+This approach uses binary search to iterate over possible solutions. We know that
+1. answer >= mat[0][0]
+2. answer <= mat[N-1][N-1]
+
+So, we do a binary search on this range and in each iteration determine the no of elements
+greater than or equal to our current middle element. The elements greater than or equal to 
+current element can be found in O(log(n)) time using binary search.
+"""
+# This returns count of elements in matrix less than or equal to num
+def getElementsGreaterThanOrEqual(num, n, mat):
+    ans = 0
+    for i in range(n):
+        # if num is less than the first element then no more element in matrix further are 
+        # less than or equal to num
+        if(mat[i][0] > num):
+            return ans
+        # if num is greater than last element, it is greater than all elements in that row
+        if(mat[i][n-1] <= num):
+            ans += n
+            continue
+        # This contain the col inde of last element in matrix less than or equal to num
+        greaterThan = 0
+        jump = n // 2
+        while(jump >= 1):
+            while(greaterThan + jump < n and mat[i][greaterThan + jump] <= num):
+                greaterThan += jump
+            jump //=2
+
+        ans += greaterThan +1
+    return ans
+
+# returns kth smallest index in the matrix
+def kthSmallest(mat, n, k):
+    # We know the answer lies between the first and the last element, so, do a binary search
+    # on answer based on the number of elements our current elements is greater than 
+    # the elements in the matrix
+    l, r =mat[0][0], mat[n-1][n-1]
+
+    while(l <= r):
+        mid = l + (r -l) // 2
+        greaterThanOrEqualMid = getElementsGreaterThanOrEqual(mid, n, mat)
+        if(greaterThanOrEqualMid >= k):
+            r = mid -1
+        else:
+            l = mid +1
+    return l
+
+
+n = 4
+mat = [[10, 20, 30, 40],[15, 25, 35, 45],[25, 29, 37, 48],[32, 33, 39, 50]]
+print(f"7th smallest element is {kthSmallest(mat, 4, 7)}")
