@@ -108,3 +108,21 @@ arr =[10, 4, 3, 50, 23, 90]
 n = len(arr)
 printThreeLargest(arr, 3)
 
+"""
+Method 3
+
+We can use Partial Sort of C++ STL. partial_sort uses Heapselect, which provides better performance
+than Quickselect for small M. As a side effect, the end state of Heapselect leaves you with a heap, 
+which means that you get the first half of the Heapsort algorithm “for free”.
+The complexity is “approximately” O(N log(M)), where M is distance(middle-first).
+
+"""
+from collections import deque
+
+v =[ 11, 65, 193, 36, 209, 664, 32]
+v_iter =iter(set((v)))
+
+dd = deque(v_iter, maxlen=len(v))
+print("last",dd.pop())
+print("second last",dd.pop())
+print("third last",dd.pop())

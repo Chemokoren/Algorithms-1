@@ -146,6 +146,7 @@ if __name__=="__main__":
     k = 2
     print("K'th smallest element is: ",	kthSmallest(arr, n, k))
 
+
 print("\n Method 3: Using Max-Heap: \n")
 """
 Method 3: Using Max-Heap
@@ -768,10 +769,64 @@ if __name__ == '__main__':
     print("K'th smallest element is",kth_smallest_set_3(arr, 0, n - 1, k))
 
 '''
+Time Complexity: 
+The worst case time complexity of the above algorithm is O(n). Let us analyze all steps. 
+
+The steps 1) and 2) take O(n) time as finding median of an array of size 5 takes O(1) time and 
+there are n/5 arrays of size 5. 
+The step 3) takes T(n/5) time. The step 4 is standard partition and takes O(n) time.
+
+The interesting steps are 6) and 7). At most, one of them is executed. These are recursive steps.
+What is the worst case size of these recursive calls. The answer is maximum number of elements 
+greater than medOfMed (obtained in step 3) or maximum number of elements smaller than medOfMed.
+
+How many elements are greater than medOfMed and how many are smaller?
+
+At least half of the medians found in step 2 are greater than or equal to medOfMed. Thus, at least 
+half of the n/5 groups contribute 3 elements that are greater than medOfMed, except for the one group 
+that has fewer than 5 elements. Therefore, the number of elements greater than medOfMed is at least. 
+
+[Formula]
+
+Similarly, the number of elements that are less than medOfMed is at least 3n/10 – 6. 
+
+In the worst case, the function recurs for at most n – (3n/10 – 6) which is 7n/10 + 6 elements.
+
+Note that 7n/10 + 6 20 20 and that any input of 80 or fewer elements requires O(1) time. We can 
+therefore obtain the recurrence 
+
+[Formula]
+
+We show that the running time is linear by substitution.
+
+Assume that T(n) cn for some constant c and all n > 80. Substituting this inductive hypothesis into
+the right-hand side of the recurrence yields 
+
+T(n)  <= cn/5 + c(7n/10 + 6) + O(n)
+     <= cn/5 + c + 7cn/10 + 6c + O(n)
+    <= 9cn/10 + 7c + O(n)
+    <= cn, 
+since we can pick c large enough so that c(n/10 – 7) is larger than the function described by 
+the O(n) term for all n > 80. 
+The worst-case running time of is therefore
+linear (Source: http://staff.ustc.edu.cn/~csli/graduate/algorithms/book6/chap10.htm ).
+Note that the above algorithm is linear in worst case, but the constants are very high for this 
+algorithm. Therefore, this algorithm doesn’t work well in practical situations, 
+randomized quickSelect works much better and preferred.
+
+# http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-046j-introduction-to-algorithms-sma-5503-fall-2005/video-lectures/lecture-6-order-statistics-median/
+# http://www.flipkart.com/introduction-algorithms-8120340078/p/itmczynzhyhxv2gs?pid=9788120340077&affid=sandeepgfg
+# http://staff.ustc.edu.cn/~csli/graduate/algorithms/book6/chap10.htm
+
+
+
+
+
 Time complexity of the solution below is O(n Log n). Note that set in STL uses a self-balancing BST
 internally and therefore time complexity of search and insert operations is O(log n).
 '''
 print("Using an Iterator - STL")
+
 def kth_smallest(arr,k):
 	n = len(arr)
 	set_arr =set((arr))

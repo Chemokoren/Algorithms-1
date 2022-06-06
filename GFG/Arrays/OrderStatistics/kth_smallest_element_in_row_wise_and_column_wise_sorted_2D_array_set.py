@@ -186,3 +186,46 @@ def kthSmallest(mat, n, k):
 n = 4
 mat = [[10, 20, 30, 40],[15, 25, 35, 45],[25, 29, 37, 48],[32, 33, 39, 50]]
 print(f"7th smallest element is {kthSmallest(mat, 4, 7)}")
+
+"""
+Complexity Analysis
+
+Time Complexity : O( y * n*logn)
+Where y =  log( abs(Mat[0][0] - Mat[n-1][n-1]) )
+We call the getElementsGreaterThanOrEqual function  log ( abs(Mat[0][0] – Mat[n-1][n-1])  ) times
+Time complexity of getElementsGreaterThanOrEqual is O(n logn) since there we do binary search n 
+times.
+
+Space Complexity: O(1)
+
+USING ARRAY:
+------------
+We will make a new array and will copy all the contents of matrix in this array.After that we will
+sort that array and find kth smallest element.This will be so easier.
+
+
+"""
+
+def kth_smallest_arr(mat, n, k):
+
+    a =[0 for i in range(n*n)]
+    v = 0
+
+    for i in range(n):
+        for j in range(n):
+            a[v] = mat[i][j]
+            v +=1
+    
+    a.sort()
+    result =a[k -1]
+    return result
+
+mat = [ [ 10, 20, 30, 40 ],
+        [ 15, 25, 35, 45 ],
+        [ 25, 29, 37, 48 ],
+        [ 32, 33, 39, 50 ] 
+    ]
+
+res = kthSmallest(mat, 4, 7)
+     
+print("7th smallest element is "+ str(res))
