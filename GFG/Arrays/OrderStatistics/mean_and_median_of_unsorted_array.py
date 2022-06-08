@@ -55,3 +55,27 @@ n = len(a)
 # Function call
 print("Mean =", findMean(a, n))
 print("Median =", findMedian(a, n))
+
+
+
+def mean_median(arr):
+	arr.sort()
+	mean =sum(arr)/len(arr)
+	
+	middle = (len(arr)-1) //2
+
+	if len(arr) % 2 ==0:
+        # average of two middle values
+		median =(arr[middle] +arr[middle+1])/2
+		
+	elif len(arr) % 2 !=0:
+		# middle value
+		if(len(arr[:middle]) < len(arr[middle:])):
+			median = arr[middle:][0]
+		else:
+			median = arr[:middle][-1]
+	return mean, median
+	
+print("expected {'mean':4.5,'median':4.5}: actual:",mean_median([1, 3, 4, 2, 6, 5, 8, 7]))
+print("expected {'mean':4,'median':4}: actual:",mean_median([4, 4, 4, 4, 4]))		
+			

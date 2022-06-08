@@ -49,3 +49,14 @@ n = len(arr)
 print ("Minimum product is", minProduct(arr, n, k))
 
 
+
+# Time complexity: O(nlog(n))
+def min_product(arr,k):
+	arr.sort()
+	product =1
+	for i in range(k):
+		product = product * arr[i]
+	return product
+	
+print("expected:9348, actua:", min_product([198,76,544, 123, 154, 675],2))
+print("expected:1400, actua:", min_product([11, 8, 5, 7, 5, 100],4))
