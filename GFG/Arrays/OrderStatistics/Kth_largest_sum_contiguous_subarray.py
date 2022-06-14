@@ -88,3 +88,39 @@ k = 6
 # calls the function to find out the
 # k-th largest sum
 print(kthLargestSum(a,n,k))
+
+
+'''
+
+my tests
+
+'''
+
+
+def sum_contiguous(arr, k):
+
+	largest_sum =float('-inf')
+	
+	i = 0
+	while i < len(arr)-k+1:
+		val =sum(arr[i:i+k])
+		if(val >largest_sum):
+			largest_sum = val
+		i = i+1
+	return largest_sum
+		
+print("expected:14, actual:", sum_contiguous([20, -5, -1] ,3))
+print("expected:-10, actual:", sum_contiguous([10, -10, 20, -40] ,6))		
+	
+def sum_contiguous_two(arr, k):
+	pre_sum =sum(arr[:k])
+	
+	for i in range(1,len(arr)-k):
+		new_sum =pre_sum +arr[k+1] -arr[i-1]
+		if new_sum > pre_sum:
+			pre_sum =new_sum
+	return pre_sum
+	
+print("Interesting concepts\n")
+print("expected:14, actual:", sum_contiguous_two([20, -5, -1] ,3))
+print("expected:-10, actual:", sum_contiguous_two([10, -10, 20, -40] ,6))

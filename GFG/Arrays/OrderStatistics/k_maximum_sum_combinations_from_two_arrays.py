@@ -151,3 +151,22 @@ if __name__=='__main__':
     #Function Call
     tt = TestInfo()
     tt.MaxPairSum(A, B, N, K)
+
+
+'''
+
+my tests 
+'''
+
+def max_sum_combinations(arr1,arr2,k):
+	
+	new_arr=[]
+	
+	for i in range(len(arr1)):
+		for j in range(len(arr2)):
+			new_arr.append(arr1[i] +arr2[j])
+	new_arr.sort(reverse=True)
+	return new_arr[:k]
+	
+print("expected: 7,6, actual: ", max_sum_combinations([3, 2],[1, 4],2))
+print("expected: 13,12,10 actual: ", max_sum_combinations([4, 2, 5, 1],[8, 0, 3, 5],3))

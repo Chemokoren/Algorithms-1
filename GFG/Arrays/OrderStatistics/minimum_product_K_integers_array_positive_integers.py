@@ -26,7 +26,7 @@ Time Complexity : O(n * log n)
 import math
 import heapq
 
-def minProduct(arr, n, k):
+def minProduct(arr, k):
     heapq.heapify(arr)
     count =0
     ans = 1
@@ -45,8 +45,7 @@ def minProduct(arr, n, k):
 
 arr = [198, 76, 544, 123, 154, 675]
 k = 2
-n = len(arr)
-print ("Minimum product is", minProduct(arr, n, k))
+print ("Minimum product is", minProduct(arr, k))
 
 
 
