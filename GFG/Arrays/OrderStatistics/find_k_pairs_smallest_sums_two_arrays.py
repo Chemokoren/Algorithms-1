@@ -121,3 +121,38 @@ Go back to 4 until K times.
 Time Complexity : O(n*logn) assuming k<=n
 
 """
+
+
+'''
+
+my tests
+
+'''
+
+def find_k_pairs(arr1,arr2, k):
+	pairs =[]
+	final_result=[]
+
+	for i in range(len(arr1)):
+		for j in range(len(arr2)):
+			pair =[arr1[i],arr2[j]]
+			if( pair in pairs):
+				pass
+			else:
+				pairs.append(pair)
+				
+	for i in range(k):
+		smallest = float('inf')
+		smallest_pair=None
+		for i in pairs:
+			if sum(i) < smallest:
+				smallest = sum(i)
+				smallest_pair =i
+		pairs.remove(smallest_pair)
+		final_result.append(smallest_pair)
+			
+	
+	return final_result
+	
+print("expected:, [[1, 2], [1, 4],[1, 6]], actual: ", find_k_pairs([1, 7, 11], [2, 4, 6], 3))
+print("expected:, (1, 2) (1, 4) (3, 2) (3, 4) , actual: ", find_k_pairs([1, 3, 11], [2, 4, 8], 4))

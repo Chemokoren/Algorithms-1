@@ -13,19 +13,20 @@ Input : arr = {-2, -3, 4, -1, -2, 1, 5, -3}, k= 3
 Output : 7 6 5
 
 Using Kadane's Algorithm, we can find the maximum contiguous subarray sum of an array.
-But in this case Kadane's algorithm does not work. As whenever we hit a negative number
-in the array we set the max_ending_here variable to zero, hence we miss  the possibilities
-for second and so on maximums.
+But in this case Kadane's algorithm does not work. As whenever we hit a negative 
+number in the array we set the max_ending_here variable to zero,
+hence we miss the possibilities for second and so on maximums.
 
 
 Approach 1:
 
-computes the maximum sub-array-sum problem in O(n) tie and k maximum sub-array sum 
+computes the maximum sub-array-sum problem in O(n) time and k maximum sub-array sum 
 problem in O(k * n) time
 
 First, we look at the problem of only maximum sub-array sum using this approach
 
 prerequisites:
+
 - Prefix sum array
 - Maximum subarray sum in O(n) using prefix sum
 
