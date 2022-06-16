@@ -40,7 +40,8 @@ low =minimum_difference and high = maximum_difference.
 8)          high = mid
 9) return low
 
-We need a function that will tell us the number of pairs with a difference <= mid efficiently.
+We need a function that will tell us the number of pairs with a difference <= mid 
+efficiently.
 Since our array is sorted, this part can be done like this:
 
 1) result = 0
@@ -103,3 +104,20 @@ a = [1, 2, 3, 4]
 n = len(a)
 print(kthDiff(a, n, k))
 
+
+"""
+my tests
+
+"""
+
+def generate_abs_values(arr, k):
+	result =[]
+	for i in range(0,len(arr)):
+		
+		for j in range(i+1, len(arr)):
+			result.append(abs(arr[j]-arr[i]))
+		
+	return result[k-1]
+	
+print("expected: 1, actual: ", generate_abs_values([1, 2, 3, 4], 3))
+print("expected: 0, actual: ", generate_abs_values([10, 10], 1))

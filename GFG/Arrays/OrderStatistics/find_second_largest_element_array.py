@@ -167,3 +167,65 @@ arr = [12, 35, 1, 10, 34, 1]
 n = len(arr)
  
 print2largest(arr, n)
+
+
+'''
+
+my tests
+
+'''
+
+
+def find_second_largest(arr):
+	dic =set((arr))
+	new_arr=list(dic)
+	new_arr.sort(reverse=True)
+	
+	return new_arr[1] if len(new_arr) >=2 else None
+ 
+print()	
+print("expected: 34, actual: ", find_second_largest([12, 35, 1, 10, 34, 1]))
+print("expected: 5, actual: ", find_second_largest([10, 5, 10]))
+print("expected: [], actual: ", find_second_largest([10, 10, 10]))
+
+
+def find_second_largest_two(arr):
+	largest =-float('inf')
+	
+	for i in range(len(arr)):
+		if arr[i] > largest :
+			largest =arr[i]
+
+	arr.remove(largest)
+	
+	for i in range(len(arr)):
+		if arr[i] > largest :
+			largest =arr[i]
+		
+	return largest
+	
+print("\n second trial \n")	
+print("expected: 34, actual: ", find_second_largest_two([12, 35, 1, 10, 34, 1]))
+print("expected: 5, actual: ", find_second_largest_two([10, 5, 10]))
+print("expected: [], actual: ", find_second_largest_two([10, 10, 10]))
+
+
+def find_second_largest_three(arr):
+	dic =set((arr))
+	largest = -float('inf')
+	for i in dic:
+		if i > largest :
+			largest =i
+	dic.remove(largest)
+	
+	largest = -float('inf')
+	for i in dic:
+		if i > largest :
+			largest =i
+	return largest
+	
+	
+print("\n third trial \n")	
+print("expected: 34, actual: ", find_second_largest_three([12, 35, 1, 10, 34, 1]))
+print("expected: 5, actual: ", find_second_largest_three([10, 5, 10]))
+print("expected: [], actual: ", find_second_largest_three([10, 10, 10]))

@@ -125,6 +125,8 @@ To remove the top of priority queue O(log d) time is required, so if k elements 
 Auxiliary Space: O(d), where d is the count of distinct elements in the array. 
 To store the elements in HashMap O(d) space complexity is needed.
 
+https://www.careercup.com/question?id=5082885552865280
+
 """
 
 # program to find k numbers with most occurrences in the given array
@@ -161,3 +163,31 @@ if __name__=="__main__":
     k = 2
      
     print_N_mostFrequentNumber(arr, n, k)
+
+'''
+Tests
+
+'''
+
+def foo(a):
+    for b in a:
+        yield b
+        
+
+def k_occurrences(arr, k):
+	dic ={}
+	
+	for i in (arr):
+		if i not in dic:
+			dic[i] =0
+		dic[i] =dic[i] +  1
+	pre_item= result_val ={k: v for k, v in sorted(dic.items(),reverse=True, key=lambda item: item[0])}
+	result_val ={k: v for k, v in sorted(pre_item.items(),reverse=True, key=lambda item: item[1])}
+	new_list =(list(result_val)[:k])
+    #return new_list
+	
+	
+	return [b for b in foo(new_list)]
+	
+print("expected 4, 1: actual", k_occurrences([3, 1, 4, 4, 5, 2, 6, 1], 2))
+print("expected [5 11 7 10]: actual", k_occurrences([7, 10, 11, 5, 2, 5, 5, 7, 11, 8, 9], 4))
