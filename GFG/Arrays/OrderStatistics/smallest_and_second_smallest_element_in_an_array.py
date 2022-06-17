@@ -54,3 +54,47 @@ def print2Smallest(arr):
 arr = [12, 13, 1, 10, 34, 1]
 print2Smallest(arr)
 
+
+'''
+my tests
+
+'''
+
+def find_smallest_2nd_smallest(arr):
+	new_list=list(set((arr)))
+	new_list.sort()
+	return new_list[:2]
+	
+print("expected:[1, 10], actual:",find_smallest_2nd_smallest([12, 13, 1, 10, 34, 1]))
+
+
+def smallest_2nd_smallest(arr):
+	smallest = float('inf')
+	second_smallest = float('inf')
+	for i in range(len(arr)):
+		if arr[i] < smallest:
+			smallest =arr[i]
+			
+	for i in range(len(arr)):
+		if(arr[i] < second_smallest and arr[i] > smallest):
+			second_smallest =arr[i]
+			
+	return smallest, second_smallest
+	
+
+print("expected:[1, 10], actual:",smallest_2nd_smallest([12, 13, 1, 10, 34, 1]))	
+
+def smallest_2nd_smallest_two(arr):
+	smallest =second_smallest= float('inf')
+	 
+	for i in range(len(arr)):
+		if arr[i] < smallest:
+			second_smallest =smallest
+			smallest =arr[i]
+		elif arr[i] < second_smallest and arr[i] !=smallest:
+			second_smallest =arr[i]
+			
+	return smallest, second_smallest
+	
+
+print("expected:[1, 10], actual:",smallest_2nd_smallest_two([12, 13, 1, 10, 34, 1]))		

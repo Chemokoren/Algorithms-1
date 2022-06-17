@@ -150,7 +150,7 @@ if __name__=='__main__':
     
     #Function Call
     tt = TestInfo()
-    tt.MaxPairSum(A, B, N, K)
+    tt.MaxPairSum(A, B, N, K)   
 
 
 '''

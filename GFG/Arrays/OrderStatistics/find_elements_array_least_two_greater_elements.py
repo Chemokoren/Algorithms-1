@@ -24,8 +24,8 @@ Time Complexity: O(n2)
 
 """
 def findElements(arr, n):
-    # pick elements one by one and counter greater elements. If count is more than 2, print 
-    # that element.
+    # pick elements one by one and counter greater elements. If count is more than 2,
+    # print that element.
     for i in range(n):
         count = 0
         for j in range(0, n):

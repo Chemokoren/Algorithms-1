@@ -191,3 +191,8 @@ def k_occurrences(arr, k):
 	
 print("expected 4, 1: actual", k_occurrences([3, 1, 4, 4, 5, 2, 6, 1], 2))
 print("expected [5 11 7 10]: actual", k_occurrences([7, 10, 11, 5, 2, 5, 5, 7, 11, 8, 9], 4))
+
+'''
+
+
+'''
