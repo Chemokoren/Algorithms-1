@@ -78,12 +78,17 @@ which occur only 1 time and RMQ on [6, 6] is
 1. Hence maximum would be 2.
 
 
-Further Optimization: For the partial overlapping case we have to run a loop to calculate 
+Further Optimization
+--------------------
+
+For the partial overlapping case we have to run a loop to calculate 
 the count of same numbers on both sides. To avoid this loop and perform this operation in 
 O(1), we can store the index of the first occurrence of every number in the given array 
 and hence by doing some precomputation we can find the required count in O(1).
 
-Time Complexity: 
+Time Complexity
+---------------
+
 Time Complexity for tree construction is O(n). Time complexity to query is O(Log n).
 """
 
