@@ -26,7 +26,7 @@ class Solution:
     def minDistance(self, word1: str, word2:str)->int:
         cache =[[float("inf")] * (len(word2)+1) for i in range(len(word1)+1)]
 
-        # fill bottom row of our grid -base case
+        # # fill bottom row of our grid -base case
         for j in range(len(word2)+1):
             cache[len(word1)][j] =len(word2) - j
 
@@ -34,7 +34,7 @@ class Solution:
         for i in range(len(word1)+1):
             cache[i][len(word2)] = len(word1) - i
 
-        # bottom -up dp (working our way up)
+        # # bottom -up dp (working our way up)
         for i in range(len(word1)-1, -1, -1):
             for j in range(len(word2) -1, -1, -1):
                 if word1[i] == word2[j]:

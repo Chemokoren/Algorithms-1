@@ -20,13 +20,18 @@ Output: [-1, -1]
 # O(n) solution
 def linearSolution(nums, target):
     result=[]
-    for i in range(len(nums)):
-        
+    if target not in nums:
+        return [-1, -1]
+
+    for i in range(len(nums)):   
         if nums[i] ==target:
             result.append(i)
-        if target not in nums:
-            return [-1, -1]
+    
     return result
+
+
+print("Expected: [3,4], actual:", linearSolution([5,7,7,8,8,10],8) )
+print("Expected: [-1, -1], actual:", linearSolution([5,7,7,8,8,10],6) )
 
 # O(log(n))
 class Solution:
@@ -35,6 +40,7 @@ class Solution:
         right =self.binSearch(nums, target, False)
         return [left, right]
 
+    # leftBias=[True/False], if false res is rightBiased
     def binSearch(self, nums, target, leftBias):
         l, r =0, len(nums)-1
         i = -1
@@ -52,10 +58,7 @@ class Solution:
                     l = m+1
         return i
 
-nums, target =[5,7,7,8,8,10], 8
-
-# nums,target =[5,7,7,8,8,10], 6
-
 sol =Solution()
 
-print(sol.searchRange(nums, target))
+print("Expected: [3, 4], actual:", sol.searchRange([5,7,7,8,8,10],8) )
+print("Expected: [-1, -1], actual:", sol.searchRange([5,7,7,8,8,10],6) )

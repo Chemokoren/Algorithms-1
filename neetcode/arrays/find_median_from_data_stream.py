@@ -37,18 +37,18 @@ class MedianFinder:
 
         # make sure every num small is <= every num in large
         if(self.small and self.large and ((-1 *self.small[0])> self.large[0])):
-            val =(-1 * heapq.heapop(self.small))
+            val =(-1 * heapq.heappop(self.small))
             heapq.heappush(self.large, val)
 
 
-            # uneven size?
-            if len(self.small) > len(self.large) + 1:
-                val = -1* heapq.heapop(self.small)
-                heapq.heappush(self.large, val)
+        # uneven size?
+        if len(self.small) > len(self.large) + 1:
+            val = -1* heapq.heappop(self.small)
+            heapq.heappush(self.large, val)
 
-            if len(self.large) > len(self.small) + 1:
-                val = heapq.heapop(self.large)
-                heapq.heappush(self.small, -1 * val)
+        if len(self.large) > len(self.small) + 1:
+            val = heapq.heappop(self.large)
+            heapq.heappush(self.small, -1 * val)
 
     def findMedian(self)-> float:
         if len(self.small) > len(self.large):
@@ -57,15 +57,14 @@ class MedianFinder:
             return self.large[0]
         return ((-1*self.small[0])+self.large[0])/ 2
 
-    def printVals(self):
-        print(self.small, self.large)
 
 # nums = [2,3,4]
 
 md = MedianFinder()
 md.addNum(1)
 md.addNum(2)
-# print(md.findMedian())
+print(md.findMedian())
 md.addNum(3)
-# print(md.findMedian())
-md.printVals()
+print(md.findMedian())
+md.addNum(4)
+print(md.findMedian())

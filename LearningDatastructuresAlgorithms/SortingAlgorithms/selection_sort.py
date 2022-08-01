@@ -5,8 +5,9 @@ def selectionsort(A):
             if A[j] > A[max_position]:
                 max_position = j
         A[i], A[max_position] = A[max_position], A[i]
+        print("aa:",A)
 
 A =[84, 21, 96, 15,47]
-print('Original Array: ', A)
+# print('Original Array: ', A)
 selectionsort(A)
 print('Sorted Array', A)

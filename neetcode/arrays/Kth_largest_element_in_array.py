@@ -1,5 +1,6 @@
 from typing import List
 import heapq
+
 """
 Kth Largest Element in an Array
 
@@ -22,11 +23,6 @@ Constraints:
 
 
 class Solution:
-
-    # def findKthLargest1(self, nums, k):
-    #     nums.sort()
-    #     return nums
-        # return nums[len(nums)-k]
 
     def findKthLargest(self, nums, k):
         k = len(nums) - k
@@ -89,3 +85,21 @@ nums,k =["2","21","12","1"], 3
 soln = Solution()
 print(soln.kthLargestNumber(nums, k))
 
+'''
+my tests
+
+'''
+def findKthLargest1(nums, k):
+    nums.sort()
+    return nums[len(nums)-k]
+
+
+print("Expected:5, Actual:",findKthLargest1([3,2,1,5,6,4],2))
+print("Expected:4, Actual:",findKthLargest1([3,2,3,1,2,4,5,5,6],4))
+
+
+def find_kth_largest(nums,k):
+    nums.sort(reverse=True)
+    return nums.index(k-1)
+print("Index Expected:5, Actual:",find_kth_largest([3,2,1,5,6,4],2))
+print("Index Expected:4, Actual:",find_kth_largest([3,2,3,1,2,4,5,5,6],4))
