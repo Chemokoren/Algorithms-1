@@ -1,8 +1,12 @@
-def quicksort(A, low, high):
-    if low < high:
-        p = partition(A, low, high)
-        quicksort(A, low, p-1)
-        quicksort(A, p+1, high)
+def quicksort(A):
+    low, high= 0, len(A)-1
+    def rec_quick_sort(A, low, high):
+        if low < high:
+            p = partition(A, low, high)
+            rec_quick_sort(A, low, p-1)
+            rec_quick_sort(A, p+1, high)
+        return A
+    return rec_quick_sort(A, low, high)
 
 def partition(A, low, high):
     i = low -1
@@ -16,10 +20,7 @@ def partition(A, low, high):
 
     return i + 1
 
-A = [84, 21, 96, 15, 47]
-print('Original Array: ', A)
-quicksort(A, 0, len(A)-1)
-print('Sorted Array: ', A)
+print('Expected:[15, 21, 47, 84, 96], Actual:', quicksort([84, 21, 96, 15, 47]))
 
 
 

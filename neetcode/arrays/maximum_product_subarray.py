@@ -1,24 +1,14 @@
 from typing import List
 """
-Given an integer array nums, find the contiguous subarray with an array(containing at least one 
-number) which has the largest product.
+Given an integer array nums, find the contiguous subarray with an array(containing at least 
+one number) which has the largest product.
+
 Input: [2,3,-2,4]
 Output: 6
+
 Explanation: [2,3] has the largest product 6.
+
 """
-def maxProduct(nums):
-    max_val=nums[0]
-    curProd=1
-    for i in nums:
-        if i ==0:
-            i =1
-        curProd =i * curProd
-        max_val=max(max_val, curProd, i)
-    return max_val
-
-nums =[0,2,3,-2,4]
-
-print("freelance:",maxProduct(nums))
 
 # using Dynamic Programming
 class Solution:
@@ -37,7 +27,61 @@ class Solution:
             res = max(res, curMax)
         return res
 
-nums =[0,2,3,-2,4]
 sol =Solution()
 
-print("DP:",sol.maxProduct(nums))
+print("DP Expected:6",sol.maxProduct([0,2,3,-2,4]))
+print("DP Expected:4",sol.maxProduct([2,0,3,-2,4]))
+
+"""
+
+my tests
+
+"""
+
+def my_tests(arr):
+    start = 0
+    end = len(arr)
+    i=0
+    running_product = arr[0]
+    
+    while start <= end-1:
+        print("aaa:",i,arr[i])
+
+        if(arr[i] ==0 or arr[i] < 0):
+            i +=1
+            start =i
+            
+        if(arr[i] > 0):
+            i +=1
+        product_now =find_product(arr[start:i+1])
+        running_product= max(arr[i],running_product,product_now)
+        
+        i +=1
+        start =i
+    return running_product
+		
+		
+def find_product(arr):
+	product_val =arr[0]
+	for i in range(1,len(arr)):
+		product_val =product_val*arr[i]
+	return product_val
+	
+# print("Expected:6, Actual:", my_tests([2,3,-2,4]))
+# print("Expected:6, Actual:", my_tests([0,2,3,-2,4]))
+print("Expected:4, Actual:", my_tests([2,0,3,-2,4]))
+
+
+def maxProduct(nums):
+    max_val=nums[0]
+    curProd=1
+    for i in nums:
+        if i ==0:
+            i =1
+        curProd =i * curProd
+        max_val=max(max_val, curProd, i)
+    return max_val
+
+
+print("Product Expected:6, Actual:",maxProduct([0,2,3,-2,4]))
+print("Product Expected:4, Actual:",maxProduct([2,0,3,-2,4]))

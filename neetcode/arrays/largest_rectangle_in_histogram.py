@@ -1,7 +1,7 @@
 from typing import List
 """
-Given n non-negative integers representing the histogram's bar height where the width of each bar is
-1, find the area of largest rectangle in the histogram.
+Given n non-negative integers representing the histogram's bar height where the width of 
+each bar is 1, find the area of largest rectangle in the histogram.
 
 Above is a histogram where width of each bar is 1 given height =[2,1,5,6,2,3]
 The largest rectangle rectangle has an area of 10 units.
@@ -20,6 +20,7 @@ class Solution:
         stack =[] # pair: (index,height)
         for i, h in enumerate(heights):
             start = i
+            
             while stack and stack[-1][1] > h:
                 index, height =stack.pop()
                 maxArea =max(maxArea, height *(i -index))
@@ -29,6 +30,5 @@ class Solution:
             maxArea =max(maxArea,h *(len(heights) - i))
         return maxArea
 
-nums =[2,1,5,6,2,3]
 sol = Solution()
-print(sol.largestRectangleArea(nums))
+print("Expected 10:, Actual: ", sol.largestRectangleArea([2,1,5,6,2,3]))

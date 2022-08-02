@@ -5,9 +5,7 @@ def selectionsort(A):
             if A[j] > A[max_position]:
                 max_position = j
         A[i], A[max_position] = A[max_position], A[i]
-        print("aa:",A)
+    return A
+        
 
-A =[84, 21, 96, 15,47]
-# print('Original Array: ', A)
-selectionsort(A)
-print('Sorted Array', A)
+print('Expected:[15, 21, 47, 84, 96], Actual:', selectionsort([84, 21, 96, 15,47]))

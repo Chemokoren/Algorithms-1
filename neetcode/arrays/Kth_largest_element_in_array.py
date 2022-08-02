@@ -38,21 +38,22 @@ class Solution:
             if p > k: return quickSelect(l, p-1)
             if p < k: return quickSelect(p+1, r)
             else: return nums[p]
+        return quickSelect(0, len(nums)-1)
 
-# nums =[3,2,3,1,2,4,5,5,6]
-# k = 4
-# sol = Solution()
-# print(sol.findKthLargest("using option 1:", sol.findKthLargest(nums, k)))
-# sol.findKthLargest("using quick select", sol.findKthLargest(nums, k))
+
+sols = Solution()
+print("QuickSelect Expected:4, Actual:", sols.findKthLargest([3,2,3,1,2,4,5,5,6], 4))
+print("QuickSelect Expected:5, Actual:", sols.findKthLargest([3,2,1,5,6,4], 2))
 
 
 """
-You are given an array of strings, nums, and an integer k. Each string in nums represents an integer
-without leading zeros.
+You are given an array of strings, nums, and an integer k. Each string in nums represents 
+an integer without leading zeros.
 Return the string that represents the kth largest integer in nums.
 
-Note: Duplicate numbers should be counted distinctly. For example, if nums is ["1","2","2"], "2" is
-the first largest integer, "2" is the second-largest integer, and "1" is the third-largest integer.
+Note: Duplicate numbers should be counted distinctly. For example, if nums is
+["1","2","2"], "2" is the first largest integer, "2" is the second-largest integer, 
+and "1" is the third-largest integer.
 
 Example 1:
 Input: nums = ["3","6","7","10"], k =4
@@ -80,10 +81,9 @@ class Solution:
             k -=1
         return str(-maxHeap[0])
 
-nums,k  = ["3","6","7","10"], 4
-nums,k =["2","21","12","1"], 3
 soln = Solution()
-print(soln.kthLargestNumber(nums, k))
+print("Expected:3, Actual:", soln.kthLargestNumber(["3","6","7","10"], 4))
+print("Expected:2, Actual:", soln.kthLargestNumber(["2","21","12","1"], 3))
 
 '''
 my tests
