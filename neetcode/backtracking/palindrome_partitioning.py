@@ -53,3 +53,31 @@ class Solution:
 s ="aab"
 sol = Solution()
 print(sol.partition(s))
+
+
+'''
+my tests
+'''
+def palindrome_substrings(s):
+	res =[]
+
+	for i in range(len(s)):
+	
+		# even 
+		l, r = i, i
+		while l>=0 and r<len(s) and s[l] == s[r]:
+			res.append([s[l:r+1]])
+			l -=1
+			r +=1
+		# odd
+		l, r, = i, i+1
+		
+		while l>=0 and r<len(s) and s[l] == s[r]:
+			res.append([s[l:r+1]])
+			l -=1
+			r +=1
+	return res
+	
+print(palindrome_substrings("babad"))
+print(palindrome_substrings("aab"))
+print(palindrome_substrings("a"))

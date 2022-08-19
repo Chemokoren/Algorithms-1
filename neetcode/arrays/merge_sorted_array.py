@@ -41,3 +41,35 @@ nums1, m =[1,2,3,0,0,0], 3
 nums2, n =[2,5,6], 3
 sol = Solution()
 print(sol.merge(nums1,m,nums2,n))
+
+
+'''
+my_tests 
+'''
+def my_tests(arr1, arr2):
+    start = 0
+    for i in range(len(arr1)):
+        
+        if arr1[i] ==0:
+            arr1[i] =arr2[start]
+            start +=1
+    arr1.sort()
+    return arr1
+
+print("Expected:[1,2,2,3,5,6], Actual: ", my_tests([1,2,3,0,0,0], [2,5,6] ))
+
+
+def my_tests_two(arr1, arr2):
+    start =0
+    for i in range(len(arr1)):
+        if arr1[i] >0:
+            continue
+        arr1[i] =arr2[start]
+        start +=1
+        
+    for i in range(1, len(arr1)-2):
+        if arr1[i-1] > arr1[i]:
+            arr1[i-1], arr1[i]= arr1[i], arr1[i-1]
+    return arr1
+
+print("My Test Two Expected:[1,2,2,3,5,6], Actual: ", my_tests_two([1,2,3,0,0,0], [2,5,6] ))

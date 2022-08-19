@@ -81,3 +81,21 @@ def check_val(val,arr):
 print("smallest value::", my_test([1,2,0]))
 print("Expected:2, Actual", my_test([3,4,-1,1]))
 print("Expected:1, Actual",my_test([7,8,9,11,12]))
+print("Expected:5, Actual",my_test([1, 3, 6, 4, 1, 2]))
+print("Expected:4, Actual",my_test([1, 2, 3]))
+print("Expected:1, Actual",my_test([-1, -3]))
+
+
+# passes 4/5 test cases, performance: 1/4 tests(25%)
+def solution(A):
+    for i in range(1,len(A)):
+        if i in A:
+            continue
+        else:
+            return i
+    else:
+    	return len(A) +1
+
+print(solution([1, 3, 6, 4, 1, 2]))
+print(solution([1, 2, 3]))
+print(solution([-1, -3]))
