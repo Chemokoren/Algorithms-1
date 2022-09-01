@@ -71,7 +71,94 @@ element then there is always a peak element on the right side. If the element on
 greater than the middle element then there is always a peak element on the left side. Form a 
 recursion and the peak element can be found in log n time. 
 
+Algorithm: 
+
+    Create two variables, l and r, initialize l = 0 and r = n-1
+    Iterate the steps below till l <= r, lowerbound is less than the upperbound
+    Check if the mid value or index mid = low + (high – low) / 2, is the peak element or not,
+    if yes then print the element and terminate.
+    Else if the element on the left side of the middle element is greater then check for peak 
+    element on the left side, i.e. update r = mid – 1
+    Else if the element on the right side of the middle element is greater then check for 
+    peak element on the right side, i.e. update l = mid + 1
+
+Time Complexity: O(Logn). 
+Where n is the number of elements in the input array. In each step our search becomes half. 
+So it can be compared to Binary search, So the time complexity is O(log n)
+
+Auxiliary Space: O(log n). 
+As recursive call is there, hence implicit stack is used.
 """
+# A binary search based function that returns index of a peak element 
+def find_peak_util(arr, low, high, n):
+    # Find index of middle element
+    mid = low + (high - low) / 2
+    mid = int(mid)
+
+    # compare middle element with its neighbours(if neighbours exist)
+    if(( mid == 0 or arr[mid-1] <= arr[mid]) and (mid == n-1 or arr[mid+1] <= arr[mid])):
+        return mid
+
+    # if middle element is not peak and its left neighbour is greater than it, then left half must
+    # have a peak element
+    elif(mid > 0 and arr[mid-1] > arr[mid]):
+        return find_peak_util(arr, low, (mid-1), n)
+
+    # if middle element is not peak and its right neighbour is greater than it, then right half
+    # must have a peak
+    else:
+        return find_peak_util(arr, (mid + 1), high, n)
+
+# A wrapper over recursive function find_peak_util()
+def find_peak(arr):
+    n = len(arr)
+    return find_peak_util(arr, 0, n-1, n)
+
+print("Index of a peak point is:", find_peak([1, 3, 20, 4, 1, 0]))
+
+
+
+"""
+Iterative Approach 
+
+- The below given code is the iterative version of the above explained and demonstrated recursive
+based divide and conquer technique.
+
+    Time Complexity: O(Logn). 
+
+    Where n is the number of elements in the input array. In each step our search becomes half.
+    So it can be compared to Binary search, So the time complexity is O(log n)
+
+    Auxiliary Space: O(1).
+    
+    No extra space is required, so the space complexity is constant.
+"""
+# A binary search based function that returns index of a peak element
+def find_peak_iterative(arr):
+    n = len(arr)
+
+    l = 0
+    r = n-1
+
+    while(l <= r):
+        # finding mid by binary right shifting
+        mid = (l + r) >> 1
+
+        # first case if mid is the answer
+        if((mid == 0 or arr[mid-1] <= arr[mid] and (mid ==n-1) or arr[mid + 1] <= arr[mid])):
+            break
+
+        # move the right pointer
+        if(mid > 0 and arr[mid -1] > arr[mid]):
+            r = mid -1
+        # move the left pointer
+        else:
+            l = mid + 1
+
+    return mid
+
+print("ITR Expected:, Actual:", find_peak_iterative([1, 3, 20, 4, 1, 0]))
+
 
 
 
@@ -89,7 +176,7 @@ def my_tests(arr):
                 res.append(arr[i])
 
         elif i == len(arr)-1:
-            if arr[i-1] <arr[i]:
+            if arr[i-1] < arr[i]:
                 res.append(arr[i])
         else:
             if arr[i-1] < arr[i] and arr[i+1] < arr[i]:
