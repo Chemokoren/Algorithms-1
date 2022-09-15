@@ -177,6 +177,52 @@ class LinkedList:
         start.next =Node(new_data)
         start.next.next =temp
 
+    # Given a singly linked list and a position, delete a linked list node at the given position.
+    def delete_given_pos(self, pos):
+        if self.head == None:
+            print("No Item to delete!")
+            return
+        if pos == 0:
+            self.head =self.head.next
+            return
+        start = self.head
+        count = 0
+        while count < pos-1:
+            start = start.next
+            count +=1
+        if pos > count:
+            print("index not available. deletion not possible!")
+            return 
+        prev =start
+        node_to_delete =start.next
+        prev.next =node_to_delete.next
+        node_to_delete =None
+
+    # given a reference to the head of a lsit and a position, delete the node at a given
+    # position
+    '''
+    Best Case : O(1) if given position is 1 
+    Average  & Worst Case : O(N)  if position given is size-1 then need to traverse till 
+    position not found.
+    Space Complexity : O(1) no extra any space is required
+    '''
+    def delete_node_at_given_position(self, position):
+        if self.head is None:
+            return 
+        index = 0
+        current = self.head
+        while current.next and index < position:
+            previous = current
+            current = current.next
+            index +=1
+
+        if index == 0:
+            self.head = self.head.next
+        else:
+            previous.next = current.next
+    
+ 
+
     def delete_from_beginning(self):
         if self.head == None:
             return "No item to delete"
@@ -203,9 +249,39 @@ class LinkedList:
         start.next= start.next.next
         # print("aaa", start.data)
 
+    # Time Complexity: O(n) | Auxiliary Space: O(1)
+    def delete_node(self, key):
+        # store head node
+        temp = self.head
+
+        # if head node itself holds the key to be deleted
+        if(temp is not None):
+            if(temp.data == key):
+                self.head = temp.next
+                temp =None
+                return
+        # search for the key to be deleted, keep track of the previous node as we need
+        # to change 'prev.next'
+        while(temp is not None):
+            if temp.data == key:
+                break
+            prev = temp
+            temp = temp.next
+
+        # if key was not present in linked list
+        if(temp == None):
+            return
+
+        # Unlink the node from linked list
+        prev.next = temp.next
+
+        temp = None
+
+
 
 if __name__=='__main__':
     ll = LinkedList()
+    ll.delete_given_pos(0)
     ll.push(1)
     ll.push(2)
     ll.push(3)
@@ -222,5 +298,10 @@ if __name__=='__main__':
     ll.delete_from_end()
     ll.print_list()
     ll.delete_from_middle(2)
+    ll.print_list()
+    # ll.delete_node(2)
+    # ll.delete_node(4)
+    # ll.delete_node(1)
+    ll.delete_given_pos(4)
     ll.print_list()
 

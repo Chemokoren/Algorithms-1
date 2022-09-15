@@ -1,11 +1,15 @@
 """
-The main point here is not to access the next of the current pointer if the current pointer is deleted
+The main point here is not to access the next of the current pointer if the current 
+pointer is deleted
 
-Garbage collection happens automatically in python thus deleting a linked list is easy - change head to null
+Garbage collection happens automatically in python thus deleting a linked list is easy
+- change head to null
 
+Time Complexity: O(n) 
+Auxiliary Space: O(1)
 """
 
-# program to delete all the nodes of SLL
+# program for deleting all the nodes of SLL
 
 class Node:
 	# Function to initialize the node object
@@ -49,8 +53,11 @@ class LinkedList:
 		self.head =new_node
 
 	def printList(self):
+		if self.head == None:
+			print("No item to print!")
+			return
 		temp =self.head
-		while(temp):
+		while(temp.next):
 			print(temp.data,end=",")
 			temp =temp.next
 
