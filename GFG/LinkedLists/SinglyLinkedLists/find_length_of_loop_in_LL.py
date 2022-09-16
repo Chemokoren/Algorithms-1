@@ -1,39 +1,64 @@
 """
+Find length of loop in linked list
+Write a function detectAndCountLoop() that checks whether a given Linked List contains
+loop and if loop is present then returns count of nodes in loop. For example, the loop
+is present in below linked list and length of loop is 4. if the loop is not present,
+then the function should return 0.
+
+1-->2-->3
+	^	|
+	|	V
+	5<--4
+
+Approach
+--------
+It is known that Floyd's Cycle detection algorithm terminates when fast and slow pointers
+meet at a common point. It is also known that this common point is one of the loop nodes.
+Store the address of this common point in a pointer variable say(ptr).
+Then initialize a counter with 1 and start from the common point and keeps on visiting
+the next node and increasing the counter till the common pointer is reached again.
+
+At that point, the value of the counter will be equal to the length of the loop.
+
 Algorithm
--find the common point in the loop using the Floyd's Cycle detecction algorithm
+-find the common point in the loop using the Floyd's Cycle detection algorithm
 -store the pointer in a temporary variable and keep a count = 0
--Traverse the LL until the same node is reached again and increase the count while moving to next node.
+-Traverse the LL until the same node is reached again and increase the count while moving
+to next node.
 -Print the count as length of loop
 
+    Time complexity: O(n). 
+    Only one traversal of the linked list is needed.
+    Auxiliary Space: O(1). 
+    As no extra space is required.
+
 """
+from generic_singly_linked_list import Node, generic_singly_linked_list
 
-# programm to find no. of nodes in a loop in LL if present
+class ChildNode(Node):
+	def __init__(self, data):
+		super().__init__(data)
 
-class Node:
-	def __init__(self,val):
-		self.val =val
-		self.next =None
 
 # LL defining & loop length finding class
-class LinkedList:
+class LinkedList(generic_singly_linked_list):
+	
 	# Function to initialize the head of the LL
 	def __init__(self):
-		self.head = None
+		super().__init__()
 
 	# insert new node at the end
 	def AddNode(self,val):
 		if self.head is None:
-			self.head = Node(val)
+			self.head = ChildNode(val)
 		else:
 			curr = self.head
 			while(curr.next):
 				curr =curr.next
-			curr.next =Node(val)
+			curr.next =ChildNode(val)
 
 	# Function to create a loop in the LL. This function creates a loop by connecting
-	# the last node to the n^th node of the LL
-	# (counting first node as 1)
-
+	# the last node to the n^th node of the LL (counting first node as 1)
 	def CreateLoop(self, n):
 		# LoopNode is the connecting node to the last node of LL
 		LoopNode =self.head
@@ -59,8 +84,7 @@ class LinkedList:
 		if self.head is None:
 			return 0
 
-		# Using Floyd's Cycle-Finding
-		# Algorithm / Slow-Fast Pointer Method
+		# Using Floyd's Cycle-Finding: Slow-Fast Pointer Method
 		slow =self.head
 		fast =self.head
 
