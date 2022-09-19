@@ -1,19 +1,15 @@
 """
 program to remove duplicate nodes from a sorted LL
 """
-class Node:
+from generic_singly_linked_list import generic_singly_linked_list, Node
+class Node(Node):
     def __init__(self, data):
-        self.data =data
-        self.next =None
+        super().__init__(data)
 
-class LinkedList:
-    def __init__(self):
-        self.head =None
-    # insert node at the beginning
-    def push(self,new_data):
-        new_node =Node(new_data)
-        new_node.next =self.head
-        self.head=new_node
+class LinkedList(generic_singly_linked_list):
+    def __init__(self) -> None:
+        super().__init__()
+
 
     # Given a reference to the head of a list and a key, delete the first
     # occurence of key in LL
@@ -42,13 +38,13 @@ class LinkedList:
         # unlink the node from LL
         prev.next = temp.next
         temp =None
-    def printList(self):
-        temp =self.head
-        while(temp):
-            print(temp.data, end=" ")
-            temp =temp.next
 
     # This function removes duplicates from a sorted list
+    '''
+    Time Complexity: O(n) where n is the number of nodes in the given linked list.
+
+    Auxiliary Space: O(n)
+    '''
     def removeDuplicates(self):
         temp =self.head
         if temp is None:
@@ -62,6 +58,44 @@ class LinkedList:
                 temp =temp.next
         return self.head
 
+    # Time Complexity: O(n) where n is the number of nodes in the given linked list.
+    # Auxiliary Space: O(1) 
+    def remove_duplicates_two(head): 
+        if(head == None and head.next == None):
+            return
+        current = head
+      
+        # Initialise a while loop till the second last node of the linkedlist 
+        while (current.next):
+            
+            # If the data of current and next node is equal we will skip the
+            # node between them
+            if current.data == current.next.data:
+                current.next = current.next.next
+                
+            # If the data of current and next node is different move
+            # the pointer to the next node
+            else:
+                current = current.next
+        
+        return
+
+    # Time Complexity: O(n)  where n is the number of nodes in the given linked list.
+    # Space Complexity: O(n) 
+    def remove_duplicates_three(self,head):
+        track = {}
+        temp = head
+        
+        while(temp != None):
+            if (not temp.data in track):
+                print(temp.data, end="-->")
+            
+            track[temp.data] = True
+            temp = temp.next
+
+        
+  
+
 llist = LinkedList()
 
 llist.push(20)
@@ -71,16 +105,17 @@ llist.push(11)
 llist.push(11)
 llist.push(11)
 print("Created Linked List: ")
-llist.printList()
-print()
-print("Linked List after removing",
-      "duplicate elements:")
-llist.removeDuplicates()
-llist.printList()
+llist.print_ll()
+print("bbb")
+print("Linked List after removing", "duplicate elements:")
+llist.remove_duplicates_three(llist.head)
+llist.print_ll()
 
 """
 
 """
+
+print("\n aaa \n")
 
 import math
 

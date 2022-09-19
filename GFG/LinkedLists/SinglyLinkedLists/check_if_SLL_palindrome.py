@@ -1,4 +1,20 @@
 
+"""
+Function to check if a singly linked list is palindrome
+
+Given a singly linked list of characters, write a function that returns true if the 
+given list is a palindrome, else false.
+
+R -> A -> D -> A -> R
+
+METHOD 1: Use a Stack
+A simple solution is to use a stack of list nodes. This mainly involves three steps:
+- Traverse the given list from head to tail and push every visited node to stack.
+- Traverse the list again. For every visited node, pop a node from the stack and compare
+data of popped node with currently visited node.
+- If all nodes matched, then return true, else false
+
+"""
 # program to check if SLL is palindrome using stack
 # Time complexity: O(n).
 class Node:
@@ -66,12 +82,15 @@ print("isPalindrome:", result)
 
 """
 Method 2: reversing the list
+
 This method takes O(n) time and O(1) space
+
 - get the middle of the LL
 - reverse the second half of the LL
 - check if the first half and second half are identical
 - construct the original LL by reversing the second half again 
     and attaching it back to the first half
+
 Time Complexity: O(n) 
 Auxiliary Space: O(1)  
 """
@@ -212,7 +231,7 @@ if __name__ == '__main__':
     Method 3 - Using Recursion
     
     use two pointers left and right. Move right and left using recursion 
-    and check for following in each recursive call
+    and check for the following in each recursive call
     - sub-list is palindrome
     - value at current left and right are matching
     
