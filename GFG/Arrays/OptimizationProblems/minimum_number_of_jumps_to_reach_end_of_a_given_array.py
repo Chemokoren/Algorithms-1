@@ -120,6 +120,14 @@ minimum number of jumps needed to reach arr[n-1] from arr[i].
 
 Finally, we return jumps[0]. 
 
+Complexity Analysis: 
+
+    Time complexity:O(n^2). 
+    Nested traversal of the array is needed.
+    Auxiliary Space:O(n). 
+    To store the DP array linear space is needed.
+    
+
 """
 
 # program to find Minimum number of jumps to reach end
@@ -168,4 +176,4 @@ def minJumpsThree(arr):
 
     return jumps[0]
 
-print("expected:, actual",minJumpsThree([1, 3, 6, 3, 2, 3, 6, 8, 9, 5]))
+print("expected:3, actual",minJumpsThree([1, 3, 6, 3, 2, 3, 6, 8, 9, 5]))

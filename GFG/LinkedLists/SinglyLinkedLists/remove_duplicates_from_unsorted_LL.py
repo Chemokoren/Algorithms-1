@@ -1,8 +1,20 @@
 """
+Remove duplicates from an unsorted linked list
+
+Write a removeDuplicates() function that takes a list and deletes any duplicate nodes
+from the list. The list is not sorted.
+
+For example if the linked list is 12->11->12->21->41->43->21 then removeDuplicates()
+should convert the list to 12->11->21->41->43
+
+
+
+
 METHOD 1 (Using two loops)
 This is the simple way where two loops are used. Outer loop is used to pick
 the elements one by one and inner loop compares the picked element with rest of the elements.
 """
+from generic_singly_linked_list import generic_singly_linked_list, Node
 
 # program to remove duplicates from unsorted LL : Time Complexity: O(n^2)
 class Node:
@@ -13,16 +25,16 @@ class Node:
 class LinkedList:
 
     # Function to remove duplicates from an unsorted linked list
-    def remove_duplicates(self):
+    def remove_duplicates(self, head):
         ptr1 = ptr2 = dup = None
         ptr1 = head
 
         # Pick elements one by one
-        while (ptr1 != null and ptr1.next != null):
+        while (ptr1 != None and ptr1.next != None):
             ptr2 = ptr1
 
             # Compare the picked element with rest of the elements
-            while (ptr2.next != null):
+            while (ptr2.next != None):
 
                 # If duplicate then delete it
                 if (ptr1.data == ptr2.next.data):
@@ -33,10 +45,10 @@ class LinkedList:
         else:  # This is tricky
             ptr2 = ptr2.next
 
-    ptr1 = ptr1.next
+        ptr1 = ptr1.next
 
     def printList(self,node):
-        while (node != null):
+        while (node != None):
             print(node.data + " ")
             node = node.next
 
@@ -50,13 +62,13 @@ if __name__=='__main__':
     list.head.next.next.next.next.next = Node(11)
     list.head.next.next.next.next.next.next = Node(10)
 
-    print("Linked List before removing duplicates : \n ")
-    list.printList(head)
+    # print("Linked List before removing duplicates : \n ")
+    # list.printList(list.head)
 
-    list.remove_duplicates()
-    println("")
-    println("Linked List after removing duplicates : \n ")
-    list.printList(head)
+    # list.remove_duplicates()
+    # print("")
+    # print("Linked List after removing duplicates : \n ")
+    # list.printList(list.head)
 
 
 """
@@ -153,3 +165,36 @@ if __name__ == "__main__":
     llist.removeDuplicates(llist.head)
     print("\nLinked List after removing duplicates.")
     llist.printlist()
+
+    
+
+print("\n my tests \n")
+class my_tests(generic_singly_linked_list):
+    def __init__(self) -> None:
+        super().__init__()
+
+    def remove_duplicates(self, head):
+        current = head
+        dic ={}
+
+        while (current):
+            if current.data in dic:
+                current =current.next
+            else:
+                print(current.data, end="-->")
+                dic[current.data]=True
+
+    
+
+llist = my_tests()
+llist.push(21)
+llist.push(43)
+llist.push(41)
+llist.push(21)
+llist.push(12)
+llist.push(11)
+llist.push(12)
+llist.print_ll()
+llist.remove_duplicates(llist.head)
+
+# 12->11->21->41->43

@@ -2,34 +2,36 @@
 
 sort a linked list using quick sort
 
+The important things about implementation are, that it changes pointers rather than 
+swapping data.
+
+Follow the given steps to solve the problem:
+
+- Call partition function to get a pivot node placed at its correct position
+    - In the partition function, the last element is considered a pivot
+    - Then traverse the current list and if a node has a value greater than the pivot,then
+        move it after the tail. If the node has a smaller value, then keep it at its
+        current position.
+    - return pivot node
+
+- Find the tail node of the list which is on the left side of the pivot and recur for 
+    the left list
+- Similarly, after the left side, recur for the list on the right side of the pivot
+- Now return the head of the linked list after joining the left and right list, as the 
+whole linked list is now sorted
+
+
+Time Complexity: O(N * log N), It takes O(N2) time in the worst case and O(N log N) in 
+the average or best case.
+Auxiliary Space: O(N), As extra space is used in the recursion call stack.
+
 '''
+from generic_singly_linked_list import generic_singly_linked_list
 
-class Node:
-    def __init__(self,val):
-        self.data = val
-        self.next = None
 
-class QuickSortLinkedList:
-
-    def __init__(self):
-        self.head=None
-
-    def addNode(self,data):
-        if (self.head == None):
-            self.head = Node(data)
-            return
-
-        curr = self.head
-        while (curr.next != None):
-            curr = curr.next
-
-        newNode = Node(data)
-        curr.next = newNode
-
-    def printList(self,n):
-        while (n != None):
-            print(n.data, end=" ")
-            n = n.next
+class QuickSortLinkedList(generic_singly_linked_list):
+    def __init__(self) -> None:
+        super().__init__()
 
 
     ''' takes first and last node,but do not break any links in	the whole linked list'''
@@ -41,7 +43,10 @@ class QuickSortLinkedList:
         curr = start
         pivot = end.data
 
-        '''iterate till one before the end, no need to iterate till the end because end is pivot'''
+        '''
+        iterate till one before the end, no need to iterate till the end because end is
+        pivot
+        '''
 
         while (start != end):
             if (start.data < pivot):
@@ -84,11 +89,11 @@ class QuickSortLinkedList:
 
 if __name__ == "__main__":
     ll = QuickSortLinkedList()
-    ll.addNode(30)
-    ll.addNode(3)
-    ll.addNode(4)
-    ll.addNode(20)
-    ll.addNode(5)
+    ll.insert_end(30)
+    ll.insert_end(3)
+    ll.insert_end(4)
+    ll.insert_end(20)
+    ll.insert_end(5)
 
     # n is the value of the pivot, which is the last value
     n = ll.head
@@ -96,10 +101,10 @@ if __name__ == "__main__":
         n = n.next
 
     print("\nLinked List before sorting")
-    ll.printList(ll.head)
+    ll.print_given_LL_head(ll.head)
 
     ll.sort(ll.head, n)
 
     print("\nLinked List after sorting");
-    ll.printList(ll.head)
+    ll.print_given_LL_head(ll.head)
 

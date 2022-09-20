@@ -156,6 +156,7 @@ we print the element.
 Time Complexity: O(n2) 
 
 Space Complexity: O(n)
+
 """
 # code to find distinct elements common to all rows of a matrix
 def distinct(matrix):

@@ -1,8 +1,8 @@
 """
 Regular Expression Matching - Top-Down Memoization Dynamic Programming
 
-Given an input string (s) and a pattern (p), implement regular expression matching with support for
-'.' and '*' where:
+Given an input string (s) and a pattern (p), implement regular expression matching with 
+support for '.' and '*' where:
 
 '.' Matches any single character.
 '*' Matches zero or more of the preceding element.

@@ -23,15 +23,11 @@ Output : 4
 A simple solution is to consider all subarrays and find their products. For every product, check 
 if it is equal to k. If yes, then increment result.
 
-An efficient solution is 
+An efficient solution is  to use sliding window technique can be used to solve the problem. We 
+use two pointers start and end to represent starting and ending point of sliding window.
+
+Initially both start and 
 """
-
-
-
-
-
-
-
 
 def arr_prod(arr):
     prod =1

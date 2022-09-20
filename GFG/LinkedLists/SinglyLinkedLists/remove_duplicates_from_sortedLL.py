@@ -60,7 +60,7 @@ class LinkedList(generic_singly_linked_list):
 
     # Time Complexity: O(n) where n is the number of nodes in the given linked list.
     # Auxiliary Space: O(1) 
-    def remove_duplicates_two(head): 
+    def remove_duplicates_two(self,head): 
         if(head == None and head.next == None):
             return
         current = head
@@ -83,14 +83,14 @@ class LinkedList(generic_singly_linked_list):
     # Time Complexity: O(n)  where n is the number of nodes in the given linked list.
     # Space Complexity: O(n) 
     def remove_duplicates_three(self,head):
-        track = {}
+        dic = {}
         temp = head
         
         while(temp != None):
-            if (not temp.data in track):
+            if (not temp.data in dic):
                 print(temp.data, end="-->")
             
-            track[temp.data] = True
+            dic[temp.data] = True
             temp = temp.next
 
         
@@ -109,7 +109,6 @@ llist.print_ll()
 print("bbb")
 print("Linked List after removing", "duplicate elements:")
 llist.remove_duplicates_three(llist.head)
-llist.print_ll()
 
 """
 

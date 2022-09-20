@@ -169,6 +169,9 @@ print_matrix(arr)
 Method 3: Position swapping
 - Here, we swap the values in the respective positions
 
+Time complexity : O(R*C) 
+Auxiliary Space : O(1), since no extra space has been taken.
+
 """
 # Reverse row at specified index in the matrix
 def reverse_row(data, index):

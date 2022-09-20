@@ -145,11 +145,47 @@ print("Five Expected:8, Actual:",find_repeating_five([9, 8, 2, 6, 1, 8, 5, 3, 4,
 """
 Method 7 : ( Linked-list cycle Method )
 
-Use two pointers the fast and the slow. The fast one goes forward two steps each time, while the slow one goes only step each time. They must meet the same item when slow==fast. In fact, they meet in a circle, the duplicate number must be the entry point of the circle when visiting the array from array[0]. Next we just need to find the entry point. We use a point(we can use the fast one before) to visit form beginning with one step each time, do the same job to slow. When fast==slow, they meet at the entry point of the circle. The easy understood code is as follows.
+Use two pointers the fast and the slow. The fast one goes forward two steps each time, while the 
+slow one goes only step each time. They must meet the same item when slow==fast. In fact, they
+meet in a circle, the duplicate number must be the entry point of the circle when visiting the 
+array from array[0]. Next we just need to find the entry point. We use a point(we can use the
+fast one before) to visit form beginning with one step each time, do the same job to slow.
+ When fast==slow, they meet at the entry point of the circle. The easy understood code is as
+  follows.
 
 
+#include <bits/stdc++.h>
+using namespace std;
+
+int findDuplicate(vector<int>& nums)
+{
+	int slow = nums[0];
+	int fast = nums[0];
+
+	do{
+	slow = nums[slow];
+	fast = nums[nums[fast]];
+	}while(slow!=fast);
+
+	fast = nums[0];
+	while(slow!=fast){
+		slow = nums[slow];
+		fast = nums[fast];
+	}
+
+	return slow;
+}
+int main()
+{
+	vector<int> v{ 9, 8, 2, 6, 1, 8, 5, 3, 4, 7 };
+	int ans = findDuplicate(v);
+	cout << ans << endl;
+	return 0;
+}
 
 """
+
+
 
 
 '''
