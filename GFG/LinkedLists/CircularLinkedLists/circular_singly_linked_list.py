@@ -1,3 +1,9 @@
+
+"""
+
+Circular Singly Linked List Insertion
+
+"""
 class Node:
     def __init__(self,data):
         self.data =data
@@ -18,15 +24,30 @@ class CircularLinkedList:
         # creating the link
         self.last.next =self.last
         return self.last
+
+    '''
+    Create a node, say T
+    Make T -> next = last -> next
+    last -> next = T
+    '''
+    # Time complexity: O(1)  |Auxiliary Space: O(1)
     def addBegin(self, data):
         if(self.last == None):
             return self.addToEmpty(data)
+
         temp =Node(data)
         temp.next =self.last.next
         self.last.next =temp
 
         return self.last
 
+    '''
+    Create a node, say T
+    Make T -> next = last -> next
+    last -> next = T
+    last = T
+    '''
+    # Time complexity: O(1)  |Auxiliary Space: O(1)
     def addEnd(self, data):
         if(self.last == None):
             return self.addToEmpty(data)
@@ -38,6 +59,14 @@ class CircularLinkedList:
 
         return self.last
 
+
+    '''
+    Create a node, say T. 
+    Search for the node after which T needs to be inserted, say that node is P. 
+    Make T -> next = P -> next; 
+    P -> next = T.
+    '''
+    # Time Complexity: O(N) | Auxiliary Space: O(1)
     def addAfter(self, data, item):
         if(self.last == None):
             return None
@@ -60,6 +89,8 @@ class CircularLinkedList:
             if (p == self.last.next):
                 print(item, "not present in the list")
                 break
+
+            
     def traverse(self):
         if(self.last == None):
             print("List is empty")

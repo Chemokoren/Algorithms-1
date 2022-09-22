@@ -74,8 +74,4 @@ if __name__=='__main__':
 
     head =bTreeToCList(root)
     displayCList(head)
-
     # expected: 25 12 30 10 36 15
-
-
-
