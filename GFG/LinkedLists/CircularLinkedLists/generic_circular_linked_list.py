@@ -26,6 +26,24 @@ class Circular_Linked_list:
             new_node.next =new_node # for the first node
         self.head =new_node
 
+    # Function to insert a node at the beginning of a Circular Linked List
+    def push_beginning(self, head_ref, data):
+        new_node =Node(0)
+        temp = head_ref
+        new_node.data =data
+        new_node.next =head_ref
+
+        # if the  linked list is not None then set the next of last node
+        if(head_ref != None):
+            while(temp.next !=head_ref):
+                temp =temp.next
+            temp.next =new_node
+        else:
+            new_node.next =new_node # For the first node
+
+        head_ref =new_node
+        return head_ref
+
     def push_recursive(self, data, temp=None):
         if self.head == None:
             new_node = Node(data)

@@ -64,42 +64,47 @@ def printList(head):
 
     print()
 
-# function to delete a given node from the list
-def deleteNode(head, key):
-    # if linked list is empty
+# Function to delete a given node from the list 
+def deleteNode( head, key) :
+  
+    # If linked list is empty
     if (head == None):
         return
-
-    # if the list contains only a single node
-    if(head.data ==key and head.next == head):
-        head =None
-
-    last =head =None
-    d =None
-    # if head is to be deleted
-    if(head.data == key):
-
-        # FInd the last node of the list
-
-        while(last.next !=head):
-            last =last.next
-        # point last node to the next of head i.e the second node of the list
-        last.next =head.next
-        head =last.next
-
-    # Either the node to be deleted is not found or the end of list is not reached
-    while(last.next != head and last.next.data != key):
-        last =last.next
-
-    # if node to be deleted was found
-    if (last.next.data == key):
+          
+    # If the list contains only a single node
+    if((head).data == key and (head).next == head):
+      
+        head = None
+      
+    last = head
+    d = None
+      
+    # If head is to be deleted
+    if((head).data == key) :
+          
+        # Find the last node of the list
+        while(last.next != head):
+            last = last.next
+              
+        # Point last node to the next of head i.e. 
+        # the second node of the list
+        last.next = (head).next
+        head = last.next
+      
+    # Either the node to be deleted is not found 
+    # or the end of list is not reached
+    while(last.next != head and last.next.data != key) :
+        last = last.next
+  
+    # If node to be deleted was found
+    if(last.next.data == key) :
         d = last.next
         last.next = d.next
+      
     else:
-        print("no such key b")
-
+        print("no such keyfound")
+      
     return head
-
 
 # Initialize lists as empty
 head = None
