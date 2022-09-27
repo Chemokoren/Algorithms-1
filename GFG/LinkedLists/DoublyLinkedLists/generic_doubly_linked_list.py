@@ -33,3 +33,5 @@ class generic_doubly_linked_list:
         while(node is not None):
             print(node.data),
             node = node.next
+
+

@@ -1,5 +1,6 @@
 """
-python program to clone a linked list with next and arbitrary pointers
+program to clone a linked list with next and arbitrary pointers
+
 Done in O(n) time with O(1) extra space
 """
 
@@ -10,10 +11,14 @@ class Node:
         self.random =None
 
 def clone(original_root):
-    """Clone a doubly linked list with random pointer"""
-    ''' with O(1) extra space '''
-    ''' Insert additional node after every node of orignal list'''
+    """
+    Clone a doubly linked list with random pointer
+    
+    with O(1) extra space
 
+    Insert additional node after every node of original list
+    
+    """
     curr =original_root
     while curr !=None:
         curr.next.random = curr.random.next
@@ -28,13 +33,14 @@ def clone(original_root):
             curr =tmp
         return dup_root
 
+''' Function to print the doubly linked list'''
 def print_dlist(root):
-    ''' Function to print the doubly linked list'''
     curr = root
     while curr != None:
         print('Data =', curr.data, ', Random=', curr.random.data)
         curr =curr.next
-# Driver code for the program
+
+
 ''' Create a doubly linked list'''
 original_list =Node(1)
 original_list.next =Node(2)

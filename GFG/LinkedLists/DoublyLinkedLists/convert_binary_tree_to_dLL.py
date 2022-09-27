@@ -5,17 +5,18 @@ class Node:
         self.left =self.right =None
 
 class BinaryTree:
-    """
-    A simple recursive function to convert a given Binary Tree to DLL
+    ''' 
+    recursive function to convert a given Binary Tree to DLL
     root --> Root of Binary Tree
     head --> Pointer to head node of DLL created
-    """
+    '''
 
     root, head =None, None
 
     def BToDll(self, root: Node):
         if root is None:
             return
+
         # recursively convert right subtree
         self.BToDll(root.right)
 
@@ -40,17 +41,17 @@ class BinaryTree:
             head =head.right
 
 
-# Driver program to test above function
+
 if __name__ == '__main__':
     """
     Constructing below tree
-            5
+          5
         // \\
-        3 6
-        // \\ \\
-        1 4 8
-    // \\ // \\
-    0 2 7 9
+        3    6
+      // \\  \\
+     1    4    8
+    // \\    // \\
+    0   2    7   9
     """
     tree = BinaryTree()
     tree.root = Node(5)

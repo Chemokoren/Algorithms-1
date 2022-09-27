@@ -3,18 +3,20 @@ function to reverse a doubly-linked list
 swap next and prev pointers for all the nodes
 change prev of the head node
 change head pointer
-"""
-class Node:
-    def __init__(self,data):
-        self.data = data
-        self.next = None
-        self.prev = None
 
-class DoublyLinkedList:
+"""
+from generic_doubly_linked_list import generic_doubly_linked_list
+
+
+
+class DoublyLinkedList(generic_doubly_linked_list):
+
     def __init__(self):
-        self.head = None
+        super().__init__()
 
     # method to reverse a doubly-linked list
+    # Time Complexity: O(N), where N denotes the number of nodes in the doubly linked list.
+    # Auxiliary Space: O(1)
     def reverse(self):
         temp = None
         current = self.head
@@ -26,45 +28,30 @@ class DoublyLinkedList:
             current.next =temp
             current = current.prev
 
-        # check for cases like an empty list and the list with only one node before changing the head
+        # check for cases like an empty list and the list with only one node before 
+        # changing the head
         if temp is not None:
             self.head =temp.prev
 
-     # method to reverse a Doubly-Linked List using Stacks
+    # method to reverse a Doubly-Linked List using Stacks
+    # Time Complexity: O(N) | Auxiliary Space: O(N)
     def reverseUsingStacks(self):
 
         stack =[]
         temp = self.head
+        # add all the elements in the stack in a sequence to the stack
         while temp is not None:
             stack.append(temp.data)
             temp = temp.next
 
-        # add all the elements in the stack in a sequence to the stack
-        temp = self.head
-        while temp is not None:
-            temp.data = stack.pop()
-            temp = temp.next
+        new_node = self.head
         # popped all the elements and the added in the linked list, in a reversed order.
+        while new_node is not None:
+            new_node.data = stack.pop()
+            new_node = new_node.next
+        
 
 
-
-    def push(self,new_data):
-        new_node = Node(new_data)
-        new_node.next =self.head
-
-
-        if self.head is not None:
-            self.head.prev =new_node
-
-        self.head = new_node
-
-    def printList(self, node):
-        while(node is not None):
-            print(node.data)
-            node =node. next
-
-
-# driver program
 dll = DoublyLinkedList()
 dll.push(2)
 dll.push(4)
