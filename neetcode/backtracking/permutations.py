@@ -41,13 +41,24 @@ Actual algorithm used in the solution
 """
 
 class Solution:
+    """Implementation of permutation."""
 
     def permute(self, nums: List[int]) ->List[List[int]]:
+        """
+        Takes array of distinct integers and returns all possible permutations.
+        
+            Parameters:
+                nums(List[int]): array of distinct integers
+                
+            Returns:
+                result(List[List[int]]): all possible permutations
+            
+        """
         result =[]
 
         # base case
         if(len(nums) == 1):
-            return [nums[:]] # the latter is faster than nums.copy()
+            return [nums[:]] # this is faster than nums.copy()
 
         for i in range(len(nums)):
             n = nums.pop(0)
@@ -59,6 +70,7 @@ class Solution:
             nums.append(n)
 
         return result
+
 
 nums =[1,2,3]
 sol = Solution()
