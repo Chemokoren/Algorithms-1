@@ -16,7 +16,7 @@ i       h       k       r
 i       f       l       v
 
 Input: board =[["o","a","a","n"],["e","t","a","e"],["i","h","k","r"],["i","f","l","v"]],
-words =["oath","eat","rain"]
+words = ["oath","eat","rain"]
 Output: ["eat","oath"]
 
 1dfs =4^mn (where mn are the dimensions of the board)
@@ -50,7 +50,8 @@ class Solution:
         res, visit =set(), set()
 
         def dfs(r, c, node, word):
-            if(r < 0 or c < 0 or r ==ROWS or c == COLS or board[r][c] not in node.children or(r,c) in visit):
+            if(r < 0 or c < 0 or r ==ROWS or c == COLS or board[r][c] not in node.children 
+               or (r,c) in visit):
                 return
             visit.add((r, c))
             node = node.children[board[r][c]]
@@ -62,6 +63,7 @@ class Solution:
             dfs(r - 1, c , node, word)
             dfs(r , c + 1, node, word)
             dfs(r , c - 1, node, word)
+            visit.remove((r,c))
 
         for r in range(ROWS):
             for c in range(COLS):

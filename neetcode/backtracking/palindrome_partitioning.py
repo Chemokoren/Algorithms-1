@@ -23,8 +23,18 @@ Output: [["a"]]
                  [b]    
 """
 class Solution:
+    """palindrome partitioning implementation"""
 
     def partition(self, s:str)->List[List[str]]:
+        """ 
+        Return all possible palindrome partitioning  of s
+        
+            Parameters:
+                s(str): string to be partitioned
+            
+            Returns:
+                res(List[List[str]]) : List of lists containing strings 
+        """
         res =   []
         part =  []
 
@@ -37,17 +47,17 @@ class Solution:
                     part.append(s[i:j+1])
                     dfs(j + 1)
                     part.pop()
+                    
 
         dfs(0)
         return res
 
     def isPali(self, s, l, r):
         while l < r:
-            if s[l] !=s[r]:
+            if s[l] != s[r]:
                 return False
-            if s[l] ==s[r]:
-                l += 1
-                r -= 1
+            l += 1
+            r -= 1
         return True
         
 s ="aab"
@@ -55,6 +65,8 @@ sol = Solution()
 print(sol.partition(s))
 
 
+
+print("\n my tests \n")
 '''
 my tests
 '''

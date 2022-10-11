@@ -15,7 +15,7 @@ Another example, the string s="001" can be split into ["0","01"], ["00","1"] or 
 However, all the ways are invalid because they have numerical values [0,1], [0,1] and
 [0,0,1] respectively, all of which are not in descending order.
 
-Return true if it is possible to split  s as described abov, or false otherwise.
+Return true if it is possible to split  s as described above, or false otherwise.
 
 A substring is a contiguous sequence of characters in a string.
 
@@ -26,11 +26,20 @@ class Solution:
     def splitString(self, s:str)->bool:
 
         def dfs(index, prev):
+            """
+            depth first search
+            
+                Parameters:
+                    index(int): the index that we are starting at
+                    prev(int):  previous value so that we can make sure it is in descending 
+                                order by 1
+            """
             if index == len(s):
                 return True
             for j in range(index, len(s)):
                 val =int(s[index:j+1])
-                if val + 1 == prev and dfs(j + 1, val): #  if part 1 of and is true then execute the second part
+                #  if part 1 of this is true then execute the second part(after and)
+                if val + 1 == prev and dfs(j + 1, val):
                     return True
             return False
 

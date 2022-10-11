@@ -28,9 +28,18 @@ in 23, 2: abc, 3:def
 """
 from typing import List
 class Solution:
+    """Letter combinations of a phone number implementation"""
 
     # O(n*4^n) -worst case time complexity where n is length of input string
     def letterCombinations(self, digits: str)->List[str]:
+        """
+        Letter combinations.
+            Parameters:
+                digits(str): string containing the input string
+            Returns:
+                res(List[str]): resultant letter combinations
+        
+        """
 
         res =[]
         digitToChar = {
@@ -43,13 +52,17 @@ class Solution:
             "8": "tuv",
             "9": "wxyz"
         }
-
-        def dfs(i, curStr): # curStr that we are building
+        
+        # i - what index we are at in the digits string
+        # curStr that we are building
+        def dfs(i, curStr): 
             if(len(curStr) == len(digits)):
                 res.append(curStr)
                 return
             for c in digitToChar[digits[i]]:
                 dfs(i + 1, curStr + c)
+        
+        # put this condition coz the expected result is [] if digits is ""
         if digits:
             dfs(0, "")
         return res
