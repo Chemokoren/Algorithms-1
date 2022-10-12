@@ -54,5 +54,5 @@ class Solution:
 
 my_array =[-10, -3, 0, 5, 9]
 sol =Solution()
-print(sol.sorted_array_to_bst(my_array))
+print(sol.sorted_array_to_bst(my_array).val)
 

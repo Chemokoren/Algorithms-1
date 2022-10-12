@@ -37,8 +37,9 @@ from typing import List
 class Solution:
     
     def isValidSudoku(self, board: List[List[str]])->bool:
-        cols = collections.defaultdict(set)
-        rows = collections.defaultdict(set)
+        
+        cols    = collections.defaultdict(set)
+        rows    = collections.defaultdict(set)
         squares = collections.defaultdict(set) # key =(r/3, c/3)
         
         for r in range(9):
@@ -51,7 +52,7 @@ class Solution:
                     return False
                 cols[c].add(board[r][c])
                 rows[r].add(board[r][c])
-                squares[(r//3, c//3)].add(board[c][c])
+                squares[(r//3, c//3)].add(board[r][c])
         return True
         
 # board =[["5"   "3"   "."   "."   "7"   "."   "."   "."   "."],
@@ -73,5 +74,6 @@ board =[["5"   "3"   "."   "."   "7"   "."   "."   "."   "."],
         ["."   "6"   "."   "."   "."   "."   "2"   "8"   "."],
         ["."   "."   "."   "4"   "1"   "9"   "."   "."   "5"],
         ["."   "."   "."   "."   "8"   "."   "."   "7"   "9"]]
+
 sol =Solution()
 print(sol.isValidSudoku(board))

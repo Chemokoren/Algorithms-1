@@ -39,7 +39,9 @@ class Solution:
 
         res =[]
 
-        def backtrack(cur, pos, target):# cur is the current combination, pos is the index in the array, each time we add a candidate we decrease the target
+        # cur is the current combination, pos is the index in the array, 
+        # each time we add a candidate we decrease the target
+        def backtrack(cur, pos, target):
             if target == 0:
                 res.append(cur.copy())
             if target <= 0:

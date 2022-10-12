@@ -17,7 +17,6 @@ Example 1:
 Input: root =[3,1,4,3,null, 1, 5]
 Output: 4
 
-Explanation: Nodes in blue are good .
 Root Node(3) is always a good node .
 Node 4 -> (3,4) is the maximum value in the path starting from the root.
 

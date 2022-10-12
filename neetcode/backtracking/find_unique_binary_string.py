@@ -32,7 +32,9 @@ class Solution:
 
         strSet = {s for s in nums}
 
-        def backtrack(i, cur):# i - position we are at in the string we are generating, cur- whatever the current string happens to be so far
+        # i - position we are at in the string we are generating, 
+        # cur- whatever the current string happens to be so far
+        def backtrack(i, cur):
             if i == len(nums):
                 res ="".join(cur)
                 return None if res in strSet else res
@@ -46,7 +48,23 @@ class Solution:
 
         return backtrack(0,["0" for s in nums]) # 0 -starting index
 
-nums =["111", "011", "001"]
+# nums =["111", "011", "001"]
 nums =["00","01"]
 sol = Solution()
 print(sol.findDifferentBinaryString(nums))
+
+def test(nums):
+    strSet={s for s in nums}
+    n=len(nums)
+    def dfs(curr):
+        if len(curr)==n:
+            res =curr
+            return None if curr in strSet else res
+        
+        for c in ["0","1"]:
+            res=dfs(curr+c)
+            if res:return res
+                
+    return (dfs(""))
+
+print("test::", test(["00","01"]))
