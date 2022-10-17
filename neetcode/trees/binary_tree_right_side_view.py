@@ -20,9 +20,9 @@ BFS (level order traversal)
 # Definition for a binary tree node .
 class TreeNode:
     def __init__(self, val=0, left=None, right=None) -> None:
-        self.val =val
-        self.left = left
-        self.right = right
+        self.val    = val
+        self.left   = left
+        self.right  = right
 
     def insert(self,data):
         if self.val:
@@ -60,12 +60,10 @@ class Solution:
 
 input_val= [1,2,3,None,5,None,4]
 tree = TreeNode(1) 
-tree.insert(2)
-tree.insert(3)
-tree.insert()
-tree.insert(5)
-tree.insert()
-tree.insert(4)
+tree.left=TreeNode(2)
+tree.right=TreeNode(3)
+tree.left.right=TreeNode(5)
+tree.right.right=TreeNode(4)
 
 
 sol = Solution()
