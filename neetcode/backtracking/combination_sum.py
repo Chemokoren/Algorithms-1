@@ -1,7 +1,7 @@
 """
 Combination Sum
 
-Given an array of distinct integers candidates and a target integer target, return a list of
+Given an array of distinct integer candidates and a target integer, return a list of
 all unique combinations of candidates where the chosen numbers sum to target.
 You may return the combinations in any order.
 
@@ -54,8 +54,6 @@ class Solution:
         dfs(0, [], 0)
         return res
 
-candidates, target =[2,3,6,7],7
-
 sol = Solution()
-print(sol.combinationSum(candidates,target))
+print(sol.combinationSum([2,3,6,7],7))
 

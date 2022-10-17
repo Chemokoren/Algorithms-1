@@ -5,8 +5,8 @@ Balanced Binary Tree
 Given a binary tree, determine if it is height-balanced.
 
 For this problem, a height-balanced binary tree is defined as:
- a binary tree in which the left and right subtrees of every node differ in 
- height by no more than 1.
+a binary tree in which the left and right subtrees of every node differ in 
+height by no more than 1.
 
  Example 1:
                     3
@@ -26,9 +26,9 @@ class _Node:
 class queue:
     """linked queue implementation"""
     def __init__(self) -> None:
-        self.head=None
-        self.tail=None
-        self._size =0
+        self.head   = None
+        self.tail   = None
+        self._size  = 0
         
     def is_empty(self):
         """check if queue is empty"""
@@ -36,11 +36,11 @@ class queue:
         
     def enqueue(self,e):
         """enqueue an item in array queue"""
-        new_node =_Node(e)
+        new_node =  _Node(e)
         if self.is_empty():
-            self.head =new_node
-            self.tail=new_node
-        self.tail.next =new_node
+            self.head   = new_node
+            self.tail   = new_node
+        self.tail.next  = new_node
         self._size +=1
         
         
@@ -60,9 +60,9 @@ class queue:
 class TreeNode:
     """TreeNode class Structure"""
     def __init__(self, val=0, left =None, right=None):
-        self.val = val
-        self.left =left
-        self.right = right
+        self.val    = val
+        self.left   = left
+        self.right  = right
         
     def levelorder(self,troot):
         """levelorder traversal"""

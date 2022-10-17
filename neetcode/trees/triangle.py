@@ -18,6 +18,15 @@ Time complexity =O(n^2) where is the number of elements we have
 
 class solution:
     def minimumTotal(self, triangle: List[List[int]])->int:
+        """
+        Return minimum path sum from top to bottom for a given triangle.
+        
+            Parameters:
+                triangle(List[List[int]]): triangle array
+            Returns:
+                int:  minimum path sum from top to bottom
+        
+        """
         dp =[0] * (len(triangle)+ 1)
 
         for row in triangle[::-1]: # start from the last row

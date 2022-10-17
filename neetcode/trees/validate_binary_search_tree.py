@@ -25,9 +25,10 @@ sol: Recursive DFS O(2.n) =O(n)
 class TreeNode:
     """TreeNode class Structure """
     def __init__(self, val=0, left=None, right=None) -> None:
-        self.val = val
-        self.left = left
-        self.right = right
+        self.val    = val
+        self.left   = left
+        self.right  = right
+        
 class Solution:
     def isValidBST(self, root: TreeNode)->bool:
         """
