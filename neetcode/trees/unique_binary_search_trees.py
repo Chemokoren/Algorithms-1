@@ -43,4 +43,4 @@ class Solution:
         return numTree[n]
         
 sol = Solution()
-print("Unique BST:", sol.numTrees(2))
+print("Unique BST:", sol.numTrees(3))

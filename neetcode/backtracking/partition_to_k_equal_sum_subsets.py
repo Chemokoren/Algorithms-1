@@ -19,7 +19,8 @@ Output: false
 
 sols
 1) O(k^n) time complexity where n is the size of the nums array
-2) O(k*2^n) time complexity (one of the trees is 2^n and we have to do that for k number of trees) - solution below
+2) O(k*2^n) time complexity (one of the trees is 2^n and we have to do that for k number
+of trees) - solution below
 """
 
 class Solution:
@@ -31,7 +32,8 @@ class Solution:
         target = sum(nums) / k
         used =[False] * len(nums)
 
-        def backtrack(i, k, subsetSum): # i -index we are in nums, k - how many k partitions are left that we need to build
+        # i -index we are in nums, k - how many k partitions are left that we need to build
+        def backtrack(i, k, subsetSum): 
             if k == 0:
                 return True
             if subsetSum == target:
@@ -40,6 +42,7 @@ class Solution:
             for j in range(i, len(nums)):
                 if used[j] or subsetSum + nums[j] > target:
                     continue
+                
                 used[j] = True
                 if backtrack(j+1, k, subsetSum + nums[j]):
                     return True
@@ -47,7 +50,6 @@ class Solution:
             return False
         return backtrack(0, k, 0)
 
-nums, k =[4,3,2,3,5,2,1], 4
-# nums, k =[1,2,3,4],3
 sol = Solution()
-print(sol.canPartitionKSubsets(nums, k))
+print("expected::True, Actual:", sol.canPartitionKSubsets([4,3,2,3,5,2,1], 4))
+print("expected::False, Actual:", sol.canPartitionKSubsets([1,2,3,4], 3))

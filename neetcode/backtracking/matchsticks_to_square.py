@@ -10,8 +10,8 @@ matchstick. You want to use all the matchsticks to make one square. You should n
 
  Input: matchsticks =[1,1,2,2,2]
  Output: true
- Explanation: You can form a square with length 2, one side of the square came two sticks with
- length 1.
+ Explanation: You can form a square with length 2, one side of the square has two sticks
+ each of length 1.
 
  Time complexity O(4^n) because we are making 4 decisions every time and the height of the
  decision tree is n.
@@ -20,6 +20,13 @@ matchstick. You want to use all the matchsticks to make one square. You should n
 
 class Solution:
     def makeSquare(self, matchsticks: List[int])-> bool:
+        """
+        Program to use matchsticks to form a square.
+        Parameters:
+            matchsticks(List[int]): 
+        Returns:
+            res(bool): Return True if possible else False
+        """
         length = sum(matchsticks) // 4
         sides =[0] * 4
 
@@ -40,7 +47,6 @@ class Solution:
             return False
         return backtrack(0)
 
-matchsticks =[1,1,2,2,2]
 sol = Solution()
-print(sol.makeSquare(matchsticks))
+print(sol.makeSquare([1,1,2,2,2]))
 
