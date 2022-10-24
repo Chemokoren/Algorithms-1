@@ -12,6 +12,7 @@ element in the tree.
 Input: root =[3,1,4,null,2], k=1
 Output: 1
 """
+
 # Definition for a binary tree node.
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
@@ -70,6 +71,36 @@ tree.insert(14)
 # for x in keys:
 #     tree.insert(x)
 
-tree.traverse(tree.val)
-# sol = Solution()
-# print(sol.kthSmallest(tree, k))
+# tree.traverse(tree.val)
+sol = Solution()
+print("Expected:, Actual::", sol.kthSmallest(tree, k))
+
+
+class IterativeSolution:
+    
+    def kthSmallest(self, root, k):
+        n = 0
+        stack =[]
+        cur = root
+        
+        while cur and stack:
+            while cur:
+                stack.append(cur)
+                cur = cur.left
+            cur = stack.pop()
+            n += 1
+            if n == k:
+                print("aa::", cur.val)
+                return cur.val
+            cur = cur.right
+
+
+tr = TreeNode(3)
+tr.left =TreeNode(1)
+tr.right =TreeNode(4)
+tr.left.right =TreeNode(2)
+
+
+isv = IterativeSolution()
+	
+print("AAAA::, Actual::", isv.kthSmallest(tr.val,1))

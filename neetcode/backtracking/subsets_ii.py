@@ -42,6 +42,6 @@ class Solution:
         backtrack(0, [])
         return res
 
-nums =[1,2,2]
 sol =Solution()
-print(sol.subsetsWithDup(nums))
+print("Expected::, Actual:", sol.subsetsWithDup([1,2,2]))
+print("Expected::, Actual:", sol.subsetsWithDup([0]))

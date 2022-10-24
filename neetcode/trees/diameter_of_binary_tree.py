@@ -27,15 +27,19 @@ class TreeNode:
         self.val = val
         self.left = left
         self.right = right
+        
 class Solution:
 
     def diameterOfBinaryTree(self, root:TreeNode)->int:
 
         res =[0]
+        
         def dfs(root):
+            
             if not root:
                 return -1
-            left = dfs(root.left)
+            
+            left  = dfs(root.left)
             right = dfs(root.right)
 
             res[0] = max(res[0], 2+left+right)
@@ -43,4 +47,15 @@ class Solution:
             return 1 + max(left, right)
 
         dfs(root)
+        
         return res[0]
+    
+
+tree            = TreeNode(1)
+tree.left       = TreeNode(2)
+tree.right      = TreeNode(3)
+tree.left.left  = TreeNode(4)
+tree.left.right = TreeNode(5)
+
+cls = Solution()
+print("Expected::, Actual::", cls.diameterOfBinaryTree(tree))

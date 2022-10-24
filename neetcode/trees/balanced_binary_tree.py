@@ -113,6 +113,32 @@ tr.right =TreeNode(20)
 tr.right.left =TreeNode(15)
 tr.right.right =TreeNode(7)
 
-cls = Solution()
-print("is balanced::", cls.isBalanced(tr))
+# cls = Solution()
+# print("is balanced::", cls.isBalanced(tr))
 # tr.levelorder(tr.val)
+
+import collections
+class SolutionOne:
+    
+    
+    def BinarySideView(self,root):
+        q = collections.deque([root])
+        res =[]
+        
+        while q:
+            for _ in range(len(q)):
+                rightSide = None
+                node 	  = q.popleft()
+                
+                if (node):
+                    rightSide = node
+                    q.append(node.left)
+                    q.append(node.right)
+            if rightSide:
+                res.append(rightSide.val)
+        return res
+	
+	
+	
+si =SolutionOne()
+print("Expected::, Actual::", si.BinarySideView(tr))
