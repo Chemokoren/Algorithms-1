@@ -5,8 +5,8 @@ class Database:
     
     def __init__(self):
         self.id = random.randint(1,101)
-        # print('Generated an id of ', self.id)
-        # print('Loading database from file')
+        print('Generated an id of ', self.id)
+        print('Loading database from file')
         # pass
     _instance =None
     
@@ -16,6 +16,7 @@ class Database:
                 .__new__(cls, *args, **kwargs)
                 
         return cls._instance
+    
 database = Database()
 
 if __name__=='__main__':
@@ -24,4 +25,4 @@ if __name__=='__main__':
     
     print(d1.id,d2.id)
     print(d1 == d2)
-    print(database ==d1)
+    print(database ==d1==d2)
