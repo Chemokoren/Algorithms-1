@@ -10,6 +10,8 @@ def firstResetBitFromLeftSide(num):
     mask = 1 << step
     while(num & mask > 0):
         step -= 1
+        if(step ==-1):
+            return -1
         mask = 1 << step
     return step
 
@@ -22,4 +24,5 @@ def countBits(num):
 
 print(firstResetBitFromLeftSide(230))
 print(firstResetBitFromLeftSide(23))
+print(firstResetBitFromLeftSide(127))
 print(bin(23))
