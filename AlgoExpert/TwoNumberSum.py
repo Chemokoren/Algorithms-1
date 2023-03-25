@@ -1,3 +1,8 @@
+"""
+Given an array of distinct integer values and a seperate target sum
+write a function to find if there is pair in this numbers that adds to the target sum 
+"""
+
 # o(n^2) time | o(1) space
 my_list =[3, 5, -4, 8, 11, 1, -1, 6, 4]
 sum =10
