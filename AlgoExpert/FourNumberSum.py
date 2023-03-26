@@ -28,16 +28,17 @@ def fourNumberSum1(array,targetSum):
     left1 =1
     right =len(array)-1
     right1 =len(array)-2
+    res =[]
     while left <right and left1 < right1:
         currentSum =array[left]+array[left1]+array[right]+array[right1]
         if currentSum == targetSum:
             return [array[left],array[left1],array[right],array[right1]]
         if currentSum < targetSum:
-            left +=1
-            left1 +=1
+            left  += 1
+            left1 += 1
         if currentSum > targetSum:
-            right -=1
-            right1 -=1
+            right  -= 1
+            right1 -= 1
     return []
 
 # O(n ^ 2 ) time | O(n ^ 2) space
@@ -59,10 +60,6 @@ def fourNumberSum2(array, targetSum):
                 allPairSums[currentSum].append([array[k],array[i]])
     return quadruplets
 
-
-# my_array = [7, 6, 4, -1, 1, 2]
 my_array = [7, 6, 4, -1, 1, 2]
 sum = 16
 print(fourNumberSum2(my_array, sum))
-
-# [1, 2, 7, 6], [7, 6, 4, -1]
