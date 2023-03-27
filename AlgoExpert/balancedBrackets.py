@@ -1,3 +1,7 @@
+"""
+Write a function that will determine if the provided string of brackets is balanced
+"""
+
 # O(1) time | O(n) space
 def balancedBracket(string):
     startingBrackets =["[","(","{"]

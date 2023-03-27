@@ -44,3 +44,29 @@ def three_number_sum_second(arr, target):
 	return res
 		
 print(three_number_sum_second([12,3,1,2,-6,5,-8,6], 0))
+	
+'''
+requires optimization
+'''
+def three_number_sum_3(arr, target):
+	arr.sort()
+	res =[]
+	
+	third_val = 0
+	start = third_val +1
+	end   = len(arr)-1
+	
+	while start <= end and third_val < len(arr)-2:
+		sum_val =arr[third_val]+arr[start] + arr[end]
+		if sum_val == target:
+			res.append([arr[third_val], arr[start], arr[end]])
+			end -= 1
+			start +=1
+		elif sum_val > target:
+			end -=1
+		elif sum_val < target:
+			start +=1
+	third_val +=1
+	return res
+		
+print("fourth::", three_number_sum_3([12,3,1,2,-6,5,-8,6], 0))
