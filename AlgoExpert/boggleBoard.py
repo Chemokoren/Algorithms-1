@@ -1,3 +1,30 @@
+"""
+[t, h, i, s, i, s, a]
+[s, i, m, p, l, e, x]
+[b, x, x, x, x, e, b]
+[x, o, g, g, l, x, o]
+[x, x, x, D, T, r, a]
+[R, E, P, E, A, d, x]
+[x, x, x, x, x, x, x]
+[N, O, T, R, E, -, P]
+[x, x, D, E, T, A, E]
+
+this
+is 
+no
+a
+simple
+boggle
+board
+test
+REPEATED
+NOTRE-PEATED
+
+Write a function that will return a list of words containing the list of words provided
+above that are also in the boggle board
+
+"""
+
 # O(nm *g^s + ws) time | O(nm + ws)
 def boggleBoard(board, words):
     trie =Trie()

@@ -1,6 +1,7 @@
 from typing import List
 """
 Combination Sum II
+------------------
 
 Given a collection of candidate numbers (candidates) and a target number(target), find all
 unique combinations in candidates where the candidate numbers sum to target.
@@ -39,7 +40,8 @@ class Solution:
 
         res =[]
 
-        # cur is the current combination, pos is the index in the array, 
+        # cur is the current combination, 
+        # pos is the index in the array, 
         # each time we add a candidate we decrease the target
         def backtrack(cur, pos, target):
             if target == 0:
@@ -52,7 +54,7 @@ class Solution:
                 if candidates[i] == prev:
                     continue
                 cur.append(candidates[i])
-                backtrack(cur, i+1, target - candidates[i])
+                backtrack(cur, i+1, target - candidates[i]) 
                 cur.pop()
                 prev = candidates[i]
         backtrack([], 0, target)
