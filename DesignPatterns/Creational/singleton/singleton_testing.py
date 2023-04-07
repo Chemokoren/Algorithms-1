@@ -19,12 +19,13 @@ class Database(metaclass=Singleton):
             self.population[lines[i].strip()] =int(lines[i+1].strip())
         f.close()
         
-class SingleonRecordFinder:
+class SingletonRecordFinder:
     def total_population(self, cities):
         result = 0
         for c in cities:
             result += Database().population[c]
         return result
+    
 class ConfigurableRecordFinder:
     
     def __init__(self, db):
@@ -55,7 +56,8 @@ class SingletonTests(unittest.TestCase):
         
     def test_singleton_total_population(self):
         """This tests on a live database :( """
-        rf = SingleonRecordFinder()
+        
+        rf = SingletonRecordFinder()
         names =['Seoul', 'Mexico city']
         tp = rf.total_population(names)
         self.assertEqual(tp, 17500000 + 17400000)
@@ -69,4 +71,8 @@ class SingletonTests(unittest.TestCase):
         )
         
 if __name__=='__main__':
-    unittest.main()
+    # unittest.main()
+    st =SingletonTests()
+    # st.test_is_singleton()
+    # st.test_singleton_total_population()
+    st.test_dependent_total_population()

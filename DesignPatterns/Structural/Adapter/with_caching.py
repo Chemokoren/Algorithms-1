@@ -42,10 +42,10 @@ class LineToPointAdapter:
         print(f'{self.count}: Generating points for line'+
               f'[{line.start.x}, {line.start.y}]->[{line.end.x}, {line.end.y}]')
         
-        left  = min(line.start.x, line.end.x)
-        right = max(line.start.x, line.end.x)
-        top = min(line.start.y, line.end.y)
-        bottom = min(line.start.y, line.end.y)
+        left    = min(line.start.x, line.end.x)
+        right   = max(line.start.x, line.end.x)
+        top     = min(line.start.y, line.end.y)
+        bottom  = max(line.start.y, line.end.y)
         
         points =[]
         

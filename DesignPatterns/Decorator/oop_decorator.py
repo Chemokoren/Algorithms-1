@@ -38,10 +38,10 @@ class TransparentShape(Shape):
         self.shape = shape
         self.transparency = transparency
         
-class TransparentShape(Shape):
-    def __init__(self, shape, transparency):
-        self.shape = shape
-        self.transparency = transparency
+# class TransparentShape(Shape):
+#     def __init__(self, shape, transparency):
+#         self.shape = shape
+#         self.transparency = transparency
         
     def __str__(self):
         return f'{self.shape} has {self.transparency * 100.0} % transparency'
@@ -57,12 +57,12 @@ if __name__=='__main__':
         
     
     # ColoredShape doesn't have resize()
-    #red_circle.resize(3)
+    # red_circle.resize(3)
     
     red_half_transparent_square = TransparentShape(red_circle, 0.5)
     print(red_half_transparent_square)
     
     
-    # nothing prevents double application
+    # # nothing prevents double application
     mixed =ColoredShape(ColoredShape(Circle(3), 'red'), 'blue')
     print(mixed)

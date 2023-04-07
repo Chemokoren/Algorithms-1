@@ -40,8 +40,8 @@ if __name__=='__main__':
     u2 = User2('Jim Jones')
     u3 = User2('Frank Jones')
     
-    # print(u2.names)
-    # print(u3.names)
+    print(u2.names)
+    print(u3.names)
     print(User2.strings)
     
     users2 =[]
