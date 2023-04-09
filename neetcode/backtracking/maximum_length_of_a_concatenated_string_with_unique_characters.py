@@ -25,11 +25,11 @@ Time complexity: m* 2^n where m is the average length of each string
 Alternative solution: using bitmask
 
 X, Y, Z
-0  0  0
-0  0  1
-0  1  0
-1  0  0
-1  0  1
+0  0  0  # do not include any of the options
+0  0  1  # include Z
+0  1  0  # inlude Y
+1  0  0  # include X
+1  0  1  # include X, Z 
 1  1  0
 - - - -
 1  1  1
@@ -38,13 +38,17 @@ To get all the subsequences, you will have to go through all the integers
 and get the bit from it. If the bit is zero you don't concatenate that portion of
 the string. However, if it is 1, you do concatenate.
 
+
+arr =["un","iq","ue"]
                         /   \
-                      un      _
-                     / \      / \
-                uniq     un   iq _
+                      un      ___
+                     / \      /  \
+                uniq    un  iq    __
+                /  \    / \  / \   | \
+               _    _  _   _ ue _  ue _
 
 """
-
+# in subsequences, you either choose it or not choose it
 class Solution:
 
     def maxLength(self, arr: List[str])->int:

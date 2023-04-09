@@ -32,9 +32,13 @@ class Solution:
 
         if sum(matchsticks) / 4 != length:
             return False
+        
+        # sorting helps us to return earlier if the longest matchstick is not
+        # equal to the sides
         matchsticks.sort(reverse=True)
         
         def backtrack(i): # index of match stick
+            # return true if we go through all the matchsticks
             if i == len(matchsticks):
                 return True
 
@@ -43,7 +47,7 @@ class Solution:
                     sides[j] += matchsticks[i]
                     if backtrack(i +1):
                         return True
-                    sides[j] -= matchsticks[i]
+                    sides[j] -= matchsticks[i] # back track to previous position
             return False
         return backtrack(0)
 

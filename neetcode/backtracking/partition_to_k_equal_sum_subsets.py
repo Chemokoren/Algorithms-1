@@ -32,7 +32,8 @@ class Solution:
         target = sum(nums) / k
         used =[False] * len(nums)
 
-        # i -index we are in nums, k - how many k partitions are left that we need to build
+        # i -index we are in nums, 
+        # k - how many k partitions are left that we need to build
         def backtrack(i, k, subsetSum): 
             if k == 0:
                 return True

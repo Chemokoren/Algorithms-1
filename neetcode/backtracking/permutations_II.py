@@ -51,7 +51,6 @@ class Solution:
 
         def dfs():
             if len(perm) == len(nums):
-                
                 res.append(perm.copy()) # O(n)
                 return
 

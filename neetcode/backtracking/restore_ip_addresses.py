@@ -39,15 +39,26 @@ class Solution:
         if len(s) > 12:
             return res
 
-        def backtrack(i, dots, curIP): # i is the index we are at in the string,  a max of 4 dots
+        # i is the index we are at in the string,  
+        # a max of 4 dots
+        def backtrack(i, dots, curIP): 
             if dots == 4 and i == len(s):
-                res.append(curIP[:-1]) # -1 to remove the last dot
+                # -1 to remove the last dot
+                res.append(curIP[:-1]) 
                 return
             if dots > 4:
                 return
             
-            for j in range(i, min(i+3, len(s))): # take the smallest of either the 3 digits or the len of s because it might be less than 3
-                if int(s[i:j+1]) < 256 and (i == j or s[i] != "0"): # second part checks for leading 0's 
+            # third base case: number of dots is not 4 but we have reached the end of
+            # the string -handled in the for loop below - for loop won't execute if 
+            # we have reached the end of the string & function will return anyways.
+            
+            # take the smallest of either the 3 digits
+            # or the len of s because it might be less than 3
+            for j in range(i, min(i+3, len(s))): 
+                
+                # second part checks for leading 0's 
+                if int(s[i:j+1]) < 256 and (i == j or s[i] != "0"):
                     backtrack(j+1, dots + 1, curIP + s[i:j+1]+".")
 
         backtrack(0, 0, "")

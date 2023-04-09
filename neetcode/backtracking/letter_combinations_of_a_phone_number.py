@@ -1,8 +1,8 @@
 """
 Letter Combinations of a Phone Number
 
-Given a string containing digits from 2-9 inclusive, return all possible letter combinations
-that the number could represent. Return the answer in any order.
+Given a string containing digits from 2-9 inclusive, return all possible letter 
+combinations that the number could represent. Return the answer in any order.
 
 A mapping of digit to letters(just like on the telephone buttons) is given below.
 Note that 1 does not map to any letters
@@ -30,7 +30,7 @@ from typing import List
 class Solution:
     """Letter combinations of a phone number implementation"""
 
-    # O(n*4^n) -worst case time complexity where n is length of input string
+    # O(n*4^n) - worst case time complexity where n is length of input string
     def letterCombinations(self, digits: str)->List[str]:
         """
         Letter combinations.

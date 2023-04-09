@@ -45,7 +45,7 @@ class Solution:
             for j in range(i, len(s)):
                 if self.isPali(s, i, j):
                     part.append(s[i:j+1])
-                    dfs(j + 1)
+                    dfs(j + 1) # the next character
                     part.pop()
                     
 

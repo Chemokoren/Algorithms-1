@@ -52,7 +52,6 @@ class Solution:
                 
             Returns:
                 result(List[List[int]]): all possible permutations
-            
         """
         result =[]
 
@@ -70,7 +69,8 @@ class Solution:
             nums.append(n)
 
         return result
-
+[1,2,3]
+[2,3],[3,2]
 
 nums =[1,2,3]
 sol = Solution()
