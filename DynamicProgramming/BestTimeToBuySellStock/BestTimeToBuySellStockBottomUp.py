@@ -13,7 +13,6 @@ def BestTimeToBuySellStockBottomUp(n, prices):
     return R[n-1]
 
 
-
 '''
 optimization solution: O(n)
 '''

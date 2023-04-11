@@ -31,8 +31,9 @@ def BestTimeToBuySellStockRec(i, prices):
 		
 	return max_val
 	
-# prices = [7, 1, 5, 4, 6, 4]
-prices = [7, 6, 4, 3, 1]
+prices = [7, 1, 5, 4, 6, 4]
+# prices = [7, 6, 4, 3, 1]
+# prices = [1, 2, 3, 4, 5]
 
-print(BestTimeToBuySellStockRec(6, prices))
-# print(BestTimeToBuySellStockRec(5, prices))
+# print(BestTimeToBuySellStockRec(6, prices))
+print(BestTimeToBuySellStockRec(5, prices))
