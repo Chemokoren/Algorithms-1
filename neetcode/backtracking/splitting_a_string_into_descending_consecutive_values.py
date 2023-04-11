@@ -3,12 +3,13 @@ Splitting a string into descending consecutive values
 
 You are given a string s that consists of only digits.
 
-Check if we can split s into two or more non-empty substrings such that the numerical values
-of the substrings are in descending order and the difference between numerical values of
-every two adjacent substrings is equal to 1.
+Check if we can split s into two or more non-empty substrings such that the numerical 
+values of the substrings are in descending order and the difference between numerical 
+values of every two adjacent substrings is equal to 1.
 
-For example, the string s ="0090089" can be split into ["0090","089"] with numerical values
-[90,89]. The values are in descending order and adjacent values differ by 1, so this way is 
+For example, the string s ="0090089" can be split into ["0090","089"] with numerical
+values [90,89]. 
+The values are in descending order and adjacent values differ by 1, so this way is 
 valid.
 
 Another example, the string s="001" can be split into ["0","01"], ["00","1"] or ["0","0","1"]
@@ -49,6 +50,6 @@ class Solution:
         return False
 
 s = "0090089"
-# s = "001"
+s = "001"
 sol = Solution()
 print(sol.splitString(s))

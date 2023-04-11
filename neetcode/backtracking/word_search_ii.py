@@ -1,9 +1,11 @@
 from typing import List
 """
 Given an m*x board of characters and a list of strings words, return all words on the board.
-Each word must be constructed from letters of sequentially adjacent cells, where adjacent cells
-are horizontally or vertically neighboring. The same letter cell may not be used more than
-once in a word.
+
+Each word must be constructed from letters of sequentially adjacent cells, where 
+adjacent cells are horizontally or vertically neighboring. 
+
+The same letter cell may not be used more than once in a word.
 
 Example 1:
 
@@ -50,7 +52,8 @@ class Solution:
         res, visit =set(), set()
 
         def dfs(r, c, node, word):
-            if(r < 0 or c < 0 or r ==ROWS or c == COLS or board[r][c] not in node.children 
+            if(r < 0 or c < 0 or r ==ROWS or c == COLS or \
+                board[r][c] not in node.children 
                or (r,c) in visit):
                 return
             visit.add((r, c))
