@@ -1,4 +1,4 @@
-def stairs(n)->int:
+def stairs(n):
 	if n == 1:
 		return 1
 	if n == 2:

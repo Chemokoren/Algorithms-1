@@ -17,15 +17,15 @@ def BestTimeToBuySellStockBottomUp(n, prices):
 optimization solution: O(n)
 '''
 def BestTimeToBuySellStockBottomUp1(n, prices):
-    R = [-1] * (n)
+    sub_solution = [-1] * (n)
     
-    R[0] = 0
+    sub_solution[0] = 0
     min_val =prices[0]
 
     for i in range(1,n-1):
         min_val = min(min_val,prices[i])
-        R[i] = max(R[i-1],prices[i]-min_val)
-    return R[n-1]
+        sub_solution[i] = max(sub_solution[i-1],prices[i]-min_val)
+    return sub_solution[n-1]
 
 	
 prices = [7, 1, 5, 4, 6, 4]
