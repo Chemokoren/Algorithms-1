@@ -18,5 +18,14 @@ def CuttingRodsRec(n, prices):
 	return max_val
 	
 	
+def rod_cutting_recursive(n, prices):
+    if n == 0:
+        return 0
+    max_revenue = -1
+    for i in range(1, n+1):
+        cut_revenue = prices[i-1] + rod_cutting_recursive(n-i, prices)
+        max_revenue = max(max_revenue, cut_revenue)
+    return max_revenue
+
 prices= [1,5, 8, 9, 10]
-print(CuttingRodsRec(5, prices))
+print(rod_cutting_recursive(5, prices))
