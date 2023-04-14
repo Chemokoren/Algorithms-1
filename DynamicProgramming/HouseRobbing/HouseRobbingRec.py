@@ -26,3 +26,21 @@ def HouseRobberyRec(i,nums):
 nums =[1,2,3,4,5]
 
 print(HouseRobberyRec(5, nums))
+
+
+    
+def dfs(nums):
+    if not nums:
+        return 0
+    if len(nums) == 1:
+        return nums[0]
+    if len(nums) == 2:
+        return max(nums[0], nums[1])
+    # return max(dfs(nums[:-1]), dfs(nums[:-2]) + nums[-1]) # starting from the end
+    return max(dfs(nums[1:]), dfs(nums[2:]) + nums[0]) # starting from the start
+
+
+
+nums =[1,2,3,4,5]
+
+print(dfs(nums))
