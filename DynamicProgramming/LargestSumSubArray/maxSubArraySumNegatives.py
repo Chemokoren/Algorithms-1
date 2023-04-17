@@ -11,9 +11,7 @@ def maxSubarraySumBruteForce1( A , n):
               max_sum = sum
     return max_sum
 if __name__ == '__main__':
-    A = [3, 4, -7, 1, 3, 3, 1, -4]
-    expected_sum = 7
-    print(maxSubarraySumBruteForce1(A, expected_sum))
+    print(maxSubarraySumBruteForce1([3, 4, -7, 1, 3, 3, 1, -4], 7))
 
 # using 2 loops -optimized brute-force
 print("############################### using 2 loops ######################")
@@ -28,21 +26,22 @@ def max_Subarray_Sum(A, n):
     return max_sum
 
 if __name__ == '__main__':
-    A = [3, 4, -7, 1, 3, 3, 1, -4]
-    expected_sum = 7
-    print(max_Subarray_Sum(A, expected_sum))
+    print(max_Subarray_Sum([3, 4, -7, 1, 3, 3, 1, -4], 7))
 
 
 print("############################### second brute-force ######################")
 
-# Function to find subarray with the given the expected sum in a list
+"""
+Function to find subarray with the given the expected sum in a list
+"""
 def findSubArrayBruteForce(A, expected_sum):
-    for i in range(len(A)):
+    n =len(A)
+    for i in range(n):
 
         expected_sum_so_far = 0
 
         # consider all subarrays starting from `i` and ending at `j`
-        for j in range(i, len(A)):
+        for j in range(i, n):
 
             # expected_sum of elements so far
             expected_sum_so_far += A[j]
@@ -54,10 +53,7 @@ def findSubArrayBruteForce(A, expected_sum):
 
 
 if __name__ == '__main__':
-    A = [3, 4, -7, 1, 3, 3, 1, -4]
-    expected_sum = 7
-
-    findSubArrayBruteForce(A, expected_sum)
+    findSubArrayBruteForce([3, 4, -7, 1, 3, 3, 1, -4], 7)
 
 print("############################### end of brute-force ######################")
 
@@ -66,7 +62,6 @@ print("############################### end of brute-force ######################
 # otherwise returns # false.
 
 def subArraySum(arr, expected_sum):
-    # Pick a starting point
     n =len(arr)
     for i in range(n):
         curr_sum = arr[i]
@@ -87,16 +82,9 @@ def subArraySum(arr, expected_sum):
     print("No subarray found")
     return 0
 
-
-# main function to test subArraySum program
 if __name__ == "__main__":
-    # arr = [15, 2, 4, 8, 9, 5, 10, 23]
-    # expected_sum = 23
-    arr = [3, 4, -7, 1, 3, 3, 1, -4]
-    expected_sum = 7
-    n = len(arr)
-
-    subArraySum(arr, expected_sum)
+    subArraySum([15, 2, 4, 8, 9, 5, 10, 23], 23)
+    subArraySum([3, 4, -7, 1, 3, 3, 1, -4], 7)
 
 
 
@@ -107,9 +95,7 @@ Time Complexity : O(n).
 
 Only one traversal of the array is required. So the time complexity is O(n).
 
-Space Complexity: O(1). 
-
-As constant extra space is required.
+Space Complexity: O(1) because constant extra space is required.
 
 """
 print("############################### Sliding Window Approach ######################")
@@ -161,11 +147,7 @@ def subArraySum(arr_, expected_sum):
 
 # main function to test subArraySum program
 if __name__ =='__main__':
-    arr = [15, 2, 4, 8, 9, 5, 10, 23]
-
-    expected_sum = 23
-
-    subArraySum(arr, expected_sum)
+    subArraySum([15, 2, 4, 8, 9, 5, 10, 23], 23)
 
 
 
@@ -186,7 +168,6 @@ As a HashMap is needed, this takes a linear space.
 """
 
 
-# Python3 program to print subarray with sum as given sum
 
 # Function to print subarray with sum as given sum
 def subArraySum(arr, n, Sum):
@@ -222,14 +203,13 @@ def subArraySum(arr, n, Sum):
     print("No subarray with given sum exists")
 
 
-# Driver program to test above function
 if __name__ == "__main__":
 
-    n = len(arr)
-
     # arr = [10, 2, -2, -20, 10]
-    arr = [15, 2, 4, 8, 9, 5, 10, 23]
     # sum_ = -10
+    arr = [15, 2, 4, 8, 9, 5, 10, 23]
+    n = len(arr)
+    
     sum_ = 23
 
     subArraySum(arr, n, sum_)

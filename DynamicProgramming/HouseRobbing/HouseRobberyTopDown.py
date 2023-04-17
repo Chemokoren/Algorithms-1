@@ -54,6 +54,6 @@ def dfs1(nums):
     return dp[-1]
 
 
-nums =[1,2,3,4,5]
+nums =[1, 2, 3, 4]
 
 print(dfs1(nums))

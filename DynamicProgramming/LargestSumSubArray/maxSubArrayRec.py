@@ -15,11 +15,24 @@ def maxSubArraySum(nums):
 
 my_array = [1, 2, 3, 4, 5]
 # my_array =[1,2,3,4,5,6]
-# print(maxSubArraySum(my_array))
+my_array =[-2,1,-3,4,-1,2,1,-5,4]
+print("first::", maxSubArraySum(my_array))
 
-# Python program to find maximum contiguous subarray
+
+"""
+kadane's algorithm
 
 # Function to find the maximum contiguous subarray
+# Algorithm doesn't work for all negative numbers.
+# It returns 0 if all numbers are negative.
+
+Complexity Analysis
+Notice that each element has been visited only once.
+
+Time Complexity = O(n)
+
+Space Complexity = O(1)
+"""
 def maxSubArraySum1(a, size):
     max_so_far = 0
     max_ending_here = 0
@@ -72,4 +85,4 @@ def maxSubArraySum2(a, size):
 # a = [1,2,3,4,-5,6]
 # a = [-2, -3, 4, -1, -2, 1, 5, -3]
 a =[-2,1,-3,4,-1,2,1,-5,4]
-print("Maximum contiguous sum is", maxSubArraySum2(a, len(a)))
+print("Maximum contiguous sum is", maxSubArraySum1(a, len(a)))

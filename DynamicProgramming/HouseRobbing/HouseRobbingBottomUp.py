@@ -3,15 +3,15 @@ O(n^2)
 '''
 
 def RobBottomUp(n, nums):
-    R =[-1] * (n)
+    sub_solution =[-1] * (n)
     
-    R[0] = nums[0]
-    R[1] = max(nums[0], nums[1])
+    sub_solution[0] = nums[0]
+    sub_solution[1] = max(nums[0], nums[1])
     for i in range(2, n):
-        R[i] = R[i - 1]
+        sub_solution[i] = sub_solution[i - 1]
         for j in range(i - 2, 0, -1):
-            R[i] = max(R[i], R[j] + nums[i])
-    return R[n -1]
+            sub_solution[i] = max(sub_solution[i], sub_solution[j] + nums[i])
+    return sub_solution[n -1]
 
 
 
@@ -20,14 +20,14 @@ def RobBottomUp(n, nums):
 O(n)
 '''
 def RobBottomUp1(n, nums):
-    R =[-1] * (n)
+    sub_solution =[-1] * (n)
     
-    R[0] = nums[0]
-    R[1] = max(nums[0], nums[1])
+    sub_solution[0] = nums[0]
+    sub_solution[1] = max(nums[0], nums[1])
     for i in range(2, n):
-        R[i] = R[i - 1]
-        R[i] = max(R[i-1], R[i-2] + nums[i])
-    return R[n -1]
+        sub_solution[i] = sub_solution[i - 1]
+        sub_solution[i] = max(sub_solution[i-1], sub_solution[i-2] + nums[i])
+    return sub_solution[n -1]
 
 
 
