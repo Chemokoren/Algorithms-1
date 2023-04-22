@@ -78,8 +78,6 @@ def maxSubArraySum2(a, size):
     print("Starting Index %d" % (start))
     print("Ending Index %d" % (end))
 
-
-# Driver function to check the above function
 # a = [-13, -3, -25, -20, -3, -16, -23, -12, -5, -22, -15, -4, -7]
 # a = [1, 2, 3, 4, 5]
 # a = [1,2,3,4,-5,6]

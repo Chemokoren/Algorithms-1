@@ -1,6 +1,6 @@
 import sys
 
-class TextJusifyRec:
+class TextJustifyRec:
     def __init__(self,txt,line_length):
         self.txt =txt
         self.line_length =line_length
@@ -31,5 +31,5 @@ class TextJusifyRec:
         return score
 
 
-justify =TextJusifyRec("Isabel sat on the step".split(),10)
+justify =TextJustifyRec("Isabel sat on the step".split(),10)
 print(justify.format_txt(0))

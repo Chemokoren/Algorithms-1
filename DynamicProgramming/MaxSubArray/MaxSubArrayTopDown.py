@@ -18,9 +18,23 @@ class MaxSubArrayTopDown:
         self.sub_solutions[i] =m
         return m
 
-# msa = MaxSubArrayTopDown([5, -4, 8, -10, -2, 4, -3, 2, 7, -8, 3, -5, 3])
-# print(msa.max_sub_array())
-input = [1] * 900
-for i in range(10000):
-    msa =MaxSubArrayTopDown(input)
-    print(msa.max_sub_array())
+msa = MaxSubArrayTopDown([5, -4, 8, -10, -2, 4, -3, 2, 7, -8, 3, -5, 3])
+print(msa.max_sub_array())
+
+def MaxSubArrayTopDown1(prices):
+    sub_solutions = [None] * len(prices)
+    max_value = 0
+    if len(prices) == 0:
+            return 0
+    sub_solutions[0]=prices[0] 
+    for j in range(1,len(prices)):
+        if sub_solutions[j] is not None:
+            return sub_solutions[j]
+        m = max(prices[j], (sub_solutions[j - 1] + prices[j]))
+        sub_solutions[j] =m
+        max_value = max(max_value, m)
+    return max_value
+
+print("#####################")
+print(MaxSubArrayTopDown1([5, -4, 8, -10, -2, 4, -3, 2, 7, -8, 3, -5, 3]))
+print(MaxSubArrayTopDown1([]))

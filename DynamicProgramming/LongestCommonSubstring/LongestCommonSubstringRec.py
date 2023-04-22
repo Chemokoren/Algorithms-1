@@ -56,7 +56,7 @@ def LongestCommonSubstringRec(s, t):
     max_val = -1
 
     d =[[0 for i in range(m+1)] for j in range(n+1)]
- 
+    
     for i in range(1,m+1):
         for j in range(1,n+1):
             if(s[i-1]==t[j-1]):
@@ -69,7 +69,7 @@ def LongestCommonSubstringRec(s, t):
 s = "DEADBEEF"
 t = "EATBEEF"
 
-# print(LongestCommonSubstringRec(s,t))
+print(LongestCommonSubstringRec(s,t))
 # print(LongestCommonSubstringRec("abcjklp","acjkp"))
 
 def LongestCommonSubstringRec(s, t):
@@ -90,4 +90,4 @@ def LongestCommonSubstringRec(s, t):
 
     return max_val
 
-print(LongestCommonSubstringRec("abcjklp","acjkp"))
+# print(LongestCommonSubstringRec("abcjklp","acjkp"))

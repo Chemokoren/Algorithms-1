@@ -22,7 +22,7 @@ class StringDistanceTopDown:
 
         min_cost = min(cost_delete, cost_insert, cost_replace)
         self.dist[a][b] = min_cost
-        return min_cost
+        return self.dist[a][b]
 
     def distance(self):
         return self.distance_r(len(self.str_A), len(self.str_B))

@@ -20,3 +20,17 @@ print(msa.max_sub_array())
 # for i in range(10000):
 #     msa =MaxSubArrayTopDown(input)
 #     print(msa.max_sub_array())
+
+def max_sub_array(prices):
+    max_value = 0
+    curr =0
+    if len(prices) == 0:
+            return prices
+        
+    for j in range(len(prices)):
+        curr =max(prices[j], curr + prices[j])
+    
+        max_value = max(max_value, curr)
+    return max_value
+
+print(max_sub_array([5, -4, 8, -10, -2, 4, -3, 2, 7, -8, 3, -5, 3]))
