@@ -13,6 +13,7 @@ Frequency Counters
 - This can often avoid the need for nested loops or O(N^2) operations with arrays/strings
 
 Example
+
 Write a function called same, which accepts two arrays. The function should return true if
 every value in the array has it's corresponding value squared in the second array. The 
 frequency of values must be the same.
@@ -41,46 +42,62 @@ def same(arr1, arr2):
             return False
     return True
     
-# print(same([1,2,3], [4,1,9]))
-# print(same([1,2,1], [4,4,1]))
+print(same([1,2,3], [4,1,9]))
+print(same([1,2,1], [4,4,1]))
+
+# Refactored O(n) time complexity
+def same_opt(arr1, arr2):
+	if len(arr1) != len(arr2):
+		return False
+	for i in range(len(arr1)):
+		if (arr1[i] **2) in arr2:
+			curr =arr2.index((arr1[i] **2))
+			del arr2[curr]
+		else:
+			return False
+	return True
+
+print("::",same_opt([1,2,3], [4,1,9]))
+print(":::",same_opt([1,2,3], [1,9])) 
+print("Expected: False, Actual:", same_opt([1,2,1], [4,4,1]))
 
 '''
 Refactored O(n) time complexity
 '''
 
-def sameUpdated(arr1, arr2):
+def same_updated(arr1, arr2):
     if(len(arr1) != len(arr2)):
         return False
-    frequency_counter1 ={}
-    frequency_counter2 ={}
+    map_1 ={}
+    map_2 ={}
 
     for val in arr1:
-        # if (val in frequency_counter1): 
-        #     frequency_counter1[val] += 1
-        # else: 
-        #     frequency_counter1[val] = 1
-        frequency_counter1[val] = (frequency_counter1[val] if val in frequency_counter1 else  0)+1
+        map_1[val] = (map_1[val] if val in map_1 else  0)+1
     
     for val in arr2:
-        frequency_counter2[val] = (frequency_counter2[val] if val in frequency_counter2   else  0)+1
+        map_2[val] = (map_2[val] if val in map_2   else  0)+1
 
-    for key in frequency_counter1:
-        if(not key**2 in frequency_counter2):
+    for key in map_1:
+    	# checks if the square item is not available in map_2
+        if(not key**2 in map_2):
             return False
-        if(frequency_counter2[key **2] != frequency_counter1[key]):
+        # checks if count of items in map_1 is equivalent to corresponding squared item in map_2
+        if(map_2[key **2] != map_1[key]):
             return False
-    print(frequency_counter1)
     return True
 
-        
-print(sameUpdated([1,2,3,2], [4,1,9,4]))
-print(sameUpdated([1,2,3,2,5], [4,1,9,4,11]))
+print("Expected: True, Actual:",same_updated([1,2,3], [4,1,9]))
+print("Expected: False, Actual:",same_updated([1,2,3], [1,9])) 
+print("Expected: False, Actual:", same_updated([1,2,1], [4,4,1]))       
+print("Expected: , Actual:",same_updated([1,2,3,2], [4,1,9,4]))
+print("Expected: , Actual:",same_updated([1,2,3,2,5], [4,1,9,4,11]))
 
 '''
 ANAGRAMS
--Given two strings, write a function to determine if the second string is an anagram of the first.
-An anagram is a word phrase or name formed by rearranging the letters of another, such as cinema, formed
-from iceman.
+-Given two strings, write a function to determine if the second string is an anagram of 
+the first.
+An anagram is a word phrase or name formed by rearranging the letters of another, 
+such as cinema, formed from iceman.
 
 '''
 
@@ -111,6 +128,27 @@ print("########################## anagram ##########################")
 # print(validAnagram('awesome','awesom')) # false
 # print(validAnagram('qwerty','qeywrt')) # true
 # print(validAnagram('texttwisttime','timetwisttext')) # true
+
+def anagram(str1, str2):
+	list2 =list(str2)
+	
+	for i in range(len(str1)):
+		if str1[i] in list2:
+			index =list2.index(str1[i])
+			del list2[index]
+		else:
+			return False
+	return True if len(list2)==0 else False
+
+print("Expected::True, Actual::", anagram("cinema", "iceman"))
+print("Expected::True, Actual::",anagram('','')) # true
+print("Expected::False, Actual::",anagram('aaz','zza')) # false
+print("Expected::True, Actual::",anagram('anagram','nagaram')) # true
+print("Expected::False, Actual::",anagram('rat','car')) # false
+print("Expected::False, Actual::",anagram('awesome','awesom')) # false
+print("Expected::True, Actual::",anagram('qwerty','qeywrt')) # true
+print("Expected::True, Actual::",anagram('texttwisttime','timetwisttext')) # true
+
 
 def validAnagramUpdated(str1, str2):
     if len(str1) != len(str2):
@@ -143,15 +181,18 @@ print("texttwisttime",validAnagramUpdated('texttwisttime','timetwisttext')) # tr
 print("############################## MUTLIPLE POINTERS ##############################")
 """
 MUTLIPLE POINTERS
+-----------------
 
--Creating pointers or values that correspond to an index or position and move towards the beginning,
-end or middle based on a certain condition
+-Creating pointers or values that correspond to an index or position and move towards 
+the beginning, end or middle based on a certain condition
 
 Very efficient for solving problems with minimal space complexity as well
 
 Example:
-Write a function called sumZero which accepts a sorted array of integers. The function should find the first
-pair where the sum is 0. Return an array that includes both values that sum to zero or undefined if a pair
+-------
+Write a function called sumZero which accepts a sorted array of integers. The function 
+should find the first pair where the sum is 0. 
+Return an array that includes both values that sum to zero or undefined if a pair
 does not exist.
 
 sumZero([-3,-2,-1,0,1,2,3]) //[-3,3]
@@ -204,9 +245,11 @@ print(sumZeroNaive([-4,-3,-2,-1,0,5,10]))
 print("######################## CountUniqueValues ########################")
 """
 CountUniqueValues
+-----------------
 
-- Implement a function called countUniqueValues, which accepts a sorted array, and counts the unique values
-in the array. There can be negative numbers in the array, but it will always be sorted.
+- Implement a function called countUniqueValues, which accepts a sorted array, 
+and counts the unique values in the array. 
+There can be negative numbers in the array, but it will always be sorted.
 
 countUniqueValues([1,1,1,1,1,2]) // 2
 countUniqueValues([1,2,3,4,4,4,7,7,12,12,13]) //7
@@ -239,6 +282,21 @@ print(countUniqueValues([1,1,2,3,3,4,5,6,6,7]))
 print("###########  using for loop ########### ")
 '''
 using for loop
+
+the function uses a two-pointer approach to move all the unique elements of the given
+list to the beginning and count their occurrence.
+
+The value of i is incremented by 1 before it is returned because i represents the index 
+of the last unique element in the list. Since i is initialized as 0 at the beginning 
+of the function, the count of unique values in the list is equal to the
+value of i plus 1.
+
+For example, if there are 2 unique elements in the list, i would be equal to 1 after
+the swapping process. Therefore, the value of i needs to be incremented by 1 to get 
+the count of unique elements in the list, which is equal to 2 in this case.
+
+Hence, adding 1 to the value of i before returning it gives the correct count of 
+unique elements in the list.
 '''
 def countUniqueValuesUpdated(arr):
     if len(arr) ==0:
@@ -247,6 +305,8 @@ def countUniqueValuesUpdated(arr):
     for j in range(1,len(arr)):
         if arr[i] != arr[j]:
             i +=1
+            # The swapping process is done to move all the unique values to the beginning 
+            # of the list and all the duplicate values to the end of the list
             arr[i], arr[j] =arr[j], arr[i]
     return i +1
 
@@ -256,6 +316,29 @@ print(countUniqueValuesUpdated([]))
 print(countUniqueValuesUpdated([-2,-1,-1,0,1]))
 print(countUniqueValuesUpdated([1,1,2,3,3,4,5,6,6,7]))
 
+
+def count_unique_values_maps(arr):
+
+	map ={}
+	
+	for i in range(len(arr)):
+		map[arr[i]] =map.get(arr[i], 0)+1
+	return len(map)
+
+print("Expected:2, Actual:",count_unique_values_maps([1,1,1,1,1,2])) # 2
+print("Expected:7, Actual:",count_unique_values_maps([1,2,3,4,4,4,7,7,12,12,13])) #7
+print("Expected:0, Actual:",count_unique_values_maps([])) # 0
+print("Expected:4, Actual:",count_unique_values_maps([-2,-1,-1,0,1])) # 4
+
+
+def count_unique_values_maps_2(arr):
+	unique_values = set(arr)
+	return len(unique_values)
+
+print("Expected:2, Actual:",count_unique_values_maps_2([1,1,1,1,1,2])) # 2
+print("Expected:7, Actual:",count_unique_values_maps_2([1,2,3,4,4,4,7,7,12,12,13])) #7
+print("Expected:0, Actual:",count_unique_values_maps_2([])) # 0
+print("Expected:4, Actual:",count_unique_values_maps_2([-2,-1,-1,0,1])) # 4
 """
 SLIDING WINDOW
 
