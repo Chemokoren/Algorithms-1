@@ -1,24 +1,28 @@
 """
  specific types of problems that lie under backtracking 
 
-1) Decision Making ~ It means the problem where you have choices like whether to go left, down, up, or down. 
-These types of problems mostly reside under backtracking.
+1) Decision Making ~ It means the problem where you have choices like whether to go left,
+down, up, or down. 
 
-2) Permutations ~ To find all possible permutations of any sequence data type we can use backtracking.
+2) Permutations ~ To find all possible permutations of any sequence data type we can 
+use backtracking.
 
-3) Subsets ~ Programming question where we are supposed to find all possible subset, subsequence-like things
- from any sequence data type then they are mostly solved using Backtracking.
+3) Subsets ~ Programming question where we are supposed to find all possible subset,
+subsequence-like things from any sequence data type then they are mostly solved 
+using Backtracking.
 
 
 How to Identify the Backtracking Problem
 
 Some basic points that help in identifying the problem are backtracking.
 
-    - Exponential Complexity or Factorial Complexity ~ You will be given that solution can be expected in 
-                  exponential complexity because you have to explore each and every path.
-    - Constraints ~ If complexity is more then obviously constraints will be less like N is less than 500.
-    - No guarantee that which path to go first to find a solution because you are asked to find any solution 
-    or all possible solutions.
+    - Exponential Complexity or Factorial Complexity ~ You will be given that solution 
+    can be expected in exponential complexity because you have to explore each and every 
+    path.
+    - Constraints ~ If complexity is more then obviously constraints will be less like
+    N is less than 500.
+    - No guarantee that which path to go first to find a solution because you are asked 
+    to find any solution or all possible solutions.
 
 1) Subset of a set
 - Given a set of distinct integers, form a different subset of one single set.
@@ -30,9 +34,9 @@ set =[1,2,3]
 [[],[1],[1,2],[1,2,3],[1,3],[2],[2,3],[3]]
 
 
-Explanation - One we can have an empty set as a subset of set and break all integers with every other
-element which forms a subset. on reversing a subset it is also a subset because both are the same 
-so keep only one.
+Explanation - One we can have an empty set as a subset of set and break all integers with 
+every other element which forms a subset. 
+on reversing a subset it is also a subset because both are the same so keep only one.
 
 """
 
@@ -48,7 +52,7 @@ def findAllSubset(arr, subset, idx):
         # so set with 1 element as well as double and further will be in res
         findAllSubset(arr, subset, i +1)
 
-        # remove the arr[i] from subset for doing backtracking
+        # remove the arr[i] from subset by doing backtracking
         subset.pop(-1)
 
     return
@@ -62,12 +66,13 @@ findAllSubset(arr, subset, idx)
 """
 2) Generate All Valid IP Addresses
 
-One more interesting problem in backtracking. The problem statement is something like we are given a string 
-containing only digits. our task is to generate all possible IPv4 Address combinations and print each 
+The problem statement is something like we are given a string containing only digits. 
+our task is to generate all possible IPv4 Address combinations and print each 
 combination in lexicographic order. 
 
-🔰NOTE - A valid IPv4 address contains exactly four integers. each integer is between 0 and 255 separated by 
-single dots, and cannot have leading zeros except in the case of zero itself. 
+🔰NOTE - A valid IPv4 address contains exactly four integers. each integer is between 0
+and 255 separated by single dots, and cannot have leading zeros except in the case of 
+zero itself. 
 read the example snippet below to get a better idea about what the IPv4 address should look like.
 
 // The following are valid IP addresses:
@@ -100,36 +105,45 @@ read the example snippet below to get a better idea about what the IPv4 address 
 
 Approach to Solve the Problem 😃
 
-Each four-part of IP address should be in the range of 0 to 255. To generate all possible approaches we need
-to break a string into four different parts and check whether each part is a valid part or not. If it is valid 
-then we will form its combination by placing the dots and saving the solution. So we can approach this problem
-using iterative as well as recursive ways. So let us discuss each approach because the time complexity of
-both is the same so both the solution will work absolutely fine.
+Each four-part of IP address should be in the range of 0 to 255. To generate all possible 
+approaches we need to break a string into four different parts and check whether each 
+part is a valid part or not. 
+
+If it is valid then we will form its combination by placing the dots and saving the
+solution. So we can approach this problem using iterative as well as recursive ways. 
+
+So let us discuss each approach because the time complexity of both is the same. So,
+both the solution will work absolutely fine.
 
 A] Iterative Approach (Brute-Force method)
+------------------------------------------
 
-As we discuss that the idea is to divide the string into four parts and check if each part is valid and form 
-its combination using 3 dots and add it to the resultant list. To check the valid part it must satisfy the 
-below 2 conditions.
+As we discuss, the idea is to divide the string into four parts and check if each part 
+is valid and form its combination using 3 dots and add it to the resultant list. 
+
+To check the valid part it must satisfy the  below 2 conditions.
 
     - Each part must be between 0 and 255
     - No part should have leading zeros.
 
-So we have to run a three-loop to complete the algorithm where we say that the first part is from 0 to I, 
-the second part is I+1 to J, the third part is J+1 to K, and the fourth part is from K+1 to 
-N(length of the string). So we can conclude the algorithm in the below steps.
+So we have to run a three-loop to complete the algorithm where we say that the first part
+is from 0 to I, the second part is I+1 to J, the third part is J+1 to K, 
+and the fourth part is from K+1 to  N(length of the string). 
+
+So we can conclude the algorithm in the below steps.
 
     - Create a function to check whether each part is valid or not.
     - Create an empty list of results to store each combination
     - Now we will run 3 loops.
-        - First will be I from 0 to n-3 which represents that it is the first part and after it, 
-        3 parts are also there so the last 3 digits of string can never come in the first part.
-        - The second loop (j) will be from i+1 to n-2 which represents that the second part is after the last 
-        digit of the first part and after it, two more parts are present so the last 2 digits can never be 
-        part of the second part.
-        - The third loop (k) will be from j+1 to n-1 which represents that the third part is after the last 
-        digit of the second part and after it, one more part is present which should have at least one 
-        integer.
+        - First will be I from 0 to n-3 which represents that it is the first part and 
+        after it, 3 parts are also there so the last 3 digits of string can never come
+        in the first part.
+        - The second loop (j) will be from i+1 to n-2 which represents that the second 
+        part is after the last digit of the first part and after it, two more parts are 
+        present so the last 2 digits can never be part of the second part.
+        - The third loop (k) will be from j+1 to n-1 which represents that the third part 
+        is after the last digit of the second part and after it, 
+        one more part is present which should have at least one integer.
         - The last part will be after k+1 to n so no loop is required for it.
 
 """
@@ -179,34 +193,37 @@ def main(s):
 
 B] Backtracking Approach
 
-- The key idea of observation here is we can select either  1 or 2 or 3 digits at a time so in each step,
-we will select 1,2,3 digits and move to next segment. Before moving we will also check that the current
-segment  is valid of not. If it is not valid then there is no need to explore this path. 
+- The key idea of observation here is we can select either  1 or 2 or 3 digits at a time
+so in each step, we will select 1,2,3 digits and move to next segment. 
+Before moving we will also check that the current segment  is valid of not. If it is not 
+valid then there is no need to explore this path. 
 
 backtracking steps:
-- Create check functions that accept strings and check their validity for valid IP addresses
+- Create check functions that accept strings and check their validity for valid IP
+addresses
 - We define an empty list to store all possible combinations.
-- We implement a function e.g. backtracking which accepts 5 arguments as an original string(s), answer, 
-current index(denoting current index), segments used to store segments, segment index which is used to 
-store the current number of segments we are currently in.
+- We implement a function e.g. backtracking which accepts 5 arguments as an original 
+string(s), answer, current index(denoting current index), segments used to store segments,
+segment index which is used to store the current number of segments we are currently in.
 - The initial current index and segment index will be 0.
 
 Base Case
-- If the current index is equal to N and the segment index is 4 then add the current path to answer and 
-return.
-- The recursion will also break when the current index equals N and the segment index is greater than 4
+- If the current index is equal to N and the segment index is 4 then add the current path
+to answer and return.
+- The recursion will also break when the current index equals N and the segment index 
+is greater than 4
 
 Constraints
 - Add s[currentIndex+steps] to segment[segmentIndex]
-- If the current index is valid then we will recur for the next segment and increase the current index
-and segment index by 1
+- If the current index is valid then we will recur for the next segment and increase the
+current index and segment index by 1
 -Else if it is not valid then we will move to the next iteration
 
 
 Complexity
 - Time complexity is O(1)
-- In the worst case, the total number of IP addresses is fixed so our function will remain constant 
-after some particular value of the input. Hence the time complexity will be O(1)
+- In the worst case, the total number of IP addresses is fixed so our function will remain
+constant after some particular value of the input. Hence the time complexity will be O(1)
 -Space Complexity is O(1) - we used constant extra space
 """
 # check for part is valid or not
@@ -285,22 +302,25 @@ print("######################## Rat in a maze ########################\n")
 Rat in a maze
 --------------
 
-Has different names like: Shortest Path in a maze, Total steps in the path to reach a destination
+Has different names like: Shortest Path in a maze, Total steps in the path to reach a
+destination
 
-We are given an N*N matrix of binary value blocks where the source cell is the upper left most block 
-and the destination block is the lower rightmost block.
+We are given an N*N matrix of binary value blocks where the source cell is the upper 
+left most block  and the destination block is the lower rightmost block.
+
 The rat can only move in two directions as forward and downward.
 
-If the block number is 0 then it means it is a dead block(No entry) and the rat cannot visit there. 
+If the block number is 0 then it means it is a dead block(No entry) and the rat cannot 
+visit there. 
 If the block value is 1 then it is a valid block. 
 Find if there is a way to reach the destination and find the path and print it.
 
 Input and Output Format
 
--Given N as input denoting the number of rows and number of columns. And form an N rows with N 
-space-seperated digits which form N*N Grid.
-Return True if there exists a path to reach destination cell from source cell. Otherwise return False if no
-such path exists.
+-Given N as input denoting the number of rows and number of columns. And form N rows
+with N space-seperated digits which form N*N Grid.
+Return True if there exists a path to reach destination cell from source cell.
+Otherwise return False if no such path exists.
 
 // Sample Input - 1
 
@@ -315,17 +335,18 @@ N = 4
 True
 
 Backtracking Approach
--Using recursion we will start from the initial position of the rat and check-in right and down direction
-to see if it is a safe path to move forward. 
-- If the path is valid then we move forward and again check both directions recursively. Whichever path gives 
-us the solution after reaching the destination we return. 
-- If we reach a dead-end before reaching the destination then we backtrack and start exploring another path.
+-Using recursion we will start from the initial position of the rat and check-in right and
+down direction to see if it is a safe path to move forward. 
+- If the path is valid then we move forward and again check both directions recursively.
+Whichever path gives us the solution after reaching the destination we return. 
+- If we reach a dead-end before reaching the destination then we backtrack and start 
+exploring another path.
 
 Algorithm
-- main functio accepts the maxe(matrixx) and the source position of the rat in a maze
+- main function accepts the maze(matrixx) a nd the source position of the rat in a maze
 - Create an empty matrix solution to store the path filled with 0's
-- Create a recursive function that accepts the initial matrix, rat position coordinates, solution matrix,
-and length of a matrix.
+- Create a recursive function that accepts the initial matrix, rat position coordinates,
+solution matrix, and length of a matrix.
 - Our base case is if we reach the destination then we have a valid path
 - We check whether the current position is valid or not. If it is valid then check if it is already 
 part of the solution matrix.
@@ -399,21 +420,24 @@ N-Queens Puzzle Problem
 Name of the problem differes for example:
     - N-Queens problem to return any solution
     - N-Queens problem to return all possible solutions.
-You are given an N*N matrix(square chessboard), and your task is to find all the possible ways that you 
-can place N number of queens on that board such that no two queens can attack each other.
+You are given an N*N matrix(square chessboard), and your task is to find all the possible 
+ways that you can place N number of queens on that board such that no two queens 
+can attack each other.
 
 Chance of Two Queens attacking each-other
 - If two queens are placed in the same Row
 - If the two queens are placed in the same column
 - If the two queens are placed in the same Diagonal.
 
-Initially, we have a board of N*N which has all the values as 0. Now we have to find the feasible place of
-Queens and change 0 to 1 and if you can place N queens in N*N return the solution
+Initially, we have a board of N*N which has all the values as 0. Now we have to find
+the feasible place of Queens and change 0 to 1 and if you can place N queens in N*N
+return the solution
 
 Input and Output Format
--The first line of input contains the number of a test case and each line of the test case contains an
- integer 'N' denoting the size of the chessboard. For each test case, print all the possible solutions If no
- solution is possitble then print an empty list.
+-The first line of input contains the number of a test case and each line of the test case
+ contains an integer 'N' denoting the size of the chessboard. 
+ For each test case, print all the possible solutions If no solution is possitble then
+ print an empty list.
 
 
 // Sample Input 1:
@@ -438,25 +462,26 @@ The 4 queens can be placed in a 4*4 chessboard in two ways.
 
 
 Backtracking approach
-- So in each row, we have to check each position that is safe to place the Queen and if it is safe, then 
-we can move to the next row and do the same till we do not reach the Nth row.
--And if in that row, position is not safe then we have to move to the next column in the same row till 
-we find a safe place in the row.
-- Now, if we are not able to find any safe place in that row, it means that in the above row, we have
-placed the queen in the wrong position so we will backtrack from there and change the position of the
-queen in the previous row.
+- So in each row, we have to check each position that is safe to place the Queen and if 
+it is safe, then we can move to the next row and do the same till we do not reach the
+Nth row.
+-And if in that row, position is not safe then we have to move to the next column in 
+the same row till we find a safe place in the row.
+- Now, if we are not able to find any safe place in that row, it means that in the above
+row, we have placed the queen in the wrong position so we will backtrack from there and 
+change the position of the queen in the previous row.
 
 
 How to check that position is safe or not?
 
-- we already know that if one queen is already there in the same row, column, or diagonal then we cannot
-place a queen. 
-- So, we will have the position of row and column where we want to place a queen and we also know that the 
-initial matrix contains all zeros  and that means if already a queen is there, it can only be present 
-before our current position.
+- we already know that if one queen is already there in the same row, column, or diagonal
+then we cannot place a queen. 
+- So, we will have the position of row and column where we want to place a queen and 
+we also know that the initial matrix contains all zeros  and that means if already a 
+queen is there, it can only be present before our current position.
 -So, we will check only in the above row and column position then the current position
-- If a queen is already present in this direction then we cannot place a queen at the current position. 
-Else it is valid. 
+- If a queen is already present in this direction then we cannot place a queen at the
+current position else it is valid. 
 
 """
 

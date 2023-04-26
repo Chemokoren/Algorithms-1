@@ -42,14 +42,14 @@ class TextJustifyBottomUp:
             print(" ".join(line))
             i = ptrs[i]
 #
-# justify =TextJustifyBottomUp("The actual Enumeration shall be made within three years after "
-#                              "the first Meeting of the Congress of the United States, and within "
-#                              "every subsequent Term of ten Years, in such Manner as they shall by Law direct."
-#                              " The Number of Representatives shall not exceed one for every thirty Thousand,"
-#                              " but each state shall have at Least one Representative; and until such "
-#                              "enumeration shall be made, the state of New Hampshire shall be entitled to chuse three,"
-#                              " Massachusetts eight, Rhode-Island and Providence Plantations one, Connectivut five, "
-#                              "New-York six, New Jersey four, Pennsylvania eight, Delaware one, Maryland six, "
-#                              "Virginia ten, North Carolina five, South Carolina five, and Georgia three.".split(),67)
-justify =TextJustifyBottomUp("Isabel sat on the step".split(),10)
+justify =TextJustifyBottomUp("The actual Enumeration shall be made within three years after "
+                             "the first Meeting of the Congress of the United States, and within "
+                             "every subsequent Term of ten Years, in such Manner as they shall by Law direct."
+                             " The Number of Representatives shall not exceed one for every thirty Thousand,"
+                             " but each state shall have at Least one Representative; and until such "
+                             "enumeration shall be made, the state of New Hampshire shall be entitled to chuse three,"
+                             " Massachusetts eight, Rhode-Island and Providence Plantations one, Connectivut five, "
+                             "New-York six, New Jersey four, Pennsylvania eight, Delaware one, Maryland six, "
+                             "Virginia ten, North Carolina five, South Carolina five, and Georgia three.".split(),67)
+# justify =TextJustifyBottomUp("Isabel sat on the step".split(),10)
 print(justify.format_txt())

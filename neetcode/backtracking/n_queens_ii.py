@@ -40,7 +40,10 @@ class Solution:
                 col.add(c)
                 posDiag.add(r+c)
                 negDiag.add(r-c)
+                
                 backtrack(r+1)
+                
+                # backtrack
                 col.remove(c)
                 posDiag.remove(r+c)
                 negDiag.remove(r-c)
