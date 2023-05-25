@@ -21,9 +21,9 @@ def russian(a, b):
     z = 0
     while x > 0:
         if x % 2 == 1: z = z + y
-        y = y << 1
-        x = x >> 1
-        return z
+        y = y << 1 # double the value of y
+        x = x >> 1 # half the value of x
+    return z
 
 
 # measuring time as a function of an input
@@ -34,30 +34,42 @@ def countdown(x):
         y = y + 1
     return y
 
+"""
+The time(n) function takes an integer argument n and returns an integer representing the time it takes
+ for n items to be processed in a system with a certain processing capacity.
 
+Here's how the function works:
+
+    The expression n / 5 calculates the number of batches of 5 items each that can be formed from n.
+    The math.ceil() function is used to round up this value to the nearest integer. This ensures that
+    even if n is not exactly divisible by 5, the function will still return the correct number of
+     batches required to process all n items.
+    The rounded up value is then multiplied by 2 to calculate the time required to process all the batches.
+     Each batch takes 2 units of time to process, according to the function.
+    The constant 3 is added to the time required for the batches to account for the additional time needed
+    to set up the processing system before starting to process the first batch.
+
+For example, if n is 12, then n / 5 is 2.4, which is rounded up to 3 by math.ceil(). The time required to process 3 batches of 5 items each is 6 units of time (3 batches x 2 units of time per batch), to which we add the constant 3 to get a total time of 9 units of time. Therefore, time(12) would return 9.
+"""
 def time(n):
     return 3 + 2 * math.ceil(n / 5)
 
+"""
+The clique(n) function takes an integer argument n and prints a list of all possible friend pairings
+among a group of n friends in a clique.
 
-# counting steps in naive as a function of a
-def naive1(a, b):
-    x = a;
-    y = b;
-    while (x > 0):
-        z = z + y
-        x = x - 1
-    return z
+Here's how the function works:
 
+    The function starts by printing the message "in a clique ..." to indicate that it is entering the
+    clique loop.
+    The outer for loop iterates j from 0 to n-1, which represents each friend in the clique.
+    The inner for loop iterates i from 0 to j-1, which represents each friend that j could be friends
+    with without repeating any pairings (since the pairing (i, j) is equivalent to the pairing (j, i)).
+    For each pair (i, j) that is found, the function prints the message "i is friends with j", where
+    i and j are the indices of the friends.
 
-# def timeNaive(a):
-
-
-# The number of steps it takes to execute naive(a,b)
-#   as a function b
-#
-# def bit_shift(a, b):
-#     return (a >> 1)
-
+For example, when n=4, the clique(4) function call would print the following output:
+"""
 def clique(n):
     print("in a clique ...")
     for j in range(n):

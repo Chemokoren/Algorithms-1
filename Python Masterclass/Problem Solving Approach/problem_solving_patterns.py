@@ -341,17 +341,21 @@ print("Expected:0, Actual:",count_unique_values_maps_2([])) # 0
 print("Expected:4, Actual:",count_unique_values_maps_2([-2,-1,-1,0,1])) # 4
 """
 SLIDING WINDOW
+--------------
 
-This pattern involves creating a window which can either be an array or number from one position to another
-Depending on a certain condition, the window either increases or closes(and a new window is created)
+This pattern involves creating a window which can either be an array or number from one 
+position to another.
+Depending on a certain condition, the window either increases or closes(and a new
+window is created)
 
 Very useful for keeping track of a subset of data in an array/string e.t.c.
 
 
 Example
 
-Write a function called maxSubarraySum which accepts an array of integers and a number called n. The 
-function should calculate the maximum sum of n consecutive elements in the array.
+Write a function called maxSubarraySum which accepts an array of integers and a number
+called n. 
+The function should calculate the maximum sum of n consecutive elements in the array.
 
 maxSubarraySum([1,2,5,2,8,1,5],2) //10
 maxSubarraySum([1,2,5,2,8,1,5],4) //17
@@ -425,6 +429,28 @@ print("expected: 6 ~ actutal:", maxSubArraySum([4,2,1,6],1)) #6
 print("expected: 13 ~ actutal:", maxSubArraySum([4,2,1,6,2], 4)) #13
 print("expected: None ~ actutal:",maxSubArraySum([], 4)) #null
 
+
+def maxSubarraySum(arr, n):
+	start =0
+	end   =start+n-1
+	max_val =-1
+	if len(arr) < n:
+		return "range is greater than the array given"
+	while end < len(arr):
+		new_sum =sum(arr[start:end+1])
+		if new_sum >max_val:
+			max_val =new_sum
+		start +=1
+		end +=1
+	return max_val if max_val >0 else None
+	
+
+print("Expected::10, Actual::", maxSubarraySum([1,2,5,2,8,1,5],2)) #10
+print("Expected::17, Actual::", maxSubarraySum([1,2,5,2,8,1,5],4)) #17
+print("Expected::6, Actual::", maxSubarraySum([4,2,1,6],1)) #6
+print("Expected::13, Actual::", maxSubarraySum([4,2,1,6,2], 4)) #13
+print("Expected::None, Actual::", maxSubarraySum([1,3,5], 4)) #null
+
 '''
 sliding window
 
@@ -454,14 +480,15 @@ print("expected: None ~ actutal:",maxSubarraySumF([], 4)) #null
 """
 Divide and Conquer
 
-This pattern involves dividing a data set into smaller chunks and then repeating a process with a subset of
-data.
+This pattern involves dividing a data set into smaller chunks and then repeating a 
+process with a subset of data.
 This pattern can tremendously decrease time complexity
 
 Example:
 
-Given a sorted array of integers, write a function called search, that accepts a value and returns the index
-where the value passed to the function is located. If the value is not found, return -1
+Given a sorted array of integers, write a function called search, that accepts a value 
+and returns the index where the value passed to the function is located.
+If the value is not found, return -1
 
 search([1,2,3,4,5,6], 4) //3
 search([1,2,3,4,5,6], 6) //5

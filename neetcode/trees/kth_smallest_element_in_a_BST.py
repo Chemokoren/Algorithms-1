@@ -9,11 +9,14 @@ element in the tree.
                   1    4
                    \
                     2
-Input: root =[3,1,4,null,2], k=1
+Input: root =[3,1,4,null,2], k=1 
 Output: 1
 """
 
 # Definition for a binary tree node.
+from typing import Optional
+
+
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
@@ -37,43 +40,9 @@ class TreeNode:
 
     def traverse(self,troot):
         if troot:
-            print(troot.val,end="--")
             self.traverse(troot.left)
+            print(troot.val,end="--")
             self.traverse(troot.right)
-
-class Solution:
-    def kthSmallest(self,root: TreeNode,k:int)->int:
-        n = 0
-        stack =[]
-        cur = root
-
-        while cur and stack:
-            while cur:
-                stack.append(cur)
-                cur = cur.left
-            cur = stack.pop()
-            n += 1
-            if n == k:
-                return cur.val
-            cur = cur.right
-
-k=3
-tree = TreeNode(20) 
-tree.insert(8)
-tree.insert(22)
-tree.insert(4)
-tree.insert(12)
-tree.insert(10)
-tree.insert(14)
-#keys = [ 20, 8, 22, 4, 12, 10, 14 ]
-# keys = [ 8, 22, 4, 12, 10, 14 ]
- 
-# for x in keys:
-#     tree.insert(x)
-
-# tree.traverse(tree.val)
-sol = Solution()
-print("Expected:, Actual::", sol.kthSmallest(tree, k))
 
 
 class IterativeSolution:
@@ -83,14 +52,13 @@ class IterativeSolution:
         stack =[]
         cur = root
         
-        while cur and stack:
+        while cur or stack:
             while cur:
                 stack.append(cur)
                 cur = cur.left
             cur = stack.pop()
             n += 1
             if n == k:
-                print("aa::", cur.val)
                 return cur.val
             cur = cur.right
 
@@ -103,4 +71,41 @@ tr.left.right =TreeNode(2)
 
 isv = IterativeSolution()
 	
-print("AAAA::, Actual::", isv.kthSmallest(tr.val,1))
+print("AAAA::, Actual::", isv.kthSmallest(tr,1))
+
+
+k=1
+tree = TreeNode(20) 
+tree.insert(8)
+tree.insert(22)
+tree.insert(4)
+tree.insert(12)
+tree.insert(10)
+tree.insert(14)
+#keys = [ 20, 8, 22, 4, 12, 10, 14 ]
+# keys = [ 8, 22, 4, 12, 10, 14 ][1,2,3,4]
+ 
+# for x in keys:
+#     tree.insert(x)
+
+# tree.traverse(tree.val)
+print("Expected:, Actual::", isv.kthSmallest(tree, 7))
+print("Traverse::",tree.traverse(tree))
+class Solution1:
+  def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+    if root is None: return None
+    kth_smallest = None
+    gen = self.in_order(root)
+    for _ in range(k):
+      kth_smallest = next(gen)
+    return kth_smallest.val
+  
+  def in_order(self, root: TreeNode) -> TreeNode:
+    if root.left:  
+        yield from self.in_order(root.left)
+    yield root
+    if root.right: 
+        yield from self.in_order(root.right)
+
+sol =Solution1()
+print("ndio ii::, Actual::", sol.kthSmallest(tr,1))

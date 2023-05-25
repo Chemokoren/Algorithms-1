@@ -84,26 +84,41 @@ class TreeNode:
         
         
 class Solution:
-    def isBalanced(self, root: Optional[TreeNode])->bool:
+
+    def is_balanced(self, root: Optional[TreeNode])->bool:
         """
         Function to determine if Binary Tree is balanced.
         
-            Parameters:
-                root(TreeNode): optional TreeNode root
-            Returns:
-                bool: True if balanced else False
+        Args:
+            root(TreeNode): optional TreeNode root
+        
+        Returns:
+            bool: True if balanced else False
         
         """
 
         def dfs(root):
+            
+            """
+            Helper function for DFS in a binary tree
+
+            Args:
+                root: this is the root node of the binary tree
+
+            Returns:
+                [bool, int]: list containing a boolean value & an integer of the difference
+            """
             if not root: return [True, 0]
 
             left, right = dfs(root.left), dfs(root.right)
-            balanced =(left[0] and right[0] and
-                        abs(left[1] - right[1] <= 1)
-                        )
-            return [balanced, 1+max(left[1], right[1])]
-        
+            balanced =(
+                left[0] and 
+                right[0] and
+                abs(left[1] - right[1] <= 1)
+                )
+            height = 1 + max(left[1], right[1])
+            return [balanced, height]
+    
         # returns the bool value
         return dfs(root)[0] 
     
@@ -113,32 +128,107 @@ tr.right =TreeNode(20)
 tr.right.left =TreeNode(15)
 tr.right.right =TreeNode(7)
 
-# cls = Solution()
-# print("is balanced::", cls.isBalanced(tr))
+cls = Solution()
+print("is balanced::", cls.is_balanced(tr))
 # tr.levelorder(tr.val)
 
-import collections
-class SolutionOne:
+# Sample balanced tree
+#     1
+#    / \
+#   2   3
+#  / \
+# 4   5
+balanced_tree = TreeNode(1)
+balanced_tree.left = TreeNode(2)
+balanced_tree.right = TreeNode(3)
+balanced_tree.left.left = TreeNode(4)
+balanced_tree.left.right = TreeNode(5)
+
+# Sample unbalanced tree
+#     1
+#    / \
+#   2   3
+#      / \
+#     4   5
+#        /
+#       6
+unbalanced_tree = TreeNode(1)
+unbalanced_tree.left = TreeNode(2)
+unbalanced_tree.right = TreeNode(3)
+unbalanced_tree.right.left = TreeNode(4)
+unbalanced_tree.right.right = TreeNode(5)
+unbalanced_tree.right.right.left = TreeNode(6)
+
+solution = Solution()
+print("balanced::",solution.isBalanced(balanced_tree))     # Expected output: True
+print("unbalanced::", solution.isBalanced(unbalanced_tree))   # Expected output: False
+
+
+
+class Solution2:
+    def isBalanced(self, root: Optional[TreeNode]) -> bool:
+        """
+        Function to determine if Binary Tree is balanced.
+
+        Parameters:
+            root (TreeNode): Optional TreeNode root
+        Returns:
+            bool: True if balanced else False
+        """
+
+        def get_height(node):
+            if not node:
+                return 0
+
+            left_height = get_height(node.left)
+            right_height = get_height(node.right)
+
+            return max(left_height, right_height) + 1
+
+        def is_balanced_helper(node):
+            if not node:
+                return True
+
+            left_height = get_height(node.left)
+            right_height = get_height(node.right)
+
+            if abs(left_height - right_height) > 1:
+                return False
+
+            return (
+                is_balanced_helper(node.left)
+                and is_balanced_helper(node.right)
+            )
+
+        return is_balanced_helper(root)
+
+print("############### sol ###############")
+sol = Solution2()
+print(sol.isBalanced(balanced_tree))     # Expected output: True
+print(sol.isBalanced(unbalanced_tree))   # Expected output: False
+
+# import collections
+# class SolutionOne:
     
     
-    def BinarySideView(self,root):
-        q = collections.deque([root])
-        res =[]
+#     def BinarySideView(self,root):
+#         q = collections.deque([root])
+#         res =[]
         
-        while q:
-            for _ in range(len(q)):
-                rightSide = None
-                node 	  = q.popleft()
+#         while q:
+#             for _ in range(len(q)):
+#                 rightSide = None
+#                 node 	  = q.popleft()
                 
-                if (node):
-                    rightSide = node
-                    q.append(node.left)
-                    q.append(node.right)
-            if rightSide:
-                res.append(rightSide.val)
-        return res
+#                 if (node):
+#                     rightSide = node
+#                     q.append(node.left)
+#                     q.append(node.right)
+#             if rightSide:
+#                 res.append(rightSide.val)
+#         return res
 	
 	
 	
-si =SolutionOne()
-print("Expected::, Actual::", si.BinarySideView(tr))
+# si =SolutionOne()
+# print("Expected::, Actual::", si.BinarySideView(tr))

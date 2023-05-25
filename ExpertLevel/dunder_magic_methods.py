@@ -15,8 +15,12 @@ class Person:
         print("__mul__")
         if type(x) is not int:
             raise Exception("Invalid argument, must be int")
-        self.name =self.name *4
+        self.name =self.name * 4
 
+    """
+    The __call__ method can be useful for creating callable objects that maintain state, as well as
+    for implementing function-like behavior for instances of a class.
+    """
     def __call__(self,y):
         print("__call__")
         print("called this function", y)
@@ -25,9 +29,10 @@ class Person:
         print("__len__")
         return len(self.name)
 
-# p = Person("kibz")
-# p * 4
-# print(p)
+p = Person("kibz")
+res = p(5)
+p * 4
+print(p)
 
 # print("########################################")
 # m =Person("trial")
@@ -46,21 +51,21 @@ class Person:
 #
 print("################## own implementation of a Queue ######################")
 
-from queue import Queue as q
+# from queue import Queue as q
 
-class Queue(q):
-    def __repr__(self):
-        return f"Queue({self._qsize()})"
+# class Queue(q):
+#     def __repr__(self):
+#         return f"Queue({self._qsize()})"
 
-    def __add__(self,item):
-        self.put(item)
-    def __sub__(self, item):
-        self.get()
+#     def __add__(self,item):
+#         self.put(item)
+#     def __sub__(self, item):
+#         self.get()
 
-qu = Queue()
-qu + 9
-print(qu)
-qu + 7
-print(qu)
-qu - 0
-print(qu)
+# qu = Queue()
+# qu + 9
+# print(qu)
+# qu + 7
+# print(qu)
+# qu - 0
+# print(qu)

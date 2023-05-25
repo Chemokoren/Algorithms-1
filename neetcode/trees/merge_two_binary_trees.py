@@ -26,25 +26,64 @@ Merged tree:
 time complexity: O(n+m) where n is nodes in the first tree and m in the second tree
 
 """
-
+from collections import deque
 class TreeNode:
-    """Definition for a binary tree node"""
+    """
+    Definition for a binary tree node
+    
+    """
     def __init__(self, val =0, left=None, right=None) -> None:
         self.val = val
         self.left = left
         self.right = right
+
+def level_order_traversal(root):
+    """
+    Method performs level order traversal in a binary tree
+
+    Parameters:
+        root: is the root node of the given binary tree
+    
+    Returns:
+        None
+    """
+
+    if not root:
+        return
+    
+    queue =deque()
+    queue.append(root)
+
+    while queue:
+        # pop the first item in the queue
+        node = queue.popleft()
+        print(node.val, end="-->")
+        # check if node has a left child & append to the queue
+        if node.left:
+            queue.append(node.left)
+
+        # check if node has a right child & append to the queue
+        if node.right:
+            queue.append(node.right)
+    print("\n")
+
         
 class Solution:
-    def mergeTrees(self, t1: TreeNode, t2: TreeNode) ->TreeNode:
+
+    """
+    Solution for merging two binary trees
+
+    """
+    def merge_trees(self, t1: TreeNode, t2: TreeNode) ->TreeNode:
         """
         Merge two binary trees and return the new binary tree.
         
-            Parameters:
-                t1(TreeNode): first binary tree
-                t2(TreeNode): second binary tree
+        Parameters:
+            t1(TreeNode): first binary tree
+            t2(TreeNode): second binary tree
                 
-            Returns:
-                root(TreeNode): resultant binary tree
+        Returns:
+            root(TreeNode): resultant binary tree
         """
         if not t1 and not t2:
             return None
@@ -54,8 +93,8 @@ class Solution:
         
         root = TreeNode(v1 + v2)
 
-        root.left =self.mergeTrees(t1.left if t1 else None, t2.left if t2 else None)
-        root.right =self.mergeTrees(t1.right if t1 else None, t2.right if t2 else None)
+        root.left =self.merge_trees(t1.left if t1 else None, t2.left if t2 else None)
+        root.right =self.merge_trees(t1.right if t1 else None, t2.right if t2 else None)
 
         return root
     
@@ -71,4 +110,5 @@ tr2.left.right =TreeNode(4)
 tr2.right.right =TreeNode(7)
 
 cls = Solution()
-print("merged binary tree::", cls.mergeTrees(tr1, tr2))
+# print("merged binary tree::", cls.merge_trees(tr1, tr2))
+level_order_traversal(cls.merge_trees(tr1, tr2))

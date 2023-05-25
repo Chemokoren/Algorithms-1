@@ -110,9 +110,9 @@ def test():
     for _ in range(10000):
         pass
 
-@timer
 def test2():
     time.sleep(2)
 
-test()
-test2()
+# test()
+mine= timer(test2)
+print(":::",mine())

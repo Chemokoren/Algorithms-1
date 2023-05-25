@@ -14,9 +14,11 @@ Explanation:
       2   3             <---
       \    \
       5     4           <---
-
+    /
+   7
 BFS (level order traversal)
 """
+from collections import deque
 # Definition for a binary tree node .
 class TreeNode:
     def __init__(self, val=0, left=None, right=None) -> None:
@@ -57,6 +59,36 @@ class Solution:
             if rightSide:
                 res.append(rightSide.val)
         return res
+    
+    """Testing!!!"""
+    def right_side_view(self, root):
+        """
+        Program to return all the nodes seen while standing on
+        the right view
+        Params:
+            root(rootNode): the tree's root
+        Returns:
+            None
+        """
+        queue = deque()
+        queue.append(root)
+        res =[]
+        if root:
+            res.append(root.val)
+        
+        while queue:
+            # pop first item in list
+            node = queue.popleft()
+            if node.left and node.right:
+                res.append(node.right.val)
+                queue.append(node.left)
+                queue.append(node.right)
+            elif node.left and not node.right:
+                res.append(node.left.val)
+                queue.append(node.left)
+            elif not node.left and not node.right:
+                    pass
+        return res
 
 input_val= [1,2,3,None,5,None,4]
 tree = TreeNode(1) 
@@ -64,8 +96,10 @@ tree.left=TreeNode(2)
 tree.right=TreeNode(3)
 tree.left.right=TreeNode(5)
 tree.right.right=TreeNode(4)
+tree.left.right.left=TreeNode(7)
 
 
 sol = Solution()
 print(sol.rightSideView(tree))
+# print("maneno::", sol.right_side_view(tree))
 

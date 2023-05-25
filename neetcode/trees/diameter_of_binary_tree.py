@@ -23,6 +23,7 @@ Solution: O(n) -visit every node at most one time
 
 # Definition for a binary tree node
 class TreeNode:
+
     def __init__(self, val=0,left=None, right=None):
         self.val = val
         self.left = left
@@ -59,3 +60,56 @@ tree.left.right = TreeNode(5)
 
 cls = Solution()
 print("Expected::, Actual::", cls.diameterOfBinaryTree(tree))
+
+print("####################################")
+
+def diameterOfBinaryTree(root):
+    if not root:
+        return 0
+
+    # Helper function to calculate the height of a tree
+    def height(node):
+        if not node:
+            return 0
+        return 1 + max(height(node.left), height(node.right))
+
+    # Recursively calculate the diameter of the tree
+    def diameter(node):
+        if not node:
+            return 0
+
+        # Calculate the height of the left and right subtrees
+        left_height = height(node.left)
+        right_height = height(node.right)
+
+        # Calculate the diameter passing through the current node
+        current_diameter = left_height + right_height
+
+        # Recursively find the diameters of the left and right subtrees
+        left_diameter = diameter(node.left)
+        right_diameter = diameter(node.right)
+
+        # Return the maximum diameter among the current node and its subtrees
+        return max(current_diameter, left_diameter, right_diameter)
+
+    return diameter(root)
+
+# Create the binary tree from the example
+root = TreeNode(1)
+root.left = TreeNode(2)
+root.right = TreeNode(3)
+root.left.left = TreeNode(4)
+root.left.right = TreeNode(5)
+
+# Compute the diameter of the binary tree
+diameter = diameterOfBinaryTree(root)
+print("Diameter of the binary tree:", diameter)
+
+# another example
+root = TreeNode(1)
+root.left = TreeNode(2)
+root.left.left = TreeNode(3)
+root.left.right = TreeNode(4)
+root.left.left.left = TreeNode(5)
+root.left.right.right = TreeNode(6)
+print("Second example:", diameterOfBinaryTree(root))

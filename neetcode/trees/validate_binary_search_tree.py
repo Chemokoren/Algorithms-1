@@ -30,7 +30,8 @@ class TreeNode:
         self.right  = right
         
 class Solution:
-    def isValidBST(self, root: TreeNode)->bool:
+
+    def is_valid_bst(self, root: TreeNode)->bool:
         """
         Validate Binary Search Tree.
         
@@ -42,7 +43,8 @@ class Solution:
 
         def valid(node, left, right):
             if not node:
-                return True # an empty node is a BST
+                # an empty node is a BST
+                return True 
             if not (node.val < right and node.val > left):
                 return False
             return (valid(node.left, left, node.val) and 
@@ -55,4 +57,4 @@ tr.left  = TreeNode(1)
 tr.right = TreeNode(3)
 
 cls = Solution()
-print("Valid Binary Search Tree::", cls.isValidBST(tr))
+print("Valid Binary Search Tree::", cls.is_valid_bst(tr))

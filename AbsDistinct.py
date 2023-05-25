@@ -1,4 +1,5 @@
-"""Tasks Details
+"""
+Tasks Details
 Easy
 1. AbsDistinct
 Compute number of distinct absolute values of sorted array elements.
@@ -9,7 +10,9 @@ Correctness
 Performance
 0%
 Task description
-A non-empty array A consisting of N numbers is given. The array is sorted in non-decreasing order. The absolute distinct count of this array is the number of distinct absolute values among the elements of the array.
+A non-empty array A consisting of N numbers is given. The array is sorted in non-decreasing order.
+The absolute distinct count of this array is the number of distinct absolute values among the elements
+of the array.
 
 For example, consider array A such that:
 
@@ -19,7 +22,8 @@ For example, consider array A such that:
   A[3] =  0
   A[4] =  3
   A[5] =  6
-The absolute distinct count of this array is 5, because there are 5 distinct absolute values among the elements of this array, namely 0, 1, 3, 5 and 6.
+The absolute distinct count of this array is 5, because there are 5 distinct absolute values among the
+ elements of this array, namely 0, 1, 3, 5 and 6.
 
 Write a function:
 
@@ -43,6 +47,12 @@ N is an integer within the range [1..100,000];
 each element of array A is an integer within the range [−2,147,483,648..2,147,483,647];
 array A is sorted in non-decreasing order."""
 
+def Remove(duplicate):
+    final_list = []
+    for num in duplicate:
+        if num not in final_list:
+            final_list.append(num)
+    return final_list
 
 def solution(A):
     # write your code in Python 3.6
@@ -52,13 +62,6 @@ def solution(A):
 
     return len(Remove(GEEK))
 
-
-def Remove(duplicate):
-    final_list = []
-    for num in duplicate:
-        if num not in final_list:
-            final_list.append(num)
-    return final_list
 
 # solution 1
 # Task Score
@@ -116,3 +119,17 @@ def solution2(A):
 
 
 A = [-5, -3, -1, 0, 3, 6]
+
+# use set or maps
+def solution(A):
+    map = set()
+
+    for i in A:
+        map.add(abs(i))
+    #    if abs(i)  in map:
+    #        pass
+    #    else:
+    #        map[abs(i)] =True
+    return len(map)
+
+solution(A)

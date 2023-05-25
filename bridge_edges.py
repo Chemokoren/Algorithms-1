@@ -1,7 +1,6 @@
 # Bridge Edges v4
 #
-# Find the bridge edges in a graph given the
-# algorithm in lecture.
+# Find the bridge edges in a graph given the algorithm in lecture.
 # Complete the intermediate steps
 #  - create_rooted_spanning_tree
 #  - post_order
@@ -9,18 +8,13 @@
 #  - lowest_post_order
 #  - highest_post_order
 #
-# And then combine them together in
-# `bridge_edges`
+# And then combine them together in `bridge_edges`
 
-# So far, we've represented graphs
-# as a dictionary where G[n1][n2] == 1
-# meant there was an edge between n1 and n2
+# So far, we've represented graphs as a dictionary where G[n1][n2] == 1
+# meaning there is an edge between n1 and n2
 #
-# In order to represent a spanning tree
-# we need to create two classes of edges
-# we'll refer to them as "green" and "red"
-# for the green and red edges as specified in lecture
-#
+# In order to represent a spanning tree we need to create two classes of edges
+# we'll refer to them as "green" and "red"  for the green and red edges as specified in lecture
 # So, for example, the graph given in lecture
 # G = {'a': {'c': 1, 'b': 1},
 #      'b': {'a': 1, 'd': 1},
@@ -61,8 +55,7 @@ def make_link(G, node1, node2, r_or_g):
     return G
 
 def get_children(S, root, parent):
-    """returns the children from following the
-    green edges"""
+    """returns the children from following the green edges"""
     return [n for n, e in S[root].items()
             if ((not n == parent) and
                 (e == 'green'))]
@@ -89,7 +82,7 @@ def create_rooted_spanning_tree(G, root):
     # to the tree.  The first time we see a node
     # the edge is green, but after that its red
     open_list = [root]
-    S = {root:{}}
+    S = {root: {}}
     while len(open_list) > 0:
         node = open_list.pop()
         neighbors = G[node]
@@ -126,53 +119,53 @@ def post_order(S, root):
 
 ##################
 
-def _number_descendants(S, root, parent, nd):
+def _number_descendants(s, root, parent, nd):
     # number of descendants is the
     # sum of the number of descendants of a nodes
     # children plus one
-    children = get_children(S, root, parent)
+    children = get_children(s, root, parent)
     nd_val = 1
     for c in children:
-        # recursively calculate the number of descendants
-        # for the children
-        nd_val += _number_descendants(S, c, root, nd)
+        # recursively calculate the number of descendants for the children
+        nd_val += _number_descendants(s, c, root, nd)
     nd[root] = nd_val
     return nd_val
 
-def number_of_descendants(S, root):
+def number_of_descendants(s, root):
     nd = {}
-    _number_descendants(S, root, None, nd)
+    _number_descendants(s, root, None, nd)
     return nd
 
 
 #
 # Since highest and lowest post order will follow
-# a similar method, I only wrote one method
-# that can be used for both
+# a similar method, one method can be used for both
 #
-def _general_post_order(S, root, parent, po, gpo, comp):
-    green, red = get_children_all(S, root, parent)
+def _general_post_order(s, root, parent, po, gpo, comp):
+    green, red = get_children_all(s, root, parent)
     val = po[root]
     for c in green:
         # recursively find the low/high post order value of the children
-        test = _general_post_order(S, c, root, po, gpo, comp)
-        # and save the low/highest one
+        test = _general_post_order(s, c, root, po, gpo, comp)
+        # and save the low / high one
         if comp(val, test):
             val = test
     for c in red:
         test = po[c]
         # and also look at the direct children
         # from following red edges
-        # and save the low/highest one if needed
+        # and save the low/high one if needed
         if comp(val, test):
             val = test
     gpo[root] = val
     return val
 
-def lowest_post_order(S, root, po):
+
+def lowest_post_order(s, root, po):
     lpo = {}
-    _general_post_order(S, root, None, po, lpo, lambda x, y: x > y)
+    _general_post_order(s, root, None, po, lpo, lambda x, y: x > y)
     return lpo
+
 
 def highest_post_order(S, root, po):
     hpo = {}
@@ -183,6 +176,7 @@ def highest_post_order(S, root, po):
 # Now put everything together
 #
 
+
 def bridge_edges(G, root):
     S = create_rooted_spanning_tree(G, root)
     po = post_order(S, root)
@@ -191,8 +185,7 @@ def bridge_edges(G, root):
     hpo = highest_post_order(S, root, po)
     bridges = []
     open_list = [(root, None)]
-    # walk down the tree and see which edges are
-    # tree edges
+    # walk down the tree and see which edges are tree edges
     while len(open_list) > 0:
         node, parent = open_list.pop()
         for child in get_children(S, node, parent):
