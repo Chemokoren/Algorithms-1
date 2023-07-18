@@ -30,11 +30,13 @@ you can use BFS but here we will use DFS - preorder
 O(n) time for serializing & deserializing
 
 """
+
 # Definition for a binary tree node.
 class TreeNode(object):
+
     def __init__(self, x):
-        self.val  = x
-        self.left = None
+        self.val   = x
+        self.left  = None
         self.right = None
 
     def insert(self, data):
@@ -55,7 +57,8 @@ class TreeNode(object):
 class Codec:
 
     def serialize(self, root):
-        """ Encodes a tree to a single string.
+        """ 
+        Encodes a tree to a single string.
         : type root: TreeNode
         : rtype : str
         
@@ -73,7 +76,8 @@ class Codec:
         return ",".join(res)
 
     def deserialize(self, data):
-        """ Decodes your encoded data to tree.
+        """ 
+        Decodes your encoded data to tree.
 
         :type data: str
         :rtype: TreeNode
@@ -91,3 +95,20 @@ class Codec:
             node.right =dfs()
             return node
         return dfs()
+    
+def level_order_traversal(root):
+    if root:
+        print(root.val, end="-->")
+        level_order_traversal(root.left)
+        level_order_traversal(root.right)
+
+tr =TreeNode(1)
+tr.left = TreeNode(2)
+tr.right = TreeNode(3)
+tr.right.left =TreeNode(4)
+tr.right.right =TreeNode(5)
+
+cd = Codec()
+print("Serialized Binary Tree::", cd.serialize(tr))
+print("Deserialized Binary Tree::", cd.deserialize(cd.serialize(tr)))
+level_order_traversal(cd.deserialize(cd.serialize(tr)))

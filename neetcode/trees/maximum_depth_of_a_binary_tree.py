@@ -65,3 +65,14 @@ class Solution:
                 stack.append([node.left, depth+1])
                 stack.append([node.right, depth+1])
         return res
+    
+sol =Solution()
+tree =TreeNode(3)
+tree.left=TreeNode(9)
+tree.right=TreeNode(20)
+tree.right.left=TreeNode(15)
+tree.right.right=TreeNode(7)
+
+print("maxDepth::", sol.maxDepth(tree))
+print("maxDepthBFS::", sol.maxDepthBFS(tree))
+print("maxDepthIterativeDFS::", sol.maxDepthIterativeDFS(tree))

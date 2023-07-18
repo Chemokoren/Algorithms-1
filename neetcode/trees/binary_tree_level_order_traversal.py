@@ -21,6 +21,7 @@ solution uses BFS : O(n) time | O(n) space coz the tree can have at most O(n/2) 
 class TreeNode:
 
     class _Node:
+        
         __slots__='_element','_left','_right'
 
         def __init__(self, element, left=None, right=None):
@@ -72,3 +73,13 @@ class Solution:
                 res.append(level)
 
         return res
+
+
+tr = TreeNode(3)
+tr.left = TreeNode(9)
+tr.right = TreeNode(20)
+tr.right.left = TreeNode(15)
+tr.right.right = TreeNode(7)
+
+sol = Solution()
+print("solution::", sol.levelOrder(tr))

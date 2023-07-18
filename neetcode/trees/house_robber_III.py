@@ -30,6 +30,7 @@ class TreeNode:
         self.right = right
 
 class Solution:
+
     def rob(self, root: TreeNode) ->int:
 
         # return pair: [withRoot, withoutRoot]
@@ -43,5 +44,23 @@ class Solution:
             withoutRoot = max(leftPair) + max(rightPair)
 
             return [withRoot, withoutRoot]
+        
         return max(dfs(root))
 
+
+# example 1
+tr = TreeNode(3)
+tr.left=TreeNode(2)
+tr.right=TreeNode(3)
+tr.left.right=TreeNode(3)
+tr.right.right=TreeNode(1)
+
+tr2 = TreeNode(3)
+tr2.left = TreeNode(20)
+tr2.right =TreeNode(4)
+tr2.left.left =TreeNode(100)
+tr2.right.right =TreeNode(1)
+
+sol = Solution()
+print("Expected 1 sol 7::Actual:", sol.rob(tr))
+print("Expected 2 sol 104::Actual:", sol.rob(tr2))

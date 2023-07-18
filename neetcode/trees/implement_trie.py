@@ -6,12 +6,13 @@ retrieve  keys in a dataset of strings. There are various applications of this d
 such as autocomplete and spellchecker.
 
 Implement the Trie class:
+
 - Trie() initializes the trie object
 - void insert(String word) Inserts the string word into the trie.
 - boolean search(String word) Returns true if the string word is in the trie(i.e. was inserted
 before), and false otherwise.
 - boolean startsWith(String prefix) Returns true if there is a previously inserted string 
-word that has the prefix prefix, and false otherwise.
+word that has the prefix, and false otherwise.
 
 Example 1:
 
@@ -31,15 +32,19 @@ trie.startsWith("app"); // return True
 """
 
 class TrieNode:
+    """
+    Initializing the TrieNode
+    """
 
     def __init__(self):
         self.children ={}
         self.endOfWord= False
+
 class Trie:
 
     def __init__(self):
         """
-        Initialize your data structure here
+        Initializing the data structure
         """
         self.root = TrieNode()
 
@@ -67,7 +72,7 @@ class Trie:
             cur = cur.children[c]
         return cur.endOfWord
 
-    def startsWith(self, prefix: str)->bool:
+    def starts_with(self, prefix: str)->bool:
         """
         Returns if there is any word in the trie that starts with the given prefix.
         """
@@ -82,4 +87,8 @@ class Trie:
         
 
 
-    
+trie = Trie()
+trie.insert("apple")
+print("search for apple::", trie.search("apple")) # return True
+print("search for app::", trie.search("app")) # return False
+print("search for word starting with app::", trie.starts_with("app")) # return True

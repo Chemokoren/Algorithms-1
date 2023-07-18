@@ -23,13 +23,25 @@ class TreeNode:
         self.val =val
         self.left = left
         self.right = right
+
 class Solution:
 
-    def isSameTree(self, p: TreeNode, q: TreeNode)->bool:
+    def is_same_tree(self, p: TreeNode, q: TreeNode)->bool:
         if not p and not q:
             return True
         if not p or not q or p.val != q.val:
             return False
-        return (self.isSameTree(p.left, q.left) and 
-                self.isSameTree(p.right, q.right))
+        return (self.is_same_tree(p.left, q.left) and 
+                self.is_same_tree(p.right, q.right))
                 
+
+tr_p =TreeNode(1)
+tr_p.left =TreeNode(2)
+tr_p.right =TreeNode(3)
+
+tr_q =TreeNode(1)
+tr_q.left =TreeNode(2)
+tr_q.right =TreeNode(3)
+
+sol = Solution()
+print("check if is same tree::", sol.is_same_tree(tr_p, tr_q))

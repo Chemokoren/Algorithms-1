@@ -58,7 +58,7 @@ class WordDictionary:
 
                 if c == ".":
                     for child in cur.children.values():
-                        if dfs(i+1, child):
+                        if dfs(i+1, child):# we are skipping the dot
                             return True
                     return False
                 else:
