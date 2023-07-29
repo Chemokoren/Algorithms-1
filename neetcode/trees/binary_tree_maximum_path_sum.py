@@ -52,3 +52,10 @@ class Solution:
         dfs(root)
         return res[0]
     
+tr = TreeNode(1)
+tr.left = TreeNode(2)
+tr.right = TreeNode(3)
+
+sol = Solution()
+print("Expected::", sol.maxPathSum(tr))
+    

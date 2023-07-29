@@ -26,6 +26,7 @@ class TreeNode:
         self.val = x
         self.left = None
         self.right = None
+
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode',q: 'TreeNode')->'TreeNode':
         cur = root
@@ -60,6 +61,7 @@ q2 = TreeNode(9)
 
 
 
-print("sol::", sol.lowestCommonAncestor(tr, p, q))
+print("Example 1 sol::", sol.lowestCommonAncestor(tr, p, q))
 print("Example 2 sol::", sol.lowestCommonAncestor(tr, p1, q1))
 print("Example 3 sol::", sol.lowestCommonAncestor(tr, p2, q2))
+

@@ -40,6 +40,7 @@ class TreeNode(object):
         self.right = None
 
     def insert(self, data):
+        self.data = self.val
         if self.data:
             if data < self.data:
                 if self.left is None:

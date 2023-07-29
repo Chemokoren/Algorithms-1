@@ -30,6 +30,8 @@ class TreeNode:
         self.right = right
 
 class Solution:
+
+    # O(n) time && O(n) space if it is not a balance binary tree
     def maxDepth(self, root: TreeNode)->int:
         if not root:
             return 0
