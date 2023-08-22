@@ -70,7 +70,8 @@ parts.append('</ul>')
 print('\n'.join(parts))
 
         
-# ordinary non-fluent builder
+print(" #### ordinary non-fluent builder #### ")
+
 # builder = HtmlBuilder('ul')
 builder =HtmlElement.create('ul')
 builder.add_child('li', 'hello')
