@@ -1,4 +1,5 @@
 from typing import List
+import unittest
 """
 Word Search II - Backtracking Trie
 
@@ -65,8 +66,29 @@ class Solution:
 
             visit.remove((r,c))
 
-            for r in range(ROWS):
-                for c in range(COLS):
-                    dfs(r,c, root, "")
-            return list(res)
+        for r in range(ROWS):
+            for c in range(COLS):
+                dfs(r,c, root, "")
+        return list(res)
 
+var_board =[["o","a","a","n"], ["e","t","a","e"],["i","h","k","r"],["i","f","l","v"]]
+var_words=["oath","pea","eat","rain"]
+var_output =["eat","oath"]
+sol = Solution()
+var_res =sol.findWords(var_board, var_words)
+print(f"Expected:: {var_output}, Actual:: {var_res}")
+
+# further optimization: once you find a word in a try,
+# if it is a leaf node, you can remove that from the try because you don't have to search 
+# for the same word twice -- no surety of improving the time complexity
+
+class word_search_test(unittest.TestCase):
+
+    def test_word_search(self):
+        self.assertEqual(set(var_output), set(var_res))
+
+
+
+if __name__ =='__main__':
+    wst =word_search_test()
+    wst.test_word_search()

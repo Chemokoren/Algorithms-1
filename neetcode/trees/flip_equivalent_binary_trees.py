@@ -44,3 +44,27 @@ class Solution:
         a = self.flipEquiv(r1.left, r2.left) and self.flipEquiv(r1.right, r2.right)
         b = self.flipEquiv(r1.left, r2.right) and self.flipEquiv(r1.right, r2.left)
         return a or b
+    
+
+tr1 = TreeNode(1)
+tr1.left=TreeNode(2)
+tr1.right = TreeNode(3)
+tr1.left.left=TreeNode(4)
+tr1.left.right=TreeNode(5)
+tr1.right.left = TreeNode(6)
+tr1.left.right.left=TreeNode(7)
+tr1.left.right.right=TreeNode(8)
+
+
+tr2 = TreeNode(1)
+tr2.left=TreeNode(3)
+tr2.right = TreeNode(2)
+tr2.left.right=TreeNode(6)
+tr2.right.left=TreeNode(4)
+tr2.right.right=TreeNode(5)
+tr2.right.right.left=TreeNode(8)
+tr2.right.right.right=TreeNode(7)
+
+
+sol =Solution()
+print("Expected:: True, Actual::", sol.flipEquiv(tr1, tr2))

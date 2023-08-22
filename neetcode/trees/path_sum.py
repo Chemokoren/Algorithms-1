@@ -75,9 +75,11 @@ class TreeNode:
         return treeNode
 
 class Solution:
+
     def hasPathSum(self, root: Optional[TreeNode], targetSum: int)->bool:
 
-        # O(n) time where n is number of nodes | O(n) time in the worst case & O(log(n)) if
+        # O(n) time where n is number of nodes 
+        # O(h) memory complexity | O(n) time in the worst case & O(log(n)) if
         # it is a balanced binary tree
         def dfs(node, curSum):
             if not node:
@@ -86,6 +88,7 @@ class Solution:
             if not node.left and not node.right:
                 return curSum == targetSum
             
+            # We only need one path, so we return left or right path
             return (dfs(node.left, curSum) or 
                     dfs(node.right, curSum))
         return dfs(root, 0)
@@ -94,4 +97,15 @@ tree_vals =[5,4,8,11,None,13,4,7,2,None,None,None,1]
 t =TreeNode()
 tree_root =t.createTree(tree_vals)
 sol =Solution()
-print(sol.hasPathSum(tree_root, 22))
+print("Expected Solution::", sol.hasPathSum(tree_root, 22))
+
+tr = TreeNode(5)
+tr.left =TreeNode(4)
+tr.right=TreeNode(8)
+tr.left.left=TreeNode(11)
+tr.left.left.left =TreeNode(7)
+tr.left.left.right = TreeNode(2)
+tr.right.left=TreeNode(13)
+tr.right.right=TreeNode(4)
+tr.right.right.right=TreeNode(1)
+print("Expectation::",sol.hasPathSum(tr, 22))

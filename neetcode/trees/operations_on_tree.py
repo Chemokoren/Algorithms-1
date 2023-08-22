@@ -49,6 +49,7 @@ class LockingTree:
     def lock(self, num: int, user: int)->bool:
         if self.locked[num]: return False
         self.locked[num] = user
+        return True
 
     # O(1) time
     def unlock(self, num:int, user:int)->bool:
@@ -75,3 +76,64 @@ class LockingTree:
         if lockedCount > 0:
             self.locked[num] = user
         return lockedCount > 0
+    
+
+# ["LockingTree","upgrade","upgrade","upgrade","upgrade","upgrade","lock","unlock",
+#  "upgrade","upgrade","upgrade","lock","upgrade","upgrade","upgrade","lock",
+#  "unlock","upgrade","unlock","unlock","upgrade"]
+# [[[-1,4,9,0,6,3,1]],[9,43],[4,27],[5,34],[7,31],[4,27],[2,47],[7,21],[4,12],[1,1],
+#  [8,20],[5,50],[5,28],[0,11],[6,19],[9,27],[5,6],[0,5],[4,49],[4,22],[5,27]]
+
+
+# Test Case: Basic Locking and Unlocking
+
+lt = LockingTree([-1, 0, 0, 1, 1, 2])  # Create a LockingTree with parent list [-1, 0, 0, 1, 1, 2]
+print(lt.lock(3, 1) == True)  # Lock node 3 with user 1
+print(lt.locked == [None, None, None, 1, None, None])  # The locked list should be updated
+print(lt.lock(3, 2) == False)  # Attempt to lock node 3 with a different user should fail
+print(lt.unlock(3, 2) == False)  # Attempt to unlock node 3 with a different user should fail
+print(lt.unlock(3, 1) == True)  # Unlock node 3 with the correct user
+print(lt.locked == [None, None, None, None, None, None])  # The locked list should be updated
+
+
+print("\n####### Test Case: Upgrading Lock #######\n")
+
+lt = LockingTree([-1, 0, 1, 2])  # Create a LockingTree with parent list [-1, 0, 1, 2]
+print(lt.lock(2, 1) == True)  # Lock node 2 with user 1
+print(lt.locked == [None, None, 1, 1])  # The locked list should be updated
+print(lt.upgrade(2, 1) == True)  # Upgrading the lock on node 2 to exclusive lock should be successful
+print(lt.locked == [None, None, 1, None])  # The locked list should be updated
+
+
+print("\n#######  Test Case: Failing to Upgrade Lock #######\n")
+
+lt = LockingTree([-1, 0, 1, 2])  # Create a LockingTree with parent list [-1, 0, 1, 2]
+print( lt.lock(2, 1) == True)  # Lock node 2 with user 1
+print( lt.locked == [None, None, 1, 1])  # The locked list should be updated
+print( lt.upgrade(0, 1) == False)  # Attempt to upgrade lock on node 0 should fail as it has locked descendants
+print( lt.locked == [None, None, 1, 1])  # The locked list should remain unchanged
+
+print("\n#######  Test Case: Locking Descendants Prevent Upgrade #######\n")
+lt = LockingTree([-1, 0, 1, 2])  # Create a LockingTree with parent list [-1, 0, 1, 2]
+print( lt.lock(1, 1) == True)  # Lock node 1 with user 1
+print( lt.locked == [None, 1, 1, None])  # The locked list should be updated
+print( lt.upgrade(0, 1) == False)  # Attempt to upgrade lock on node 0 should fail as it has locked descendants
+print( lt.locked == [None, 1, 1, None])  # The locked list should remain unchanged
+
+print("\n#######  Test Case: Locking Cycle #######\n")
+lt = LockingTree([-1, 0, 1, 2])  # Create a LockingTree with parent list [-1, 0, 1, 2]
+print(lt.lock(0, 1) == True)  # Lock node 0 with user 1
+print( lt.lock(1, 2) == True)  # Lock node 1 with user 2
+print( lt.lock(2, 3) == True)  # Lock node 2 with user 3
+print( lt.locked == [1, 2, 3, None])  # The locked list should be updated
+print( lt.upgrade(2, 3) == False)  # Attempt to upgrade lock on node 2 should fail due to locked ancestors
+print( lt.locked == [1, 2, 3, None])  # The locked list should remain unchanged
+
+print("\n#######  Test Case: Unlocking Root Node #######\n")
+lt = LockingTree([-1, 0, 1, 2])  # Create a LockingTree with parent list [-1, 0, 1, 2]
+print(lt.lock(0, 1) == True)  # Lock node 0 with user 1
+print( lt.locked == [1, None, None, None])  # The locked list should be updated
+print( lt.unlock(0, 2) == False)  # Attempt to unlock node 0 with a different user should fail
+print( lt.unlock(0, 1) == True)  # Unlock node 0 with the correct user
+print( lt.locked == [None, None, None, None])  # The locked list should be updated
+
