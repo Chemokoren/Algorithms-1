@@ -21,13 +21,37 @@ Example 1:
                           3(33)          8(8)        
 """
 from typing import Optional
+from collections import deque
 # Definition for a binary tree node
 class TreeNode:
 
     def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
+        self.val   = val
+        self.left  = left
         self.right = right
+
+def bfs(root):
+    queue =deque()
+    queue.append(root)
+
+    while queue:
+        node = queue.popleft()
+        print(node.val, end="-->")
+        if node.left:
+            queue.append(node.left)
+        if node.right:
+            queue.append(node.right)
+    print()
+
+def dfs(root):
+    if not root:
+        return
+    print(root.val, end="-->")
+    dfs(root.left)
+    dfs(root.right)
+
+
+
 
 class Solution:
 
@@ -39,10 +63,31 @@ class Solution:
             if not node:
                 return
             nonlocal curSum
+
             dfs(node.right)
             tmp = node.val
             node.val +=curSum
             curSum += tmp
             dfs(node.left)
+
         dfs(root)
         return root
+    
+tr = TreeNode(4)
+tr.left =TreeNode(1)
+tr.right =TreeNode(6)
+tr.left.left =TreeNode(0)
+tr.left.right =TreeNode(2)
+tr.right.left =TreeNode(5)
+tr.right.right =TreeNode(7)
+tr.left.right.right =TreeNode(3)
+tr.right.right.right =TreeNode(8)
+
+sol = Solution()
+sol1 =Solution()
+
+# print("Expected::", sol.convertBST(tr).val)
+print(" ########## BFS ########## ")
+bfs(sol.convertBST(tr))
+print(" ########## DFS ########## ")
+dfs(sol.convertBST(tr))
