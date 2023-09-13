@@ -20,6 +20,7 @@ Summary:
 - Build a Facade to provide a simplified API over a set of classes
 - May wish to (optionally) expose internals through the facade
 - May allow users to 'escalate' to use more complex APIs if they need to
+
 """
 class Buffer:
   def __init__(self, width=30, height=20):
@@ -63,5 +64,5 @@ class Console:
 if __name__ == '__main__':
   c = Console()
   c.write('hello')
-  ch = c.get_char_at(0)
-  print(c)
+  ch = c.get_char_at(3)
+  print(ch)
