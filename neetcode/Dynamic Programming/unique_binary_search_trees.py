@@ -36,8 +36,8 @@ class Solution:
         for nodes in range(2, n + 1):
             total = 0
             for root in range(1, nodes + 1):
-                left = root -1
-                right = nodes - root
+                left   = root -1
+                right  = nodes - root
                 total += num_tree[left] * num_tree[right]
             num_tree[nodes] = total
         return num_tree[n]
@@ -50,6 +50,12 @@ class TestUniqueBinarySearchTree(unittest.TestCase):
 
     def test_unique_binary_search_trees(self):
         self.assertEqual(5, self.sol.num_trees(3))
+
+    def test_unique_binary_search_trees_number_is_1(self):
+        self.assertEqual(1, self.sol.num_trees(1))
+
+    def test_unique_binary_search_trees_number_is_zerpo(self):
+        self.assertEqual(1, self.sol.num_trees(0))
 
 if __name__=="__main__":
     unittest.main()
