@@ -23,8 +23,9 @@ import unittest
 
 class Solution:
 
+    # time complexity: n^3 | space complexity: n^2
     def max_coins(self, nums: List[int])-> int:
-        nums =[1] + nums + [1]
+        nums =[1] + nums + [1], 
         dp = {}
 
         def dfs(l, r):
