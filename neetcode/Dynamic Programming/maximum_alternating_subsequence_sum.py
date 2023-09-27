@@ -21,11 +21,15 @@ Output: 7
 Explanation: It is optimal to choose the subsequence [4, 2, 5] with alternating sum
 (4 + 5) - 2 =7
 
+
+**** first check:: Longest Increasing Subsequence
 """
 from typing import List
+import unittest
 
 class Solution:
 
+    # time complexity: O(n) | space complexity: O(n)
     def max_alternating_sum(self, nums: List[int])-> int:
 
         dp ={}
@@ -43,7 +47,8 @@ class Solution:
             return dp[(i, even)]
         return dfs(0, True)
     
-    def max_alternating_sum(self, nums: List[int])-> int:
+    # time complexity: O(n) | space complexity: O(1)
+    def max_alternating_sum_dp(self, nums: List[int])-> int:
         sumEven, sumOdd = 0, 0
 
         for i in range(len(nums) -1, -1, -1):
@@ -51,3 +56,18 @@ class Solution:
             tmpOdd = max(sumEven - nums[i], sumOdd)
             sumEven, sumOdd = tmpEven, tmpOdd
         return sumEven
+    
+class TestMaximumAlternatingSubsequenceSum(unittest.TestCase):
+
+    def __init__(self, methodName: str = "runTest") -> None:
+        super().__init__(methodName)
+        self.sol =Solution()
+
+    def test_maximum_alternating_subsequence_sum(self):
+        self.assertEqual(7, self.sol.max_alternating_sum([4, 2, 5, 3]))
+
+    def test_maximum_alternating_subsequence_sum_dp(self):
+        self.assertEqual(7, self.sol.max_alternating_sum([4, 2, 5, 3]))
+
+if __name__=="__main__":
+    unittest.main()
