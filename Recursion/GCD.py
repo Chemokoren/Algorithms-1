@@ -5,3 +5,4 @@ def gcd(a, b):
 
 
 print(gcd(8,9))
+print(gcd(3,9))

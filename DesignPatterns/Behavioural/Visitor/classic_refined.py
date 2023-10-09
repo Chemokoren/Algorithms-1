@@ -83,7 +83,7 @@ class ExpressionEvaluator:
         self.buffer.append('(')
         ae.left.accept(self)
         self.buffer.append('+')
-        ae.eight.accept(self)
+        ae.right.accept(self)
         self.buffer.append(')')
 
         def __str__(self):

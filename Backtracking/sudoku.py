@@ -23,8 +23,10 @@ class Sudoku:
         r_corner, c_corner = r -(r % 3), c -(c %3)
         for tR in range(r_corner, r_corner +3):
             for tC in range(c_corner, c_corner +3):
-                if self.board[tR][tC] == num and (r, c) != (tR, tC): # if we found the num & it is not the location we gave
-                    return False            # Means there was a different location in the box with same number
+                # if we found the num & it is not the location we gave
+                # means there was a different location in the box with same number
+                if self.board[tR][tC] == num and (r, c) != (tR, tC): 
+                    return False            
         return True
 
     def solve(self):
@@ -32,7 +34,8 @@ class Sudoku:
         # assert self._solve(0), "Impossible Board"
 
     def _solve(self, idx):
-        if idx >= len(self.unfilled): # return True because there are no more positions to fill -board is solved
+        # return True because there are no more positions to fill -board is solved
+        if idx >= len(self.unfilled): 
             return True
         r,c = self.unfilled[idx]
         for num in range(1,10):

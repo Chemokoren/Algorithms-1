@@ -31,7 +31,6 @@ def is_valid(puzzle, guess, row, col):
             
         Returns:
             bool: returns True if is valid, False otherwise
-    
     """
 
     # row

@@ -2,10 +2,10 @@
 
 def TowerOfHanoi(n, source, destination, inter):
     if n == 1:
-        print("Move disk 1 from source", source, "to destination", destination)
+        print("Move disk 1 from source, {} , to destination {}".format(source,destination) )
         return
     TowerOfHanoi(n - 1, source, inter, destination)
-    print("Move disk", n, "from source", source, "to destination", destination)
+    print("Move disk, {}, from source, {}, to destination {}".format(n, source, destination))
     TowerOfHanoi(n - 1, inter, destination, source)
 
 

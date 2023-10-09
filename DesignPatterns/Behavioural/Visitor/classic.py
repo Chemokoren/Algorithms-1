@@ -1,11 +1,14 @@
 """
 # taken from https://tavianator.com/the-visitor-pattern-in-python/
 """
+
 def _qualname(obj):
     """Get the fully-qualified name of an object (including module)."""
+
     return obj.__module__+'.'+obj.__qualname__
 
 def _declaring_class(obj):
+
     """Get the name of the class that declared an object."""
     name = _qualname(obj)
     return name[:name.rfind('.')]
@@ -15,6 +18,7 @@ _methods ={}
 
 # Delegating visitor implementation
 def _visitor_impl(self, arg):
+    
     """Actual visitor method implementation."""
     method = _methods[(_qualname(type(self)), type(arg))]
     return method(self, arg)
