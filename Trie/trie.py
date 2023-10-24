@@ -85,7 +85,7 @@ class PrefixTree:
         Returns a list of all words beginning with the given prefix, or
         an empty list if no words begin with that prefix.
         '''
-        words = list()
+        words   = list()
         current = self.root
         for char in prefix:
             if char not in current.children:
