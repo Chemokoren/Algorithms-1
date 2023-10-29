@@ -30,7 +30,7 @@ class Solution:
             sub.append(arr[i])
             j = i +1
 
-            while j <= len(arr)-1:
+            while j < len(arr):
                 if arr[j] > arr[i] and arr[j-1] < arr[j]:
                     sub.append(arr[j])
                 j +=1
@@ -39,6 +39,34 @@ class Solution:
                 res =sub
         return res, len(res)
     
+    def longest_increasing_subsequence_two(self, arr):
+        if not arr:
+            return [], 0
+
+        n = len(arr)
+        lis_lengths = [1] * n
+        prev_indices = [-1] * n
+
+        for i in range(1, n):
+            for j in range(0, i):
+                if arr[i] > arr[j] and lis_lengths[i] < lis_lengths[j] + 1:
+                    lis_lengths[i] = lis_lengths[j] + 1
+                    prev_indices[i] = j
+
+        max_length = max(lis_lengths)
+        max_length_index = lis_lengths.index(max_length)
+
+        lis = [0] * max_length
+        lis_index = max_length - 1
+        i = max_length_index
+
+        while i >= 0:
+            lis[lis_index] = arr[i]
+            lis_index -= 1
+            i = prev_indices[i]
+
+        return lis, max_length
+    
     def lengthOfLIS(self, nums: List[int])-> int:
         LIS =[1] * len(nums)
 
@@ -46,6 +74,7 @@ class Solution:
             for j in range(i + 1, len(nums)):
                 if nums[i] < nums[j]:
                     LIS[i] = max(LIS[i], 1 + LIS[j])
+
         return max(LIS)
 
 sol = Solution()

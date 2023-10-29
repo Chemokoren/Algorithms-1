@@ -49,3 +49,4 @@ if __name__=='__main__':
     array_=[5, 7, -24, 12,10,2,3,12,5,6,35]
     print("I am good")
     print(longestIncreasingSubsequence(array_))
+    print(longestIncreasingSubsequence1([0, 1, 0, 3, 2, 3]))

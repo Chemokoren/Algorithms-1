@@ -5,13 +5,14 @@ Given a string s and a dictionary of strings wordDict, return true if s can be s
 into a space-seperated sequence of one or more dictionary words.
 
 Note that the same word in the dictionary may be reused multiple times in the
- segmentation.
+segmentation.
 
 Example 1:
 
 Input: s ="leetcode", wordDict =["leet", "code"]
 Output: true
 Explanation: Return true because "leetcode" can be segmented as "leet", "code".
+
 """
 from typing import List
 import unittest
@@ -19,11 +20,11 @@ import unittest
 class Solution:
 
     def word_break1(self, s: str, dp: List[str])->bool:
-
+        res =[]
         for w in dp:
             if w in s:
-                return True
-        return False
+                res.append(1)
+        return True if len(res) == len(dp) else False
     
     def word_break(self, s: str, word_dict: List[str])->bool:
 
@@ -51,6 +52,9 @@ class TestWordBreak(unittest.TestCase):
 
     def test_word_break(self):
         self.assertEqual(True, self.sol.word_break("leetcode", ["leet", "code"]))
+
+    def test_word_break_two(self):
+        self.assertEqual(True, self.sol.word_break1("leetcode", ["leet", "code"]))
 
 if __name__=="__main__":
     unittest.main()
