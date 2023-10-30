@@ -44,7 +44,7 @@ class Solution:
                 sell = dfs(i + 2, not buying) + prices[i]
                 dp[(i, buying)] =max(sell, cooldown)
             return dp[(i, buying)]
-        return dfs(0, True)
+        return dfs(0, True) # state is True because we are buying when we start out
     
 class TestBestTimeToBuySellStock(unittest.TestCase):
 
