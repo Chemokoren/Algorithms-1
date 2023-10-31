@@ -86,7 +86,7 @@ def diameterOfBinaryTree(root):
         current_diameter = left_height + right_height
 
         # Recursively find the diameters of the left and right subtrees
-        left_diameter = diameter(node.left)
+        left_diameter  = diameter(node.left)
         right_diameter = diameter(node.right)
 
         # Return the maximum diameter among the current node and its subtrees

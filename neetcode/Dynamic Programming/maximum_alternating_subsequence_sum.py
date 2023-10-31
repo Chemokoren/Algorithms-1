@@ -33,8 +33,8 @@ class Solution:
     def max_alternating_sum(self, nums: List[int])-> int:
 
         dp ={}
-        # i = index, even = true/false
 
+        # i = index, even = true/false, total =current sum
         def dfs(i, even):
 
             if i == len(nums):

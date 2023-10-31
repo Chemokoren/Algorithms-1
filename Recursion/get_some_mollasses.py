@@ -9,3 +9,12 @@ def getMolasses(n: Neighbor)->Ingredient:
 
 # Talia, the Tail Recursive Chef
 
+def getMolassesTail(n: Neighbor)->Ingredient:
+    return getMolassesTail(n, MeasuringCup())
+
+def getMolassesTail(n: Neighbor, c: MeasuringCup):
+    if(hasMolasses(neighbor)):
+        c.fill(molasses)
+        return c.getContents()
+    else:
+        return getMolassesTail(neighborOf(n), c)

@@ -36,6 +36,30 @@ def coin_change(amount, coins):
     return count
 
 print(coin_change(5, [1,2,5]))
+print(coin_change(7, [3,5]))
+print("---")
+
+def coin_change_two(amount, coins):
+    coins.sort()
+
+    # Create a list to store the minimum number of coins needed for each amount from 0 to 
+    # 'amount'.
+    # Initialize with a value greater than 'amount' to ensure we can find a smaller value.
+    dp = [amount + 1] * (amount + 1)
+
+    # 0 coins are needed to make an amount of 0.
+    dp[0] = 0
+
+    for i in range(1, amount + 1):
+        for c in coins:
+            if i >= c:
+                dp[i] = min(dp[i], dp[i - c] + 1)
+
+    return dp[amount] if dp[amount] <= amount else 0
+
+print("---")
+print(coin_change_two(5, [1,2,5]))
+print(coin_change_two(7, [3,5]))
 print("---")
 
 class Solution:
@@ -59,7 +83,7 @@ class Solution:
             return cache[(i, a)]
         return dfs(0, 0)
     
-    # O(n*m)
+    # O(n*m) time complexity | # O(n*m) memory complexity
     def change2(self, amount: int, coins: List[int])-> int:
         dp =[[0] * (len(coins) + 1) for i in range(amount + 1)]
         dp[0] = [1] * (len(coins) + 1)
@@ -71,7 +95,7 @@ class Solution:
                     dp[a][i] += dp[a- coins[i]][i]
         return dp[amount][0]
     
-    # O(n)
+    # O(n*m) time complexity | O(n) memory complexity
     def change3(self, amount: int, coins: List[int])-> int:
 
         dp =[0] * (amount + 1)

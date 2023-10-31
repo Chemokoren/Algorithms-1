@@ -88,10 +88,10 @@ class Solution:
             elif n in dp:
                 return dp[n]
             else:
-                returnValue = dfs(n-1) + dfs(n-2)
-                dp[n] = returnValue
+                rs = dfs(n-1) + dfs(n-2)
+                dp[n] = rs
                 
-            return returnValue
+            return rs
             
         return dfs(n)
     

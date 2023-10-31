@@ -41,6 +41,8 @@ class Solution:
                 return cache[(i, j)]
             
             if s[i] == t[j]:
+                # 1. vals in indices i & j match
+                # 2. vals in i & j match but choose to move pointer to i + 1
                 cache[(i, j)] = dfs(i +1, j+1) + dfs(i + 1, j)
             else:
                 cache[(i, j)] = dfs(i +1, j)

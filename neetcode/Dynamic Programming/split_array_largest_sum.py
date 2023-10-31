@@ -48,7 +48,7 @@ class Solution:
         return dfs(0, m)
     
 
-
+    # n.log s where s is the sum of input arrays
     def splitArray(self, nums: List[int], m:int)-> int:
         l, r = max(nums), sum(nums)
 

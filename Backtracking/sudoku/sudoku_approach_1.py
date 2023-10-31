@@ -64,6 +64,6 @@ You should absolutely do a video on solving Sudoku with Dancing Links. Moreover,
 3) Worth mentioning is that sudoku is part of a family of problems called 'exact cover' problems which are NP hard. In the family are problems such as nonograms and the eight queens problem. Would be cool to see sudoku generalized as an exact cover problem and solved that way.
 4) Like other puzzle solvers though, Sokoban requires you to avoid repeated positions in your recursion, much like repeated positions in chess.  I think a very scaled-down chess solver, like an end-game solver, would be a fun thing to write.  
 4) For anyone interested: If you want an easy way to go the constraint solving route, for example because you want to solve this for larger N where the running time becomes restrictive, you can model your sudoku problem in a constraint programming language such as MiniZinc and solve it using a constraint solver. Sudoku is actually part of the MiniZinc tutorial
-
+5)  Conceptual Programming with Python.
 
 """

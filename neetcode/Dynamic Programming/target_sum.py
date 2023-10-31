@@ -42,14 +42,14 @@ class Solution:
                 return dp[(i, total)]
             """
             Two recursive calls are made, one adds the current item, the other subtracts it. 
-            Each of these choices creates a new path to explore, but eventually when that path has 
-            been fully explored, 
-            it will return a value (if there is no way to use any of the numbers after i, that can 
-            make the current total == target, then it returns 0. 
+            Each of these choices creates a new path to explore, but eventually when that 
+            path has been fully explored, 
+            it will return a value (if there is no way to use any of the numbers after i, 
+            that can make the current total == target, then it returns 0. 
             But if there were one or more ways, it would return that value). 
             Now imagine this has happened from the very bottom, all the way back to the top,
-            and we're back to our very first call, that means every other node in the tree except
-            the very first one has been evaluated, 
+            and we're back to our very first call, that means every other node in the tree 
+            except the very first one has been evaluated, 
             therefore we can just add the results of both choices.
             """
             dp[(i, total)] =(backtrack(i + 1, total + nums[i]) +
