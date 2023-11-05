@@ -134,22 +134,6 @@ combinations = coin_change_combinations(5, [1, 2, 5])
 print(combinations)
 
 
-def coin_change(amount, coins):
-    coins.sort()
-
-    count = 0
-    for c in coins:
-        if c== amount:
-            count +=1
-        else:
-            while amount > c:
-                amount = amount-c
-                count +=1
-    return count
-
-# print(coin_change(5, [1,2,5]))
-# print(coin_change(7, [3,5]))
-# print("---")
 
 # computes the minimum number of coins that can make up the full amount
 def coin_change_two(amount, coins):
@@ -177,7 +161,8 @@ print("----------------------actual solutions ----------------------")
 
 class Solution:
 
-    def change(self, amount: int, coins:List[int])->int:
+    # time complexity: O(m*n) | space complexity: O(m*n) where m is the len of coins array
+    def change_top_down(self, amount: int, coins:List[int])->int:
 
         cache ={}
 
@@ -196,17 +181,17 @@ class Solution:
             return cache[(i, a)]
         return dfs(0, 0)
     
-#     # O(n*m) time complexity | # O(n*m) memory complexity
-#     def change2(self, amount: int, coins: List[int])-> int:
-#         dp =[[0] * (len(coins) + 1) for i in range(amount + 1)]
-#         dp[0] = [1] * (len(coins) + 1)
+    # O(n*m) time complexity | # O(n*m) memory complexity
+    def change_bottom_up(self, amount: int, coins: List[int])-> int:
+        dp =[[0] * (len(coins) + 1) for i in range(amount + 1)]
+        dp[0] = [1] * (len(coins) + 1)
 
-#         for a in range(1, amount +1):
-#             for i in range(len(coins)-1, -1, -1):
-#                 dp[a][i] = dp[a][i + 1]
-#                 if a - coins[i] >=0:
-#                     dp[a][i] += dp[a- coins[i]][i]
-#         return dp[amount][0]
+        for a in range(1, amount +1):
+            for i in range(len(coins)-1, -1, -1):
+                dp[a][i] = dp[a][i + 1]
+                if a - coins[i] >=0:
+                    dp[a][i] += dp[a- coins[i]][i]
+        return dp[amount][0]
     
 #     # O(n*m) time complexity | O(n) memory complexity
 #     def change3(self, amount: int, coins: List[int])-> int:
