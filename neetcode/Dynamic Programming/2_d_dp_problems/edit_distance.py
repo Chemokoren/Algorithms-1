@@ -18,34 +18,7 @@ horse -> rorse (replace 'h' with 'r')
 rorse -> rose (remove 'r')
 rose -> ros (remove 'e')
 """
-
 class Solution:
-
-    def word_convert(word1 : str, word2:str) -> int:
-
-        def dfs(i, j, a, count):
-            # base case 1
-            if word1 and word2 =="":
-                return len(word1)
-            # base case 2
-            if word1 =="" and word2:
-                return len(word2)
-            
-            if a == word2:
-                return count
-            
-            if (word1[i] == word2[j]):
-                i +=1
-                j +=1
-                a = a + word1[i]
-            else:
-                # I need to make three decisions: replace, delete, and Insert
-                replace_operation=""
-                delete_operation=""
-                insert_operation=""
-                count = min(replace_operation, delete_operation, insert_operation)
-        return dfs(0, 0, "", count=0)
-    
     """
     code walkthrough
     ----------------
@@ -58,31 +31,52 @@ class Solution:
 
     There are three base cases:
 
-        Base Case 1: If j has reached the end of word2, it means there are characters left in word1 that need to be deleted. The function returns the count plus the remaining characters in word1 (len(word1) - i).
+        Base Case 1: If j has reached the end of word2, it means there are characters left
+            in word1 that need to be deleted. The function returns the count plus the 
+            remaining characters in word1 (len(word1) - i).
 
-        Base Case 2: If i has reached the end of word1, it means there are characters left in word2 that need to be inserted into word1. The function returns the count plus the remaining characters in word2 (len(word2) - j).
+        Base Case 2: If i has reached the end of word1, it means there are characters left 
+        in word2 that need to be inserted into word1. The function returns the count plus
+        the remaining characters in word2 (len(word2) - j).
 
-        Base Case 3: If the characters at the current positions i and j in word1 and word2 match, there is no cost associated with this character. The function recursively calls itself with i and j incremented by 1 and the same count.
+        Base Case 3: If the characters at the current positions i and j in word1 and word2 
+        match, there is no cost associated with this character. 
+        The function recursively calls itself with i and j incremented by 1 and the 
+        same count.
 
     If the characters at i and j do not match, the function explores three possible operations:
-        Replace Operation: It makes a recursive call with i and j incremented by 1 and count incremented by 1.
-        Delete Operation: It makes a recursive call with only i incremented by 1 and count incremented by 1.
-        Insert Operation: It makes a recursive call with only j incremented by 1 and count incremented by 1.
+        Replace Operation: It makes a recursive call with i and j incremented by 1 
+        and count incremented by 1.
+        Delete Operation: It makes a recursive call with only i incremented by 1 and count
+        incremented by 1.
+        Insert Operation: It makes a recursive call with only j incremented by 1 and count
+        incremented by 1.
 
-    The function returns the minimum cost among these three operations (replace, delete, insert) by using min(replace_op, delete_op, insert_op).
+    The function returns the minimum cost among these three operations 
+    (replace, delete, insert) by using min(replace_op, delete_op, insert_op).
 
-    The main word_convert function starts the recursion by calling dfs with initial values: i=0, j=0, and count=0.
+    The main word_convert function starts the recursion by calling dfs with initial values: 
+    i=0, j=0, and count=0.
 
-    The final result returned by the dfs function is the minimum cost required to convert word1 to word2, considering replacement, deletion, and insertion operations.
+    The final result returned by the dfs function is the minimum cost required to convert 
+    word1 to word2, considering replacement, deletion, and insertion operations.
 
-This code uses recursion to explore all possible conversion paths, and the result is the minimum cost required to transform one word into another.
+    This code uses recursion to explore all possible conversion paths, and the result is the
+    minimum cost required to transform one word into another.
 
 
 
 
-    The time complexity of this algorithm is exponential, specifically O(3^N), where N is the length of the longer of the two input words, word1 or word2. The reason for the exponential time complexity is that the algorithm explores all possible combinations of replacements, deletions, and insertions, resulting in a branching factor of 3 at each character position.
+    The time complexity of this algorithm is exponential, specifically O(3^N), where N is 
+    the length of the longer of the two input words, word1 or word2. 
+    The reason for the exponential time complexity is that the algorithm explores all 
+    possible combinations of replacements, deletions, and insertions, resulting in a 
+    branching factor of 3 at each character position.
 
-    The space complexity is determined by the depth of the recursion, which can go as deep as the length of the longer word. Therefore, the space complexity is O(N), where N is the maximum length between word1 and word2. This space complexity accounts for the call stack memory used during the recursion.
+    The space complexity is determined by the depth of the recursion, which can go as deep
+    as the length of the longer word. Therefore, the space complexity is O(N), where N is
+    the maximum length between word1 and word2. 
+    This space complexity accounts for the call stack memory used during the recursion.
 
     """
     def word_convert_2(self, word1: str, word2: str) -> int:
@@ -92,7 +86,8 @@ This code uses recursion to explore all possible conversion paths, and the resul
             if j == len(word2):
                 return count + len(word1) - i
 
-            # Base case 2: If word1 is empty, we need to insert remaining characters from word2.
+            # Base case 2: If word1 is empty, we need to insert remaining characters from 
+            # word2.
             if i == len(word1):
                 return count + len(word2) - j
 
@@ -101,7 +96,7 @@ This code uses recursion to explore all possible conversion paths, and the resul
                 return dfs(i + 1, j + 1, count)
 
             # Apply the three operations: replace, delete, insert.
-            replace_op = dfs(i + 1, j + 1, count + 1)  # Replace
+            replace_op = dfs(i + 1, j + 1, count + 1)   # Replace
             delete_op = dfs(i + 1, j, count + 1)        # Delete
             insert_op = dfs(i, j + 1, count + 1)        # Insert
 
