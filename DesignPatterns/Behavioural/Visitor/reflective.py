@@ -43,6 +43,6 @@ buffer =[]
 ExpressionPrinter.print(e, buffer)
 
 # IDE might complain here
-e.print(buffer)
+# e.print(buffer)
 
 print(''.join(buffer))
