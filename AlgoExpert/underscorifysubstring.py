@@ -48,3 +48,6 @@ def underscorify(string, locations):
         finalChars.append(string[stringIdx:])
     return "".join(finalChars)
 
+print("--------")
+print(underscorifysubstring("test this is a test", "test"))
+print(underscorifysubstring("testthis is a testtest to see if testestest it works", "test"))
