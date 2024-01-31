@@ -193,24 +193,24 @@ class Solution:
                     dp[a][i] += dp[a- coins[i]][i]
         return dp[amount][0]
     
-#     # O(n*m) time complexity | O(n) memory complexity
-#     def change3(self, amount: int, coins: List[int])-> int:
+    # O(n*m) time complexity | O(n) memory complexity
+    def change3(self, amount: int, coins: List[int])-> int:
 
-#         dp =[0] * (amount + 1)
-#         dp[0] =1
+        dp =[0] * (amount + 1)
+        dp[0] =1
 
-#         for i in range(len(coins) -1, -1, -1):
-#             nextDP =[0] * (amount + 1)
-#             nextDP[0] = 1
+        for i in range(len(coins) -1, -1, -1):
+            nextDP =[0] * (amount + 1)
+            nextDP[0] = 1
 
-#             for a in range(1, amount + 1):
-#                 nextDP[a] = dp[a]
-#                 if a - coins[i] >= 0:
-#                     nextDP[a] += nextDP[a - coins[i]]
+            for a in range(1, amount + 1):
+                nextDP[a] = dp[a]
+                if a - coins[i] >= 0:
+                    nextDP[a] += nextDP[a - coins[i]]
 
-#             dp = nextDP
+            dp = nextDP
 
-#         return dp[amount]
+        return dp[amount]
 
 # print("anii ")
 # sol = Solution()

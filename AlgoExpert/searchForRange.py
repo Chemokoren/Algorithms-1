@@ -1,9 +1,17 @@
+"""
+Given a sorted array, and a target number e.g. 45, find the range of indices in the input array in 
+between which you can find the target value.
+
+In this case the range is [4,9] because 4 is the first index where you can find the first target value 45 and 
+9 is the last index you can find the value 45.
+"""
 # recursive approach
 # O(log(n)) time | O(log(n)) space
 def searchForRange(array, target):
     finalRange =[-1, -1]
-    alteredBinarySearch(array, target, 0, len(array), -1, finalRange, True)
-    alteredBinarySearch(array, target, 0, len(array), -1, finalRange, False)
+    alteredBinarySearch(array, target, 0, len(array)-1, finalRange, True)
+    alteredBinarySearch(array, target, 0, len(array)-1, finalRange, False)
+    return finalRange
 
 def alteredBinarySearch(array, target, left,right, finalRange, goLeft):
     if left > right:
@@ -53,3 +61,6 @@ def alteredBinarySearch1(array, target, left,right, finalRange, goLeft):
                 return
             else:
                 left =mid+1
+
+print("Recursive approach", searchForRange([0, 1, 21, 33, 45, 45, 45, 45, 45, 45, 61, 71, 73], 45))
+print("Iterative approach", searchForRange([0, 1, 21, 33, 45, 45, 45, 45, 45, 45, 61, 71, 73], 45))
