@@ -73,32 +73,79 @@ def altered_binary_search(array, target, left, right, final_range, go_left):
 
 # iterative approach
 # O(log(n)) time | O(1) space
-def searchForRange1(array, target):
+def search_for_range_iterative(array, target):
+    """
+    Find the range of indices in the sorted array that contains the target value.
+
+    Args:
+        array (List[int]): The sorted array of integers.
+        target (int): The target value to search for in the array.
+
+    Returns:
+        List[int]: A list containing the start and end indices of the range that contains the target value.
+                   If the target is not found in the array, returns [-1, -1].
+    """
+    # Initialize the final range list to store the start and end indices of the target range.
     finalRange =[-1, -1]
-    alteredBinarySearch1(array, target, 0, len(array), -1, finalRange, True)
-    alteredBinarySearch1(array, target, 0, len(array), -1, finalRange, False)
+    
+    # Perform two altered binary searches to find the left and right bounds of the target range.
+    altered_binary_search_iterative(array, target, 0, len(array)-1, finalRange, True)
+    altered_binary_search_iterative(array, target, 0, len(array)-1, finalRange, False)
+    
+    # Return the final range list containing the start and end indices of the target range.
+    return finalRange
 
-def alteredBinarySearch1(array, target, left,right, finalRange, goLeft):
-    if left > right:
-        return
-    mid =(left + right)
-    if array[mid] < target:
-        left =mid + 1
-    elif array[mid] > target:
-        right =mid -1
-    else:
-        if goLeft:
-            if mid ==0 or array[mid -1] != target:
-                finalRange[0] =mid
-                return
-            else:
-                right = mid -1
+def altered_binary_search_iterative(array, target, left,right, finalRange, goLeft):
+    """
+    Perform an altered binary search to find the left and right bound of the target range.
+
+    Args:
+        array (List[int]): The sorted array of integers.
+        target (int): The target value to search for in the array.
+        left (int): The left boundary index of the search range.
+        right (int): The right boundary index of the search range.
+        finalRange (List[int]): A list containing the start and end indices of the target range.
+        goLeft (bool): A boolean indicating whether to find the left or right bound of the target range.
+
+    Returns:
+        None
+    """
+    while left <= right:
+        
+        # Calculate the middle index of the current search range using integer division.
+        mid =(left + right)
+        
+        # Perform binary search to find the left or right bound of the target range.
+        if array[mid] < target:
+            left =mid + 1
+        elif array[mid] > target:
+            right =mid -1
         else:
-            if mid == len(array) -1 or array[mid + 1] != target:
-                finalRange[1] =mid
-                return
+            # If the target value is found, update the finalRange list with the left or right bound.
+            if goLeft:
+                if mid ==0 or array[mid -1] != target:
+                    finalRange[0] =mid
+                    return
+                else:
+                    right = mid -1
             else:
-                left =mid+1
+                if mid == len(array) -1 or array[mid + 1] != target:
+                    finalRange[1] =mid
+                    return
+                else:
+                    left =mid+1
 
-print("Recursive approach", searchForRange1([0, 1, 21, 33, 45, 45, 45, 45, 45, 45, 61, 71, 73], 45))
-print("Iterative approach", searchForRange1([0, 1, 21, 33, 45, 45, 45, 45, 45, 45, 61, 71, 73], 45))
+
+import unittest
+class TestSearchForRange(unittest.TestCase):
+
+    def test_recursive_search_range(self):
+        # recursive approach test
+        self.assertListEqual(search_for_range([0, 1, 21, 33, 45, 45, 45, 45, 45, 45, 61, 71, 73], 45), [4,9])
+
+    def test_iterative_search_range(self):
+        # iterative approach test
+        self.assertListEqual(search_for_range_iterative([0, 1, 21, 33, 45, 45, 45, 45, 45, 45, 61, 71, 73], 45), [4,9])
+
+if __name__=="__main__":
+    unittest.main()
