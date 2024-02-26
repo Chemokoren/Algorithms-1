@@ -23,7 +23,7 @@ class Shape:
         def draw(self): pass
         def resize(self, factor): pass
         
-def Circle(Shape):
+class Circle(Shape):
     
     def __init__(self, renderer, radius):
         super().__init__(renderer)
