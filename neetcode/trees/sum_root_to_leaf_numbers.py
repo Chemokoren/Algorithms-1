@@ -1,8 +1,10 @@
 """
 Sum Root to Leaf Numbers
-Given a binary tree containing digits from 0-9 only, each root-to-leaf path could represent a
-number.
+
+Given a binary tree containing digits from 0-9 only, each root-to-leaf path could represent a number.
+
 An example is the root-to-leaf path 1->2->3 which represents the number 123.
+
 Find the total sum of all root-to-leaf numbers
 Note: A leaf is a node with no children
 
@@ -16,6 +18,18 @@ Explanation:
 The root-to-leaf path 1->2 represents the number 12
 The root-to-leaf path 1->3 represents the number 13
 Therefore, sum =12 + 13 =25
+
+# tree.insert(1)
+# tree.insert(2)
+# tree.insert(3)
+
+#       1
+#     /    \
+#   2        3
+
+# 0 * 10 + 1 = 1
+# 1 * 10 + 2 = 12
+# 1 * 10 + 3 = 13
 
                 4
                / \
@@ -56,72 +70,68 @@ class TreeNode:
                 self.traverse(cur.right)
 
 class Solution:
-    def sumNumbers(self, root:TreeNode)->int:
+
+    def sum_numbers(self, root:TreeNode)->int:
+        
+        """
+        Sum root to leaf numbers
+
+        Args:
+            root(TreeNode): root of the given TreeNode
+        Returns:
+            sum(int): sum of root to leaf numbers
+        
+        Example:
+            >>>sum_numbers(root)
+            4
+        """
 
         def dfs(cur, num):
+            """
+            Depth First Search Algorithm to sum root to leaf numbers
+
+            Args:
+                cur(TreeNode): root of a the given tree
+                num(int): level of the given node
+            Returns:
+                num(int): sum of root to leaf numbers
+            Example:
+                >>>dfs(root,0)
+                25
+            """
             if not cur:
                 return 0
             
             num = num * 10 + cur.val
             if not cur.left and not cur.right:
                 return num
-            print("aaa:", num)
-            return dfs(cur.left,num)+dfs(cur.right, num)
+            return dfs(cur.left, num) + dfs(cur.right, num)
+
         return dfs(root,0)
 
 
 
-tree = TreeNode(1) # expected 25
-tree.left=TreeNode(2)
-tree.right=TreeNode(3)
-# tree.insert(2)
-# tree.insert(3)
 
-#       1
-#     /    \
-#   2        3
+import unittest
+class TestSumRootToLeafNumbers(unittest.TestCase):
 
-# 0 * 10 + 1 = 1
-# 1 * 10 + 2 = 12
-# 1 * 10 + 3 = 13
+    def setUp(self):
+        self.sol =Solution()
 
-tree = TreeNode(4) # expected 1026
-# # # tree.insert(4)
-# tree.insert(9)
-# tree.insert(0)
-# tree.insert(5)
-# tree.insert(1)
-tree.left=TreeNode(9)
-tree.right=TreeNode(0)
-tree.left.left=TreeNode(5)
-tree.left.right=TreeNode(1)
+    def test_balanced_tree(self):
+        tree = TreeNode(1)
+        tree.left=TreeNode(2)
+        tree.right=TreeNode(3)
+        self.assertEqual(25,self.sol.sum_numbers(tree))
+
+    def test_tree_with_imbalanced_levels(self):
+        tree = TreeNode(4)
+        tree.left=TreeNode(9)
+        tree.right=TreeNode(0)
+        tree.left.left=TreeNode(5)
+        tree.left.right=TreeNode(1)
+        self.assertEqual(1026,self.sol.sum_numbers(tree))
 
 
-
-sol =Solution()
-print(sol.sumNumbers(tree))
-# tree.traverse(tree)
-
-
-"""
-my tests 
-"""
-def sum_numbers(root:TreeNode):
-    
-    temp = 0
-    res  = 0
-    def recursion(N:TreeNode):
-        
-        temp = temp * 10 + N.val
-        if(N.left == None and N.right == None):
-            res += temp
-            
-        else:
-            if N.left != None:
-                recursion(N.left)
-            if N.right != None:
-                recursion(N.right)
-        temp /=10
-    recursion(root)
-    return res
-# print("recu::",sum_numbers(tree))
+if __name__=="__main__":
+    unittest.main()

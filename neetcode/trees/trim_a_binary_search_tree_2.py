@@ -30,23 +30,24 @@ class TreeNode:
     
 class Solution:
 
-    def TrimBST(self, root: Optional[TreeNode], low: int, high:int) -> Optional[TreeNode]:
+    def trim_BST(self, root: Optional[TreeNode], low: int, high:int) -> Optional[TreeNode]:
         if not root:
             return None
         if root.val > high:
-            self.TrimBST(root.left, low, high)
+            self.trim_BST(root.left, low, high)
         if root.val < low:
-            self.TrimBST(root.right, low, high)
-        root.left =self.TrimBST(root.left, low, high)
-        root.right =self.TrimBST(root.right, low, high)
+            self.trim_BST(root.right, low, high)
+
+        root.left =self.trim_BST(root.left, low, high)
+        root.right =self.trim_BST(root.right, low, high)
         return root
     
-def traverse(root):
+def preorder_traversal(root):
     print(root.val, end="-->")
     if root.left:
-        traverse(root.left)
+        preorder_traversal(root.left)
     if root.right:
-        traverse(root.right)
+        preorder_traversal(root.right)
     
 
 # Construct the binary search tree
@@ -61,7 +62,7 @@ root.right = TreeNode(2)
 solution = Solution()
 
 # Trim the tree within the boundaries [1, 2]
-trimmed_root = solution.TrimBST(root, 1, 2)
+trimmed_root = solution.trim_BST(root, 1, 2)
 
 # Print the trimmed tree (inorder traversal)
 def inorder_traversal(node):
@@ -72,9 +73,101 @@ def inorder_traversal(node):
 print(inorder_traversal(trimmed_root))  # Output: [1, 2]
 
 
-# sol = Solution()
-# traverse(sol.TrimBST(tr, 1, 2))
-# print("Expected::[1, null, 2], Actual::", traverse(sol.TrimBST(tr, 1, 2)))
+
+
+
+
+
+
+
+import unittest
+
+class TestTrimBST(unittest.TestCase):
+
+    def setUp(self):
+        self.solution = Solution()
+
+    def test_empty_tree(self):
+        """Tests trimming an empty tree, which remains empty."""
+        root = None
+        low = 1
+        high = 10
+        trimmed_root = self.solution.trim_BST(root, low, high)
+        self.assertIsNone(trimmed_root)
+
+    def test_single_node_within_range(self):
+        """Tests trimming a single node within the range."""
+        root = TreeNode(5)
+        low = 3
+        high = 7
+        trimmed_root = self.solution.trim_BST(root, low, high)
+        self.assertEqual(trimmed_root.val, 5)
+        self.assertIsNone(trimmed_root.left)
+        self.assertIsNone(trimmed_root.right)
+
+    def test_single_node_outside_range(self):
+        """Tests trimming a single node outside the range."""
+        root = TreeNode(5)
+        low = 7
+        high = 10
+        trimmed_root = self.solution.trim_BST(root, low, high)
+        self.assertIsNone(trimmed_root)
+
+    def test_balanced_tree(self):
+        """Tests trimming a balanced tree."""
+        root = TreeNode(4)
+        root.left = TreeNode(2)
+        root.right = TreeNode(6)
+        root.left.left = TreeNode(1)
+        root.left.right = TreeNode(3)
+        root.right.right = TreeNode(7)
+        low = 3
+        high = 5
+        trimmed_root = self.solution.trim_BST(root, low, high)
+        self.assertEqual(trimmed_root.val, 4)
+        self.assertEqual(trimmed_root.left.val, 3)
+        self.assertIsNone(trimmed_root.left.left)
+        self.assertIsNone(trimmed_root.left.right)
+        self.assertIsNone(trimmed_root.right)
+
+    def test_left_subtree_trimming(self):
+        """Tests trimming only the left subtree."""
+        root = TreeNode(4)
+        root.left = TreeNode(2)
+        root.right = TreeNode(6)
+        root.left.left = TreeNode(1)
+        root.left.right = TreeNode(3)
+        low = 3
+        high = 7
+        trimmed_root = self.solution.trim_BST(root, low, high)
+        self.assertEqual(trimmed_root.val, 4)
+        self.assertEqual(trimmed_root.left.val, 3)
+        self.assertIsNone(trimmed_root.left.left)
+        self.assertIsNone(trimmed_root.left.right)
+        self.assertEqual(trimmed_root.right.val, 6)
+        self.assertEqual(trimmed_root.right.right.val, 7)
+
+    def test_right_subtree_trimming(self):
+        """Tests trimming only the right subtree."""
+        root = TreeNode(4)
+        root.left = TreeNode(2)
+        root.right = TreeNode(6)
+        root.right.right = TreeNode(7)
+        low = 1
+        high = 5
+        trimmed_root = self.solution.trim_BST(root, low, high)
+        self.assertEqual(trimmed_root.val, 4)
+        self.assertEqual(trimmed_root.left.val, 2)
+        self.assertIsNone(trimmed_root.right)
+
+if __name__ == '__main__':
+    unittest.main()
+
+
+
+
+
+
 
 
 # def serialize_tree(root):

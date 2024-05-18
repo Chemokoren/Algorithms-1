@@ -36,12 +36,14 @@ class solution:
         """
         Method returns the minimum path sum from top to bottom for a given triangle.
         
-        Parameters:
+        Args:
             triangle(List[List[int]]): triangle array
         Returns:
             int:  minimum path sum from top to bottom
         
         """
+        if len(triangle)==0:
+            raise ValueError(" triangle is empty")
         # initialize dp array with the length of the triangle plus 1
         dp =[0] * (len(triangle)+ 1)
 
@@ -57,7 +59,66 @@ class solution:
         return dp[0]
 
 
-sol =solution()
-print(sol.minimum_total([[2],[3,4],[6,5,7],[4,1,8,3]]))
         
         
+import unittest
+
+class TestMinimumTotal(unittest.TestCase):
+
+    def setUp(self):
+        self.sol = solution()
+
+    def test_initial_sample_triangle(self):
+        triangle =[[2],[3,4],[6,5,7],[4,1,8,3]]
+        self.assertEqual(self.sol.minimum_total(triangle), 11)
+
+    def test_empty_triangle(self):
+        """Tests an empty triangle."""
+        triangle = []
+        
+        self.assertRaises(ValueError, self.sol.minimum_total, triangle)
+
+    def test_single_element_triangle(self):
+        """Tests a triangle with a single element."""
+        triangle = [[2]]
+        self.assertEqual(self.sol.minimum_total(triangle), 2)
+
+    def test_balanced_triangle(self):
+        """Tests a balanced triangle."""
+        triangle = [
+            [2],
+            [3, 4],
+            [6, 5, 7]
+        ]
+        actual=self.sol.minimum_total(triangle)
+        self.assertEqual(10, actual)  # 2 + min(3, 4) + 5
+
+    def test_unbalanced_triangle(self):
+        """Tests an unbalanced triangle."""
+        triangle = [
+            [2],
+            [3, 1],
+            [4, 6, 8]
+        ]
+        self.assertEqual(self.sol.minimum_total(triangle), 9)  # 2 + 1 + 5
+
+    def test_negative_values(self):
+        """Tests a triangle with negative values."""
+        triangle = [
+            [2],
+            [-3, 4],
+            [6, -5, 7]
+        ]
+        self.assertEqual(self.sol.minimum_total(triangle), -6)  # 2 + (-3) + 5
+
+    def test_large_values(self):
+        """Tests a triangle with large values."""
+        triangle = [
+            [100],
+            [200, 300],
+            [400, 500, 600]
+        ]
+        self.assertEqual(self.sol.minimum_total(triangle), 700)  # 100 + min(200, 300) + 500
+
+if __name__ == '__main__':
+    unittest.main()
