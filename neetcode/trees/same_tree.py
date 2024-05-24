@@ -35,14 +35,23 @@ class Solution:
         return (self.is_same_tree(p.left, q.left) and 
                 self.is_same_tree(p.right, q.right))
                 
+import unittest                
+class TestSameTree(unittest.TestCase):
 
-tr_p =TreeNode(1)
-tr_p.left =TreeNode(2)
-tr_p.right =TreeNode(3)
+    def setUp(self):
+        self.sol = Solution()
 
-tr_q =TreeNode(1)
-tr_q.left =TreeNode(2)
-tr_q.right =TreeNode(3)
+    def test_sample_trees(self):
+        tr_p =TreeNode(1)
+        tr_p.left =TreeNode(2)
+        tr_p.right =TreeNode(3)
 
-sol = Solution()
-print("check if is same tree::", sol.is_same_tree(tr_p, tr_q))
+        tr_q =TreeNode(1)
+        tr_q.left =TreeNode(2)
+        tr_q.right =TreeNode(3)
+
+        self.assertEqual(True, self.sol.is_same_tree(tr_p, tr_q))
+
+
+if __name__=="__main__":
+    unittest.main()
