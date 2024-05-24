@@ -2,8 +2,8 @@
 Implement Trie (Prefix Tree)
 
 A trie(pronounced as "try") or prefix tree is a tree data structure used to efficiently store &
-retrieve  keys in a dataset of strings. There are various applications of this data structure, 
-such as autocomplete and spellchecker.
+retrieve  keys in a dataset of strings.
+There are various applications of this data structure, such as autocomplete and spellchecker.
 
 Implement the Trie class:
 
@@ -30,7 +30,7 @@ trie.search("apple") // return True
 trie.search("app") // return False
 trie.startsWith("app"); // return True
 """
-
+import unittest
 class TrieNode:
     """
     Initializing the TrieNode
@@ -92,3 +92,28 @@ trie.insert("apple")
 print("search for apple::", trie.search("apple")) # return True
 print("search for app::", trie.search("app")) # return False
 print("search for word starting with app::", trie.starts_with("app")) # return True
+
+class TestTrie(unittest.TestCase):
+
+    def setUp(self):
+        self.trie = Trie()
+
+    def test_insert_and_search(self):
+        self.trie.insert("apple")
+        self.assertTrue(self.trie.search("apple"))
+        self.assertFalse(self.trie.search("app"))
+        self.assertTrue(self.trie.search("apple"))  # Check if word still exists after inserting another word
+
+    def test_starts_with(self):
+        self.trie.insert("apple")
+        self.trie.insert("app")
+        self.assertTrue(self.trie.starts_with("app"))
+        self.assertFalse(self.trie.starts_with("ape"))
+        self.assertFalse(self.trie.starts_with("b"))  # Check with a prefix not in the trie
+
+    def test_empty_trie(self):
+        self.assertFalse(self.trie.search("apple"))
+        self.assertFalse(self.trie.starts_with("app"))
+
+if __name__ == '__main__':
+    unittest.main()

@@ -31,7 +31,7 @@ class TreeNode:
         
 class Solution:
 
-    def diameterOfBinaryTree(self, root:TreeNode)->int:
+    def diameter_of_binary_tree(self, root:TreeNode)->int:
 
         res =[0]
         
@@ -50,66 +50,147 @@ class Solution:
         dfs(root)
         
         return res[0]
+
+
+    def diameter_of_bt(self, root):
+        if not root:
+            return 0
+
+        # Helper function to calculate the height of a tree
+        def height(node):
+            if not node:
+                return 0
+            return 1 + max(height(node.left), height(node.right))
+
+        def diameter(node):
+            """
+            Recursively calculate the diameter of the tree
+
+            Args:
+                node(TreeNode): instance of a TreeNode
+            Returns:
+                int: diameter of the tree
+            """
+            if not node:
+                return 0
+
+            # Calculate the height of the left and right subtrees
+            left_height = height(node.left)
+            right_height = height(node.right)
+
+            # Calculate the diameter passing through the current node
+            current_diameter = left_height + right_height
+
+            # Recursively find the diameters of the left and right subtrees
+            left_diameter  = diameter(node.left)
+            right_diameter = diameter(node.right)
+
+            # Return the maximum diameter among the current node and its subtrees
+            return max(current_diameter, left_diameter, right_diameter)
+
+        return diameter(root)
+
     
+import unittest
+class TestDiameterOfBinaryTree(unittest.TestCase):
+    """
+    
+    Sample Test Cases:
 
-tree            = TreeNode(1)
-tree.left       = TreeNode(2)
-tree.right      = TreeNode(3)
-tree.left.left  = TreeNode(4)
-tree.left.right = TreeNode(5)
+    Empty Tree: Tests the function with no nodes.
+    Single Node: Tests the function with a tree having only one node.
+    Two Nodes: Tests the function with a tree having two nodes.
+    Linear Tree: Tests a tree where all nodes are in a single line (left-skewed).
+    Balanced Tree: Tests a tree that is balanced.
+    Full Binary Tree: Tests a full binary tree.
+    Skewed Right Tree: Tests a tree that is skewed to the right.
+    Complex Tree: Tests a tree with a more complex structure.
+    """
 
-cls = Solution()
-print("Expected::, Actual::", cls.diameterOfBinaryTree(tree))
+    def setUp(self) -> None:
+        super().setUp()
+        self.sol= Solution()
 
-print("####################################")
+        self.tree            = TreeNode(1)
+        self.tree.left       = TreeNode(2)
+        self.tree.right      = TreeNode(3)
+        self.tree.left.left  = TreeNode(4)
+        self.tree.left.right = TreeNode(5)
 
-def diameterOfBinaryTree(root):
-    if not root:
-        return 0
+        self.r1                 = TreeNode(1)
+        self.r1.left            = TreeNode(2)
+        self.r1.left.left       = TreeNode(3)
+        self.r1.left.right      = TreeNode(4)
+        self.r1.left.left.left  = TreeNode(5)
+        self.r1.left.right.right= TreeNode(6)
 
-    # Helper function to calculate the height of a tree
-    def height(node):
-        if not node:
-            return 0
-        return 1 + max(height(node.left), height(node.right))
+    def test_sample_tree(self):
+        self.assertEqual(3, self.sol.diameter_of_binary_tree(self.tree), "Should return True")
 
-    # Recursively calculate the diameter of the tree
-    def diameter(node):
-        if not node:
-            return 0
+    def test_sample_tree_2(self):
+        self.assertEqual(3, self.sol.diameter_of_bt(self.tree), "Should return True")
 
-        # Calculate the height of the left and right subtrees
-        left_height = height(node.left)
-        right_height = height(node.right)
+    def test_2_sample_tree(self):
+        self.assertEqual(4, self.sol.diameter_of_binary_tree(self.r1), "Should return True")
 
-        # Calculate the diameter passing through the current node
-        current_diameter = left_height + right_height
+    def test_2_sample_tree_2(self):
+        self.assertEqual(4, self.sol.diameter_of_bt(self.r1), "Should return True")
 
-        # Recursively find the diameters of the left and right subtrees
-        left_diameter  = diameter(node.left)
-        right_diameter = diameter(node.right)
+    print("~~~")
 
-        # Return the maximum diameter among the current node and its subtrees
-        return max(current_diameter, left_diameter, right_diameter)
+    def test_empty_tree(self):
+        self.assertEqual(self.sol.diameter_of_binary_tree(None), 0)
 
-    return diameter(root)
+    def test_single_node(self):
+        root = TreeNode(1)
+        self.assertEqual(self.sol.diameter_of_binary_tree(root), 0)
 
-# Create the binary tree from the example
-root = TreeNode(1)
-root.left = TreeNode(2)
-root.right = TreeNode(3)
-root.left.left = TreeNode(4)
-root.left.right = TreeNode(5)
+    def test_two_nodes(self):
+        root = TreeNode(1)
+        root.left = TreeNode(2)
+        self.assertEqual(self.sol.diameter_of_binary_tree(root), 1)
 
-# Compute the diameter of the binary tree
-diameter = diameterOfBinaryTree(root)
-print("Diameter of the binary tree:", diameter)
+    def test_linear_tree(self):
+        root = TreeNode(1)
+        root.left = TreeNode(2)
+        root.left.left = TreeNode(3)
+        self.assertEqual(self.sol.diameter_of_binary_tree(root), 2)
 
-# another example
-root = TreeNode(1)
-root.left = TreeNode(2)
-root.left.left = TreeNode(3)
-root.left.right = TreeNode(4)
-root.left.left.left = TreeNode(5)
-root.left.right.right = TreeNode(6)
-print("Second example:", diameterOfBinaryTree(root))
+    def test_balanced_tree(self):
+        root = TreeNode(1)
+        root.left = TreeNode(2)
+        root.right = TreeNode(3)
+        root.left.left = TreeNode(4)
+        root.left.right = TreeNode(5)
+        self.assertEqual(self.sol.diameter_of_binary_tree(root), 3)
+
+    def test_full_binary_tree(self):
+        root = TreeNode(1)
+        root.left = TreeNode(2)
+        root.right = TreeNode(3)
+        root.left.left = TreeNode(4)
+        root.left.right = TreeNode(5)
+        root.right.left = TreeNode(6)
+        root.right.right = TreeNode(7)
+        self.assertEqual(self.sol.diameter_of_binary_tree(root), 4)
+
+    def test_skewed_right_tree(self):
+        root = TreeNode(1)
+        root.right = TreeNode(2)
+        root.right.right = TreeNode(3)
+        root.right.right.right = TreeNode(4)
+        self.assertEqual(self.sol.diameter_of_binary_tree(root), 3)
+
+    def test_complex_tree(self):
+        root = TreeNode(1)
+        root.left = TreeNode(2)
+        root.right = TreeNode(3)
+        root.left.left = TreeNode(4)
+        root.left.right = TreeNode(5)
+        root.left.left.left = TreeNode(6)
+        self.assertEqual(self.sol.diameter_of_binary_tree(root), 4)
+
+
+        
+if __name__ =="__main__":
+    unittest.main()

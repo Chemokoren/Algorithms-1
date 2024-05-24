@@ -4,6 +4,7 @@ Convert Sorted Array to Binary Search Tree
 
 Given an array where elements are sorted in ascending order, convert it to a
 height balanced BST.
+
 For this problem, a height-balanced binary tree is defined as a binary tree in 
 which the depth of the two subtrees of every node never differ by more than 1.
 
@@ -14,11 +15,11 @@ Given the sorted array:
 One possible answer is: [0, -3, 9, -10, null, 5], which represents the following
 height balanced BST:
 
-            0
-           / \
-         -3   9
-         /   /
-      -10   5
+            0                   0
+           / \                /   \
+         -3   9             -10    5
+         /   /                \     \
+      -10   5                 -3     9
 """
 from collections import deque
 class TreeNode:
@@ -64,7 +65,7 @@ def level_order_traversal(root):
 
 
 # O(n) time complexity | O(log(n)) memory because log(n) is going to be the
-# height of our tree and it is balanced
+# height of the tree and it is balanced
 class Solution:
     """
     Converting a sorted array to a BST
@@ -73,7 +74,7 @@ class Solution:
         """
         Convert Sorted Array to Binary Search Tree.
         
-        Parameters: 
+        Args: 
             nums(List[int]): sorted array of integers
         Returns:
             root(TreeNode) : binary search tree
@@ -91,6 +92,7 @@ class Solution:
         return helper(0, len(nums)-1)
 
 sol =Solution()
-print("root node::", sol.sorted_array_to_bst([-10, -3, 0, 5, 9]).val)
-level_order_traversal(sol.sorted_array_to_bst([-10, -3, 0, 5, 9]))
+root =sol.sorted_array_to_bst([-10, -3, 0, 5, 9])
+print("root node::", root.val)
+level_order_traversal(root)
 

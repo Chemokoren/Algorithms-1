@@ -11,7 +11,7 @@ class Sudoku:
         self.unfilled =[(r,c) for r in range(9) for c in range(9) if self.board[r][c] == 0]
 
 
-    def isValid(self, r,c,num):
+    def isValid(self, r, c,num):
         for i in range(9): # check row
             if self.board[r][i] ==num and i != c: # if there is a different position in our current row that has the same number
                 return False # we don't have a valid board state
@@ -63,6 +63,3 @@ if __name__=="__main__":
     
     sd =Sudoku(puzzle)
     print(sd.solve())
-
-	# import SudokuSolver_Checker
-	# SudokuSolver_Checker.validate()

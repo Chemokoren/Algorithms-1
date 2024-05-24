@@ -10,6 +10,7 @@ Example
                 1   3 6  9                      9  6 3   1
 use DFS
 """
+import unittest
 from collections import deque
 
 class TreeNode:
@@ -105,13 +106,13 @@ class Solution:
     """
     Provides solution to invert a given binary tree
     """
-    def invert_tree(self, root: TreeNode) -> TreeNode:
+    def invert_tree(self, root: TreeNode) -> TreeNode | None:
         """
-        Inverts and return the new binary tree.
+        Inverts and returns the new binary tree.
         
-        Parameters:
+        Args:
             root(TreeNode): binary tree to be inverted
-        Returns
+        Returns:
             root(TreeNode): resultant inverted binary tree
         """
         if not root:
@@ -130,14 +131,64 @@ class Solution:
         return root
     
 tr = TreeNode(4)
-tr.left  = TreeNode(2)
-tr.right = TreeNode(7)
-tr.left.left   = TreeNode(1)
-tr.left.right  = TreeNode(3)
-tr.right.left  = TreeNode(6)
-tr.right.right = TreeNode(9)
+tr.left         = TreeNode(2)
+tr.right        = TreeNode(7)
+tr.left.left    = TreeNode(1)
+tr.left.right   = TreeNode(3)
+tr.right.left   = TreeNode(6)
+tr.right.right  = TreeNode(9)
 
 cls = Solution()
 res_root=cls.invert_tree(tr)
 level_order_traversal(res_root)
 # print("inverted tree: ",res_root.val,res_root.left.val,res_root.right.val)
+
+class TestSolution(unittest.TestCase):
+
+    def setUp(self):
+        self.solution = Solution()
+
+    def assertTreesEqual(self, t1: TreeNode, t2: TreeNode):
+        """
+        Helper function to assert that two binary trees are equal.
+        """
+        if not t1 and not t2:
+            return True
+        if not t1 or not t2:
+            return False
+        return (t1.val == t2.val and
+                self.assertTreesEqual(t1.left, t2.left) and
+                self.assertTreesEqual(t1.right, t2.right))
+
+    def test_invert_tree(self):
+        # Example 1: Input [4,2,7,1,3,6,9]
+        #      4
+        #     / \
+        #    2   7
+        #   / \ / \
+        #  1  3 6  9
+        # Output: [4,7,2,9,6,3,1]
+        #      4
+        #     / \
+        #    7   2
+        #   / \ / \
+        #  9  6 3  1
+        root = TreeNode(4)
+        root.left = TreeNode(2, TreeNode(1), TreeNode(3))
+        root.right = TreeNode(7, TreeNode(6), TreeNode(9))
+
+        expected_result = TreeNode(4)
+        expected_result.left = TreeNode(7, TreeNode(9), TreeNode(6))
+        expected_result.right = TreeNode(2, TreeNode(3), TreeNode(1))
+
+        self.assertTrue(self.assertTreesEqual(self.solution.invert_tree(root), expected_result))
+
+    def test_empty_tree(self):
+        self.assertIsNone(self.solution.invert_tree(None))
+
+    def test_single_node(self):
+        root = TreeNode(1)
+        self.assertTrue(self.assertTreesEqual(self.solution.invert_tree(root), root))
+
+if __name__ == '__main__':
+    unittest.main()

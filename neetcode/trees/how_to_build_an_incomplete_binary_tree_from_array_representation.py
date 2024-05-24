@@ -6,8 +6,7 @@ input:
 
 Please assume that I have already checked the input.
 
-For each array[i], its parents array[i/2] not be null(recursively,
-so root cannot be null).
+For each array[i], its parents array[i/2] cannot be null(recursively,so root cannot be null).
 
 How to build a tree with such logic relation
 
@@ -31,12 +30,13 @@ Example 2: [5,4,8,11,null,17,4,7,null,null,null,5]
 
 each node should be represented by a TreeNode object.
 """
-
-class TreeNode():
-    def __init__(self,val) -> None:
-        self.val =val
-        self.left  = None
-        self.right = None
+from typing import Optional, List
+class TreeNode:
+    """Definition for a binary tree node"""
+    def __init__(self, val=0, left=None, right=None) -> None:
+        self.val = val
+        self.left = left
+        self.right = right
 
 def createTree(array):
     if (array == None or len(array)==0):
@@ -94,49 +94,6 @@ def postorderTraversal(root):
         print(root.val, end='--')
 
 
-'''
-implementation 2
-
-'''
-
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val    = val
-        self.left   = left
-        self.right  = right
-
-def createBTree(data):
-    if data == None or len(data) == 0:
-        return None
-    treeNodeQueue = []
-    integerQueue  = []
-
-    for i in range(1, len(data)):
-        print(i)
-        integerQueue.append(data[i])
-
-    treeNode = TreeNode(data[0])
-    treeNodeQueue.append(treeNode)
-
-    while integerQueue:
-        if integerQueue:
-            leftVal = integerQueue.pop(0)
-        if integerQueue:
-            rightVal =integerQueue.pop(0)
-
-        current = treeNodeQueue.pop(0)
-
-        if leftVal is not None:
-            left = TreeNode(leftVal)
-            current.left = left
-            treeNodeQueue.append(left)
-        if rightVal is not None:
-            right =TreeNode(rightVal)
-            current.right = right
-            treeNodeQueue.append(right)
-
-    return treeNode
-
 
 test_data =[5,4,8,11,None,17,4,7,None,None,None,5]
 
@@ -155,3 +112,124 @@ None,-93,None,None,None,98]
 print("inorder traversal: ",inorderTraversal(createTree(test_data)))
 print("preorder traversal: ",preorderTraversal(createTree(test_data)))
 print("postorder traversal: ",postorderTraversal(createTree(test_data)))
+
+print(f"-------------------implementation 2-------------------")
+def array_to_tree(arr: List[Optional[int]]) -> Optional[TreeNode]:
+    """
+    Convert an array representation of a binary tree to an actual binary tree.
+
+    :param arr: List of integers where None represents a missing node.
+    :return: The root of the binary tree.
+    """
+    if not arr:
+        return None
+
+    # Create a list of TreeNode objects for non-null values in the array
+    nodes = [TreeNode(val) if val is not None else None for val in arr]
+
+    # The root is the first element
+    root = nodes[0]
+
+    # Fill in the left and right children
+    for i in range(len(nodes)):
+        if nodes[i] is not None:
+            left_index = 2 * i + 1
+            right_index = 2 * i + 2
+            if left_index < len(nodes):
+                nodes[i].left = nodes[left_index]
+            if right_index < len(nodes):
+                nodes[i].right = nodes[right_index]
+
+    return root
+
+
+# Helper function to print the tree (for debugging purposes)
+def print_tree(root: Optional[TreeNode], depth=0, label="Root"):
+    if root is not None:
+        print(" " * (depth * 4) + f"{label}: {root.val}")
+        print_tree(root.left, depth + 1, "L")
+        print_tree(root.right, depth + 1, "R")
+
+
+tree1 = array_to_tree([1, 2, 3, None, 5, None, 7])
+tree2 = array_to_tree([5, 4, 8, 11, None, 17, 4, 7, None, None, None, 5])
+tree3 = array_to_tree([1,2,3,None,5,None,7])
+
+print("Example 1 Tree:")
+print_tree(tree1)
+
+print("\nExample 2 Tree:")
+print_tree(tree2)
+
+print(f" --------------------- preorder tree 1 ---------------------")
+preorderTraversal(tree1)
+print(f" --------------------- preorder tree 2 ---------------------")
+preorderTraversal(tree2)
+print(f" --------------------- preorder tree 3 ---------------------")
+preorderTraversal(tree3)
+
+import unittest
+class TestArrayToTree(unittest.TestCase):
+    """
+    Unit tests for the array_to_tree function
+
+    Empty Tree: Tests the case where the input array is empty.
+    Single Node: Tests the case where the input array has only one element.
+    Two Levels: Tests a simple tree with two levels.
+    Tree with Nulls: Tests a tree with some None values to represent missing nodes.
+    Complex Tree: Tests a more complex tree structure with multiple levels and missing nodes.
+    All Nulls: Tests the case where the input array contains only None values.
+    Mixed Nulls: Tests a tree with a mix of non-null and None values in the array.
+
+    """
+
+    def setUp(self):
+        self.solution = array_to_tree
+
+    def assertTreeEqual(self, t1: Optional[TreeNode], t2: Optional[TreeNode]):
+        """
+        Helper function to assert that two binary trees are equal.
+        """
+        if t1 is None and t2 is None:
+            return True
+        if t1 is not None and t2 is not None:
+            return (t1.val == t2.val and
+                    self.assertTreeEqual(t1.left, t2.left) and
+                    self.assertTreeEqual(t1.right, t2.right))
+        return False
+
+    def test_empty_tree(self):
+        self.assertIsNone(self.solution([]))
+
+    def test_single_node(self):
+        root = TreeNode(1)
+        result = self.solution([1])
+        self.assertTrue(self.assertTreeEqual(result, root))
+
+    def test_two_levels(self):
+        root = TreeNode(1, TreeNode(2), TreeNode(3))
+        result = self.solution([1, 2, 3])
+        self.assertTrue(self.assertTreeEqual(result, root))
+
+    def test_tree_with_nulls(self):
+        root = TreeNode(1, TreeNode(2, None, TreeNode(5)), TreeNode(3, None, TreeNode(7)))
+        result = self.solution([1, 2, 3, None, 5, None, 7])
+        self.assertTrue(self.assertTreeEqual(result, root))
+
+    def test_complex_tree(self):
+        root = TreeNode(5,
+                        TreeNode(4, TreeNode(11, TreeNode(7)), None),
+                        TreeNode(8, TreeNode(17, TreeNode(5)), TreeNode(4)))
+        result = self.solution([5, 4, 8, 11, None, 17, 4, 7, None, None, None, 5])
+        self.assertTrue(self.assertTreeEqual(result, root))
+
+    def test_all_nulls(self):
+        self.assertIsNone(self.solution([None, None, None, None]))
+
+    def test_mixed_nulls(self):
+        root = TreeNode(1, None, TreeNode(2, TreeNode(3)))
+        result = self.solution([1, None, 2, 3])
+        self.assertFalse(self.assertTreeEqual(result, root))
+
+if __name__ == '__main__':
+    unittest.main()

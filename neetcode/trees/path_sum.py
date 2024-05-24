@@ -1,3 +1,4 @@
+import unittest
 from typing import Optional
 """
 Given the root of a binary tree and an integer targetSum return true if the tree has a 
@@ -18,8 +19,8 @@ Input: root =[5,4,8,11,null,13,4,7,2,null,null,null,1], targetSum =22
 Output: True
 """
 
-# Definition for a binary tree node.
 class TreeNode:
+    """Definition for a binary tree node."""
     def __init__(self, val=0, left=None, right=None):
         self.val  =val
         self.left =left
@@ -76,7 +77,7 @@ class TreeNode:
 
 class Solution:
 
-    def hasPathSum(self, root: Optional[TreeNode], targetSum: int)->bool:
+    def has_path_sum(self, root: Optional[TreeNode], targetSum: int)->bool:
 
         # O(n) time where n is number of nodes 
         # O(h) memory complexity | O(n) time in the worst case & O(log(n)) if
@@ -93,19 +94,72 @@ class Solution:
                     dfs(node.right, curSum))
         return dfs(root, 0)
 
-tree_vals =[5,4,8,11,None,13,4,7,2,None,None,None,1]
-t =TreeNode()
-tree_root =t.createTree(tree_vals)
-sol =Solution()
-print("Expected Solution::", sol.hasPathSum(tree_root, 22))
+class TestSolution(unittest.TestCase):
+    def setUp(self):
+        self.solution = Solution()
 
-tr = TreeNode(5)
-tr.left =TreeNode(4)
-tr.right=TreeNode(8)
-tr.left.left=TreeNode(11)
-tr.left.left.left =TreeNode(7)
-tr.left.left.right = TreeNode(2)
-tr.right.left=TreeNode(13)
-tr.right.right=TreeNode(4)
-tr.right.right.right=TreeNode(1)
-print("Expectation::",sol.hasPathSum(tr, 22))
+    def test_sample_1(self):
+        tree_vals =[5,4,8,11,None,13,4,7,2,None,None,None,1]
+        t =TreeNode()
+        tree_root =t.createTree(tree_vals)
+        self.assertTrue(self.solution.has_path_sum(tree_root, 22))
+
+    def test_sample_2(self):
+        tr = TreeNode(5)
+        tr.left =TreeNode(4)
+        tr.right=TreeNode(8)
+        tr.left.left=TreeNode(11)
+        tr.left.left.left =TreeNode(7)
+        tr.left.left.right = TreeNode(2)
+        tr.right.left=TreeNode(13)
+        tr.right.right=TreeNode(4)
+        tr.right.right.right=TreeNode(1)
+        self.assertTrue(self.solution.has_path_sum(tr, 22))
+    def test_empty_tree(self):
+        self.assertFalse(self.solution.has_path_sum(None, 0))
+
+    def test_single_node_tree(self):
+        root = TreeNode(1)
+        self.assertTrue(self.solution.has_path_sum(root, 1))
+        self.assertFalse(self.solution.has_path_sum(root, 2))
+
+    def test_tree_with_multiple_levels(self):
+        root = TreeNode(5)
+        root.left = TreeNode(4)
+        root.right = TreeNode(8)
+        root.left.left = TreeNode(11)
+        root.left.left.left = TreeNode(7)
+        root.left.left.right = TreeNode(2)
+        root.right.left = TreeNode(13)
+        root.right.right = TreeNode(4)
+        root.right.right.right = TreeNode(1)
+
+        self.assertTrue(self.solution.has_path_sum(root, 22))
+        self.assertTrue(self.solution.has_path_sum(root, 26))
+        self.assertTrue(self.solution.has_path_sum(root, 18))
+        self.assertTrue(self.solution.has_path_sum(root, 27))
+
+    def test_tree_with_negative_values(self):
+        root = TreeNode(-2)
+        root.right = TreeNode(-3)
+
+        self.assertTrue(self.solution.has_path_sum(root, -5))
+        self.assertFalse(self.solution.has_path_sum(root, -2))
+
+    def test_complex_tree(self):
+        root = TreeNode(1)
+        root.left = TreeNode(2)
+        root.right = TreeNode(3)
+        root.left.left = TreeNode(4)
+        root.left.right = TreeNode(5)
+        root.right.left = TreeNode(6)
+        root.right.right = TreeNode(7)
+
+        self.assertTrue(self.solution.has_path_sum(root, 7))
+        self.assertTrue(self.solution.has_path_sum(root, 10))
+        self.assertFalse(self.solution.has_path_sum(root, 1))
+        self.assertFalse(self.solution.has_path_sum(root, 18))
+
+
+if __name__ == '__main__':
+    unittest.main()
