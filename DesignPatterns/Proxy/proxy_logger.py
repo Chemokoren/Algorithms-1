@@ -9,8 +9,8 @@ It is a wrapper called by a client to access the real underlying object.
 Additional functionality can be provided in the proxy abstraction if required. e.g. caching, authorization
 , validation, lazy initialization, logging.
 
-The proxy should implement the subject interface as much as practicable so that the proxy and subject 
-appear identical to  the client.
+The proxy should implement the subject interface as much as practicable so that the proxy and 
+subject appear identical to  the client.
 
 The proxy Pattern may occassionally also be referred to as Monkey Patching or Object Augmentation.
 
@@ -42,5 +42,6 @@ class ProxyComponent(IComponent):
 component = Component()
 component.method()
 
+print(f"----------- proxy component ----------- ")
 component2 = ProxyComponent()
 component2.method()
