@@ -2,11 +2,11 @@ def find_next_empty(puzzle):
     """
     Finds the next row, col on the puzzle that's not filled yet--> rep with -1.
     
-        Parameters:
-            puzzle(List[List[str]]): sudoku board to be solved
-        
-        Return:
-            (r,c): return row, col tuple or (None, None) if there is None
+    Args:
+        puzzle(List[List[str]]): sudoku board to be solved
+    
+    Return:
+        (r,c): return row, col tuple or (None, None) if there is None
     """
     
     # keep in mind that we are using 0-8 for our indices
@@ -23,14 +23,14 @@ def is_valid(puzzle, guess, row, col):
     """
     Figures out whether the guess at the row/col of the puzzle is a valid guess.
     
-        Parameters:
-            puzzle(List[List[str]]): sudoku puzzle to solve
-            guess(str): represents the number to solve the board in that (r,c) cell
-            row(int): integer representing the row in the board
-            col(int): integer representing the column in the board
-            
-        Returns:
-            bool: returns True if is valid, False otherwise
+    Args:
+        puzzle(List[List[str]]): sudoku puzzle to solve
+        guess(str): represents the number to solve the board in that (r,c) cell
+        row(int): integer representing the row in the board
+        col(int): integer representing the column in the board
+        
+    Returns:
+        bool: returns True if is valid, False otherwise
     """
 
     # row
@@ -66,11 +66,11 @@ def solve_sudoku(puzzle):
     """
     return whether a solution exists to the puzzle 
     
-        Parameters: 
-            puzzle(List[List[str]]):list of lists, where @ inner list is a row in the 
-                                    sudoku puzzle)
-        Return:
-            bool: mutates puzzle to be the solution(if solution exists)
+    Args: 
+        puzzle(List[List[str]]):list of lists, where @ inner list is a row in the 
+                                sudoku puzzle)
+    Return:
+        bool: mutates puzzle to be the solution(if solution exists)
     
     """
     # step 1: choose somewhere on the puzzle to make a guess

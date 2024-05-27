@@ -27,35 +27,58 @@ Output: [1,null,2,null,3,null,4,null,5,null,6]
 O(n) time | O(h) memory & worst case is O(n) if it turns out to be a linked list
 """
 
-# Definition for a binary tree node.
 class TreeNode:
+    """ Definition for a binary tree node."""
     def __init__(self, val=0, left=None, right=None):
         self.val  = val
         self.left = left
         self.right = right
 
 class Solution:
-
-    def flatten(self, root: Optional[TreeNode])->None:
+    def flatten(self, root: Optional[TreeNode]) -> None:
         """
-        Do not return anything, modify root in-place instead.
+        Flatten the binary tree to a linked list in-place.
+        
+        The tree is modified such that the left child of each node is set to None and the right child
+        points to the next node in a pre-order traversal of the tree.
+        
+        :args root: The root node of the binary tree.
+        :return: None
         """
-
-        # flatten the root tree and return list tail
-        def dfs(root):
-            if not root:
+        
+        def dfs(node: Optional[TreeNode]) -> Optional[TreeNode]:
+            """
+            Perform depth-first search to flatten the tree.
+            
+            This helper function flattens the subtree rooted at the given node and returns the tail of the
+            flattened subtree.
+            
+            :args node: The root node of the current subtree.
+            :return: The tail node of the flattened subtree.
+            """
+            if not node:
                 return None
 
-            leftTail = dfs(root.left)
-            rightTail = dfs(root.right)
+            # Recursively flatten the left and right subtrees.
+            left_tail = dfs(node.left)
+            right_tail = dfs(node.right)
 
-            if root.left:
-                leftTail.right = root.right
-                root.right = root.left
-                root.left =None
-            last = rightTail or leftTail or root
-            return last
+            # If there is a left subtree, we need to rewire connections.
+            if node.left:
+                # The left subtree's tail's right child should point to the original right child.
+                left_tail.right = node.right
+                # The node's right child should now be the left child.
+                node.right = node.left
+                # Set the node's left child to None.
+                node.left = None
+
+            # The last node in the flattened subtree is the right_tail, if it exists,
+            # else left_tail, if it exists, else the current node.
+            return right_tail or left_tail or node
+
+        # Start the flattening process from the root.
         dfs(root)
+
 
 # Test case
 def test_flatten():
@@ -92,3 +115,59 @@ def test_flatten():
     print("Test passed successfully!")
 
 test_flatten()
+
+import unittest
+class TestFlatten(unittest.TestCase):
+
+    def setUp(self):
+        self.solution = Solution()
+
+    def tree_to_list(self, root: Optional[TreeNode]) -> list:
+        """
+        Helper function to convert the flattened tree to a list.
+        :param root: The root node of the flattened tree.
+        :return: A list representing the flattened tree.
+        """
+        result = []
+        while root:
+            result.append(root.val)
+            root = root.right
+        return result
+
+    def test_single_node(self):
+        root = TreeNode(1)
+        self.solution.flatten(root)
+        self.assertEqual(self.tree_to_list(root), [1])
+
+    def test_two_nodes(self):
+        root = TreeNode(1, TreeNode(2))
+        self.solution.flatten(root)
+        self.assertEqual(self.tree_to_list(root), [1, 2])
+
+    def test_left_skewed_tree(self):
+        root = TreeNode(1, TreeNode(2, TreeNode(3)))
+        self.solution.flatten(root)
+        self.assertEqual(self.tree_to_list(root), [1, 2, 3])
+
+    def test_right_skewed_tree(self):
+        root = TreeNode(1, None, TreeNode(2, None, TreeNode(3)))
+        self.solution.flatten(root)
+        self.assertEqual(self.tree_to_list(root), [1, 2, 3])
+
+    def test_balanced_tree(self):
+        root = TreeNode(1, TreeNode(2, TreeNode(3), TreeNode(4)), TreeNode(5, None, TreeNode(6)))
+        self.solution.flatten(root)
+        self.assertEqual(self.tree_to_list(root), [1, 2, 3, 4, 5, 6])
+
+    def test_complex_tree(self):
+        root = TreeNode(1)
+        root.left = TreeNode(2)
+        root.right = TreeNode(5)
+        root.left.left = TreeNode(3)
+        root.left.right = TreeNode(4)
+        root.right.right = TreeNode(6)
+        self.solution.flatten(root)
+        self.assertEqual(self.tree_to_list(root), [1, 2, 3, 4, 5, 6])
+
+if __name__ == '__main__':
+    unittest.main()

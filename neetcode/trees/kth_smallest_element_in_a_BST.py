@@ -1,7 +1,7 @@
 """
 Kth Smallest Element in a BST
 
-Given the root of a binary search tree, and an integer k, return the kth(1-indexed) smallest
+Given the root of a binary search tree, and an integer k, return the kth(1-indexed) the smallest
 element in the tree.
 
                     3
@@ -14,7 +14,7 @@ Output: 1
 """
 
 # Definition for a binary tree node.
-from typing import Optional
+from typing import Optional, Any
 
 
 class TreeNode:
@@ -38,16 +38,16 @@ class TreeNode:
         else:
             self.val = TreeNode(data)
 
-    def traverse(self,troot):
+    def in_order_traversal(self,troot):
         if troot:
-            self.traverse(troot.left)
+            self.in_order_traversal(troot.left)
             print(troot.val,end="--")
-            self.traverse(troot.right)
+            self.in_order_traversal(troot.right)
 
 
 class IterativeSolution:
     
-    def kthSmallest(self, root, k):
+    def kthSmallest_initial(self, root, k):
         n = 0
         stack =[]
         cur = root
@@ -61,6 +61,18 @@ class IterativeSolution:
             if n == k:
                 return cur.val
             cur = cur.right
+
+    def kthSmallest(self, root, k):
+        stack = []
+        while True:
+            while root:
+                stack.append(root)
+                root = root.left
+            root = stack.pop()
+            k -= 1
+            if k == 0:
+                return root.val
+            root = root.right
 
 
 tr = TreeNode(3)
@@ -90,9 +102,9 @@ tree.insert(14)
 
 # tree.traverse(tree.val)
 print("Expected:, Actual::", isv.kthSmallest(tree, 7))
-print("Traverse::",tree.traverse(tree))
+print("Traverse::",tree.in_order_traversal(tree))
 class Solution1:
-  def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+  def kthSmallest(self, root: Optional[TreeNode], k: int) -> Any | None:
     if root is None: return None
     kth_smallest = None
     gen = self.in_order(root)
@@ -108,4 +120,4 @@ class Solution1:
         yield from self.in_order(root.right)
 
 sol =Solution1()
-print("ndio ii::, Actual::", sol.kthSmallest(tr,1))
+print("Expected:: 1, Actual::", sol.kthSmallest(tr,1))

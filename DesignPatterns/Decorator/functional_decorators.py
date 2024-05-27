@@ -6,7 +6,7 @@ import time
 def time_it(func):
     def wrapper():
         start = time.time()
-        result =func()
+        func()
         end = time.time()
         print(f'{func.__name__} took {int((end-start)*1000)}ms')
     return wrapper
@@ -21,4 +21,4 @@ def some_op():
 
 if __name__=='__main__':
     #time_it(some_op)()
-    some_op()
+    some_op()  

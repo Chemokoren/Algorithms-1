@@ -22,6 +22,7 @@ Example 1:
 """
 from typing import Optional
 from collections import deque
+
 # Definition for a binary tree node
 class TreeNode:
 
@@ -52,26 +53,54 @@ def dfs(root):
 
 
 
-
 class Solution:
+    """
+    Time Complexity: O(N), where N is the number of nodes in the BST.
+    Space Complexity: O(N) due to the recursive nature of the `dfs` function.
+    """
 
-    def convertBST(self, root: Optional[TreeNode])-> Optional[TreeNode]:
-        curSum = 0
+    def convertBST(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        """
+        Converts a Binary Search Tree (BST) into a new BST where each node's value
+        
+        is equal to the sum of all nodes greater than it in the original BST.
+
+        Args:
+            root (Optional[TreeNode]): The root node of the BST to be converted.
+
+        Returns:
+            Optional[TreeNode]: The root node of the converted BST.
+
+        Raises:
+            TypeError: If the input `root` is not a TreeNode object.
+
+        """
+        if not isinstance(root, TreeNode):
+            raise TypeError("Input must be a TreeNode object")
+
+        cur_sum = 0
 
         def dfs(node):
+            """
+            Performs an in-order depth-first search (DFS) on the BST,
+            updating node values based on the sum of greater nodes.
 
+            Args:
+                node (TreeNode): The current node in the DFS traversal.
+            """
+            nonlocal cur_sum
             if not node:
                 return
-            nonlocal curSum
 
-            dfs(node.right)
+            dfs(node.right)  # Process right subtree first (in-order)
             tmp = node.val
-            node.val +=curSum
-            curSum += tmp
-            dfs(node.left)
+            node.val += cur_sum
+            cur_sum += tmp
+            dfs(node.left)   # Process left subtree next (in-order)
 
         dfs(root)
         return root
+
     
 tr = TreeNode(4)
 tr.left =TreeNode(1)
@@ -84,10 +113,9 @@ tr.left.right.right =TreeNode(3)
 tr.right.right.right =TreeNode(8)
 
 sol = Solution()
-sol1 =Solution()
 
 # print("Expected::", sol.convertBST(tr).val)
 print(" ########## BFS ########## ")
 bfs(sol.convertBST(tr))
 print(" ########## DFS ########## ")
-dfs(sol.convertBST(tr))
+# dfs(sol.convertBST(tr))
