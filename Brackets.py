@@ -26,6 +26,11 @@ However, note that the function assumes that the input string only contains brac
 characters. If the input string contains other characters, the function may not work as intended.
 """
 def solution(S):
+    """
+    Function expects a string S containing only brackets.
+    :param S: string containing only brackets
+    :return: integer 0 is False,and 1 is True
+    """
 
     matches, stack = dict(['()', '[]', '{}']), []
 
@@ -37,7 +42,6 @@ def solution(S):
                 return 0 # False
         else:
             stack.append(i)
-
     return int(not stack)
 
 print(solution(S))
@@ -58,6 +62,5 @@ def solution_updated(s):
     return True if len(temp) == 0 else False
 
 
-# S = "([)()]"
-S = "{[()(}]}"
-print(solution_updated(S))
+print(f"Expected :: False, Actual :: {solution_updated('{[()(}]}')}")
+print(f"Expected :: True, Actual :: {solution_updated('([)()]')}")
