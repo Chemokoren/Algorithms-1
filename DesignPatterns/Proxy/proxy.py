@@ -21,7 +21,8 @@ Protection proxy is used for access control i.e it adds various access control f
 for example, a proxy that checks if the user has logged in to use a particular feature.
 
 Proxy Vs. Decorator
-- Proxy procides an identical interface; decorator  provides an enhanced interface
+
+- Proxy provides an identical interface; decorator  provides an enhanced interface
 - Decorator typically aggregates (or has reference to) what it is decorating; proxy doesn't have to
 - Proxy might not even be working with a materialized object
 
