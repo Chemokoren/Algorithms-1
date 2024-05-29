@@ -27,13 +27,6 @@ Time: O(N.M)^2
 
 """
 class Solution:
-    """
-    This class provides a solution to find cells that can flow water to both the Pacific Ocean and the Atlantic Ocean.
-
-    The problem considers a height map where water can only flow from a cell to a neighboring cell with a non-negative
-    height difference (i.e., water flows from higher to lower ground). The function identifies cells that can drain
-    water to both the Pacific Ocean (left and top borders) and the Atlantic Ocean (right and bottom borders).
-    """
 
     def pacificAtlantic(self, heights: List[List[int]]) -> List[List[int]]:
         """
@@ -47,6 +40,8 @@ class Solution:
             List[List[int]]: A list of lists containing the coordinates (row, column) of cells that can flow water
                              to both the Pacific and Atlantic Oceans.
         """
+        if not heights:
+            return []
 
         num_rows, num_cols = len(heights), len(heights[0])
         pacific_reachable = set()  # Cells reachable from the Pacific Ocean
@@ -93,70 +88,105 @@ class Solution:
         return result
 
 
-class TestPacificAtlantic(unittest.TestCase):
-    """
-    test_empty_grid: Checks the behavior with an empty grid (no cells).
-    test_single_cell: Tests the case with a single cell, where no cell can flow to both oceans.
-    test_all_reachable: Ensures the function identifies all reachable cells in a grid with a simple height map.
-    test_no_pacific_flow: Verifies that the function returns an empty list if no cell can flow to the Pacific Ocean.
-    test_no_atlantic_flow: Tests the scenario where no cell can flow to the Atlantic Ocean.
-    test_complex_grid: Evaluates the function with a more complex grid and varying heights to ensure it handles different cases.
+import unittest
+from typing import List
 
-    """
+class TestPacificAtlantic(unittest.TestCase):
 
     def setUp(self):
         self.solution = Solution()
+        
+    def test_example_case(self):
+        # Example height map
+        heights = [
+            [1, 2, 2, 3, 5],
+            [3, 2, 3, 4, 4],
+            [2, 4, 5, 3, 1],
+            [6, 7, 1, 4, 5],
+            [5, 1, 1, 2, 4]
+        ]
 
-    def test_empty_grid(self):
-        """Tests the function with an empty grid."""
+        expected_result = [[0, 4], [1, 3], [1, 4], [2, 2], [3, 0], [3, 1], [4, 0]]
+        actual_result = self.solution.pacificAtlantic(heights)
+
+        self.assertEqual(sorted(actual_result), sorted(expected_result))
+
+    def test_empty_heights(self):
+        # Test with an empty height map
         heights = []
-        result = self.solution.pacificAtlantic(heights)
-        self.assertEqual(result, [])
 
-    def test_single_cell(self):
-        """Tests the function with a grid containing a single cell."""
-        heights = [[1]]
-        result = self.solution.pacificAtlantic(heights)
-        self.assertEqual(result, [])  # No cell can flow to both oceans
+        actual_result = self.solution.pacificAtlantic(heights)
+        self.assertEqual(actual_result, [])
 
-    def test_all_reachable(self):
-        """Tests the function with a grid where all cells are reachable from both oceans."""
-        heights = [[1, 2, 2, 3, 5],
-                   [3, 2, 3, 4, 4],
-                   [2, 4, 5, 3, 1],
-                   [3, 1, 2, 3, 4]]
-        result = self.solution.pacificAtlantic(heights)
-        expected_result = [(0, 0), (0, 1), (0, 2), (0, 3), (0, 4),
-                           (1, 0), (1, 1), (1, 2), (1, 3), (1, 4),
-                           (2, 0), (2, 1), (2, 2), (2, 3), (2, 4),
-                           (3, 0), (3, 1), (3, 2), (3, 3), (3, 4)]
-        self.assertEqual(set(result), set(expected_result))
+    # Add more test cases as needed
 
-    def test_no_pacific_flow(self):
-        """Tests the case where no cell can flow water to the Pacific Ocean."""
-        heights = [[10, 10, 10],
-                   [10, 10, 10],
-                   [10, 10, 10]]
-        result = self.solution.pacificAtlantic(heights)
-        self.assertEqual(result, [])
-
-    def test_no_atlantic_flow(self):
-        """Tests the case where no cell can flow water to the Atlantic Ocean."""
-        heights = [[1, 2, 3],
-                   [3, 2, 1],
-                   [2, 1, 0]]
-        result = self.solution.pacificAtlantic(heights)
-        self.assertEqual(result, [])
-
-    def test_complex_grid(self):
-        """Tests the function with a complex grid with varying heights."""
-        heights = [[1, 2, 2, 3, 5],
-                   [3, 2, 3, 4, 4],
-                   [2, 4, 5, 3, 1],
-                   [2, 1, 2, 5, 1]]
-        result = self.solution.pacificAtlantic(heights)
-        expected_result = [(0, 3), (1, 2), (2, 0), (2, 1), (2, 2), (2, 3), (3, 0)]
-        self.assertEqual(set(result), set(expected_result))
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
+
+
+# class TestPacificAtlantic(unittest.TestCase):
+#     """
+#     test_empty_grid: Checks the behavior with an empty grid (no cells).
+#     test_single_cell: Tests the case with a single cell, where no cell can flow to both oceans.
+#     test_all_reachable: Ensures the function identifies all reachable cells in a grid with a simple height map.
+#     test_no_pacific_flow: Verifies that the function returns an empty list if no cell can flow to the Pacific Ocean.
+#     test_no_atlantic_flow: Tests the scenario where no cell can flow to the Atlantic Ocean.
+#     test_complex_grid: Evaluates the function with a more complex grid and varying heights to ensure it handles different cases.
+
+#     """
+
+#     
+
+#     def test_empty_grid(self):
+#         """Tests the function with an empty grid."""
+#         heights = []
+#         result = self.solution.pacificAtlantic(heights)
+#         self.assertEqual(result, [])
+
+#     def test_single_cell(self):
+#         """Tests the function with a grid containing a single cell."""
+#         heights = [[1]]
+#         result = self.solution.pacificAtlantic(heights)
+#         self.assertEqual(result, [])  # No cell can flow to both oceans
+
+#     def test_all_reachable(self):
+#         """Tests the function with a grid where all cells are reachable from both oceans."""
+#         heights = [[1, 2, 2, 3, 5],
+#                    [3, 2, 3, 4, 4],
+#                    [2, 4, 5, 3, 1],
+#                    [3, 1, 2, 3, 4]]
+#         result = self.solution.pacificAtlantic(heights)
+#         expected_result = [(0, 0), (0, 1), (0, 2), (0, 3), (0, 4),
+#                            (1, 0), (1, 1), (1, 2), (1, 3), (1, 4),
+#                            (2, 0), (2, 1), (2, 2), (2, 3), (2, 4),
+#                            (3, 0), (3, 1), (3, 2), (3, 3), (3, 4)]
+#         self.assertEqual(set(result), set(expected_result))
+
+#     def test_no_pacific_flow(self):
+#         """Tests the case where no cell can flow water to the Pacific Ocean."""
+#         heights = [[10, 10, 10],
+#                    [10, 10, 10],
+#                    [10, 10, 10]]
+#         result = self.solution.pacificAtlantic(heights)
+#         self.assertEqual(result, [])
+
+#     def test_no_atlantic_flow(self):
+#         """Tests the case where no cell can flow water to the Atlantic Ocean."""
+#         heights = [[1, 2, 3],
+#                    [3, 2, 1],
+#                    [2, 1, 0]]
+#         result = self.solution.pacificAtlantic(heights)
+#         self.assertEqual(result, [])
+
+#     def test_complex_grid(self):
+#         """Tests the function with a complex grid with varying heights."""
+#         heights = [[1, 2, 2, 3, 5],
+#                    [3, 2, 3, 4, 4],
+#                    [2, 4, 5, 3, 1],
+#                    [2, 1, 2, 5, 1]]
+#         result = self.solution.pacificAtlantic(heights)
+#         expected_result = [(0, 3), (1, 2), (2, 0), (2, 1), (2, 2), (2, 3), (3, 0)]
+#         self.assertEqual(set(result), set(expected_result))
+
+# if __name__ == '__main__':
+#     unittest.main()

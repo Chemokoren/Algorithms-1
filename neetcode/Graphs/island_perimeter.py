@@ -28,12 +28,6 @@ Time complexity: O(n*m)
 """
 
 class Solution:
-    """
-    This class provides a solution to find the perimeter of an island in a grid.
-
-    The problem considers a grid where each cell represents land (1) or water (0). The function calculates the
-    total perimeter of the connected land (island) in the grid.
-    """
 
     def islandPerimeter(self, grid: List[List[int]]) -> int:
         """
