@@ -25,6 +25,7 @@ Explanation: The perimeter is the 16 yellow stripes in the image above
 
 It is a linear time algorithm  -meaning that we are visiting every cell in the grid only once.
 Time complexity: O(n*m)
+
 """
 
 class Solution:
@@ -34,7 +35,8 @@ class Solution:
         Calculates the perimeter of the island in a 2D grid.
 
         Args:
-            grid (List[List[int]]): A 2D list representing the grid, where grid[i][j] is 1 for land and 0 for water.
+            grid (List[List[int]]): A 2D list representing the grid, where grid[i][j] 
+            is 1 for land and 0 for water.
 
         Returns:
             int: The total perimeter length of the island in the grid.
@@ -44,14 +46,16 @@ class Solution:
 
         def dfs(row: int, col: int) -> int:
             """
-            Performs a Depth-First Search (DFS) traversal to explore the island and calculate its perimeter.
+            Performs a Depth-First Search (DFS) traversal to explore the island and calculate
+            its perimeter.
 
             Args:
                 row (int): The row index of the current cell.
                 col (int): The column index of the current cell.
 
             Returns:
-                int: The perimeter contribution of the current cell (1 if on the edge, 0 otherwise).
+                int: The perimeter contribution of the current cell (1 if on the edge, 
+                0 otherwise).
             """
 
             if (row >= len(grid) or col >= len(grid[0]) or  # Check for out-of-bounds
