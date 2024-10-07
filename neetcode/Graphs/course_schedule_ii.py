@@ -49,6 +49,7 @@ class Solution:
             for pre in prereq[crs]:
                 if dfs(pre) == False:
                     return False
+            # we remove the crs from cycle coz it is nolonger in the path that we are visiting    
             cycle.remove(crs)
             visit.add(crs)
             output.append(crs)
@@ -58,3 +59,40 @@ class Solution:
             if dfs(c) == False:
                 return []
         return output
+
+import unittest
+
+class TestCourseSchedule(unittest.TestCase):
+
+    def setUp(self):
+        self.solution = Solution()
+
+    def test_no_prerequisites(self):
+        self.assertEqual(self.solution.findOrder(2, []), [0, 1])  # Any order is valid
+
+    def test_single_prerequisite(self):
+        self.assertEqual(self.solution.findOrder(2, [[1, 0]]), [0, 1])  # Must take course 0 before 1
+
+    def test_multiple_prerequisites(self):
+        self.assertEqual(self.solution.findOrder(4, [[1, 0], [2, 1], [3, 2]]), [0, 1, 2, 3])
+
+    def test_multiple_valid_orders(self):
+        result = self.solution.findOrder(4, [[1, 0], [2, 0], [3, 1], [3, 2]])
+        self.assertTrue(set(result) == {0, 1, 2, 3})  # Check that all courses are included
+        self.assertTrue(result.index(0) < result.index(1))  # Course 0 must come before 1
+        self.assertTrue(result.index(0) < result.index(2))  # Course 0 must come before 2
+        self.assertTrue(result.index(1) < result.index(3))  # Course 1 must come before 3
+        self.assertTrue(result.index(2) < result.index(3))  # Course 2 must come before 3
+
+    def test_cycle_detection(self):
+        self.assertEqual(self.solution.findOrder(2, [[1, 0], [0, 1]]), [])  # Cycle present
+
+    def test_more_complex_cycle(self):
+        self.assertEqual(self.solution.findOrder(5, [[1, 0], [2, 1], [3, 2], [2, 3]]), [])  # Cycle present
+
+    def test_large_input(self):
+        prerequisites = [[i + 1, i] for i in range(999)]  # 0 -> 1 -> 2 -> ... -> 998
+        self.assertEqual(self.solution.findOrder(1000, prerequisites), list(range(1000)))
+
+if __name__ == '__main__':
+    unittest.main()
