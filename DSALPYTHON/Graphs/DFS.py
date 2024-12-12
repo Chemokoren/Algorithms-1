@@ -48,7 +48,7 @@ class Graph:
     def DFS(self, source):
         if self._visited[source] == 0:
             print(source, end=' - ')
-            self._visited[source] =1
+            self._visited[source] = 1
             for j in range(self._vertices):
                 if self._adjMat[source][j] == 1 and self._visited[j] ==0:
                     self.DFS(j)

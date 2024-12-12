@@ -31,23 +31,23 @@ if __name__ =='__main__':
     print("CEO 1:",ceo1)
     
     ceo1.age =66
-    
+    print("CEO 1 updated:", ceo1)
     ceo2 =CEO()
     ceo2.age =77
     print("CEO 1:",ceo1)
     print("CEO 2:",ceo2)
-    
+
     ceo2.name ='Tim'
-    
+
     ceo3 = CEO()
     print("THEE CEOS:", ceo1, ceo2, ceo3)
-    
+    # 
     cfo1 = CFO()
     cfo1.name ='Sheryl'
     cfo1.money_managed=1
-    
+
     print("CFO1:", cfo1)
-    
+    # 
     cfo2 =CFO()
     cfo2.name='Ruth'
     cfo2.money_managed =10

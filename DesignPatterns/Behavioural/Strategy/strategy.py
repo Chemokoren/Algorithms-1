@@ -18,7 +18,7 @@ remove odd
            V
     [-4, 0, 2, 6] 
     
-This are two strategies but maybe in the future we wanna add more and we want
+These are two strategies though in the future we may add more and we want
 to follow the open-closed principle (i.e. open for extension but closed for 
 modifications)
 
@@ -57,9 +57,9 @@ class Values:
         return res
     
 values = Values([-7,-4, -1, 0, 2, 6, 9])
-
-print(values.filter(RemoveNegativeStrategy())) #[0, 2, 6, 9]
-print(values.filter(RemoveOddStrategy())) # [-4, 0, 2, 6]
+print("Originals::", values)
+print("Remove Negatives::", values.filter(RemoveNegativeStrategy())) #[0, 2, 6, 9]
+print("Remove Odds::", values.filter(RemoveOddStrategy())) # [-4, 0, 2, 6]
 
 # we can now add other strategies without modifying our Values class
 

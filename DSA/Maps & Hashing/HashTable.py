@@ -13,8 +13,7 @@ class HashTable(object):
                 self.table[hv] = [string]
 
     def lookup(self, string):
-        """Return the hash value if the
-        string is already in the table.
+        """Return the hash value if the string is already in the table.
         Return -1 otherwise."""
         hv = self.calculate_hash_value(string)
         if hv != -1:
@@ -24,8 +23,7 @@ class HashTable(object):
         return -1
 
     def calculate_hash_value(self, string):
-        """Helper function to calulate a
-                hash value from a string."""
+        """Helper function to calulate a hash value from a string."""
         value = ord(string[0])*100 + ord(string[1])
         return value
 

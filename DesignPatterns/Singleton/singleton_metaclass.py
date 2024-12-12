@@ -1,5 +1,6 @@
 class Singleton(type):
     """Metaclass that creates a Singleton base type when called."""
+
     _instances ={}
     def __call__(cls, *args, **kwargs):
         if cls not in cls._instances:
@@ -14,6 +15,8 @@ class Database(metaclass=Singleton):
 if __name__=='__main__':
     d1 = Database()
     d2 = Database()
+    d3 = Database()
+    d4 = Database()
     print(d1 == d2)
     
     

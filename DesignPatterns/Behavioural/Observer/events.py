@@ -22,12 +22,10 @@ def call_doctor(name, address):
 
 if __name__ =='__main__':
     person = Person('Sherlock', '221B Baker St')
-    person.falls_ill.append(
-        lambda name, addr: print(f'{name} is ill')
-    )
+    person.falls_ill.append(lambda name, addr: print(f'{name} is ill'))
     person.falls_ill.append(call_doctor)
     person.catch_a_cold()
 
     # you can remove subscriptions too
-    person.falls_ill.remove(call_doctor)
-    person.catch_a_cold()
+    # person.falls_ill.remove(call_doctor)
+    # person.catch_a_cold()

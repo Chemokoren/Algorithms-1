@@ -4,15 +4,18 @@ def count_negative(array, given_number):
 def solution(A):
     n = len(A)
     largest = 0
+    count =0
     for i in range(n):
-            if A[i] > largest and count_negative(A,-A[i])==True:
-                    largest = A[i]
+            # if A[i] > largest and count_negative(A,-A[i])==True:
+            #         largest = A[i]
+            if A[i] < 0:
+                count +=1
 
-    return largest
+    return count
 # my_array =[3, 2, -2, 5,-3]
 my_array =[1, 2, 3, -4]
 
-print(solution(my_array))
+print("aaa",solution(my_array))
 
 
 
