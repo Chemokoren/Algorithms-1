@@ -1,4 +1,4 @@
-# Deque data structure
+# **Deque data structure**
 - works the same way as queues with additional functionality i.e. you can add as well as remove from front & rear
 # Deques abstract data type
 - Deque ADT stores objects
