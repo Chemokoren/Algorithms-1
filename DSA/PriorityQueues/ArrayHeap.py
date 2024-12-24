@@ -22,6 +22,7 @@ class ArrayHeap:
         Insert an element into the binary max-heap and maintain the heap property.
 
         This method performs the following steps:
+
         1. Checks if the heap has space to add a new element.
         2. Inserts the new element at the next available position.
         3. Percolates the new element up to its correct position to restore the heap property.
@@ -38,7 +39,7 @@ class ArrayHeap:
 
         # Step 2: Increment the current size of the heap
         self._currentsize += 1  # Update the size to include the new element
-        i = self._currentsize  # Start at the new position (last position in the heap)
+        i = self._currentsize  #  Start at the new position (last position in the heap)
 
         # Step 3: Percolate the element up to maintain the heap property
         # While not at the root and the element is greater than its parent
@@ -128,8 +129,10 @@ Key Variables:
 Logic Summary:
 
     The method ensures the heap is not full before attempting to insert the new element.
-    After placing the element at the next available position, it "bubbles up" the element to its proper position by repeatedly swapping it with its parent if it's larger.
-    This guarantees that the max-heap property (parent is always greater than or equal to its children) is maintained.
+    After placing the element at the next available position, it "bubbles up" the element to its proper 
+    position by repeatedly swapping it with its parent if it's larger.
+    This guarantees that the max-heap property (parent is always greater than or equal to its children) 
+    is maintained.
     
     
 Explanation: deletemax
