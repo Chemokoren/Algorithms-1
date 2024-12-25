@@ -56,7 +56,8 @@ class Graph:
         Assumptions:
         - The graph is represented using an adjacency matrix `self._adjMat`.
         - The number of vertices in the graph is stored in `self._vertices`.
-        - The `self._visited` list is used to track whether a vertex has been visited (1 for visited, 0 for not visited).
+        - The `self._visited` list is used to track whether a vertex has been visited (1 for visited,
+        0 for not visited).
 
         Example:
         Given a graph with vertices 0, 1, 2, 3 and edges between them:
@@ -113,16 +114,16 @@ Explanation of the Code:
     Base Case:
         The recursion stops for a vertex if it has already been visited, ensuring no infinite loops occur.
 
-Example Walkthrough:
-
-For a graph with 4 vertices (0 to 3) and the following adjacency matrix:
-
-[[0, 1, 0, 0],
- [1, 0, 1, 1],
- [0, 1, 0, 1],
- [0, 1, 1, 0]]
-
-If source = 0, the traversal order will be 0 - 1 - 2 - 3, as it explores each branch to its end before backtracking.
+    Example Walkthrough:
+    
+    For a graph with 4 vertices (0 to 3) and the following adjacency matrix:
+    
+    [[0, 1, 0, 0],
+     [1, 0, 1, 1],
+     [0, 1, 0, 1],
+     [0, 1, 1, 0]]
+    
+    If source = 0, the traversal order will be 0 - 1 - 2 - 3, as it explores each branch to its end before backtracking.
 
 """
 

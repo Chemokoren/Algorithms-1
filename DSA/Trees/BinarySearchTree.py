@@ -25,7 +25,7 @@ class BinarySearchTree:
         node =self._Node(e)
         if self._root:
             if e < ttroot._element:
-                ttroot._left =node
+                ttroot._left = node
             else:
                 ttroot._right =node
         else:

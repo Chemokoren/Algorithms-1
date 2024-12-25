@@ -1,3 +1,4 @@
+#from DSA.Modules_Exceptions import Empty
 from exceptions import Empty
 
 class LinkedQueue:
@@ -50,19 +51,3 @@ class LinkedQueue:
             print(temp._element, end="-->")
             temp =temp._next
         print()
-
-# q = LinkedQueue()
-# q.enqueue(10)
-# q.enqueue(20)
-# q.display()
-# print('Length: ', len(q))
-# print('Dequeue: ', q.dequeue())
-# q.display()
-# q.enqueue(30)
-# q.enqueue(40)
-# q.display()
-# print('First Element: ', q.first())
-# q.display()
-# print('Dequeue: ', q.dequeue())
-# q.display()
-    

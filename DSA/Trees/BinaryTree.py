@@ -1,58 +1,86 @@
-class Node(object):
-    def __init__(self, value):
-        self.value = value
-        self.left = None
-        self.right = None
+from LinkedQueue import LinkedQueue
 
-class BinaryTree(object):
-    def __init__(self, root):
-        self.root = Node(root)
+class BinaryTree:
+    class _Node:
+        __slots__='_element','_left', '_right'
 
-    def search(self, find_val):
-        """Return True if the value
-        is in the tree, return
-        False otherwise."""
-        return self.preorder_search(tree.root, find_val)
+        def __init__(self,element,left=None,right=None) -> None:
+            self._element =element
+            self._left =left
+            self._right =right
+            
 
-    def print_tree(self):
-        """Print out all tree nodes
-         as they are visited in
-         a pre-order traversal."""
-        return self.preorder_print(tree.root, "")[:-1]
+    def __init__(self) -> None:
+        self._root =None
+        self._size =0
 
-    def preorder_search(self, start, find_val):
-        """Helper method - use this to create a
-               recursive search solution."""
-        if start:
-            if start.value == find_val:
-                return True
-            else:
-                return self.preorder_search(start.left, find_val) or self.preorder_search(start.right, find_val)
-        return False
+    def maketree(self,e,left,right):
+        self._root  = self._Node(e,left._root,right._root)
+        left._root  = None
+        right._root = None
 
-    def preorder_print(self, start, traversal):
-        """Helper method - use this to create a
-               recursive print solution."""
-        if start:
-            traversal += (str(start.value) + "-")
-            traversal = self.preorder_print(start.left, traversal)
-            traversal = self.preorder_print(start.right, traversal)
-        return traversal
+    def levelorder(self):
+        Q =LinkedQueue()
+        t = self._root
+        print(t._element, end='--')
+        Q.enqueue(t)
+
+        while not Q.is_empty():
+            t = Q.dequeue()
+            if t._left:
+                print(t._left._element, end='--')
+                Q.enqueue(t._left)
+            if(t._right):
+                print(t._right._element, end='--')
+                Q.enqueue(t._right)
+
+    
+    def inorder(self, troot):
+        if troot:
+            self.inorder(troot._left)
+            print(troot._element, end='--')
+            self.inorder(troot._right)
+
+    def preorder(self, troot):
+        if troot:
+            print(troot._element,end='--')
+            self.preorder(troot._left)
+            self.preorder(troot._right)
+    
+    def postorder(self, troot):
+        if troot:
+            self.postorder(troot._left)
+            self.postorder(troot._right)
+            print(troot._element,end='--')
+
+a = BinaryTree()
+x = BinaryTree()
+y = BinaryTree()
+z = BinaryTree()
+r = BinaryTree()
+s = BinaryTree()
+t = BinaryTree()
 
 
-# Set up tree
-tree = BinaryTree(1)
-tree.root.left = Node(2)
-tree.root.right = Node(3)
-tree.root.left.left = Node(4)
-tree.root.left.right = Node(5)
+x.maketree(40,a,a)
+y.maketree(60,a,a)
+z.maketree(20,x,a)
+r.maketree(50,a,y)
+s.maketree(30,r,a)
+t.maketree(10,z,s)
+a = BinaryTree()
 
-# Test search
-# Should be True
-print(tree.search(4))
-# Should be False
-print(tree.search(6))
+print("levelorder Traversal:")
+t.levelorder()
+print("Preorder Traversal:\n")
+t.preorder(t._root)
+print("Inorder Traversal:\n")
+t.inorder(t._root)
+print("Postorder Traversal:\n")
+t.postorder(t._root)
+print()
 
-# Test print_tree
-# Should be 1-2-4-5-3
-print(tree.print_tree())
+
+
+
+    
