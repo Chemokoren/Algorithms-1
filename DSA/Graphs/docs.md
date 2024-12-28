@@ -7,6 +7,7 @@
 # Applications of Maps
 - Road Maps
 - Flight Maps
+
 # Types of Edges
 - Directed
   - Directed: Edge has orientation (A->B and B->A are not same)
@@ -27,10 +28,10 @@
   - A -B -D -C or A->B->C->D
 - Cycle is a path that start and end at the same Vertex (A->B->D->A)
 # Graph ADT
-- Create(n): create graph with n vertices and no edges
+- Create(n): create graph with n vertices and n edges
 - Add(u, v): insert an edge from u to v
 - Delete(u, v): remove an edge from u to v
-- Edges(): returns number if edges
+- Edges(): returns number if edges exists
 - Vertices(): returns number of vertices
 - Exist(u, v): return true if edge between u and v exists
 - Degree(u): returns degree of the vertex u

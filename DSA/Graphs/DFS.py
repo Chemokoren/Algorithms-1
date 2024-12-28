@@ -1,129 +1,167 @@
 import numpy as np
-from LinkedQueue import LinkedQueue
+from LinkedQueue import LinkedQueue  # Assuming LinkedQueue is implemented elsewhere
 
 class Graph:
+    """
+    A class to represent a directed graph using an adjacency matrix.
+
+    Attributes:
+        _adjMat (numpy.ndarray): The adjacency matrix of the graph.
+        _vertices (int): The number of vertices in the graph.
+        _visited (list[int]): Tracks visited vertices during traversals.
+    """
+
     def __init__(self, vertices) -> None:
-        self._adjMat = np.zeros((vertices, vertices))
-        self._vertices = vertices
-        self._visited =[0] * vertices
+        """
+        Initialize a graph with a given number of vertices.
+
+        Parameters:
+        vertices (int): The number of vertices in the graph.
+        """
+        self._adjMat = np.zeros((vertices, vertices))  # Initialize adjacency matrix with zeros
+        self._vertices = vertices  # Store the number of vertices
+        self._visited = [0] * vertices  # Initialize visited list for traversal algorithms
 
     def insert_edge(self, u, v, w=1):
-        self._adjMat[u][v] =w
+        """
+        Insert an edge between two vertices.
 
-    def delete_edge(self,u, v):
-        self._adjMat[u][v] =0
+        Parameters:
+        u (int): The source vertex.
+        v (int): The destination vertex.
+        w (int, optional): The weight of the edge (default is 1).
+        """
+        self._adjMat[u][v] = w  # Add the edge to the adjacency matrix
 
-    def get_edge(self, u,v):
+    def delete_edge(self, u, v):
+        """
+        Delete an edge between two vertices.
+
+        Parameters:
+        u (int): The source vertex.
+        v (int): The destination vertex.
+        """
+        self._adjMat[u][v] = 0  # Remove the edge from the adjacency matrix
+
+    def get_edge(self, u, v):
+        """
+        Retrieve the weight of an edge between two vertices.
+
+        Parameters:
+        u (int): The source vertex.
+        v (int): The destination vertex.
+
+        Returns:
+        int: The weight of the edge, or 0 if no edge exists.
+        """
         return self._adjMat[u][v]
 
     def vertices_count(self):
+        """
+        Get the total number of vertices in the graph.
+
+        Returns:
+        int: The number of vertices.
+        """
         return self._vertices
 
     def edge_count(self):
+        """
+        Count the total number of edges in the graph.
+
+        Returns:
+        int: The number of edges.
+        """
         count = 0
+        # Iterate through the adjacency matrix to count non-zero entries
         for i in range(self._vertices):
             for j in range(self._vertices):
-                if not self._adjMat[i][j] == 0:
+                if self._adjMat[i][j] != 0:
                     count += 1
         return count
 
     def indegree(self, u):
+        """
+        Calculate the indegree of a vertex.
+
+        Parameters:
+        u (int): The vertex index.
+
+        Returns:
+        int: The number of incoming edges to the vertex.
+        """
         count = 0
+        # Count non-zero entries in the column corresponding to vertex u
         for i in range(self._vertices):
-            if not self._adjMat[i][u] == 0:
+            if self._adjMat[i][u] != 0:
                 count += 1
         return count
 
     def outdegree(self, u):
+        """
+        Calculate the outdegree of a vertex.
+
+        Parameters:
+        u (int): The vertex index.
+
+        Returns:
+        int: The number of outgoing edges from the vertex.
+        """
         count = 0
+        # Count non-zero entries in the row corresponding to vertex u
         for i in range(self._vertices):
-            if not self._adjMat[u][i] == 0:
+            if self._adjMat[u][i] != 0:
                 count += 1
         return count
 
     def display(self):
+        """
+        Display the adjacency matrix of the graph.
+        """
         print(self._adjMat)
 
     def DFS(self, source):
         """
-        Perform Depth-First Search (DFS) on a graph starting from a given source vertex.
+        Perform Depth-First Search (DFS) starting from a given vertex.
 
         Parameters:
-        source (int): The index of the starting vertex for the DFS traversal.
+        source (int): The index of the starting vertex.
 
-        This method prints the vertices visited during the DFS traversal in the order they are visited.
-
-        Assumptions:
-        - The graph is represented using an adjacency matrix `self._adjMat`.
-        - The number of vertices in the graph is stored in `self._vertices`.
-        - The `self._visited` list is used to track whether a vertex has been visited (1 for visited,
-        0 for not visited).
-
-        Example:
-        Given a graph with vertices 0, 1, 2, 3 and edges between them:
-        If source = 0, the method prints a DFS traversal starting from vertex 0.
+        This method prints the vertices in the order they are visited.
         """
-        # Check if the current vertex has not been visited
+        # If the vertex has not been visited
         if self._visited[source] == 0:
-            # Mark the current vertex as visited and print it
-            print(source, end=' - ')
-            self._visited[source] = 1
+            print(source, end=' - ')  # Print the current vertex
+            self._visited[source] = 1  # Mark as visited
 
-            # Recursively visit all unvisited adjacent vertices
+            # Explore all adjacent vertices
             for j in range(self._vertices):
-                # If there is an edge and the vertex hasn't been visited
                 if self._adjMat[source][j] == 1 and self._visited[j] == 0:
-                    self.DFS(j)
+                    self.DFS(j)  # Recursively perform DFS on adjacent vertices
 
 
-G =Graph(7)
+# Example usage
+if __name__ == "__main__":
+    G = Graph(7)
 
-G.insert_edge(0,1)
-G.insert_edge(0,5)
-G.insert_edge(0,6)
-G.insert_edge(1,0)
-G.insert_edge(1,2)
-G.insert_edge(1,5)
-G.insert_edge(1,6)
-G.insert_edge(2,3)
-G.insert_edge(2,4)
-G.insert_edge(2,6)
-G.insert_edge(3,4)
-G.insert_edge(4,2)
-G.insert_edge(4,5)
-G.insert_edge(5,2)
-G.insert_edge(5,3)
-G.insert_edge(6,3)
-G.DFS(0)
+    # Insert edges into the graph
+    G.insert_edge(0, 1)
+    G.insert_edge(0, 5)
+    G.insert_edge(0, 6)
+    G.insert_edge(1, 0)
+    G.insert_edge(1, 2)
+    G.insert_edge(1, 5)
+    G.insert_edge(1, 6)
+    G.insert_edge(2, 3)
+    G.insert_edge(2, 4)
+    G.insert_edge(2, 6)
+    G.insert_edge(3, 4)
+    G.insert_edge(4, 2)
+    G.insert_edge(4, 5)
+    G.insert_edge(5, 2)
+    G.insert_edge(5, 3)
+    G.insert_edge(6, 3)
 
-"""
-Explanation of the Code:
-
-    Initialization:
-        The method starts with a given source vertex.
-        The self._visited list tracks which vertices have already been visited.
-
-    Recursive Traversal:
-        The algorithm uses recursion to explore as far as possible along each branch before backtracking.
-        For each vertex, if it hasn't been visited, it is marked as visited and printed.
-        Adjacent vertices are then explored recursively.
-
-    Adjacency Matrix:
-        The graph is represented by self._adjMat, where 1 indicates an edge between two vertices and 0 indicates no edge.
-
-    Base Case:
-        The recursion stops for a vertex if it has already been visited, ensuring no infinite loops occur.
-
-    Example Walkthrough:
-    
-    For a graph with 4 vertices (0 to 3) and the following adjacency matrix:
-    
-    [[0, 1, 0, 0],
-     [1, 0, 1, 1],
-     [0, 1, 0, 1],
-     [0, 1, 1, 0]]
-    
-    If source = 0, the traversal order will be 0 - 1 - 2 - 3, as it explores each branch to its end before backtracking.
-
-"""
-
+    # Perform DFS traversal
+    print("DFS Traversal starting from vertex 0:")
+    G.DFS(0)
