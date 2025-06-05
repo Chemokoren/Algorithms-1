@@ -24,7 +24,7 @@ class Employee:
     
 class EmployeeFactory:
     main_office_employee = Employee('', Address('123 East Dr', 'London', 0))
-    aux_office_employee = Employee('', Address('123B East Dr', 'London', 0))
+    aux_office_employee  = Employee('', Address('123B East Dr', 'London', 0))
     
     @staticmethod
     def __new_employee(proto, name, suite):

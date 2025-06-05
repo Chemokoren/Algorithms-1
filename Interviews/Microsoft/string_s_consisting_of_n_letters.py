@@ -29,3 +29,24 @@ Write an efficient algorithm for the following assumptions:
 - N is an integer within the range[1..200,000];
 - String S consists only of letters(a-z and/or A-Z).
 """
+
+def largest_letter(s):
+    max_val=-float("inf")
+    max_str=""
+
+    set_s=set(s)
+    for i in s:
+        ord_val=ord(i)
+        if ord_val >= 97:
+            continue
+        if ord_val > max_val and i.lower() in set_s:
+            max_val=ord_val
+            max_str=i
+    return max_str if len(max_str) > 0 else "NO"
+
+print(f"aaBabcDaA: {largest_letter('aaBabcDaA')}")
+print(f"Codility: {largest_letter('Codility')}")
+print(f"WeTestCodErs: {largest_letter('WeTestCodErs')}")
+
+
+    

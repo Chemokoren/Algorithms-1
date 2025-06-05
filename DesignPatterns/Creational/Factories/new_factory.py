@@ -10,6 +10,7 @@ it is a cheeseburger, a deluxecheeseburger or a veganburger.
 
 All we have to do is tell the factory what kind of burger we want just like
 we do at a restaurant.
+
 But, be careful because this way, you will never know what is inside the 
 special sauce(burger).
 

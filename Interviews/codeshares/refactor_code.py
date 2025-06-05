@@ -186,7 +186,45 @@ if __name__ == "__main__":
 
 
 
+"""
+Latest Money refactor
+"""
+class Money:
+    def __init__(self, euros: int, cents: int):
+        """Initializes the Money object ensuring cents are within valid range."""
+        total_cents = euros * 100 + cents
+        self._euros, self._cents = divmod(total_cents, 100)
 
+    def __str__(self):
+        """Returns the money representation as a string in 'euros.cents eur' format."""
+        return f"{self._euros}.{self._cents:02d} eur"
+
+    def __eq__(self, other):
+        """Checks if two Money objects are equal."""
+        return (self._euros, self._cents) == (other._euros, other._cents)
+
+    def __ne__(self, other):
+        """Checks if two Money objects are not equal."""
+        return not self == other
+
+    def __gt__(self, other):
+        """Checks if self is greater than other."""
+        return (self._euros, self._cents) > (other._euros, other._cents)
+
+    def __lt__(self, other):
+        """Checks if self is less than other."""
+        return (self._euros, self._cents) < (other._euros, other._cents)
+
+    def __add__(self, other):
+        """Adds two Money objects."""
+        return Money(self._euros + other._euros, self._cents + other._cents)
+
+    def __sub__(self, other):
+        """Subtracts two Money objects, ensuring the result is non-negative."""
+        total_cents = (self._euros * 100 + self._cents) - (other._euros * 100 + other._cents)
+        if total_cents < 0:
+            raise ValueError("Cannot be negative")
+        return Money(0, total_cents)
 
 
 

@@ -1,4 +1,35 @@
+# Design Patterns
+-Design patterns are common architectural approaches
+-Popularized by the Gang of Four(GoF) book(1994 -Smalltalk & C++)
+-Universally relevant
+    - Internalized in some programming languages
+    - Libraries
+    - Your own code
+## SOLID Design Principles
+- Set of design principles  related to software design (selection of 5 desing principles from a large number)
+- Introduced by Robert C. Martin
+- Frequently referenced in design pattern literature
+### Single Responsibility principle (SRP/SOC-Seperation of concerns)
+- A class should only have one reason to change
+- Seperation of concerns - different classes handling different, independent tasks/problems
+### Open Closed Principle (OCP)
+- class is open for extension but closed for modification
+### Liskov Substitution principle
+- You should be able to substitute a base type for  subtype
+### Interface Segregation Principle
+- Don't put too much into an interface; split into seperate interfaces
+- YAGNI - You Ain't Going to Need it
+### Dependency Inversion Principle
+- High-level modules should not depend on low-level ones; use abstractions
+
+
+## Design Patterns
+    - Creational
+    - Structural
+    - Behavioral
 """
+
+
 
 Gamma Categorization
 --------------------
@@ -11,11 +42,26 @@ Creational Patterns
 - Explicit (constructor) vs. implicit (DI, reflection, etc.)
 - Wholesale (single statement) vs. piecewise (step-by-step)
 
+a) Builder
+b) Factories
+    -Abstract Factory
+    -Factory Method
+c) Prototype
+d) Singleton
+
 Structural Patterns
 -------------------
 - concerned with the structure (e.g. class members)
 - Many patterns are wrappers that mimic the underlying class' interface
 - Stress the importance of good API design
+
+a) Adapter
+b) Bridge
+c) Composite
+d) Decorator
+e) Facade
+f) Flyweight
+g) Proxy
 
 Behavioural Patterns
 --------------------
@@ -24,6 +70,18 @@ Behavioural Patterns
 - They are all doing their own thing/ there is some overlap here and there e.g the strategy
 and the template method design patterns. They are kind of doing the same thing but they are doing it using completely different object oriented mechanisms
 - Each is unique in their approach meaning that they solve a particular problem in a particular way, have a particular set of concerns etc.
+
+a) Chain of Responsibility
+b) Command
+c) Interpreter
+d) Iterator
+e) Mediator
+f) Memento
+g) Observer
+h) State
+i) Strategy
+j) Template Method
+k) Visitor
 """
 
 # Creational Design Pattern: ## Reflection

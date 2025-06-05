@@ -1,26 +1,26 @@
-"""
-"""
 from enum import Enum
 from math import *
 
 class CoordinateSystem(Enum):
-    CARTESIAN =1
-    POLAR =2
-    
+    CARTESIAN=1
+    POLAR=2
+
 class Point:
-    
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
+
+    def __init__(self, x=0, y=0):
+        self.x=x
+        self.y=y
     def __str__(self) -> str:
         return f'x: {self.x}, y: {self.y}'
     
-
-# take out factory methods to a seperate class
 class PointFactory:
+
     @staticmethod
     def new_cartesian_point(x, y):
-        return Point(x, y)
+        p = Point()
+        p.x =x
+        p.y =y
+        return p
     
     @staticmethod
     def new_polar_point(rho, theta):
