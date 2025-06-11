@@ -4,6 +4,7 @@ instantiated.
 It has many use cases e.g. maintaining a single copy of our application state.
 
 example: 
+--------
 By providing Store access to App component,all child component of App gets
 access to the store as shown
                             [Store]
