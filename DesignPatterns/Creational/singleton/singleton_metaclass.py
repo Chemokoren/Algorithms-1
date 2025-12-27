@@ -18,4 +18,6 @@ class Database(metaclass=Singleton):
 if __name__=='__main__':
     d1 = Database()
     d2 = Database()
+    d3 = Database()
+    d4 = Database()
     print(d1 == d2)

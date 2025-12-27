@@ -7,7 +7,7 @@
 - Space Complexity: Amount of Memory used by the algorithm
 
 ### Time Complexity
-- There may be several ways of computing a tasks, for example searching or sorting
+- There may be several ways of computing tasks, for example searching or sorting
 - Running time of algorithm or data structure operation increases with input size
 - The algorithms are characterized according to the function of the input size
 ### Time Complexity - Experimental Analysis
@@ -33,4 +33,3 @@
   - Parameters for the operations
 - ADT specify what each operation does
 - ADT does not specify how operations are done
-- 

@@ -1,12 +1,10 @@
-"""The LinkedListDS code from before is provided below.
+"""
 Add three functions to the LinkedListDS.
-"get_position" returns the element at a certain position.
-The "insert" function will add an element to a particular
-spot in the list.
-"delete" will delete the first element with that
-particular value.
-Then, use "Test Run" and "Submit" to run the test cases
-at the bottom."""
+
+- "get_position" returns the element at a certain position.
+- The "insert" function will add an element to a particular spot in the list.
+- "delete" will delete the first element with that particular value.
+"""
 
 
 class Element(object):
@@ -29,9 +27,11 @@ class LinkedList(object):
             self.head = new_element
 
     def get_position(self, position):
-        """Get an element from a particular position.
+        """
+        Get an element from a particular position.
         Assume the first position is "1".
-        Return "None" if position is not in the list."""
+        Return "None" if position is not in the list.
+        """
 
         counter = 1
         current = self.head
@@ -45,9 +45,11 @@ class LinkedList(object):
         return None
 
     def insert(self, new_element, position):
-        """Insert a new node at the given position. Assume the first position is "1".
+        """
+        Insert a new node at the given position. Assume the first position is "1".
         Inserting at position 3 means between
-        the 2nd and 3rd elements."""
+        the 2nd and 3rd elements.
+        """
         counter = 1
         current = self.head
         if position > 1:

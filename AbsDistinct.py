@@ -3,16 +3,14 @@ Tasks Details
 Easy
 1. AbsDistinct
 Compute number of distinct absolute values of sorted array elements.
-Task Score
-7%
-Correctness
-9%
-Performance
-0%
+Task Score: 7%
+Correctness: 9%
+Performance: 0%
+
 Task description
 A non-empty array A consisting of N numbers is given. The array is sorted in non-decreasing order.
-The absolute distinct count of this array is the number of distinct absolute values among the elements
-of the array.
+The absolute distinct count of this array is the number of distinct absolute values among
+the elements of the array.
 
 For example, consider array A such that:
 
@@ -29,17 +27,9 @@ Write a function:
 
 def solution(A)
 
-that, given a non-empty array A consisting of N numbers, returns absolute distinct count of array A.
+that, given a non-empty array A consisting of N numbers, returns absolute distinct count of
+array A.
 
-For example, given array A such that:
-
-  A[0] = -5
-  A[1] = -3
-  A[2] = -1
-  A[3] =  0
-  A[4] =  3
-  A[5] =  6
-the function should return 5, as explained above.
 
 Write an efficient algorithm for the following assumptions:
 
@@ -55,7 +45,6 @@ def Remove(duplicate):
     return final_list
 
 def solution(A):
-    # write your code in Python 3.6
     GEEK = []
     for i in range(len(A) - 1):
         GEEK.append(abs(i))
@@ -118,18 +107,22 @@ def solution2(A):
 
 
 
-A = [-5, -3, -1, 0, 3, 6]
-
 # use set or maps
-def solution(A):
+def solution_set(A):
     map = set()
 
     for i in A:
         map.add(abs(i))
-    #    if abs(i)  in map:
-    #        pass
-    #    else:
-    #        map[abs(i)] =True
     return len(map)
 
-solution(A)
+def solution_dict(A):
+    map = {}
+    for i in A:
+        if abs(i)  in map:
+           pass
+        else:
+           map[abs(i)] =True
+    return len(map)
+
+A = [-5, -3, -1, 0, 3, 6]
+print(solution_dict(A))

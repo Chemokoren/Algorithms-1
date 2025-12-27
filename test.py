@@ -1,5 +1,6 @@
 from typing import List
 class Solution:
+
     def threeSum(self, nums: List[int]) -> List[List[int]]:
         nums = sorted(list(set(nums)))
         final = []
@@ -9,7 +10,6 @@ class Solution:
         while j < len(nums) - 1 and k > j:
             temp = nums[i] + nums[j] + nums[k]
             if (temp == 0):
-                print(f"aa::{nums}")
                 final.append([nums[i], nums[j], nums[k]])
             elif temp > 0:
                 k -= 1

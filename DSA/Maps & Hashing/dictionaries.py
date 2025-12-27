@@ -1,4 +1,5 @@
-"""Time to play with Python dictionaries!
+"""
+Time to play with Python dictionaries!
 You're going to work on a dictionary that
 stores cities by country and continent.
 One is done for you - the city of Mountain

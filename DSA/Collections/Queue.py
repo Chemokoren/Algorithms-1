@@ -1,6 +1,8 @@
-"""Make a Queue class using a list!
+"""
+Make a Queue class using a list!
 Hint: You can use any Python list method
-you'd like!"""
+you'd like!
+"""
 
 
 class Queue:

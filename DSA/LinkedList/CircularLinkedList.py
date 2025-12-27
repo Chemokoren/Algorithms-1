@@ -44,7 +44,7 @@ class CircularLinkedList:
         self._size += 1
 
     def add_any(self, e, pos):
-        newest = self._Node(e,None)
+        newest = self._Node(e, None)
         thead  = self._head
         i = 1
         while i < pos:

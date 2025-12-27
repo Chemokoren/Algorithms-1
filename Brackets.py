@@ -1,6 +1,3 @@
-
-# S = "{[()()]}"
-S = "([)()]"
 """
 checks whether it contains a properly nested sequence of brackets.
 
@@ -25,42 +22,39 @@ The function works correctly for the test cases provided in the code (S = "([)()
 However, note that the function assumes that the input string only contains brackets and no other 
 characters. If the input string contains other characters, the function may not work as intended.
 """
-def solution(S):
-    """
-    Function expects a string S containing only brackets.
-    :param S: string containing only brackets
-    :return: integer 0 is False,and 1 is True
-    """
-
-    matches, stack = dict(['()', '[]', '{}']), []
-
-    for i in S:
-        if i in matches.values():
-            if stack and matches[stack[-1]] == i:
-                stack.pop()
-            else:
-                return 0 # False
-        else:
-            stack.append(i)
-    return int(not stack)
-
-print(solution(S))
 
 """
 checks if the brackets are balanced
 """
-def solution_updated(s):
-    start_br = ["(", "[", "{"]
-    end_br = [")", "]", "}"]
-    map_br = {"}": "{", ")": "(", "]": "["}
-    temp = []
-    for i in range(len(s)):
-        if (s[i] in start_br):
-            temp.append(s[i])
-        if (s[i] in end_br and map_br[s[i]] in temp):
-            temp.remove(map_br[s[i]])
-    return True if len(temp) == 0 else False
+def solution(S: str) -> int:
+    """
+    Checks whether a string of brackets is properly nested.
 
+    :param S: string containing only brackets
+    :return: 1 if properly nested, else 0
+    """
 
-print(f"Expected :: False, Actual :: {solution_updated('{[()(}]}')}")
-print(f"Expected :: True, Actual :: {solution_updated('([)()]')}")
+    matches = {')': '(', ']': '[', '}': '{'}
+    openings = set(matches.values())
+    stack = []
+
+    for ch in S:
+        # If closing bracket
+        if ch in matches:
+            if not stack or stack[-1] != matches[ch]:
+                return 0
+            stack.pop()
+        elif ch in openings:  # opening
+            stack.append(ch)
+        else:
+            return 0  # invalid character
+
+    return 1 if not stack else 0
+
+print(f"Expected :: 0, Actual :: {solution('([)()]')}")
+print(f"Expected :: 0, Actual :: {solution('{[()(}]}')}")
+print(f"Expected :: 1, Actual :: {solution('{[()()]}')}")
+print(f"Expected :: 1, Actual :: {solution('')}")
+print(f"Expected :: 1, Actual :: {solution('((()))')}")
+print(f"Expected :: 1, Actual :: {solution('([{}])')}")
+print(f"Expected :: 0, Actual :: {solution('([)]')}")

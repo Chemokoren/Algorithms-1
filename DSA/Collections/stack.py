@@ -1,4 +1,5 @@
-"""Add a couple methods to our LinkedListDS class,
+"""
+Add a couple methods to our LinkedListDS class,
 and use that to implement a Stack.
 You have 4 functions below to fill in:
 insert_first, delete_first, push, and pop.

@@ -1,5 +1,5 @@
 import numpy as np
-from LinkedQueue import LinkedQueue  # Assuming LinkedQueue is implemented elsewhere
+from LinkedQueue import LinkedQueue
 
 class Graph:
     """
@@ -18,9 +18,9 @@ class Graph:
         Parameters:
         vertices (int): The number of vertices in the graph.
         """
-        self._adjMat = np.zeros((vertices, vertices))  # Initialize adjacency matrix with zeros
+        self._adjMat   = np.zeros((vertices, vertices))  # Initialize adjacency matrix with zeros
         self._vertices = vertices  # Store the number of vertices
-        self._visited = [0] * vertices  # Initialize visited list for traversal algorithms
+        self._visited  = [0] * vertices  # Initialize visited list for traversal algorithms
 
     def insert_edge(self, u, v, w=1):
         """

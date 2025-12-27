@@ -39,20 +39,20 @@ if __name__=='__main__':
     ceo2.age =77
     print("ceo 1:", ceo1)
     print("ceo 2:",ceo2)
-    
+
     ceo2.name ='Tim'
-    
+    # 
     ceo3 =CEO()
     print(f"ceo 1:{ceo1}", f"ceo 2:{ceo2}", f"ceo 3:{ceo3}", sep='\n')
-    
+
     cfo1 =CFO()
     cfo1.name='Sheryl'
     cfo1.money_managed=1
-    
+
     print(cfo1)
-    
+
     cfo2 =CFO()
     cfo2.name='Ruth'
     cfo2.money_managed=10
-    
+
     print(f"cfo 1:{cfo1}", f"cfo 2:{cfo2}", sep='\n')
